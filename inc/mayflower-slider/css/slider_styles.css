@@ -1,0 +1,78 @@
+/* BC Slider Stylesheet */
+
+
+.carousel .attachment-featured-full {
+	/*height: auto; */
+    /*width: 100%; */
+}
+
+.carousel .attachment-featured-in-content {
+	height: auto;
+    max-width: 940px;
+    max-height: 210px;
+    min-height: 210px;
+    width: 100%;
+}
+
+.carousel h2 {
+	margin-top: 0px;
+	padding: 0;
+	color: #fff;
+	line-height: 21px;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 15px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+
+.carousel-caption h2,
+.carousel-caption p,
+.carousel-caption a {
+  color: #ffffff;
+  line-height: 21px;
+  margin: 0;
+}
+
+.widefat .carousel-caption p {
+  margin: 0;
+  padding: 0;
+}
+
+.wrap .carousel-caption h2 {
+	font-size: 22px;
+	padding: 0;
+}
+.widefat td {
+	padding: 4px 7px;
+}
+
+td.column-thumbnail .active .img-wrapper {
+	position: relative;
+	max-width: 1024px;
+}
+
+td.column-thumbnail img {
+    height: auto;
+    max-height: 210px;
+    max-width: 1170px;
+    width: 100%;
+}
+
+tbody.ui-sortable td {
+	padding: 10px 0px;
+}
+
+.column-thumbnail {
+	width: 140px;
+}
+
+#myCarousel {
+	border-top: 1px solid #1a1a1a;
+}

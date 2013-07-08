@@ -1,0 +1,23 @@
+body h1, h2, h3, h4, h5, h6 {
+    color: #008AD0;
+}
+
+div.bcause-lite .navbar-inner {
+    background-color: #008AD0;
+    background-image: linear-gradient(to bottom, #27C5FF, #008AD0);
+    background-repeat: repeat-x;
+    border: 0 solid #D4D4D4;
+    border-radius: 0 0 0 0;
+    padding-left: 0;
+}
+
+div.bcause-lite .navbar .nav > li > a {
+    border-right: 1px solid #5cb4e1;
+    color: #FFFFFF;
+    float: none;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-shadow: none;
+}

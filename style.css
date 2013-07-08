@@ -1,0 +1,629 @@
+/*
+Theme Name: Mayflower
+Theme URI: http://bellevuecollege.edu/ir/wordpress/
+Description: The Bellevue College Theme
+Author: DevCom
+Version: 1.0.0
+*/
+
+
+/* Styles for College Header and Footer */
+@import url("/globals/responsive/css/btheme_v0.1.css");
+
+
+@media (max-width: 480px) {
+
+.footer-widgets .span3 {
+	border-right: 0px solid #e6e6e6;
+}
+
+}
+
+/* Dodgy CSS ^_^ */
+.wp-list-table td { background: white; }
+.wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
+.wp-list-table .column-sorting img { cursor: move; }
+.wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
+
+
+/* ###################################### */
+/* ----- BCause Bootstrap Overrides ----- */
+/* ###################################### */
+
+body {
+	background: #f2f2f2 url(img/bg-body.png) repeat;
+	color: #222;
+	margin: 0;
+	padding: 0;
+}
+
+body h1,h2,h3,h4,h5,h6 {
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #793b00;
+	margin: 42px 0px 0px 0px;
+    font-weight: normal;
+}
+h1 {
+	font-size: 28px;
+	font-weight: normal;
+	line-height: 28px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+h2 {
+	font-size: 22px;
+	line-height: 21px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+
+h3 {
+	font-size: 17px;
+	font-style: italic;
+	line-height: 21px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+h4 {
+	font-size: 15px;
+	line-height: 21px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+h5 {
+	font-size: 14px;
+	font-style: italic;
+	color: #000;
+	line-height: 21px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+h6 {
+	font-size: 12px;
+	color: #000;
+	line-height: 21px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+p {
+	margin-top: 21px;
+}
+.navbar {
+	margin-bottom: 0;
+}
+#main-nav.navbar {
+	margin: 0;
+	font-size: 15px;
+}
+
+#main-nav .navbar-inner {
+	background-color: #fafafa;
+	background-image: -moz-linear-gradient(top, #1d67a2, #23588c);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1d67a2), to(#23588c));
+	background-image: -webkit-linear-gradient(top, #1d67a2, #23588c);
+	background-image: -o-linear-gradient(top, #1d67a2, #23588c);
+	background-image: linear-gradient(to bottom, #1d67a2, #23588c);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1d67a2', endColorstr='#23588c', GradientType=0);
+	border: 0;
+	border-top: 1px solid #457baa;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+	*zoom: 1;
+	min-height: 35px;
+	font-weight: bold;
+	padding: 0;
+}
+
+#main-nav.navbar .nav > li > a {
+  float: none;
+  color: #f2f2f2;
+  padding: 7px 20px 7px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #003d79;
+  border-right: 1px solid #6997ba;
+}
+
+#main-nav.navbar .nav > li > a:focus,
+#main-nav.navbar .nav > li > a:hover {
+  background: #457baa url(img/bg-main-nav-hover.png) repeat-x;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+#main-nav.navbar .nav > .current-menu-item > a,
+#main-nav.navbar .nav > .current-menu-item > a:hover,
+#main-nav.navbar .nav > .current-menu-item > a:focus,
+#main-nav.navbar .nav > .current-page-ancestor > a,
+#main-nav.navbar .nav > .current-page-ancestor > a:hover,
+#main-nav.navbar .nav > .current-page-ancestor > a:focus {
+	color: #fff;
+	text-decoration: none;
+	background-color: #27445f;
+	-webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	-moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	background-image: -moz-linear-gradient(top, #27445f, #143351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#27445f), to(#143351));
+	background-image: -webkit-linear-gradient(top, #27445f, #143351);
+	background-image: -o-linear-gradient(top, #27445f, #143351);
+	background-image: linear-gradient(to bottom, #27445f, #143351);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27445f', endColorstr='#143351', GradientType=0);
+	border-left: 1px solid #002d3f;
+	border-right: 1px solid #002d3f;
+}
+
+
+li.nav-header {
+	display: block;
+	padding: 3px 15px;
+/*    font-family: Georgia,"Times New Roman",Times,serif;
+	line-height: 28px;
+*/
+	font-weight: normal;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: none;
+	text-transform: none;
+	background: #013d79;
+}
+
+#main-nav.navbar .btn-navbar {
+  float: right;
+  padding: 7px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #173653;
+	-webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	-moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	background-image: -moz-linear-gradient(top, #27445f, #143351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#27445f), to(#143351));
+	background-image: -webkit-linear-gradient(top, #27445f, #143351);
+	background-image: -o-linear-gradient(top, #27445f, #143351);
+	background-image: linear-gradient(to bottom, #27445f, #143351);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27445f', endColorstr='#143351', GradientType=0);
+  border-color: #e5e5e5 #e5e5e5 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #e5e5e5;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
+}
+
+.lead {
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 17px;
+    line-height: 28px;
+    color: #666666;
+    margin: 0px;
+}
+
+.page-content {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.page-content h2 + p,
+.page-content h3 +p,
+.page-content h4 +p,
+.page-content h5 +p,
+.page-content h6 +p,
+.footer-widgets h3.widget-title {
+	margin-top: 0;
+}
+
+
+
+.page-content ul {
+	margin: 21px 0px 0px 25px;
+}
+
+.page-content li {
+	list-style: square;
+}
+.page-content ul li {
+	margin: 7px 0px 0px 0px;
+}
+
+.page-content ul li > ul {
+	margin-top: 0px;
+}
+
+/* ######################### */
+/* ----- Header Styles ----- */
+/* ######################### */
+
+#top-wrapper {
+	background: #003d79 url(img/headbgwide.jpg) repeat-x;
+	margin-top: 10px;
+	border-bottom: 3px solid #002d3f;
+}
+
+.container.logobar {
+	margin-top: -10px;
+}
+
+.container.logobar .border {
+	-moz-box-shadow: 0 0 5px #00203F;
+	-webkit-box-shadow: 0 0 5px#00203F;
+	box-shadow: 0 0 5px #00203F;
+	background: url("img/headbg.jpg") repeat scroll 0 0 #003D79;
+}
+
+h1.site-title {
+	color: #333333;
+    font-family: "HelveticaNeue",Helvetica,Arial,sans-serif;
+    font-size: 37px;
+    line-height: 42px;
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+div.bcause-lite h1.site-title {
+	line-height: 21px;
+	margin-top: 28px;
+}
+
+div.bcause-lite h1.site-title a {
+	color: #333;
+}
+
+h1.page-title {
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 28px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+p.site-description {
+	font-size: 13px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0px 0px 14px 20px;
+}
+
+#header-logo img {
+	max-width: 1170px;
+	max-height: 84px;
+	height: auto;
+}
+
+/* ###################### */
+/* ----- Navigation ----- */
+/* ###################### */
+
+body.right-sidebar #primary {
+	float: left;
+	margin: 0 0 0 -26.4%;
+	width: 100%;
+}
+.right-sidebar #content {
+	margin: 0 7.6% 0 34%;
+	width: 58.4%;
+}
+.right-sidebar #secondary {
+	float: left;
+	margin-left: 7.6%;
+	margin-right: 0;
+	width: 18.8%;
+}
+
+/* ###################### */
+/* ----- Navigation ----- */
+/* ###################### */
+
+ul#main-nav li {
+	margin: 0;
+	padding: 0;
+}
+.nav-home li#nav-home a,
+.nav-classes li#nav-classes a,
+.nav-programs li#nav-programs a,
+.nav-enrollment li#nav-enrollment a,
+.nav-resources li#nav-resources a,
+.nav-news li#nav-news a,
+.nav-about li#nav-about a
+{
+	color: #fff;
+	text-decoration: none;
+	background: #457baa url(img/bg-main-nav-hover.png) repeat-x;
+/*
+	border-top: 1px solid transparent;
+	margin-top: -1px;
+*/
+}
+
+/*
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover,
+#main-nav.navbar ul.nav a:hover {
+	background-color: #27445F;
+	border-top: 1px solid transparent;
+	margin-top: -1px;
+}
+*/
+div.bcause-lite .navbar-inner {
+  padding-left: 0px;
+  background-color: #0071bc;
+  background-image: -moz-linear-gradient(top, #0071bc, #004684);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0071bc), to(#004684));
+  background-image: -webkit-linear-gradient(top, #0071bc, #004684);
+  background-image: -o-linear-gradient(top, #0071bc, #004684);
+  background-image: linear-gradient(to bottom, #0071bc, #004684);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0071bc', endColorstr='#ff004684', GradientType=0);
+  border: 0px solid #d4d4d4;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0px;
+  -moz-box-shadow: 0px;
+  box-shadow: 0px;
+  *zoom: 1;
+}
+
+div.bcause-lite .navbar .nav > li > a {
+  float: none;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: none;
+  border-right: 1px solid #5395c5;
+}
+
+/* ############################## */
+/* ----- Section Navigation ----- */
+/* ############################## */
+
+ul.section-nav {
+	margin: 0px;
+	background: #f0f0f0;
+}
+
+ul.section-nav li  {
+	list-style: none;
+}
+
+ul.section-nav a {
+	background: #f0f0f0;
+}
+
+li.section-nav-header {
+	background: #003d79;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	color: #fff;
+	padding-left: 20px;
+	font-size: 12px;
+}
+
+ul.section-nav li a {
+	color: #003d79;
+/*	margin-left: -25px;*/
+	border-bottom: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	line-height: 21px;
+	padding: 3px 0px 3px 20px;
+}
+
+ul.section-nav li:last a{
+	border-bottom: none;
+}
+
+ul.section-nav li.menu-item a:hover,
+ul.section-nav ul.sub-menu li a:hover {
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+	background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+	background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+	background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffe5e5e5', GradientType=0);
+}
+
+ul.section-nav li.current-menu-item ul.sub-menu li {
+	background: #f0f0f0;
+}
+
+ul.section-nav li.menu-item a {
+	display: block;
+}
+
+ul.section-nav li.current-menu-item a span.arrow,
+ul.section-nav li.menu-item a:hover span.arrow {
+	background:  transparent url(img/section-nav-arrow.png) no-repeat 0px 1px;
+	display: block;
+	float: left;
+	width: 20px;
+	height: 19px;
+	padding: 0px 0px;
+	margin-left: -20px;
+}
+
+ul.section-nav ul.sub-menu li a{
+	padding-left: 40px;
+	color: #808080;
+}
+
+ul.section-nav ul.sub-menu span.arrow {
+	display: block;
+}
+
+ul.section-nav ul.sub-menu li.menu-item a span.arrow,
+ul.section-nav li.current-menu-item ul.sub-menu li a:hover span.arrow,
+ul.section-nav ul.sub-menu li.menu-item a:hover span.arrow {
+	background:  transparent url(img/section-nav-arrow.png) no-repeat 0px -63px;
+}
+
+ul.section-nav li.current-menu-item ul.sub-menu li a span.arrow {
+	display: none;
+}
+
+ul.section-nav li.current-menu-item ul.sub-menu li a:hover span.arrow {
+	display: block;
+}
+
+ul.section-nav ul.sub-menu {
+	margin: 0;
+	padding: 0px;
+}
+
+/* ########################## */
+/* ----- Content Styles ----- */
+/* ########################## */
+
+/*
+.sticky {
+	background: lightyellow;
+	border: 1px solid tan;
+}
+*/
+.container.wrapper {
+	-moz-box-shadow: 0px 5px 10px #888;
+	-webkit-box-shadow: 0px 5px 10px #888;
+	box-shadow: 0px 5px 10px #888;
+}
+
+.container.content {
+	background: #fff;
+	padding: 42px 0px;
+}
+
+div.bcause-lite {
+	margin-top: 42px;
+}
+div.bcause-lite .container.content {
+	padding: 0;
+}
+
+.container.content .border-left {
+	border-left: 1px solid #e6e6e6;
+}
+
+/* --- Content Padding --- */
+
+.content-padding {
+	padding: 	21px 20px;
+}
+
+.content-padding-top {
+	padding-top: 21px;
+}
+
+.content-padding-right {
+	padding-right: 20px;
+}
+
+.content-padding-bottom {
+	padding-bottom: 21px;
+}
+
+.content-padding-left {
+	padding-left: 20px;
+}
+
+.content-padding-top-bottom {
+	padding: 21px 0px;
+}
+
+.content-padding-left-right {
+	padding: 0px 20px;
+}
+
+.content-padding-right-bottom-left {
+	padding: 0px 20px 21px 20px;
+}
+
+.content-padding-top-right-left {
+	padding: 21px 20px 0px 20px;
+}
+
+/* ---- Compact Content Padding --- */
+
+.content-padding-left-compact {
+	padding-left: 10px;
+}
+
+/* --- Extra Content Padding --- */
+
+
+.content-padding-left-right-extra {
+	padding: 0px 40px;
+}
+
+.content-padding-right-extra {
+	padding: 0px 40px 0px 0px;
+}
+
+.content-padding-top-right-left-extra {
+	padding: 21px 40px 0px 40px;
+}
+/* --- Content Margin --- */
+
+.content-margin-top-extra {
+	margin-top: 42px;
+}
+
+/* --- Content Border --- */
+
+.content-border {
+	border: 1px solid #ccc;
+}
+
+#feature {
+}
+
+.span3.aside-border-left {
+    margin-left: 0;
+    padding-left: 14px;
+    border-left: 6px solid #eee;
+}
+.aside-border-left {
+}
+
+.aside h3 {
+	color: #4d4d4d;
+}
+
+/* ###################### */
+/* ----- BC Widgets ----- */
+/* ###################### */
+div.widget[id*=_bcause_] .widget-title {
+    color: #2191bf;
+}
+
+/* ----- Footer Widget Area ----- */
+/* ############################## */
+
+div.container.footer-widgets {
+	background: #f0f0f0;
+	border-top: 1px solid #e6e6e6;
+	padding: 21px 0px;
+}
+
+div.container.footer-widgets .content-border-right {
+	border-right: 1px solid #e6e6e6;
+}
+
+.footer-widgets h2.widget-title {
+	color: #666;
+	font-weight: bold;
+	font-size: 13px;
+	margin: 0;
+}

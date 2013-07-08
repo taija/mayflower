@@ -1,0 +1,176 @@
+<?php if ( is_front_page() ) {
+	// This is a homepage
+
+    //Display the Featured Slider and fill the entire space above the content
+	    $mayflower_options = mayflower_get_options();
+
+	    if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-full') { ?>
+
+				<?php
+					$mayflower_options = mayflower_get_options();
+						if ( $mayflower_options['slider_layout'] === 'featured-full' ) { ?>
+							<div class="row">
+								<div class="span12">
+									<div id="myCarousel" class="carousel slide">
+										<div class="carousel-inner">
+											<?php
+											$the_query = new WP_Query(array(
+												'post_type'=>'slider',
+												'orderby'=> 'menu_order',
+												'order'=> 'ASC',
+												'posts_per_page' => 1,
+											));
+											while ( $the_query->have_posts() ) :
+											$the_query->the_post();
+											?>
+
+											<div class="item active">
+												<?php
+											        // If url field has content, add the URL to the post thumbnail.
+													$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+												        if ( !empty( $slider_ext_url ) )
+													{ ?>
+
+													<h2>
+														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_post_thumbnail('featured-full');?></a>
+													</h2>
+
+													<?php } else { ?>
+
+												<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+												<?	} //end else ?>
+
+											<?php
+												//should we show title & excerpt?
+												$mayflower_options = mayflower_get_options();
+													if ($mayflower_options['slider_title'] == 'true' || $mayflower_options['slider_excerpt'] == 'true' ) { ?>
+
+
+													<div class="carousel-caption">
+														<?php
+															if ($mayflower_options['slider_title'] == 'true') {
+														        // If a post class has input, sanitize it and add it to the post class array.
+																$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+															        if ( !empty( $slider_ext_url ) )
+																{ ?>
+
+																<h2>
+																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_title(); ?></a>
+																</h2>
+
+																<?php } else { ?>
+																	<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
+
+															<?	} //end else ?>
+														<?php } else { } ?>
+
+														<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
+															<?php the_excerpt(); ?>
+														<?php } else { } ?>
+
+													</div><!-- carousel-caption -->
+
+											<?php } else  { } ?>
+
+											</div><!-- item active -->
+
+											<?php
+												endwhile;
+													wp_reset_postdata();
+											?>
+
+											<?php
+												$the_query = new WP_Query(array(
+													'post_type'=>'slider',
+													'orderby'=> 'menu_order',
+													'order'=>'ASC',
+													'posts_per_page' => 4,
+													'offset' => 1
+												));
+												while ( $the_query->have_posts() ) :
+												$the_query->the_post();
+											?>
+											<div class="item">
+												<?php
+											        // If a post class has input, sanitize it and add it to the post class array.
+													$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+												        if ( !empty( $slider_ext_url ) )
+													{ ?>
+
+													<h2>
+														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_post_thumbnail('featured-full');?></a>
+													</h2>
+
+													<?php } else { ?>
+
+												<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+												<?	} //end else ?>
+
+											<?php
+												//should we show title & excerpt?
+												$mayflower_options = mayflower_get_options();
+													if ($mayflower_options['slider_title'] == 'true' || $mayflower_options['slider_excerpt'] == 'true' ) { ?>
+
+
+													<div class="carousel-caption">
+														<?php
+															if ($mayflower_options['slider_title'] == 'true') {
+														        // If a post class has input, sanitize it and add it to the post class array.
+																$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+															        if ( !empty( $slider_ext_url ) )
+																{ ?>
+
+																<h2>
+																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_title(); ?></a>
+																</h2>
+
+																<?php } else { ?>
+																	<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
+
+															<?	} //end else ?>
+														<?php } else { } ?>
+
+														<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
+															<?php the_excerpt(); ?>
+														<?php } else { } ?>
+
+													</div><!-- carousel-caption -->
+
+											<?php } else  { } ?>
+
+											</div><!-- item -->
+
+											<?php
+												endwhile;
+												wp_reset_postdata();
+											?>
+										</div><!-- carousel-inner -->
+
+										<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+										<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+
+
+									</div><!-- #myCarousel -->
+
+								</div><!-- span12 -->
+							</div><!-- row -->
+				<?php } else  { ?>
+					<div class="row">
+						<div class="span12">
+						<?php
+							get_template_part('part-featured-full');
+						?>
+						</div><!-- span12 -->
+					</div><!-- row -->
+				<?php } ?>
+
+			<?php // } //end plugin active check ?>
+
+		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { ?>
+
+		<?php } // end if show nothing ?>
+<?php
+} else {
+	// This is not a homepage so display nothing
+		}
+?>
