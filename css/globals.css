@@ -1,8 +1,8 @@
-/* Globals
+/* Globals 
 
 Sections
 - Reset CSS
-- Set CSS
+- Set CSS 
 - Site Structure
 - Breakpoints
 
@@ -11,7 +11,7 @@ Sections
 
 /* ************************************** */
 /* ************************************** */
-/*	RESET CSS                             */
+/*	RESET CSS                             */      
 /* ************************************** */
 /* ************************************** */
 
@@ -118,16 +118,16 @@ img {
 
 /* ************************************** */
 /* ************************************** */
-/*	SET CSS                               */
+/*	SET CSS                               */      
 /* ************************************** */
 /* ************************************** */
 
 /*
 -------Baseline Grid
-1.66667em	25px
+1.66667em	25px 
 
--------Typographic scale
-Name	Size em/px		 	Ised in
+-------Typographic scale 
+Name	Size em/px		 	Ised in 
 
 		7.2em :	108px
 		6.0em :	90px
@@ -154,31 +154,31 @@ body {
 	line-height: 1.66666667em;
 	text-rendering: optimizeLegibility;
 	color: #444;
-	background: url(images/bg.png) F2F2F2;
-	transition:all .5s ease-in-out;
-    -o-transition:all .5s ease-in-out;
-    -moz-transition:all .5s ease-in-out;
+	background: url(images/bg.png) F2F2F2;  
+	transition:all .5s ease-in-out; 
+    -o-transition:all .5s ease-in-out; 
+    -moz-transition:all .5s ease-in-out; 
     -webkit-transition:all .5s ease-in-out;
 }
 
 a {
 	outline: none;
-	color: #21759b;
+	color: #008AD0;
 }
-a:hover {
-	color: #0f3647;
+a:hover, a:focus {
+	color: #003d79;
 }
-p {
+p { 
 	margin-top: 1em;
 	text-rendering: optimizelegibility;}
-ul, ol, dl {
+ul, ol, dl { 
 	margin-top: 1em;}
 
-li {
+li { 
 	margin-top: .3333333em;
 	margin-left: 1.5em;
     padding-left: 0.5em;}
-
+	
 dt {
 	font-weight: bold;
 	margin-top: .66666em;
@@ -189,35 +189,35 @@ dd {
 
 /*scale: traditional http://lamb.cc/typograph/ */
 h1, h2, h3, h4, h5, h6 {
-	font-family:Georgia, "Times New Roman", Times, serif;;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	font-weight: normal;
 	text-rendering: optimizelegibility;
 }
-h1 {
+h1 { 
 	font-size: 1.8em;
-	line-height: 1.66666667em;
+	line-height: 1.296em;
 }
 h2 {
 	font-size: 1.6em;
-	line-height: 1.66666667em;
+	line-height: 1.25em;
 	margin-top: 2em;
 	margin-top: 3rem;
 }
 h3 {
 	font-size: 1.4em;
-	line-height: 1.66666667em;
+	line-height: 1.429em;
 	margin-top: 2em;
 	margin-top: 2.66666667rem;
 }
 h4 {
 	font-size: 1.2em;
-	line-height: 1.66666667em;
+	line-height: 1.389em;
 	margin-top: 2em;
 	margin-top: 2.333333rem;
 }
 h5 {
 	font-size: 1.1em;
-	line-height: 1.66666667em;
+	line-height: 1.515em;
 	margin-top: 2em;
 	margin-top: 2.1666667rem;  /* line-height 27.5px, margin-top: 32.5px = 60px */
 }
@@ -226,14 +226,108 @@ h6 {
 	line-height: 1.66666667em;
 	margin-top: 2em;
 }
-h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 { 
 	margin-top: 0.66666em;
 	margin-top: 0.66666rem;
 }
 
-h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p  {
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p  { 
 	margin-top: 0}
 
+
+address {
+  display: block;
+  margin-top: 1em;
+  font-style: normal;
+}
+
+
+
+blockquote {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	line-height: 1.66666667em;
+	margin: 1.33333em 0 0.333333em;
+	padding: 0.333333em 2.4em 0.33333em 3.6em;
+	position: relative;
+	color: rgb(102, 102, 102);
+}
+
+blockquote:before {
+	display: block;
+	content: "\201C";
+	font-size: 6em;
+	position: absolute;
+	left: 0.12em;
+	top: 0.25em;
+	color: #aaa;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 1.4em;
+  font-weight: 300;
+  line-height: 1.25em;
+}
+
+blockquote small {
+  display: block;
+  color: #999999;
+}
+
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.table th,
+.table td {
+  padding: .6em .666667em .666667em;
+  line-height: 1.66667em;
+  text-align: left;
+  vertical-align: top;
+  border-top: .066667em solid #E0E0E0;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 0.33333em solid #E0E0E0;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f7f7f7;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #f0f0f0;
+}
 
 h1:first-child,
 h2:first-child,
@@ -244,7 +338,9 @@ h6:first-child,
 p:first-child,
 ul:first-child,
 ol:first-child,
-dl:first-child {
+dl:first-child,
+address:first-child
+table:first-child { 
 	margin-top: 0;
 }
 
@@ -252,8 +348,10 @@ dl:first-child dt:first-child {
 	margin-top: 0
 }
 
+
 small {
   font-size: .8em;
+  line-height: 1.666666em;
 }
 
 strong {
@@ -268,6 +366,18 @@ cite {
   font-style: normal;
 }
 
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+
 code,
 pre {
   padding: 0 3px 2px; /*review*/
@@ -281,7 +391,7 @@ pre {
 
 code {
   padding: 0.2em 0.4em;
-  color: #BF1A38;
+  color: #BF1A38; 
   white-space: nowrap;
   background-color: #f7f7f9;/*review*/
   border: 1px solid #e1e1e8;/*review*/
@@ -319,6 +429,8 @@ pre code {
 }
 
 
+
+
 /* Classes applied to text
 ---------------------------------------- */
 .lead {
@@ -352,7 +464,7 @@ a.text-warning:focus {
 
 a.text-error:hover,
 a.text-error:focus {
-  color: #953b39;
+  color: rgb(134, 19, 40);
 }
 
 .text-info {
@@ -361,7 +473,7 @@ a.text-error:focus {
 
 a.text-info:hover,
 a.text-info:focus {
-  color: #2d6987;
+  color: rgb(0, 83, 125);
 }
 
 .text-success {
@@ -371,7 +483,7 @@ a.text-info:focus {
 
 a.text-success:hover,
 a.text-success:focus {
-  color: #356635;
+  color: rgb(88, 93, 32);
 }
 .text-left {
   text-align: left;
@@ -390,7 +502,7 @@ a.text-success:focus {
 
 /* ************************************** */
 /* ************************************** */
-/*	SITE STRUCTURE                        */
+/*	SITE STRUCTURE                        */      
 /* ************************************** */
 /* ************************************** */
 
@@ -439,7 +551,7 @@ h1#section-header {
 
 /* ************************************** */
 /* ************************************** */
-/*	BREAKPOINTS                           */
+/*	BREAKPOINTS                           */      
 /* ************************************** */
 /* ************************************** */
 
@@ -447,9 +559,9 @@ h1#section-header {
 
 /* Minimum width of ~600 pixels.  start showing columns*/
 @media screen and (min-width: 37em) {
+	
 
-
-	/* Grids
+	/* Grids  
 	(yeah, pulled from bootstrap)
 	-------------------------------------------------------------- */
 
