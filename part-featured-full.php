@@ -146,9 +146,12 @@
 											?>
 										</div><!-- carousel-inner -->
 
-										<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-										<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-
+										<?php
+											$published_posts = wp_count_posts('slider')->publish;
+											if ($published_posts >1 ) { ?>
+												<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+												<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+										<?php } else //don't show controls ?>
 
 									</div><!-- #myCarousel -->
 
