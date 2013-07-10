@@ -74,7 +74,7 @@
 
 
 		<div class="row">
-			<div class="span12">
+			<div class="span8">
                 <div id="header-logo">
 					<?php $header_image = get_header_image();
 					if ( ! empty( $header_image ) ) : ?>
@@ -90,7 +90,13 @@
 
 					<?php endif; ?>
 				</div><!-- header-logo -->
-			</div><!-- span12 -->
+			</div><!-- span8 -->
+			
+			<div class="span4 header-search pull-right">
+				<div class="content-padding">
+					<?php get_search_form(); ?>	
+				</div><!-- content-padding -->		
+			</div><!-- span4 -->
 		</div><!-- row -->
 
 				<div class="navbar">

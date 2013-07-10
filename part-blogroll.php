@@ -69,6 +69,7 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
+						<hr />
 					<?php } else {} ?>
 
 				<?php endwhile;?>
@@ -133,7 +134,7 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
-
+						<hr />
 				<?php endwhile; ?>
 				<?php	wp_reset_postdata(); ?>
 

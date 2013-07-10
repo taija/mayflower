@@ -56,6 +56,7 @@
 							?>
 					    </div><!-- media-body -->
 					</div><!-- media -->
+					<hr />
 				</div><!-- content-padding -->
 				<?php
 					endwhile;

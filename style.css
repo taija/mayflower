@@ -300,6 +300,10 @@ p.site-description {
 	height: auto;
 }
 
+.header-search form {
+	float: right;
+}
+
 /* ###################### */
 /* ----- Navigation ----- */
 /* ###################### */
