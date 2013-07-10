@@ -8,8 +8,7 @@ Version: 1.0.0
 
 
 /* Styles for College Header and Footer */
-@import url("/globals/responsive/css/btheme_v0.1.css");
-
+@import url("/globals/responsive/css/btheme_v0.1-mayflower.css");
 
 @media (max-width: 480px) {
 
@@ -37,57 +36,8 @@ body {
 	padding: 0;
 }
 
-body h1,h2,h3,h4,h5,h6 {
-	font-family: Georgia,"Times New Roman",Times,serif;
-	color: #793b00;
-	margin: 42px 0px 0px 0px;
-    font-weight: normal;
-}
-h1 {
-	font-size: 28px;
-	font-weight: normal;
-	line-height: 28px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-h2 {
-	font-size: 22px;
-	line-height: 21px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
 
 
-h3 {
-	font-size: 17px;
-	font-style: italic;
-	line-height: 21px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-h4 {
-	font-size: 15px;
-	line-height: 21px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-h5 {
-	font-size: 14px;
-	font-style: italic;
-	color: #000;
-	line-height: 21px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-h6 {
-	font-size: 12px;
-	color: #000;
-	line-height: 21px;
-	font-family: Georgia,"Times New Roman",Times,serif;
-}
-
-p {
-	margin-top: 21px;
-}
 .navbar {
 	margin-bottom: 0;
 }
@@ -225,20 +175,6 @@ li.nav-header {
 
 
 
-.page-content ul {
-	margin: 21px 0px 0px 25px;
-}
-
-.page-content li {
-	list-style: square;
-}
-.page-content ul li {
-	margin: 7px 0px 0px 0px;
-}
-
-.page-content ul li > ul {
-	margin-top: 0px;
-}
 
 /* ######################### */
 /* ----- Header Styles ----- */
