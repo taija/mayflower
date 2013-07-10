@@ -11,9 +11,8 @@ get_header(); ?>
 
 <div class="row">
 	<div class="span12">
-		<div class="content-padding-left-right">
+		<div class="content-padding">
 
-			<h1 class="page-title"><?php echo get_the_title(); ?></h1>
 
 
 				<?php function mayflower_errormsgs() {
@@ -51,12 +50,12 @@ get_header(); ?>
 					<ol id="youcandoit" class="count">
 						<li class="one">If you typed the web ad...you typed it correctly.</li>
 						<li class="two">Try searching for it.<?php get_search_form(); ?></li>
-						<li class="three"> Browse our <a href="/directories/">web directories</a>.</li>
+						<li class="three"> Browse our <a href="//bellevuecollege.edu/directories/">web directories</a>.</li>
 						<li class="four">Use some of the links on this page.</li>
 						<li class="five">Click the <a href="javascript:history.go(-1)">Back</a> button and try another link.</li>
 					</ol>
 
-		</div><!-- content-padding-right -->
+		</div><!-- content-padding -->
 
 	</div><!-- span12 -->
 </div><!-- row -->
