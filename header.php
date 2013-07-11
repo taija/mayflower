@@ -3,10 +3,11 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<title>
-	<?php if (is_front_page()) { bloginfo('name');?> @ Bellevue College <?php } else {
+	<?php if (is_front_page() ) { bloginfo('name');?> @ Bellevue College 
+	<?php } else {
 
-	wp_title("",true);?> | <?php bloginfo('name');
-	 } ?>
+		wp_title(" :: ",true, 'right'); 
+	} ?>
 
 	</title>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
