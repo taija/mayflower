@@ -32,7 +32,7 @@
 													{ ?>
 
 													<h2>
-														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_post_thumbnail('featured-full');?></a>
+														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
 													</h2>
 
 													<?php } else { ?>
@@ -55,7 +55,7 @@
 																{ ?>
 
 																<h2>
-																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_title(); ?></a>
+																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 																</h2>
 
 																<?php } else { ?>
@@ -98,7 +98,7 @@
 													{ ?>
 
 													<h2>
-														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_post_thumbnail('featured-full');?></a>
+														<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
 													</h2>
 
 													<?php } else { ?>
@@ -121,7 +121,7 @@
 																{ ?>
 
 																<h2>
-																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php echo $slider_ext_url; ?>"><?php the_title(); ?></a>
+																	<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 																</h2>
 
 																<?php } else { ?>
