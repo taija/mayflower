@@ -14,6 +14,10 @@
 					else if ( is_page_template('page-nav-page.php') ) {
 					get_template_part('part-nav-page');
 			}
+				// If we are loading the navigation-page page template
+					else if ( is_single() ) {
+					get_template_part('part-single');
+			}
 					else { ?>
 
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>

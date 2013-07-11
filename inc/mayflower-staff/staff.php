@@ -65,7 +65,7 @@ add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
             'public' => true,
             'show_ui' => true,
             'hierarchical' => true,
-            'has_archive' =>true,
+            'has_archive' =>false,
             'rewrite' => true,
 			'menu_position' => 4,
             'supports' => array('title', 'editor', 'thumbnail', 'category', 'author', 'revisions', /*'page-attributes',*/ 'author', 'comments'),
