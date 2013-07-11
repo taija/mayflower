@@ -75,7 +75,7 @@
 
 		<div class="row">
 			<div class="span8">
-                <div id="header-logo">
+                <div class="content-padding">
 					<?php $header_image = get_header_image();
 					if ( ! empty( $header_image ) ) : ?>
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" height="100px" width="auto" alt="" /></a>
@@ -84,16 +84,20 @@
 						<h1 class="site-title">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 						</h1>
-						<p class="site-description">
-							<?php bloginfo('description'); ?>
-						</p>
+						<p class="site-description"><?php bloginfo('description'); ?></p>
 
 					<?php endif; ?>
 				</div><!-- header-logo -->
 			</div><!-- span8 -->
 			
 			<div class="span4 header-search pull-right">
-				<div class="content-padding">
+				<div class="content-padding <?php 
+					if ( get_bloginfo('description') ) { 
+						echo 'top-spacing10';
+					}
+					?>">
+                    
+                    
 					<?php get_search_form(); ?>	
 				</div><!-- content-padding -->		
 			</div><!-- span4 -->
