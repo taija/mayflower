@@ -284,6 +284,8 @@ li.nav-header {
 /* ----- Navigation ----- */
 /* ###################### */
 
+
+
 body.right-sidebar #primary {
 	float: left;
 	margin: 0 0 0 -26.4%;
@@ -308,36 +310,8 @@ ul#main-nav li {
 	margin: 0;
 	padding: 0;
 }
-.nav-home li#nav-home a,
-.nav-classes li#nav-classes a,
-.nav-programs li#nav-programs a,
-.nav-enrollment li#nav-enrollment a,
-.nav-resources li#nav-resources a,
-.nav-news li#nav-news a,
-.nav-about li#nav-about a
-{
-	color: #fff;
-	text-decoration: none;
-	background: #457baa url(img/bg-main-nav-hover.png) repeat-x;
-/*
-	border-top: 1px solid transparent;
-	margin-top: -1px;
-*/
-}
 
-/*
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover {
-	background-color: #27445F;
-	border-top: 1px solid transparent;
-	margin-top: -1px;
-}
-*/
+
 div.globals-lite .navbar-inner {
   padding-left: 0px;
   background-color: #0071bc;
@@ -366,6 +340,37 @@ div.globals-lite .navbar .nav > li > a {
   text-shadow: none;
   border-right: 1px solid #5395c5;
 }
+
+div.globals-lite .navbar .nav > .current-menu-item > a,
+div.globals-lite .navbar .nav > .current-menu-item > a:hover,
+div.globals-lite .navbar .nav > .current-menu-item > a:focus,
+div.globals-lite .navbar .nav > .current-page-ancestor > a,
+div.globals-lite .navbar .nav > .current-page-ancestor > a:hover,
+div.globals-lite .navbar .nav > .current-page-ancestor > a:focus,
+.single-post div.globals-lite .navbar .nav > .blog > a,
+.single-post div.globals-lite .navbar .nav > .blog > a:hover,
+.single-post div.globals-lite .navbar .nav > .blog > a:focus,
+.single-staff div.globals-lite .navbar .nav > .staff > a,
+.single-staff div.globals-lite .navbar .nav > .staff > a:hover,
+.single-staff div.globals-lite .navbar .nav > .staff > a:focus
+ {
+	color: #fff;
+	text-decoration: none;
+	background-color: #27445f;
+	-webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	-moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	background-image: -moz-linear-gradient(top, #27445f, #143351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#27445f), to(#143351));
+	background-image: -webkit-linear-gradient(top, #27445f, #143351);
+	background-image: -o-linear-gradient(top, #27445f, #143351);
+	background-image: linear-gradient(to bottom, #27445f, #143351);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27445f', endColorstr='#143351', GradientType=0);
+	border-left: 1px solid #002d3f;
+	border-right: 1px solid #002d3f;
+}
+
 
 /* ############################## */
 /* ----- Section Navigation ----- */
