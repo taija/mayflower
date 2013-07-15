@@ -11,11 +11,9 @@ Version: 1.0.0
 @import url("/globals/responsive/css/btheme_v0.1-mayflower.css");
 
 @media (max-width: 480px) {
-
-.footer-widgets .span3 {
-	border-right: 0px solid #e6e6e6;
-}
-
+	.footer-widgets .span3 {
+		border-right: 0px solid #e6e6e6;
+	}
 }
 
 /* Dodgy CSS ^_^ */
@@ -23,6 +21,12 @@ Version: 1.0.0
 .wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
 .wp-list-table .column-sorting img { cursor: move; }
 .wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
+
+
+/* ###################################### */
+/* ----- Globals Overides           ----- */
+/* ###################################### */
+
 
 
 
@@ -270,32 +274,10 @@ li.nav-header {
 	background: url("img/headbg.jpg") repeat scroll 0 0 #003D79;
 }
 
-
-
-div.bcause-lite h1.site-title {
-	
-}
-
-
-
-h1.page-title {  /*Is this being used???*/
-    font-size: 28px;
-    font-weight: normal;
-    line-height: 28px;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-#header-logo img {/*Is this being used???*/
-	max-width: 1170px;
-	max-height: 84px;
-	height: auto;
-}
-
 .header-search form {
 	float: right;
 }
-
+.header-search fieldset {white-space:nowrap;}
 
 
 /* ###################### */
@@ -356,7 +338,7 @@ ul#main-nav li {
 	margin-top: -1px;
 }
 */
-div.bcause-lite .navbar-inner {
+div.globals-lite .navbar-inner {
   padding-left: 0px;
   background-color: #0071bc;
   background-image: -moz-linear-gradient(top, #0071bc, #004684);
@@ -376,7 +358,7 @@ div.bcause-lite .navbar-inner {
   *zoom: 1;
 }
 
-div.bcause-lite .navbar .nav > li > a {
+div.globals-lite .navbar .nav > li > a {
   float: none;
   color: #fff;
   font-weight: bold;
@@ -486,103 +468,6 @@ ul.section-nav ul.sub-menu {
 /* ----- Content Styles ----- */
 /* ########################## */
 
-/*
-.sticky {
-	background: lightyellow;
-	border: 1px solid tan;
-}
-*/
-.container.wrapper {
-	-moz-box-shadow: 0px 5px 10px #888;
-	-webkit-box-shadow: 0px 5px 10px #888;
-	box-shadow: 0px 5px 10px #888;
-}
-
-.container.content {
-	background: #fff;
-	padding: 42px 0px;
-}
-
-div.bcause-lite {
-	margin-top: 42px;
-}
-div.bcause-lite .container.content {
-	padding: 0;
-}
-
-.container.content .border-left {
-	border-left: 1px solid #e6e6e6;
-}
-
-/* --- Content Padding --- */
-
-.content-padding {
-	padding: 	20px 20px;
-}
-
-.content-padding-top {
-	padding-top: 21px;
-}
-
-.content-padding-right {
-	padding-right: 20px;
-}
-
-.content-padding-bottom {
-	padding-bottom: 21px;
-}
-
-.content-padding-left {
-	padding-left: 20px;
-}
-
-.content-padding-top-bottom {
-	padding: 21px 0px;
-}
-
-.content-padding-left-right {
-	padding: 0px 20px;
-}
-
-.content-padding-right-bottom-left {
-	padding: 0px 20px 21px 20px;
-}
-
-.content-padding-top-right-left {
-	padding: 21px 20px 0px 20px;
-}
-
-/* ---- Compact Content Padding --- */
-
-.content-padding-left-compact {
-	padding-left: 10px;
-}
-
-/* --- Extra Content Padding --- */
-
-
-.content-padding-left-right-extra {
-	padding: 0px 40px;
-}
-
-.content-padding-right-extra {
-	padding: 0px 40px 0px 0px;
-}
-
-.content-padding-top-right-left-extra {
-	padding: 21px 40px 0px 40px;
-}
-/* --- Content Margin --- */
-
-.content-margin-top-extra {
-	margin-top: 42px;
-}
-
-/* --- Content Border --- */
-
-.content-border {
-	border: 1px solid #ccc;
-}
 
 #feature {
 }
@@ -591,8 +476,6 @@ div.bcause-lite .container.content {
     margin-left: 0;
     padding-left: 14px;
     border-left: 6px solid #eee;
-}
-.aside-border-left {
 }
 
 .aside h3 {

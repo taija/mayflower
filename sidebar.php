@@ -17,7 +17,7 @@
 ?>
 
 		<div class="sidebar span3 pull-left">
-			<!-- <div class="content-padding-left-right"> -->
+			<!-- <div class="content-padding"> -->
 
 
 			<?php /*
@@ -55,7 +55,7 @@
 			?>
 			<!-- </ul> -->
 
-			<div class="content-padding-left-right">
+			<div class="content-padding">
 				<?php dynamic_sidebar( 'global-widget-area' ); ?>
 
 				<?php if( is_home() || is_single() ) :?>
@@ -64,7 +64,7 @@
 
 				<?php endif; ?>
 
-			</div><!-- content-padding-left-right -->
+			</div><!-- content-padding -->
 			<!-- </div> --><!-- content-padding-left -->
 		</div><!-- span3 -->
 

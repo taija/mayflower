@@ -1,3 +1,4 @@
+<div id="content">
 <?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<?php if($post->post_content=="") : ?>
@@ -25,7 +26,8 @@
 <?php
 	$mayflower_options = mayflower_get_options();
 	if( $mayflower_options['staff_layout'] == 'list-view' ) { ?>
-
+			
+            <div class="content-padding top-spacing15">
 			<?php
 				// Start showing staff list
 				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => 50, 'orderby' => 'menu_order', 'order' => 'ASC') );
@@ -33,7 +35,7 @@
 				while ( $loop->have_posts() ) : $loop->the_post();
 			?>
 
-				<div class="content-padding">
+				
 				    <div class="media">
 				    <a class="pull-left" href="<?php the_permalink(); ?>">
 					<?php
@@ -93,10 +95,10 @@
 
 				    </div><!-- media-body -->
 			    </div><!-- media -->
-			</div><!-- content-padding -->
+			
 				<hr />
 				<?php endwhile; wp_reset_postdata(); ?>
-
+			</div><!-- content-padding -->
 	<?php } elseif( $mayflower_options['staff_layout'] == 'grid-view' ) {  ?>
 
 			<?php
@@ -162,3 +164,4 @@
 				<?php endwhile; wp_reset_postdata(); ?>
 	</ul>
 <?php } // end elseif  ?>
+</div><!--#content-->

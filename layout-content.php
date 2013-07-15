@@ -1,4 +1,4 @@
-	<div class="row">
+	<div id="content-wrap" class="row">
 		<div class="span12">
 
 			<?php
@@ -25,12 +25,12 @@
 							<?php
 								get_template_part('part-featured-full');
 							?>
-
+					<div id="content">
 						<div class="content-padding">
 							<?php if ( is_active_sidebar( 'aside-widget-area' ) ) : ?>
 								<div class="span2 aside pull-right">
 									<div id="feature">
-										<div class="content-padding-left-right">
+										<div class="content-padding">
 
 												<?php // Multi-Content Block Code ?>
 												<?php the_block('Jumpy'); ?>
@@ -38,7 +38,7 @@
 												<?php // Global Widget Area ?>
 												<?php dynamic_sidebar( 'aside-widget-area' ); ?>
 
-										</div><!-- content-padding-left-right -->
+										</div><!-- content-padding -->
 									</div><!-- feature -->
 								</div><!-- span2 -->
 							<?php endif; ?>
@@ -69,7 +69,7 @@
 						<?php endif; ?>
 
 					</div><!-- content-padding -->
-
+			</div><!-- #content -->
 				<?php } ?>
 		</div><!-- span12 -->
-	</div><!-- row -->
+	</div><!-- #content-wrap  .row -->

@@ -590,18 +590,52 @@ a.text-success:focus {
     clear: both;
 }
 
+.content-padding {
+	padding:  0	1em;
+}
+@media screen and (min-width: 37em) {
+	.content-padding {
+		padding:  0	2em;
+	}	
+}
+
+
+/* General
+---------------------------------------- */
+#main-wrap {
+	
+}
+
+#main {
+	box-shadow: 0 5px 10px #888888;
+}
+.globals-lite #main { margin-top: 2.33333em;}
+
+.globals-branded {}
+
+.globals-lite {}
+
+
 /* head
 ---------------------------------------- */
 
 
 
-/* Foot
----------------------------------------- */
-
-
 
 /* Section header
 ---------------------------------------- */
+#site-header {
+	background-color: white;
+	padding-top: 1em;
+	padding-bottom:1em;
+}
+
+@media screen and (min-width: 37em) {
+	#site-header {
+		padding-top: 1.666667em;
+		padding-bottom:1.666667em;
+	}
+}
 
 
 h1.site-title {
@@ -619,6 +653,27 @@ p.site-description {
 	line-height: 1em;
 	margin: 0;
 }
+
+
+
+/* Content space
+---------------------------------------- */
+#content-wrap {
+	background-color: white;
+}
+
+#content {
+	padding-top: 2em;
+	padding-bottom: 2.33333em;
+}
+
+
+
+/* Foot
+---------------------------------------- */
+
+
+
 
 
 /* ************************************** */

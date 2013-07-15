@@ -1,3 +1,4 @@
+<div id="content">
 <?php
 	if (have_posts()) : while (have_posts()) : the_post();
 ?>
@@ -53,3 +54,4 @@
 	<?php endwhile; ?>
 
 <?php wp_reset_query(); endif; ?>
+</div><!--#content-->

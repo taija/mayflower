@@ -37,7 +37,7 @@
 
 					<div class="span3 pull-right aside-border-left">
 						<div id="feature">
-							<div class="content-padding-left-right">
+							<div class="content-padding">
 								<?php // Multi-Content Block Code ?>
 								<?php the_block('Jumpy'); ?>
 								<?php //$my_block = get_the_block('aside'); ?>
@@ -47,12 +47,12 @@
 								<?php //endif ?>
 								<?php // Global Widget Area ?>
 								<?php dynamic_sidebar( 'aside-widget-area' ); ?>
-							</div><!-- content-padding-left-right -->
+							</div><!-- content-padding -->
 						</div><!-- feature -->
 					</div><!-- span3 -->
 
 					<div class="span6">
-						<div class="content-padding-right">
+						<div class="content-padding">
 							<div class="page-content">
 								<h1><?php the_title(); ?></h1>
 								<?php the_content(); ?>
@@ -66,7 +66,7 @@
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
 						<?php endif; ?>
-						</div><!-- content-padding-left-right -->
+						</div><!-- content-padding -->
 					</div><!-- span6 -->
 				</div><!-- row -->
 			</div><!-- span9 -->
