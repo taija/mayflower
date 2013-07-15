@@ -7,11 +7,13 @@
 }
 
 .carousel .attachment-featured-in-content {
+/*
 	height: auto;
     max-width: 940px;
     max-height: 210px;
     min-height: 210px;
     width: 100%;
+*/
 }
 
 .carousel h2 {
@@ -73,6 +75,6 @@ tbody.ui-sortable td {
 	width: 140px;
 }
 
-#myCarousel {
+#myCarousel .full {
 	border-top: 1px solid #1a1a1a;
 }
