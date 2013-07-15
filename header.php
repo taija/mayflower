@@ -79,7 +79,7 @@
 				<?php bc_tophead(); ?>
 			</section>
 
-<div id="main-wrap" class="<?= $mayflowerVersionCSS ?>"><!-- box shadow container -->
+<div id="main-wrap" class="<?= $mayflowerVersionCSS ?>">
 	<div id="main" class="container">
     	<div id="site-header" class="row">
        		<div class="span8">

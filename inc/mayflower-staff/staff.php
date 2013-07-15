@@ -23,9 +23,6 @@ function add_staff_stylesheet() {
     wp_enqueue_style( 'staff_styles' );
 }
 
-
-
-
 function staff_admin_styles($hook) {
     $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
 	if('edit.php?post_type=staff' !=$hook )
@@ -65,7 +62,7 @@ add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
             'public' => true,
             'show_ui' => true,
             'hierarchical' => true,
-            'has_archive' =>false,
+            'has_archive' =>true,
             'rewrite' => true,
 			'menu_position' => 4,
             'supports' => array('title', 'editor', 'thumbnail', 'category', 'author', 'revisions', /*'page-attributes',*/ 'author', 'comments'),
@@ -188,7 +185,6 @@ function staff_order_page() {
 
 }
 
-
 ///////////////////////////////////////
 // - Create an interface showing each slide with a handle to sort
 ///////////////////////////////////////
@@ -199,8 +195,6 @@ function mayflower_staff_enqueue_scripts() {
 	wp_enqueue_script( 'jquery-ui-sortable' );
 	wp_enqueue_script( 'mayflower-admin-scripts', get_template_directory_uri() . '/js/sorting-v2.js' );
 }
-
-
 
 ///////////////////////////////////////
 // - Register and write the ajax callback function to actually update the posts.
@@ -230,8 +224,6 @@ function staff_update_post_order() {
 	die( '1' );
 }
 
-
-
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_staff_custom_meta_box' );
 add_action( 'load-post-new.php', 'add_staff_custom_meta_box' );
@@ -251,7 +243,6 @@ function add_staff_custom_meta_box() {
 		'high'); // $priority
 }
 add_action('add_meta_boxes', 'add_staff_custom_meta_box');
-
 
 
 // Field Array
@@ -288,7 +279,6 @@ $staff_custom_meta_fields = array(
 		'type'	=> 'office_location'
 	),
 );
-
 
 // The Callback
 function show_custom_meta_box() {
@@ -349,8 +339,6 @@ echo '<input type="hidden" name="staff_custom_meta_box_nonce" value="'.wp_create
 	echo '</table>'; // end table
 }
 
-
-
 // Save the Data
 function save_custom_meta($post_id) {
     global $staff_custom_meta_fields;
@@ -384,29 +372,6 @@ function save_custom_meta($post_id) {
 add_action('save_post', 'save_custom_meta');
 
 
-
-
-
-
-
-
-?>
-<?php /*
-// - Remove Title & WYSIWYG Editor from Staff Post type
-// - http://codex.wordpress.org/Function_Reference/remove_post_type_support
-
-	add_action('init', 'remove_staff_meta');
-
-	function remove_staff_meta() {
-		remove_post_type_support( 'staff', 'title' );
-		remove_post_type_support( 'staff', 'editor' );
-	}
-*/
-?>
-<?php
-
-//
-
 ////////////////////////////////////////////////////
 // Remove Unncessary Meta Boxes on Staff Admin Screen
 /////////////////////////////////////////////////////
@@ -423,10 +388,6 @@ function staff_remove_meta_boxes() {
 }
 add_action( 'admin_menu', 'staff_remove_meta_boxes' );
 endif;
-
-
-
-
 
 
 /////////////////////////////////////////
@@ -576,14 +537,8 @@ function my_manage_staff_columns( $column, $post_id ) {
 			break;
 			default:
 
-
 //works for featured image method			echo the_post_thumbnail('custom-post-list-image', true);
-
-
-
-
 
 		} // end switch
 	}
-
 ?>

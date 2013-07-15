@@ -1,5 +1,5 @@
-	</div><!-- #main container -->
-</div><!-- #main-wrapper -->
+	</div><!-- #main .container -->
+</div><!-- #main-wrap -->
 
 	<footer role="contentinfo">
 

@@ -20,12 +20,4 @@
 				}
 
 		 ?>
-								<?php // Multi-Content Block Code ?>
-								<?php the_block('Jumpy'); ?>
-								<?php //$my_block = get_the_block('aside'); ?>
-								<?php //if ($my_block == "") : ?>
-									<?php //else : ?>
-										<?php //echo $my_block; ?>
-								<?php //endif ?>
-
 <?php get_footer(); ?>
