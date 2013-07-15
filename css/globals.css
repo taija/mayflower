@@ -228,12 +228,12 @@ h6 {
 	margin-top: 2em;
 }
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 { 
-	margin-top: 0.66666em;
-	margin-top: 0.66666rem;
+	margin-top: 0.66666667em;
+	margin-top: 0.66666667rem;
 }
 
 h1 + p {
-	margin-top: 2em;
+	margin-top: 0.66666667em;
 }
 h2 + p, h3 + p, h4 + p, h5 + p, h6 + p  { 
 	margin-top: 0
@@ -647,6 +647,7 @@ h1.site-title {
 
 h1.site-title a {
 	color: #333;
+	text-decoration: none;;
 }
 
 p.site-description {
@@ -664,7 +665,7 @@ p.site-description {
 
 #content {
 	padding-top: 2em;
-	padding-bottom: 2.33333em;
+	padding-bottom: 2.66667em;
 }
 
 
