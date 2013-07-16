@@ -23,6 +23,18 @@ Version: 1.0.0
 .wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
 
 
+
+/* ###################################### */
+/* ----- Need to move to Globals    ----- */
+/* ###################################### */
+/*
+- button classes
+- nav
+- media
+- ?
+*/
+
+
 /* ###################################### */
 /* ----- Globals Overides           ----- */
 /* ###################################### */
@@ -137,9 +149,6 @@ body {
 
 
 
-.navbar {
-	margin-bottom: 0;
-}
 #main-nav.navbar {
 	margin: 0;
 	font-size: 15px;
