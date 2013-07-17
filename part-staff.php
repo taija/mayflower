@@ -60,8 +60,9 @@
 
 							<ul>
 								<li>
-									<?php if (isset($post_meta_data['staff_email'][0])) {
-									echo $post_meta_data['staff_email'][0]; } ?>
+									<?php if (isset($post_meta_data['staff_email'][0])) { ?>
+									<strong>Email: </strong>
+									<?php echo $post_meta_data['staff_email'][0]; } ?>
 								</li>
 								<li>
 									<?php if (isset($post_meta_data['staff_phone'][0])) { ?>

@@ -3,6 +3,12 @@
     if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-in-content') { ?>
 	
 				<div id="myCarousel" class="carousel slide">
+					 <ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+
 					<div class="carousel-inner">
 						<?php
 						$the_query = new WP_Query(array(

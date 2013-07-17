@@ -1,5 +1,4 @@
 <div id="content">
-part-home.php
 				<?php
 					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$args = array(
@@ -30,9 +29,7 @@ part-home.php
 										<?php } ?>
 							<?php
 								}
-								else {
-									//echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/img/thumbnail-default.png" />';
-								}
+								else {}
 							?>
 							</a>
 	
