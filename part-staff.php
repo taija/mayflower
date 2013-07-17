@@ -62,7 +62,7 @@
 								<li>
 									<?php if (isset($post_meta_data['staff_email'][0])) { ?>
 									<strong>Email: </strong>
-									<?php echo $post_meta_data['staff_email'][0]; } ?>
+									<a href="mailto:<?php echo $post_meta_data['staff_email'][0];  ?>"><?php echo $post_meta_data['staff_email'][0]; } ?></a>
 								</li>
 								<li>
 									<?php if (isset($post_meta_data['staff_phone'][0])) { ?>
