@@ -1,5 +1,5 @@
-	</div><!-- container content -->
-</div><!-- box shadow container -->
+	</div><!-- #main .container -->
+</div><!-- #main-wrap -->
 
 	<footer role="contentinfo">
 

@@ -1,3 +1,4 @@
+<div id="content">
 				<?php
 					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$args = array(
@@ -13,54 +14,63 @@
 				<?php
 				if (have_posts()) : while (have_posts()) : the_post();
 				?>
-<div class="content-padding">
-					<h2 <?php post_class() ?>>
-						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
-					</h2>
-
-					<div class="media">
-					    <a class="pull-left" href="<?php the_permalink(); ?>">
-						<?php
-							if ( has_post_thumbnail() ) {
-								the_post_thumbnail('thumbnail', array('class' => 'media-object'));
-									if(get_post(get_post_thumbnail_id())->post_excerpt) { ?>
-										<span class="featured-caption media-object"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></span>
-									<?php } ?>
-						<?php
-							}
-							else {
-								//echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/img/thumbnail-default.png" />';
-							}
-						?>
-						</a>
-
-						<div class="media-body">
-
-							<div class="media-content">
-								<?php the_excerpt(); ?>
-							</div><!-- media-content -->
-						    <?php
-							if (is_single($post)){
+					<div class="content-padding">
+						<h2 <?php post_class() ?>>
+							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
+						</h2>
+	
+						<div class="media">
+						    <a class="pull-left" href="<?php the_permalink(); ?>">
+							<?php
+								if ( has_post_thumbnail() ) {
+									the_post_thumbnail('thumbnail', array('class' => 'media-object'));
+										if(get_post(get_post_thumbnail_id())->post_excerpt) { ?>
+											<span class="featured-caption media-object"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></span>
+										<?php } ?>
+							<?php
+								}
+								else {}
 							?>
-
-					        <?php
-							} else {
-							?>
-								<p>
-								<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
-								Read More <i class="icon-chevron-right"></i>
-									</a>
-								</p>
-					        <?php
-							}
-							?>
-					    </div><!-- media-body -->
-					</div><!-- media -->
-				</div><!-- content-padding -->
+							</a>
+	
+							<div class="media-body">
+	
+								<div class="media-content">
+									<?php the_excerpt(); ?>
+								</div><!-- media-content -->
+							    <?php
+								if (is_single($post)){
+								?>
+	
+						        <?php
+								} else {
+								?>
+									<p>
+									<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
+									Read More <i class="icon-chevron-right"></i>
+										</a>
+									</p>
+						        <?php
+								}
+								?>
+						    </div><!-- media-body -->
+						</div><!-- media -->
+						<hr />
+					</div><!-- content-padding -->
 				<?php
 					endwhile;
-					posts_nav_link();
+					?>
+                    <ul class="pager content-padding">
+                    <li>
+						<?php previous_posts_link('<i class="icon-chevron-left"></i> Previous Page'); ?>
+                    </li>
+                    <li>
+                        <?php next_posts_link('Next page <i class="icon-chevron-right"></i>'); ?>
+                    </li>
+                    </ul>
+                    <?php
 					wp_reset_query();
 					endif;
 
 					?>
+</div><!--#content-->

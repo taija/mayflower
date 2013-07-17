@@ -50,15 +50,6 @@
 
 	add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
-#####################################################
-// Load up our theme options page and related code.
-#####################################################
-
-//	if( file_exists(get_template_directory() . '/inc/theme-options/theme-options.php') )
-//	    require( get_template_directory() . '/inc/theme-options/theme-options.php');
-//	    require( get_template_directory() . '/inc/custom-header.php' );
-
-
 
 #####################################################
 // Load up our plugins
@@ -119,12 +110,6 @@ add_post_type_support( 'page', 'excerpt' );
 	    add_theme_support('menus');
 	}
 
-	// Custom Menu Locations
-	register_nav_menus( array(
-		'main-nav' => __( 'Main Nav' ),
-		'side-nav' => __( 'Side Nav' )
-	) );
-
 ######################################
 // Remove WordPress default widgets
 ######################################
@@ -147,7 +132,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 		// Global Widget Area - located just below the sidebar nav.
 		register_sidebar( array(
-			'name' => __( 'Global Widget Area', 'mayflower' ),
+			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
 			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
 			'before_widget' => '',
@@ -159,7 +144,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 		// Blog Widget Area - located just below the global nav on blog pages.
 		register_sidebar( array(
-			'name' => __( 'Blog Widget Area', 'mayflower' ),
+			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
 			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
 			'before_widget' => '',
@@ -170,7 +155,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 		// Static Page Widget Area - located just below the global nav on static pages.
 		register_sidebar( array(
-			'name' => __( 'Static Page Widget Area', 'mayflower' ),
+			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
 			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
 			'before_widget' => '',

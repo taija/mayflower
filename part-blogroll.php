@@ -28,6 +28,9 @@
 							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 						</h2>
 
+						<small>Date posted: <?php echo get_the_date(); ?></small>
+
+
 						<div class="media">
 						    <a class="pull-left" href="<?php the_permalink(); ?>">
 							<?php
@@ -69,6 +72,7 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
+						<hr />
 					<?php } else {} ?>
 
 				<?php endwhile;?>
@@ -91,6 +95,9 @@
 					<h2 <?php post_class() ?>>
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</h2>
+					
+					<small>Date posted: <?php echo get_the_date(); ?></small>
+
 
 						<div class="media">
 						    <a class="pull-left" href="<?php the_permalink(); ?>">
@@ -133,7 +140,7 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
-
+						<hr />
 				<?php endwhile; ?>
 				<?php	wp_reset_postdata(); ?>
 
