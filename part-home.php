@@ -59,7 +59,16 @@
 					</div><!-- content-padding -->
 				<?php
 					endwhile;
-					posts_nav_link();
+					?>
+                    <ul class="pager content-padding">
+                    <li>
+						<?php previous_posts_link('<i class="icon-chevron-left"></i> Previous Page'); ?>
+                    </li>
+                    <li>
+                        <?php next_posts_link('Next page <i class="icon-chevron-right"></i>'); ?>
+                    </li>
+                    </ul>
+                    <?php
 					wp_reset_query();
 					endif;
 

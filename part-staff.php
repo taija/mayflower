@@ -61,6 +61,7 @@
 							<?php } ?>
 
 							<ul>
+
 								<?php if (isset($post_meta_data['staff_email'][0])) { ?>
 									<li>
 										<strong>Email: </strong>
