@@ -53,45 +53,49 @@
 					<div class="caption staff-details">
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-							<h3>
-								<?php if (isset($post_meta_data['staff_position'][0])) {
-								echo $post_meta_data['staff_position'][0]; } ?>
-							</h3>
+
+							<?php if (isset($post_meta_data['staff_position'][0])) { ?>
+								<h3>
+									<?php echo $post_meta_data['staff_position'][0]; ?>
+								</h3>													
+							<?php } ?>
 
 							<ul>
-								<li>
-									<?php if (isset($post_meta_data['staff_email'][0])) { ?>
-									<strong>Email: </strong>
-									<?php echo $post_meta_data['staff_email'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_phone'][0])) { ?>
-									<strong>Phone: </strong>
-									<?php echo $post_meta_data['staff_phone'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_office_location'][0])) { ?>
-									<strong>Office Location: </strong>
-									<?php echo $post_meta_data['staff_office_location'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_office_hours'][0])) { ?>
-									<strong>Office Hours: </strong><?php echo $post_meta_data['staff_office_hours'][0]; } ?>
-								</li>
-								<li>
-									<?php // Check to see if the post has content ?>
-									<?php if(empty($post->post_content)) {  } else { ?>
-									<br />
-									<strong>Bio: </strong><br />
-									<?php the_excerpt(); } ?>
-								</li>
+								<?php if (isset($post_meta_data['staff_email'][0])) { ?>
+									<li>
+										<strong>Email: </strong>
+										<a href="mailto:<?php echo $post_meta_data['staff_email'][0];  ?>"><?php echo $post_meta_data['staff_email'][0]; ?></a>
+									</li>
+								<?php } ?>
+
+								<?php if (isset($post_meta_data['staff_phone'][0])) { ?>
+									<li>
+										<strong>Phone: </strong>
+										<?php echo $post_meta_data['staff_phone'][0];  ?>
+									</li>
+								<?php } ?>
+
+								<?php if (isset($post_meta_data['staff_office_location'][0])) { ?>
+									<li>
+										<strong>Office Location: </strong>
+										<?php echo $post_meta_data['staff_office_location'][0];  ?>
+									</li>
+								<?php } ?>
+
+								<?php if (isset($post_meta_data['staff_office_hours'][0])) { ?>
+									<li>
+										<strong>Office Hours: </strong><?php echo $post_meta_data['staff_office_hours'][0];  ?>
+									</li>
+								<?php } ?>
+
+								<?php if(empty($post->post_content)) {  } else { ?>
+									<li>
+										<br />
+										<strong>Bio: </strong><br />
+										<?php the_excerpt();  ?>
+									</li>
+								<?php } ?>
 							</ul>
-						<!--
-						<p>
-							<a class="btn btn-primary" href="#">Action</a>
-							<a class="btn" href="#">Action</a>
-						</p>
-						-->
 					</div><!-- caption -->
 
 				    </div><!-- media-body -->
