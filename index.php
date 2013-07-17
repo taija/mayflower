@@ -6,29 +6,14 @@
 		 //echo do_shortcode('[AllClassInformation course="ECON"]');
 		 //echo do_shortcode('[OneClassInformation course="ABE" number="042"]');
 	?>
-
 		<?php
-				// Sidebar Right
-				if ( $current_layout == 'content-sidebar' ) {
-				get_template_part('layout-content-sidebar');
+				// Sidebar Layout
+				if ( $current_layout == 'content-sidebar' || $current_layout == 'sidebar-content' ) {
+				get_template_part('layout-sidebar');
 			}
-				// No Sidebar
-				else if ($current_layout == 'content') {
+				// No Sidebar Layout - Just Content
+				else { 
 				get_template_part('layout-content');
-			}
-				// Sidebar Left
-				else  {
-				get_template_part('layout-sidebar-content');
-
 				}
-
 		 ?>
-								<?php // Multi-Content Block Code ?>
-								<?php the_block('Jumpy'); ?>
-								<?php //$my_block = get_the_block('aside'); ?>
-								<?php //if ($my_block == "") : ?>
-									<?php //else : ?>
-										<?php //echo $my_block; ?>
-								<?php //endif ?>
-
 <?php get_footer(); ?>

@@ -11,11 +11,9 @@ Version: 1.0.0
 @import url("/globals/responsive/css/btheme_v0.1-mayflower.css");
 
 @media (max-width: 480px) {
-
-.footer-widgets .span3 {
-	border-right: 0px solid #e6e6e6;
-}
-
+	.footer-widgets .span3 {
+		border-right: 0px solid #e6e6e6;
+	}
 }
 
 /* Dodgy CSS ^_^ */
@@ -23,6 +21,190 @@ Version: 1.0.0
 .wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
 .wp-list-table .column-sorting img { cursor: move; }
 .wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
+
+
+
+/* ###################################### */
+/* ----- Need to move to Globals    ----- */
+/* ###################################### */
+/*
+Sections here:
+- Slider
+*/
+
+
+/* Slider */
+
+
+.carousel .attachment-featured-full {}
+
+.carousel .attachment-featured-in-content {}
+
+.carousel h2 {
+	margin-top: 0px;
+	padding: 0;
+	color: #fff;
+	line-height: 0.6666667em;
+}
+
+
+
+.carousel-caption h2 {
+  font-size: 1.4em;   /*is this necessary?*/
+  line-height: 1.429em;
+  margin: 0;
+}
+
+.carousel-caption p{
+  xline-height: 21px;
+  margin: 0;
+}
+
+.carousel-caption a {
+  color: #ffffff;
+  xline-height: 21px;
+  margin: 0;
+  text-decoration: none;
+}
+.carousel-caption a:focus,
+.carousel-caption a:hover { 
+	color: white; 
+	text-decoration: underline}
+
+.widefat .carousel-caption p {   /*what's widefat?*/
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-caption h2 {     /*when is this different than just .carousel h2*/
+	font-size: 1.4em;
+	padding: 0;
+}
+.widefat td {
+	padding: 4px 7px;
+}
+
+td.column-thumbnail .active .img-wrapper {
+	position: relative;
+	max-width: 1024px;
+}
+
+td.column-thumbnail img {
+    height: auto;
+    max-height: 210px;
+    max-width: 1170px;
+    width: 100%;
+}
+
+tbody.ui-sortable td {
+	padding: 10px 0px;
+}
+
+.column-thumbnail {
+	width: 140px;
+}
+
+#myCarousel .full {
+	border-top: 1px solid #1a1a1a;
+}
+
+
+
+
+
+
+/* ###################################### */
+/* ----- WordPress Core             ----- */
+/* ###################################### */
+
+.alignnone {
+    margin: 20px 20px 5px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 20px 0 5px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 20px 20px 5px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 20px 0 5px 20px;
+}
+
+a img.alignnone {
+    margin: 20px 20px 5px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 20px 20px 5px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+	color: #888;
+	font-size: .9em;
+	line-height: 1.666667em;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 9px 3px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 20px 20px 5px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 20px 20px 5px 0;
+}
+
+.wp-caption.alignright {
+    margin: 20px 0 5px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+.wp-caption-dd  {
+	margin: 0;
+	padding: 0;
+}
+
 
 
 /* ###################################### */
@@ -38,9 +220,6 @@ body {
 
 
 
-.navbar {
-	margin-bottom: 0;
-}
 #main-nav.navbar {
 	margin: 0;
 	font-size: 15px;
@@ -152,28 +331,6 @@ li.nav-header {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075);
 }
 
-.lead {
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 17px;
-    line-height: 28px;
-    color: #666666;
-    margin: 0px;
-}
-
-.page-content {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.page-content h2 + p,
-.page-content h3 +p,
-.page-content h4 +p,
-.page-content h5 +p,
-.page-content h6 +p,
-.footer-widgets h3.widget-title {
-	margin-top: 0;
-}
-
-
 
 
 /* ######################### */
@@ -197,52 +354,17 @@ li.nav-header {
 	background: url("img/headbg.jpg") repeat scroll 0 0 #003D79;
 }
 
-h1.site-title {
-	color: #333333;
-    font-family: "HelveticaNeue",Helvetica,Arial,sans-serif;
-    font-size: 37px;
-    line-height: 42px;
-    font-weight: normal;
-    padding-left: 20px;
-}
-
-div.bcause-lite h1.site-title {
-	line-height: 21px;
-	margin-top: 28px;
-}
-
-div.bcause-lite h1.site-title a {
-	color: #333;
-}
-
-h1.page-title {
-    font-size: 28px;
-    font-weight: normal;
-    line-height: 28px;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-p.site-description {
-	font-size: 13px;
-	font-weight: bold;
-	margin: 0;
-	padding: 0px 0px 14px 20px;
-}
-
-#header-logo img {
-	max-width: 1170px;
-	max-height: 84px;
-	height: auto;
-}
-
 .header-search form {
 	float: right;
 }
+.header-search fieldset {white-space:nowrap;}
+
 
 /* ###################### */
 /* ----- Navigation ----- */
 /* ###################### */
+
+
 
 body.right-sidebar #primary {
 	float: left;
@@ -268,37 +390,9 @@ ul#main-nav li {
 	margin: 0;
 	padding: 0;
 }
-.nav-home li#nav-home a,
-.nav-classes li#nav-classes a,
-.nav-programs li#nav-programs a,
-.nav-enrollment li#nav-enrollment a,
-.nav-resources li#nav-resources a,
-.nav-news li#nav-news a,
-.nav-about li#nav-about a
-{
-	color: #fff;
-	text-decoration: none;
-	background: #457baa url(img/bg-main-nav-hover.png) repeat-x;
-/*
-	border-top: 1px solid transparent;
-	margin-top: -1px;
-*/
-}
 
-/*
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover,
-#main-nav.navbar ul.nav a:hover {
-	background-color: #27445F;
-	border-top: 1px solid transparent;
-	margin-top: -1px;
-}
-*/
-div.bcause-lite .navbar-inner {
+
+div.globals-lite .navbar-inner {
   padding-left: 0px;
   background-color: #0071bc;
   background-image: -moz-linear-gradient(top, #0071bc, #004684);
@@ -318,7 +412,7 @@ div.bcause-lite .navbar-inner {
   *zoom: 1;
 }
 
-div.bcause-lite .navbar .nav > li > a {
+div.globals-lite .navbar .nav > li > a {
   float: none;
   color: #fff;
   font-weight: bold;
@@ -326,6 +420,37 @@ div.bcause-lite .navbar .nav > li > a {
   text-shadow: none;
   border-right: 1px solid #5395c5;
 }
+
+div.globals-lite .navbar .nav > .current-menu-item > a,
+div.globals-lite .navbar .nav > .current-menu-item > a:hover,
+div.globals-lite .navbar .nav > .current-menu-item > a:focus,
+div.globals-lite .navbar .nav > .current-page-ancestor > a,
+div.globals-lite .navbar .nav > .current-page-ancestor > a:hover,
+div.globals-lite .navbar .nav > .current-page-ancestor > a:focus,
+.single-post div.globals-lite .navbar .nav > .blog > a,
+.single-post div.globals-lite .navbar .nav > .blog > a:hover,
+.single-post div.globals-lite .navbar .nav > .blog > a:focus,
+.single-staff div.globals-lite .navbar .nav > .staff > a,
+.single-staff div.globals-lite .navbar .nav > .staff > a:hover,
+.single-staff div.globals-lite .navbar .nav > .staff > a:focus
+ {
+	color: #fff;
+	text-decoration: none;
+	background-color: #27445f;
+	-webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	-moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	background-image: -moz-linear-gradient(top, #27445f, #143351);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#27445f), to(#143351));
+	background-image: -webkit-linear-gradient(top, #27445f, #143351);
+	background-image: -o-linear-gradient(top, #27445f, #143351);
+	background-image: linear-gradient(to bottom, #27445f, #143351);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27445f', endColorstr='#143351', GradientType=0);
+	border-left: 1px solid #002d3f;
+	border-right: 1px solid #002d3f;
+}
+
 
 /* ############################## */
 /* ----- Section Navigation ----- */
@@ -428,113 +553,14 @@ ul.section-nav ul.sub-menu {
 /* ----- Content Styles ----- */
 /* ########################## */
 
-/*
-.sticky {
-	background: lightyellow;
-	border: 1px solid tan;
-}
-*/
-.container.wrapper {
-	-moz-box-shadow: 0px 5px 10px #888;
-	-webkit-box-shadow: 0px 5px 10px #888;
-	box-shadow: 0px 5px 10px #888;
-}
-
-.container.content {
-	background: #fff;
-	padding: 42px 0px;
-}
-
-div.bcause-lite {
-	margin-top: 42px;
-}
-div.bcause-lite .container.content {
-	padding: 0;
-}
-
-.container.content .border-left {
-	border-left: 1px solid #e6e6e6;
-}
-
-/* --- Content Padding --- */
-
-.content-padding {
-	padding: 	21px 20px;
-}
-
-.content-padding-top {
-	padding-top: 21px;
-}
-
-.content-padding-right {
-	padding-right: 20px;
-}
-
-.content-padding-bottom {
-	padding-bottom: 21px;
-}
-
-.content-padding-left {
-	padding-left: 20px;
-}
-
-.content-padding-top-bottom {
-	padding: 21px 0px;
-}
-
-.content-padding-left-right {
-	padding: 0px 20px;
-}
-
-.content-padding-right-bottom-left {
-	padding: 0px 20px 21px 20px;
-}
-
-.content-padding-top-right-left {
-	padding: 21px 20px 0px 20px;
-}
-
-/* ---- Compact Content Padding --- */
-
-.content-padding-left-compact {
-	padding-left: 10px;
-}
-
-/* --- Extra Content Padding --- */
-
-
-.content-padding-left-right-extra {
-	padding: 0px 40px;
-}
-
-.content-padding-right-extra {
-	padding: 0px 40px 0px 0px;
-}
-
-.content-padding-top-right-left-extra {
-	padding: 21px 40px 0px 40px;
-}
-/* --- Content Margin --- */
-
-.content-margin-top-extra {
-	margin-top: 42px;
-}
-
-/* --- Content Border --- */
-
-.content-border {
-	border: 1px solid #ccc;
-}
 
 #feature {
 }
 
-.span3.aside-border-left {
+.span2.aside-border-left {
     margin-left: 0;
     padding-left: 14px;
     border-left: 6px solid #eee;
-}
-.aside-border-left {
 }
 
 .aside h3 {
@@ -567,3 +593,6 @@ div.container.footer-widgets .content-border-right {
 	font-size: 13px;
 	margin: 0;
 }
+
+
+

@@ -8,22 +8,17 @@ Template Name: Staff Page
 
 	<?php
 		$mayflower_options = mayflower_get_options();
-		$default_layout = $mayflower_options['default_layout'];
+		$current_layout = $mayflower_options['default_layout'];
 	?>
 
 		<?php
-				// Sidebar Right
-				if ( $default_layout == 'content-sidebar' ) {
-				get_template_part('layout-content-sidebar');
+				// Sidebar Layout
+				if ( $current_layout == 'content-sidebar' || $current_layout == 'sidebar-content' ) {
+				get_template_part('layout-sidebar');
 			}
-				// No Sidebar
-				else if ($default_layout == 'content') {
+				// No Sidebar Layout - Just Content
+				else { 
 				get_template_part('layout-content');
-			}
-				// Sidebar Left
-				else  {
-				get_template_part('layout-sidebar-content');
-
 				}
 		 ?>
 
