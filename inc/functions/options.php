@@ -427,7 +427,7 @@ function mayflower_get_option_parameters() {
 				  ),
 				'content-sidebar' => array(
 				  'name' => 'content-sidebar',
-				  'title' => __( 'Content Right, Sidebar Left', 'mayflower' ),
+				  'title' => __( 'Sidebar Right, Content Left', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
 				'content' => array(
