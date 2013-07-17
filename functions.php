@@ -32,7 +32,8 @@
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
 		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
-
+		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
+		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
 ############################
 // Custom Admin Bar Items
 ############################
@@ -651,5 +652,100 @@ jQuery(document).ready( function() {
 	}
 
 
-	###
+	#################################
+	/*
+		This function is a shortcode to get class schedule data returned as json string for a given course name or a course name and number.
+		Fogbugz #2154
+	*/
+	#################################
+
+	function AllClassInformationRoutine($args)
+	{
+		$course = $args["course"];
+		if(!empty($course))
+		{
+			$url = CLASSESURL.$course."?format=json";
+			$json = file_get_contents($url,0,null,null);
+			$html = decodejsonClassInfo($json);
+			return $html;
+		}
+		return null;
+	}
+	function OneClassInformationRoutine($args)
+	{
+		$course = $args["course"];
+		$number = $args["number"];
+		if(!empty($course) && !empty($number))
+		{
+			$url = CLASSESURL.$course."?format=json";
+			$json = file_get_contents($url,0,null,null);
+			$html = decodejsonClassInfo($json,$number);
+			return $html;
+		}
+		return null;
+	}
+
+	function decodejsonClassInfo($jsonString,$number = NULL)
+	{
+		$decodeJson = json_decode($jsonString,true);
+		$htmlString = "";
+		$courses = $decodeJson["Courses"];
+		$htmlString .= "<div class='classDescriptions'>";
+		foreach($courses as $sections)
+		{
+			if($number!=null)
+			{
+				if($sections["Number"] == $number)
+				{
+					$htmlString .= getHtmlForCourse($sections);
+				}				
+			}
+			else
+			{
+				$htmlString .= getHtmlForCourse($sections);
+			}
+		}
+		$htmlString .= "</div>"; //classDescriptions
+
+		return $htmlString;
+	}
+
+	function getHtmlForCourse($sections)
+	{
+		$htmlString .= "<div class='classInfo'>";
+		$htmlString .= "<h2 class='classHeading'>";
+			$courseUrl = CLASSESURL.$sections["Subject"];
+			if($sections["IsCommonCourse"])
+			{
+				$courseUrl .= "&";
+			}
+			$courseUrl .= "/".$sections["Number"];
+			
+			$htmlString .= "<a href='".$courseUrl."''>";
+			$htmlString .= "<span class='courseID'>".$sections["Descriptions"][0]["CourseID"]."</span>";
+			$htmlString .= "<span class='courseTitle'>".$sections["Title"]."</span>";
+			$htmlString .= "<span class='courseCredits'> &#8226; ";
+			
+			if($sections["IsVariableCredits"])
+			{					
+				$htmlString .= "V1-".$sections["Credits"]." <abbr title='variable credit'>Cr.</abbr>";
+			}
+			else
+			{
+				$htmlString .= $sections["Credits"]." <abbr title='credit(s)'>Cr.</abbr>";
+			}
+			$htmlString .= "</span>";
+			$htmlString .= "</a>";
+			$htmlString .= "</h2>";//classHeading 
+			$htmlString .= "<p class='classDescription'>" . $sections["Descriptions"][0]["Description"] . "</p>";
+			$htmlString .= "<p class='classDetailsLink'>";
+			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
+			$htmlString .= "</p>";
+			$htmlString .= "</div>"; //classInfo
+			return $htmlString;
+	}
+
+
+	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
+	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
 ?>
