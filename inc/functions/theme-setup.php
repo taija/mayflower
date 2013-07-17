@@ -440,9 +440,8 @@ function mayflower_setup() {
 
 	// This theme uses wp_nav_menu() in two locations: main site navigation, and left-colum page navigation.
 	register_nav_menus( array(
-		'nav-header' => 'Header Navigation',
-		'nav-sidebar' => 'Sidebar Navigation',
-		'nav-footer' => 'Footer Navigation'
+		'nav-top' => 'Top Navigation',
+		'nav-sidebar' => 'Sidebar Navigation'
 	) );
 
 
