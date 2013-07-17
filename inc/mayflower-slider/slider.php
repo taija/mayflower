@@ -8,30 +8,6 @@ Author: Bellevue College DevCom
 Author URI:
 */
 
-///////////////////////////////////////
-// - Get the Slider plugin stylesheet
-///////////////////////////////////////
-add_action( 'wp_enqueue_scripts', 'add_slider_stylesheet' );
-function add_slider_stylesheet() {
-
-    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-slider/css/slider_styles.css';
-    // registers your stylesheet
-    wp_register_style( 'slider_styles', $css_path );
-
-    // loads your stylesheet
-    wp_enqueue_style( 'slider_styles' );
-}
-
-
-
-
-function slider_admin_styles($hook) {
-    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-slider/css/slider_styles.css';
-	if('edit.php?post_type=slider' !=$hook )
-        wp_register_style( 'slider_styles', $css_path );
-        wp_enqueue_style( 'slider_styles' );
-}
-add_action( 'admin_enqueue_scripts', 'slider_admin_styles' );
 
 
 ///////////////////////////////////////

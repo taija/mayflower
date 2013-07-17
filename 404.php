@@ -9,9 +9,9 @@
 
 get_header(); ?>
 
-<div class="row">
-	<div class="span12">
-		<div class="content-padding">
+<div id="content-wrap">
+	
+		<div class="content-padding" id="content">
 
 
 
@@ -37,28 +37,29 @@ get_header(); ?>
 						$errmsgs = explode( "\n", $errmsgs );
 
 						// And then randomly choose a line
-						return wptexturize( $errmsgs[ mt_rand( 0, count( $errmsgs ) - 1 ) ] );
+						//return wptexturize( $errmsgs[ mt_rand( 0, count( $errmsgs ) - 1 ) ] );
 					}
 
 					// This just echoes the chosen line, we'll position it later
 						$chosen = mayflower_errormsgs();
 						echo "<h1 class='entry-title'>$chosen</h1>";
 				?>
-					<h2>We couldn’t find the information you were looking for but there are a few things you can do.</h2>
-					<br />
-					<h2>Find what you were looking for</h2>
+					<h1>Page not Found</h1>
+                    <p class=""><strong>Below are a few things you can try to find it:</strong></p>
+					
+					
 					<ol id="youcandoit" class="count">
-						<li class="one">If you typed the web ad...you typed it correctly.</li>
+						<li class="one">If you typed the web address, double-check if you typed it correctly.</li>
 						<li class="two">Try searching for it.<?php get_search_form(); ?></li>
-						<li class="three"> Browse our <a href="//bellevuecollege.edu/directories/">web directories</a>.</li>
+						<li class="three">Browse our <a href="//bellevuecollege.edu/directories/az/">A-Z directory</a>.</li>
 						<li class="four">Use some of the links on this page.</li>
 						<li class="five">Click the <a href="javascript:history.go(-1)">Back</a> button and try another link.</li>
 					</ol>
 
 		</div><!-- content-padding -->
 
-	</div><!-- span12 -->
-</div><!-- row -->
+
+</div><!-- #content-wrap -->
 
 
 <?php get_footer(); ?>

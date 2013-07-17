@@ -23,9 +23,92 @@ Version: 1.0.0
 .wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
 
 
+
 /* ###################################### */
-/* ----- Globals Overides           ----- */
+/* ----- Need to move to Globals    ----- */
 /* ###################################### */
+/*
+Sections here:
+- Slider
+*/
+
+
+/* Slider */
+
+
+.carousel .attachment-featured-full {}
+
+.carousel .attachment-featured-in-content {}
+
+.carousel h2 {
+	margin-top: 0px;
+	padding: 0;
+	color: #fff;
+	line-height: 0.6666667em;
+}
+
+
+
+.carousel-caption h2 {
+  font-size: 1.4em;   /*is this necessary?*/
+  line-height: 1.429em;
+  margin: 0;
+}
+
+.carousel-caption p{
+  xline-height: 21px;
+  margin: 0;
+}
+
+.carousel-caption a {
+  color: #ffffff;
+  xline-height: 21px;
+  margin: 0;
+  text-decoration: none;
+}
+.carousel-caption a:focus,
+.carousel-caption a:hover { 
+	color: white; 
+	text-decoration: underline}
+
+.widefat .carousel-caption p {   /*what's widefat?*/
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-caption h2 {     /*when is this different than just .carousel h2*/
+	font-size: 1.4em;
+	padding: 0;
+}
+.widefat td {
+	padding: 4px 7px;
+}
+
+td.column-thumbnail .active .img-wrapper {
+	position: relative;
+	max-width: 1024px;
+}
+
+td.column-thumbnail img {
+    height: auto;
+    max-height: 210px;
+    max-width: 1170px;
+    width: 100%;
+}
+
+tbody.ui-sortable td {
+	padding: 10px 0px;
+}
+
+.column-thumbnail {
+	width: 140px;
+}
+
+#myCarousel .full {
+	border-top: 1px solid #1a1a1a;
+}
+
+
 
 
 
@@ -137,9 +220,6 @@ body {
 
 
 
-.navbar {
-	margin-bottom: 0;
-}
 #main-nav.navbar {
 	margin: 0;
 	font-size: 15px;
@@ -513,3 +593,6 @@ div.container.footer-widgets .content-border-right {
 	font-size: 13px;
 	margin: 0;
 }
+
+
+
