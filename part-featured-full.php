@@ -84,7 +84,7 @@
 									'post_type'=>'slider',
 									'orderby'=> 'menu_order',
 									'order'=>'ASC',
-									'posts_per_page' => 4,
+									'posts_per_page' => ($mayflower_options['slider_number_slides'] -1), // subtract 1 (-1) is here to account for the first loop.
 									'offset' => 1
 								));
 								while ( $the_query->have_posts() ) :
