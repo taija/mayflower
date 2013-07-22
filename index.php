@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 	<?php
 		$mayflower_options = mayflower_get_options();
 		$current_layout = $mayflower_options['default_layout'];

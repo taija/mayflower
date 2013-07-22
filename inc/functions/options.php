@@ -271,6 +271,60 @@ function mayflower_get_option_parameters() {
 			'since' => '1.0',
 			'default' => false
 		),
+        'slider_number_slides' => array(
+			'name' => 'slider_number_slides',
+			'title' => __( 'Number of slides?', 'mayflower' ),
+			'type' => 'select',
+			'valid_options' => array(
+				'1' => array(
+					'name' => '1',
+					'title' => __( '1', 'mayflower' )
+				),
+				'2' => array(
+					'name' => '2',
+					'title' => __( '2', 'mayflower' )
+				),
+				'3' => array(
+					'name' => '3',
+					'title' => __( '3', 'mayflower' )
+				),
+				'4' => array(
+					'name' => '4',
+					'title' => __( '4', 'mayflower' )
+				),
+				'5' => array(
+					'name' => '5',
+					'title' => __( '5', 'mayflower' )
+				),
+				'6' => array(
+					'name' => '6',
+					'title' => __( '6', 'mayflower' )
+				),
+				'7' => array(
+					'name' => '7',
+					'title' => __( '7', 'mayflower' )
+				),
+				'8' => array(
+					'name' => '8',
+					'title' => __( '8', 'mayflower' )
+				),
+				'9' => array(
+					'name' => '9',
+					'title' => __( '9', 'mayflower' )
+				),
+				'10' => array(
+					'name' => '10',
+					'title' => __( '10', 'mayflower' )
+				),
+			),
+			'description' => __( 'How many featured slides should we show?', 'mayflower' ),
+			'section' => 'slider',
+			'tab' => 'home',
+			'since' => '1.0',
+			'default' => '5'
+		),
+		
+		
 		'slider_layout' => array(
 			'name' => 'slider_layout',
 			'title' => __( 'Slider Layout', 'mayflower' ),
