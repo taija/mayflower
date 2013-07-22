@@ -15,12 +15,13 @@
 					$loop = new WP_Query( $args );
 					while ( $loop->have_posts() ) : $loop->the_post();
 				?>
-				<div class="content-padding">
+
 					<?php
 
 						if ( $sticky ) {
 							// insert here your stuff…
 							?>
+					<div class="content-padding">
 						<h2 <?php post_class() ?>>
 							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 						</h2>
@@ -71,6 +72,7 @@
 						</div><!-- media -->
 						<hr />
 					<?php } else {} ?>
+				</div><!-- content-padding -->
 
 				<?php endwhile;?>
 				<?php wp_reset_postdata(); ?>
@@ -88,6 +90,7 @@
 					$loop = new WP_Query( $args );
 					while ( $loop->have_posts() ) : $loop->the_post();
 				?>
+				<div class="content-padding">
 					<h2 <?php post_class() ?>>
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</h2>
@@ -139,5 +142,14 @@
 						<hr />
 					</div><!-- content-padding -->
 				<?php endwhile; ?>
-				<?php	wp_reset_postdata(); ?>
+					<ul class="pager content-padding">
+						<li>
+							<?php previous_posts_link('<i class="icon-chevron-left"></i> Previous Page'); ?>
+						</li>
+						<li>
+							<?php next_posts_link('Next page <i class="icon-chevron-right"></i>'); ?>
+						</li>
+					</ul>
+				<?php	wp_reset_query(); ?>
+
 </div><!--#content-->
