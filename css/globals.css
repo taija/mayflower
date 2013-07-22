@@ -1,8 +1,7 @@
 /* Globals 
 
 Sections
-- Reset CSS
-- Set CSS 
+- Reset / Set CSS 
 - Site Structure
 - Components
 - Breakpoints
@@ -19,123 +18,10 @@ Notes: need to review following sections:
 - Media object
 - btn
 - alert
-
+- well
 
 
 */
-
-/* ************************************** */
-/* ************************************** */
-/*	RESET CSS                             */      
-/* ************************************** */
-/* ************************************** */
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-}
-body {
-	line-height: 1;
-}
-blockquote,
-q {
-	quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-caption,
-th,
-td {
-	font-weight: normal;
-	text-align: left;
-}
-h1, h2, h3, h4, h5, h6 {
-	clear: both;
-}
-html {
-	overflow-y: scroll;
-	font-size: 100%;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-}
-a:focus {
-	outline: thin dotted;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section {
-	display: block;
-}
-audio,
-canvas,
-video {
-	display: inline-block;
-}
-audio:not([controls]) {
-	display: none;
-}
-del {
-	color: #333;
-}
-ins {
-	background: #fff9c0;
-	text-decoration: none;
-}
-hr {
-	background-color: #ccc;
-	border: 0;
-	height: 1px;
-	margin: 24px;
-	margin-bottom: 1.714285714rem;
-}
-sub,
-sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-sup {
-	top: -0.5em;
-}
-sub {
-	bottom: -0.25em;
-}
-small {
-	font-size: smaller;
-}
-img {
-	border: 0;
-	-ms-interpolation-mode: bicubic;
-}
-
-
-
-
-/* ************************************** */
-/* ************************************** */
-/*	SET CSS                               */      
-/* ************************************** */
-/* ************************************** */
 
 /*
 -------Baseline Grid
@@ -160,27 +46,70 @@ Name	Size em/px		 	Ised in
 */
 
 
+/* ************************************** */
+/* ************************************** */
+/*	RESET/SET CSS                         */      
+/* ************************************** */
+/* ************************************** */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
 html {
 	font-size: 93.75%; /*15px*/
+	overflow-y: scroll;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
 }
 body {
 	font-family: Helvetica, Arial, sans-serif;
 	line-height: 1.66666667em;
 	text-rendering: optimizeLegibility;
 	color: #444;
-	background: url(images/bg.png) F2F2F2;  
-	/*transition:all .5s ease-in-out; 
-    -o-transition:all .5s ease-in-out; 
-    -moz-transition:all .5s ease-in-out; 
-    -webkit-transition:all .5s ease-in-out;*/
+	background: url(images/bg.png) #F2F2F2;  
 }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+	display: block;
+}
+audio,
+canvas,
+video {
+	display: inline-block;
+}
+audio:not([controls]) {
+	display: none;
+}
+
+img {
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+
 
 a {
 	outline: none;
 	color: #008AD0;
 }
-a:hover, a:focus {
+a:hover{
 	color: #003d79;
+}
+a:focus {
+	color: #003d79;
+	outline: thin dotted;
 }
 p { 
 	margin-top: 1em;
@@ -206,6 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-weight: normal;
 	text-rendering: optimizelegibility;
+	clear: both;
 }
 h1 { 
 	font-size: 1.8em;
@@ -260,6 +190,10 @@ address {
 }
 
 
+blockquote,
+q {
+	quotes: none;
+}
 
 blockquote {
 	font-family:Georgia, "Times New Roman", Times, serif;
@@ -269,7 +203,13 @@ blockquote {
 	position: relative;
 	color: rgb(102, 102, 102);
 }
-
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
 blockquote:before {
 	display: block;
 	content: "\201C";
@@ -279,14 +219,12 @@ blockquote:before {
 	top: 0.25em;
 	color: #aaa;
 }
-
 blockquote p {
   margin-bottom: 0;
   font-size: 1.4em;
   font-weight: 300;
   line-height: 1.25em;
 }
-
 blockquote small {
   display: block;
   color: #999999;
@@ -297,10 +235,18 @@ blockquote small:before {
 }
 
 table {
-  max-width: 100%;
-  background-color: transparent;
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	max-width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption,
+th,
+td {
+	font-weight: normal;
+	text-align: left;
 }
 .table {
   width: 100%;
@@ -451,6 +397,32 @@ pre code {
   overflow-y: scroll;
 }
 
+del {
+	color: #333;
+}
+ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: .0666667em;
+	margin: 2em 1.3333333em;
+}
+sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
 
 /* Forms 
 ---------------------------------------- */
@@ -1567,6 +1539,29 @@ a.text-success:focus {
 
 /* Reusable structure
 ---------------------------------------- */
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -1583,6 +1578,11 @@ a.text-success:focus {
 
 .content-padding {
 	padding:  0	1em;
+	-webkit-transition: padding 0.5s ease;
+	-moz-transition: padding 0.5s ease;
+	-ms-transition: padding 0.5s ease;
+	-o-transition: padding 0.5s ease;
+	transition: padding 0.5s ease;
 }
 @media screen and (min-width: 37em) {
 	.content-padding {
@@ -2671,7 +2671,6 @@ input[type="submit"].btn.btn-mini {
   cursor: default;
   background-color: #fff;
 }
-
 
 
 
@@ -3876,6 +3875,38 @@ input[type="submit"].btn.btn-mini {
 }
 
 
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.well-large {
+  padding: 24px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.well-small {
+  padding: 9px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
 
 
 

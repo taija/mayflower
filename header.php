@@ -17,6 +17,7 @@
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
 		
     <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/bootstrap.css">-->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="screen" />
@@ -26,7 +27,7 @@
 				<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/skins/'.$mayflower_options['skin'] . '.css' ?>" type="text/css" media="screen" />
 				<?php }  ?>
 
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css">
+	
 
 	<?php wp_head(); ?>
 </head>
@@ -75,9 +76,9 @@
 
 		 elseif ( $mayflower_options['mayflower_version'] == 'department' ) { ?>
 
-			<section id="masthead">
+			
 				<?php bc_tophead(); ?>
-			</section>
+			
 
 <div id="main-wrap" class="<?= $mayflowerVersionCSS ?>">
 	<div id="main" class="container">

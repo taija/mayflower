@@ -219,7 +219,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 //set globals path
 #########################
 
-	$bc_globals_themepath = $_SERVER['DOCUMENT_ROOT'] . "/globals/bcause";
+	$bc_globals_themepath = $_SERVER['DOCUMENT_ROOT'] . "/globals/2.0";
 
 #######################################
 //add college head - skinny id bar
@@ -227,12 +227,12 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 	function bc_tophead(){
 	   global $bc_globals_themepath;
-	   $header_top =  $bc_globals_themepath . "/common/bc_header_top_small.html";
-	   $header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-	   $header_bottom =  $bc_globals_themepath . "/common/bc_header_bottom_small.html";
+	   $header_top =  $bc_globals_themepath . "/common/litehead.html";
+	   //$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
+	   //$header_bottom =  $bc_globals_themepath . "/common/bc_header_bottom_small.html";
 	   include_once($header_top);
-	   include_once($header_menu);
-	   include_once($header_bottom);
+	   //include_once($header_menu);
+	   //include_once($header_bottom);
 	}
 	add_action('btheme_header','bc_tophead');
 
@@ -242,12 +242,12 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 	function bc_tophead_big() {
 		global $bc_globals_themepath;
-		$header_top_big = $bc_globals_themepath . "/common/bc_header_top_big.html";
-		$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-		$header_bottom_big = $bc_globals_themepath . "/common/bc_header_bottom_big.html";
+		$header_top_big = $bc_globals_themepath . "/common/bighead.html";
+		//$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
+		//$header_bottom_big = $bc_globals_themepath . "/common/bc_header_bottom_big.html";
 		include_once($header_top_big);
-		include_once($header_menu);
-		include_once($header_bottom_big);
+		//include_once($header_menu);
+		//include_once($header_bottom_big);
 	}
 
 	add_action('btheme_header','bc_tophead_big');
