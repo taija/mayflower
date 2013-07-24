@@ -63,6 +63,14 @@
 				}
 				
 		
-			endwhile; ?>
+				endwhile; 
+				
+				if ($count > 0 ) {
+							echo '</div> <!-- .row -->';
+				}
+				
+				
+				?>
+			
        
         </div><!--#content-->
