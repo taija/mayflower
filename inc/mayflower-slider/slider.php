@@ -97,39 +97,12 @@ function slider_order_page() {
 			<?php while( $slides->have_posts() ) : $slides->the_post(); ?>
 				<tr id="post-<?php the_ID(); ?>">
 					<td class="column-order"><img src="<?php echo get_stylesheet_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
-					<td class="column-thumbnail">
+					<td class="thumbnail column-thumbnail">
 						<div class="item active">
 							<div class="img-wrapper">
-								<?php the_post_thumbnail( 'featured-full' ); ?>
+								<?php the_post_thumbnail( 'slider-screen-thumbnail' ); ?>
 
 
-								<div class="carousel-caption">
-
-<?php
-	$mayflower_options = mayflower_get_options();
-	if ( ! isset( $mayflower_options['slider_title'] ) )
-		$mayflower_options['slider_title'] = 0;
-
-	    if( $mayflower_options['slider_title'] == 1) {
-?>
-
-									<h2><?php the_title();?></h2>
-<?php } else { } ?>
-
-<?php
-	$mayflower_options = mayflower_get_options();
-	if ( ! isset( $mayflower_options['slider_excerpt'] ) )
-		$mayflower_options['slider_excerpt'] = 0;
-
-	    if( $mayflower_options['slider_excerpt'] == 1) {
-?>
-
-									<?php the_excerpt(); ?>
-<?php } else { } ?>
-
-
-
-								</div><!-- carousel-caption -->
 
 							</div><!-- img-wrapper -->
 						</div><!-- item active -->
@@ -318,7 +291,7 @@ function add_slider_columns($slider_columns) {
 	switch( $column ) {
 
 		    case 'thumbnail':
-					echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
+					echo get_the_post_thumbnail( $post->ID, 'slider-screen-thumbnail' );
 					break;
 					    default:
 
