@@ -101,6 +101,7 @@ add_post_type_support( 'page', 'excerpt' );
 	        set_post_thumbnail_size( 150, 150 );
 	        add_image_size( 'lite_header_logo', 1170, 63, true);
 			add_image_size( 'edit-screen-thumbnail', 100, 100, true );
+			add_image_size( 'slider-screen-thumbnail', 300, 125, true );
 			add_image_size( 'staff-thumbnail', 300, 200, true );
 	        add_image_size( 'featured-full', 1200,500,true);
 	        add_image_size( 'featured-in-content', 900,375,true);
@@ -355,7 +356,7 @@ jQuery(document).ready( function() {
 		   ?>
 	       <div id="bigfoot"><?php
 		   include_once($bc_footerlegal);
-		   ?>  </div><?php
+		   ?>  </div><!-- #bigfoot --><?php
 	}
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
