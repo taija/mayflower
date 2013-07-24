@@ -760,4 +760,44 @@ div.container.footer-widgets .content-border-right {
 }
 
 
+/* ########################## */
+/* ----- Flexbox Styles ----- */
+/* ########################## */
 
+.global-lite-header-links  {
+	list-style-type: none;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-flow: column wrap;
+	-moz-flex-flow: column wrap;
+	-ms-flex-flow: column wrap;
+	-ms-flex-direction: column;
+	-ms-flex-wrap: wrap;
+	flex-flow: column wrap;
+	-webkit-justify-content: space-between;
+	-moz-justify-content: space-between;
+	-ms-flex-pack:justify;
+	-ms-justify-content:space-between;
+	justify-content:space-between;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.global-lite-header-links li:first-child {
+	margin-right: auto;	
+}
+
+@media (min-width: 590px) {
+	.global-lite-header-links  {
+	-webkit-flex-flow: row wrap;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	-ms-flex-direction: row;
+	-ms-flex-wrap: wrap;
+	flex-flow: row wrap;
+	flex-direction: row;
+	}
+	
+}
