@@ -1,6 +1,4 @@
-.wp-list-table td.thumbnail img.attachment-edit-screen-thumbnail {
-	width: 100px;
-	height: 100px;
+.wp-list-table td.thumbnail img.attachment-sort-screen-thumbnail {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
