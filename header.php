@@ -50,11 +50,9 @@
 		###############################
 		### --- Branded version --- ###
 		###############################
-		
-		
-		
+
 		if( $mayflower_options['mayflower_version'] == 'official' ) {
-			
+
 			bc_tophead_big();
 
 			//display site title on branded version ?>
@@ -76,9 +74,7 @@
 
 		 elseif ( $mayflower_options['mayflower_version'] == 'department' ) { ?>
 
-			
 				<?php bc_tophead(); ?>
-			
 
 <div id="main-wrap" class="<?= $mayflowerVersionCSS ?>">
 	<div id="main" class="container">
@@ -107,8 +103,6 @@
                         echo 'top-spacing10';
                     }
                     ?>">
-                    
-                    
                     <?php get_search_form(); ?>	
                 </div><!-- content-padding -->		
             </div><!-- span4 -->
