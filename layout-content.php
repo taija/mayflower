@@ -10,6 +10,10 @@
 					else if ( is_page_template('page-staff.php') ) {
 					get_template_part('part-staff');
 			}
+				// If we are loading the single-staff 
+					else if ( is_single('staff') ) {
+					get_template_part('part-single-staff');
+			}
 				// If we are loading the navigation-page page template
 					else if ( is_page_template('page-nav-page.php') ) {
 					get_template_part('part-nav-page');
