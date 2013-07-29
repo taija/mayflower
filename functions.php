@@ -28,12 +28,29 @@
 		require( get_template_directory() . '/inc/functions/widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
+	    require( get_template_directory() . '/inc/functions/network-options.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
 		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+
+
+##################################
+## Custom Menu Widget Override
+##################################
+
+if (include('inc/functions/custom_widgets.php')){
+add_action("widgets_init", "load_custom_widgets");
+}
+function load_custom_widgets() {
+unregister_widget("WP_Nav_Menu_Widget");
+register_widget("My_Nav_Menu_Widget");
+}
+
+
+
 ############################
 // Custom Admin Bar Items
 ############################
@@ -139,7 +156,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
 			'before_widget' => '',
 			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
+			'before_title' => '<h3 class="global-widget-area">',
 			'after_title' => '</h3>',
 		) );
 
@@ -448,143 +465,6 @@ jQuery(document).ready( function() {
 	</style>
 	<?php
 	}
-
-	?><?php /*
-
-	///////////////////////////////////////////////////////////////////////////////////////////
-	// Reorder Posts
-	// CODE TO ADD POST PER PAGE FILTER
-	///////////////////////////////////////////////////////////////////////////////////////////
-	    add_filter( 'edit_posts_per_page', 'reorder_edit_posts_per_page', 10, 2 );
-	    function reorder_edit_posts_per_page( $per_page, $post_type ) {
-
-	        // CHECK USER PERMISSIONS
-	        if ( !current_user_can('edit_others_pages') )
-	            return;
-	        $post_type_object = get_post_type_object( $post_type );
-
-	        // ONLY APPLY TO HIERARCHICAL POST TYPE
-	        if ( !$post_type_object->hierarchical )
-	            return;
-
-	        // ADD POST PER PAGE DROP DOWN UI
-	        add_action( 'restrict_manage_posts', 'reorder_posts_per_page_filter' );
-
-	        // ADD SPECIAL STYLES (MOVE CURSOR & SPINNING LOADER AFTER REORDER)
-	        wp_enqueue_script( 'page-ordering', WP_CONTENT_URL . '/themes/mayflower_clear/js/sorting.js', array('jquery-ui-sortable'), '0.8.4', true );
-	        add_action( 'admin_print_styles', 'reorder_admin_styles' );
-
-	        if ( isset( $_GET['spo'] ) && is_numeric( $_GET['spo'] ) && ( $_GET['spo'] == -1 || ($_GET['spo']%10) == 0 ) ) :
-	            global $edit_per_page, $user_ID;
-	            $per_page = $_GET['spo'];
-	            if ( $per_page == -1 )
-	                $per_page = 99999;
-	            update_user_option( $user_ID, $edit_per_page, $per_page );
-	        endif;
-	        return $per_page;
-	    }
-
-
-	    // STYLING CSS FOR THE AJAX
-	       function reorder_admin_styles() {
-	        echo '<style type="text/css">table.widefat tbody th, table.widefat tbody td { cursor: move; }</style>';
-	       }
-
-
-	    // FUNCTION TO CREATE THE NUMBER OF POSTS PER PAGE DROPDOWN UI
-	       function reorder_posts_per_page_filter() {
-	        global $per_page;
-	        $spo = isset($_GET['spo']) ? (int)$_GET['spo'] : $per_page;
-	       ?>
-	        Display:<select name="spo" style="width: 100px;">
-	            <option<?php selected( $spo, -1 ); ?> value="-1"><?php _e('All Results'); ?></option>
-	            <?php for( $i=10;$i<=100;$i+=10 ) : ?>
-	            <option<?php selected( $spo, $i ); ?> value="<?php echo $i ?>"><?php echo $i; ?> <?php _e('Results'); ?></option>
-	            <?php endfor; ?>
-	        </select>
-	       <?php
-	       }
-
-
-
-	    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    // ACTUAL AJAX REQUEST FOR SORTING PAGES
-	    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	    add_action( 'wp_ajax_simple_page_ordering', 'reorder_do_page_ordering' );
-	    function reorder_do_page_ordering() {
-
-	        // RECHECK PERMISSIONS
-	        if ( !current_user_can('edit_others_pages') || !isset($_POST['id']) || empty($_POST['id']) || ( !isset($_POST['previd']) && !isset($_POST['nextid']) ) )
-	            die(-1);
-
-	        // IS IT A REAL POST?
-	        if ( !$post = get_post( $_POST['id'] ) )
-	            die(-1);
-	        $previd = isset($_POST['previd']) ? $_POST['previd'] : false;
-	        $nextid = isset($_POST['nextid']) ? $_POST['nextid'] : false;
-	        if ( $previd ) {
-
-	            // FETCH ALL THE SIBLINGS (RELATIVE ORDERING)
-	            $siblings = get_posts(array( 'depth' => 1, 'numberposts' => -1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->post_parent, 'orderby' => 'menu_order', 'order' => 'ASC', 'exclude' => $post->ID ));
-	            foreach( $siblings as $sibling ) :
-
-	                // BEGIN UPDATING MENU ORDERS
-	                if ( $sibling->ID == $previd ) {
-	                    $menu_order = $sibling->menu_order + 1;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $post->ID, 'menu_order' => $menu_order ));
-	                    continue;
-	                }
-
-	                // NOTHING LEFT TO DO - NUMBERS CORRECTLY PADDED
-	                if ( isset($menu_order) && $menu_order < $sibling->menu_order )
-	                    break;
-
-	                // NEED TO UPDATE THE SIBLINGS MENU ORDER AS WELL
-	                if ( isset($menu_order) ) {
-	                    $menu_order++;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $sibling->ID, 'menu_order' => $menu_order ));
-	                }
-	            endforeach;
-	        }
-
-	        if ( !isset($menu_order) && $nextid ) {
-
-	            // FETCH ALL THE SIBLINGS (RELATIVE ORDERING)
-	            $siblings = get_posts(array( 'depth' => 1, 'numberposts' => -1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->post_parent, 'orderby' => 'menu_order', 'order' => 'DESC', 'exclude' => $post->ID ));
-	            foreach( $siblings as $sibling ) :
-
-	                // START UPDATING MENU ORDERS
-	                if ( $sibling->ID == $nextid ) {
-	                    $menu_order = $sibling->menu_order - 1;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $post->ID, 'menu_order' => $menu_order ));
-	                    continue;
-	                }
-
-	                // NOTHING LEFT TO DO - NUMBER ALREADY PADDED
-	                if ( isset($menu_order) && $menu_order > $sibling->menu_order )
-	                    break;
-
-	                // NEED TO UPDATE THE SIBLING MENU ORDER
-	                if ( isset($menu_order) ) {
-	                    $menu_order--;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $sibling->ID, 'menu_order' => $menu_order ));
-	                }
-	            endforeach;
-	        }
-
-	        // FETCH ALL THE SIBLINGS WITH RELATIVE ORDERING AND IF THE MOVED POST HAS CHILDREN REFRESH THE PAGE
-	        $children = get_posts(array( 'depth' => 1, 'numberposts' => 1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->ID ));
-	        if ( !empty($children) )
-	            die('children');
-	        die();
-	    }
-
-	*/
 	?>
 
 	<?php
@@ -734,4 +614,5 @@ jQuery(document).ready( function() {
 
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
+
 ?>
