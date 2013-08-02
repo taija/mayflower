@@ -97,9 +97,9 @@ audio:not([controls]) {
 img {
 	border: 0;
 	-ms-interpolation-mode: bicubic;
-  max-width: 100%;
-+ width: auto; /*thks IE7/8*/
-+ height: auto;
+  	max-width: 100%;
+ 	width: auto; /*thks IE7/8*/
+ 	height: auto;
 }
 
 

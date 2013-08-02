@@ -28,7 +28,7 @@
 		require( get_template_directory() . '/inc/functions/widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network-options.php');
+//	    require( get_template_directory() . '/inc/functions/network-options.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
@@ -246,11 +246,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 	function bc_tophead(){
 	   global $bc_globals_themepath;
 	   $header_top =  $bc_globals_themepath . "/common/litehead.html";
-	   //$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-	   //$header_bottom =  $bc_globals_themepath . "/common/bc_header_bottom_small.html";
 	   include_once($header_top);
-	   //include_once($header_menu);
-	   //include_once($header_bottom);
 	}
 	add_action('btheme_header','bc_tophead');
 
@@ -261,11 +257,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 	function bc_tophead_big() {
 		global $bc_globals_themepath;
 		$header_top_big = $bc_globals_themepath . "/common/bighead.html";
-		//$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-		//$header_bottom_big = $bc_globals_themepath . "/common/bc_header_bottom_big.html";
 		include_once($header_top_big);
-		//include_once($header_menu);
-		//include_once($header_bottom_big);
 	}
 
 	add_action('btheme_header','bc_tophead_big');
@@ -353,13 +345,10 @@ jQuery(document).ready( function() {
 
 	function bc_footer() {
 		global $bc_globals_themepath;
-		   $bc_footer =  $bc_globals_themepath . "/common/bigfoot_content.html";
+		   $bc_footer =  $bc_globals_themepath . "/common/bigfoot.html";
 		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
-		   ?>
-	       <div id="bigfoot"><?php
 		   include_once($bc_footer);
 		   include_once($bc_footerlegal);
-		   ?>  </div><?php
 	}
 	add_action('btheme_footer', 'bc_footer', 50);
 
@@ -370,10 +359,9 @@ jQuery(document).ready( function() {
 	function bc_footer_legal() {
 		global $bc_globals_themepath;
 		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
-		   ?>
-	       <div id="bigfoot"><?php
+		   
 		   include_once($bc_footerlegal);
-		   ?>  </div><!-- #bigfoot --><?php
+		 
 	}
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
@@ -614,5 +602,9 @@ jQuery(document).ready( function() {
 
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
+
+
+	Global $mayflowerVersion;
+	$mayflowerVersion = "branded";
 
 ?>

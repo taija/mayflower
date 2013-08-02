@@ -54,6 +54,42 @@ Sections here:
 	background-color: #003d79;
 	box-shadow: 0 0px 10px #999;
 }
+
+#top-wrapper {
+	background: #003d79 url(img/headbgwide.jpg) repeat-x;
+	margin-top: 10px;
+	
+}
+
+.container.logobar {
+	margin-top: -10px;
+}
+
+.container.logobar .border {
+	x-moz-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	x-webkit-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
+	background: url("img/headbg.jpg") repeat-y scroll 0 0 #003D79;
+}
+
+.header-search form {
+	float: right;
+}
+.header-search fieldset {white-space:nowrap;}
+
+
+#main-nav-wrap {
+	background: #003d79 url(img/headbgwide.jpg) 0 -20px repeat-x;
+	border-bottom: 2px solid #002d3f;
+	overflow: hidden;
+}
+#main-nav {
+	x-moz-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	x-webkit-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
+	position: relative;
+}
+
 .lite {}
 .branded {}
 #masthead.lite {
@@ -62,7 +98,6 @@ Sections here:
 #masthead.branded {
 	
 }
-/*ID Bar*/
 #smallhead-wrap {
 	background: #003d79 url(/globals/2.0/img/headbgwidetile.jpg);
 }
@@ -88,25 +123,41 @@ Sections here:
 .branded #bc-logo {
 	margin-top: 1.5em;
 	padding-bottom: 1.5em;
-	width: 420px; 
 }
 		
-#bc-logo img { display: block}
+#bc-logo img { 
+	display: block;
+	height: auto;
+	width: auto;}
 .lite #bc-logo:hover {
 	background: url(/globals/2.0/img/homepage.png) no-repeat 100% 0.5em;
 }
 .branded #bc-logo:hover {
-	background: url(/globals/2.0/img/homepage.png) no-repeat 100% 17px;
+	background: url(/globals/2.0/img/homepage.png) no-repeat 350px 17px;
 }
 a#bc-logo:focus {
 	outline: 1px dotted white;
-	}
+}
+
 @media screen and (min-width: 37em) {
 	#smallhead {
 		padding:  0 2em;
 	}	
 	ul.top-actions, #bc-logo { 
 	float: left;
+	}
+}
+@media screen and (min-width: 40em) {
+	.branded #bc-logo {
+		width: 420px; 
+	}
+	.flexwrap {
+		display: table;
+		width: 100%;
+	}
+	#main-nav-link { display: none;}
+	#main-nav-wrap {
+		display: table-caption;
 	}
 }
 @media screen and (min-width: 80em) {
@@ -177,18 +228,78 @@ ul.top-actions li.top-actions a:focus {
 	ul.top-actions li:first-child a.top-actions { padding-right: 0}
 }
 
+/*bigfooter*/
 
+#bigfoot { 
+	background-color: #E1E1E1;
+    border-bottom: 1px solid #999999;
+    border-top: 1px solid #999999;
+}
+#bigfoot .inner {
+	box-shadow: 0 4px 5px #666;
+	padding-top: 1.3333333em;
+	padding-bottom: 1.3333333em;
+	background-color: #E5E5E5;}
+#bigfoot ul {
+	margin: 0;
+	padding: 0;
+	list-style: none}
+#bigfoot li {
+	margin: 0;
+	padding: 0;
+	font-size: 0.9em;
+	color: #777;
+	}
+#bigfoot h3 {
+	font-size: .9em;
+	font-weight: bold;
+	color: #666;
+	font-family: Helvetica, Arial, sans-serif
+}
+#bigfoot a {
+	text-decoration: none;
+	white-space: nowrap;
+	line-height:1em;
+}
+.social-media {
+	margin-top: 1.3333em;
+}
+.social-media li{
+	
+}
+.social-media a {
+	display: block;
+	float: left;
+	padding-right: .66666667em;
+}
+.social-media a.more { 
+	font-size: .9em;
+	padding-top: .3333333em;}
+#bellevueaddress {}
+#bellevueaddress .tel,
+#bellevueaddress .adr {
+	font-size: .9em;
+}
 
 /* Legal footer*/
 #legalbar { clear: left; margin: 0 auto; padding: 13px 0 14px 0; }
-#bigfoot #legalbar {background: /*url(../img/foot-shadow-bot.png) no-repeat top center */ transparent;}
+#bigfoot + .container #legalbar {
+		xbackground: url(/globals/2.0/img/foot-shadow-bot.png) no-repeat top center transparent;
+		padding-top: 1.3333em;
+		padding-bottom: 1em;}
 #legalbar a:focus { outline: dotted 1px #003D79}
 
 #legalbar h3 { position: absolute; left: -9999px; top: -9999px }
 
-#legalbar ul {padding:0; text-align: center; font-size: 12px;}
-#legalbar li { display: inline; padding:0} 
-#legalbar li a { padding-left: 22px; color: #666; line-height: 21px; background: url(../img/foot-legal-sep.gif) repeat-y 9px 1px}
+#legalbar {
+		padding:0; 
+		text-align: center; 
+		font-size: 12px;}
+#legalbar li { 
+	display: inline; 
+	padding:0;
+	margin: 0} 
+#legalbar li a { padding-left: 22px; color: #666; line-height: 21px; background: url(/globals/2.0/img/foot-legal-sep.gif) repeat-y 9px 1px}
 #legalbar li a:hover,
 #legalbar li a:focus { color: #003D79;}
 #legalbar li.first a {padding-left: 0; background: none; }
@@ -200,6 +311,7 @@ ul.top-actions li.top-actions a:focus {
 /* Slider */
 
 
+.carousel { margin-bottom: 0}  /* NEED TO MOVE TO GLOBALS!!!*/
 .carousel .attachment-featured-full {}
 
 .carousel .attachment-featured-in-content {}
@@ -414,11 +526,49 @@ body {
 #main-nav.navbar .nav > li > a {
   float: none;
   color: #f2f2f2;
-  padding: 7px 20px 7px;
+  padding: .33333em .66666667em;
   text-decoration: none;
   text-shadow: 0 1px 0 #003d79;
-  border-right: 1px solid #6997ba;
+  border-right: 1px solid rgba(255, 255, 255, );
+  font-size: .9em;
 }
+
+
+@media screen and (min-width: 43.5em) {
+	#main-nav.navbar .nav > li > a {
+	  padding: .33333em 1em;
+	  transition: padding .5s ease;
+	}
+}
+@media screen and (min-width: 52em) {
+	#main-nav.navbar .nav > li > a {
+	  font-size: 1em; 
+	  padding: .33333em 1.33333em;
+	  transition: padding .5s ease;
+	}
+}
+@media screen and (min-width: 61em) {
+	#main-nav.navbar .nav > li > a {
+	  padding: .33333em 2em;
+	  transition: padding .5s ease;
+	}
+}
+@media screen and (min-width: 70em) {
+	#main-nav.navbar .nav > li > a {
+	  padding: .33333em 2.666667em;
+	  transition: padding .5s ease;
+	}
+}
+@media screen and (min-width: 80em) {
+	#main-nav.navbar .nav > li > a {
+	  padding: .33333em 3.0666666em;
+	  transition: padding .1s ease;
+	}
+	#main-nav.navbar .nav > li:last-child > a {
+		border-right: none;
+	}
+}
+
 
 #main-nav.navbar .nav > li > a:focus,
 #main-nav.navbar .nav > li > a:hover {
@@ -497,33 +647,6 @@ li.nav-header {
 
 
 
-/* ######################### */
-/* ----- Header Styles ----- */
-/* ######################### */
-
-#top-wrapper {
-	background: #003d79 url(img/headbgwide.jpg) repeat-x;
-	margin-top: 10px;
-	border-bottom: 3px solid #002d3f;
-}
-
-.container.logobar {
-	margin-top: -10px;
-}
-
-.container.logobar .border {
-	-moz-box-shadow: 0 0 5px #00203F;
-	-webkit-box-shadow: 0 0 5px#00203F;
-	box-shadow: 0 0 5px #00203F;
-	background: url("img/headbg.jpg") repeat-y scroll 0 0 #003D79;
-	
-}
-
-.header-search form {
-	float: right;
-}
-.header-search fieldset {white-space:nowrap;}
-
 
 /* ###################### */
 /* ----- Navigation ----- */
@@ -551,11 +674,21 @@ body.right-sidebar #primary {
 /* ----- Navigation ----- */
 /* ###################### */
 
+.nav > li > a { border-top: 1px solid rgba(255, 255, 255, 0.1)}
+.navbar .nav {/*THIS NEEDS TO BE MOVED TO GLOBALS*/
+	width: 100%;
+}
 .navbar .nav > li  {   /*THIS NEEDS TO BE MOVED TO GLOBALS*/
 	margin: 0;
 	padding: 0;
+	float: none;
 }
-
+@media screen and (min-width: 40em) {/*THIS NEEDS TO BE MOVED TO GLOBALS*/
+	.nav > li > a { border-top: none;}
+	.navbar .nav > li  {  
+		float: left;
+	}
+}
 
 div.globals-lite .navbar-inner {
   padding-left: 0px;
@@ -757,47 +890,4 @@ div.container.footer-widgets .content-border-right {
 	font-weight: bold;
 	font-size: 13px;
 	margin: 0;
-}
-
-
-/* ########################## */
-/* ----- Flexbox Styles ----- */
-/* ########################## */
-
-.global-lite-header-links  {
-	list-style-type: none;
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: flex;
-	-webkit-flex-flow: column wrap;
-	-moz-flex-flow: column wrap;
-	-ms-flex-flow: column wrap;
-	-ms-flex-direction: column;
-	-ms-flex-wrap: wrap;
-	flex-flow: column wrap;
-	-webkit-justify-content: space-between;
-	-moz-justify-content: space-between;
-	-ms-flex-pack:justify;
-	-ms-justify-content:space-between;
-	justify-content:space-between;
-	flex-direction: column;
-	flex-wrap: wrap;
-}
-
-.global-lite-header-links li:first-child {
-	margin-right: auto;	
-}
-
-@media (min-width: 590px) {
-	.global-lite-header-links  {
-	-webkit-flex-flow: row wrap;
-	-moz-flex-flow: row wrap;
-	-ms-flex-flow: row wrap;
-	-ms-flex-direction: row;
-	-ms-flex-wrap: wrap;
-	flex-flow: row wrap;
-	flex-direction: row;
-	}
-	
 }
