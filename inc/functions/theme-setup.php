@@ -438,10 +438,9 @@ function mayflower_setup() {
 	 * Define Nav Menus (since WordPress 3.0)
 	 */
 
-	// This theme uses wp_nav_menu() in two locations: main site navigation, and left-colum page navigation.
+	// This theme uses wp_nav_menu() in one locations: Top Navigation.
 	register_nav_menus( array(
 		'nav-top' => 'Top Navigation',
-		'nav-sidebar' => 'Sidebar Navigation'
 	) );
 
 

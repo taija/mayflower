@@ -113,11 +113,12 @@
                     <?php
                         /** Loading WordPress Custom Menu with Fallback to wp_list_pages **/
                         wp_nav_menu( array(
-                            'menu' => 'main-nav',
+							'theme_location' => 'nav-top',
+                            'menu' => 'top-nav',
                             'container_class' => 'nav-collapse',
                             'menu_class' => 'nav',
                             'fallback_cb' => 'false',
-                            'menu_id' => 'main-nav')
+                            'menu_id' => 'top-nav')
                         );
                     ?>
             </div><!-- navbar-inner -->

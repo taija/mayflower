@@ -26,9 +26,10 @@
 		require( get_template_directory() . '/inc/functions/theme-setup.php' );
 	    require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 		require( get_template_directory() . '/inc/functions/widgets.php' );
+		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network-options.php');
+	    require( get_template_directory() . '/inc/functions/network_options_deux.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
@@ -41,12 +42,9 @@
 ## Custom Menu Widget Override
 ##################################
 
-if (include('inc/functions/custom_widgets.php')){
-add_action("widgets_init", "load_custom_widgets");
-}
 function load_custom_widgets() {
-unregister_widget("WP_Nav_Menu_Widget");
-register_widget("My_Nav_Menu_Widget");
+	unregister_widget("WP_Nav_Menu_Widget");
+	register_widget("My_Nav_Menu_Widget");
 }
 
 
@@ -444,6 +442,19 @@ jQuery(document).ready( function() {
 	add_action('wp_footer', 'mayflower_sitespecific_analytics', 30);
 
 
+############################
+// Force IE Edge in WP Admin
+############################
+
+//hook the administrative header output
+add_action('admin_head', 'force_ie_edge_admin');
+
+function force_ie_edge_admin() {
+echo '
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+';
+}
+
 
 ############################
 // Custom Widget Styles
@@ -465,57 +476,7 @@ jQuery(document).ready( function() {
 	</style>
 	<?php
 	}
-	?>
 
-	<?php
-	#########################
-	//
-	########################
-
-	class description_walker extends Walker_Nav_Menu {
-	      function start_el(&$output, $item, $depth, $args)
-	      {
-	           global $wp_query;
-	           $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-
-	           $class_names = $value = '';
-
-	           $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-
-	           $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-	           $class_names = ' class="'. esc_attr( $class_names ) . '"';
-
-	           $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
-
-	           $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-	           $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-	           $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-	           $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-
-	           $prepend = '<div class="top sans">';
-	           $append = '</div>';
-	           $description  = ! empty( $item->title ) ? '<div class="bottom">'.esc_attr( $item->attr_title ).'</div>' : '';
-
-	           if($depth != 0)
-	           {
-	                     $description = $append = $prepend = "";
-	           }
-
-	            $item_output = $args->before;
-	            $item_output .= '<a'. $attributes .'>';
-	            $item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
-	            $item_output .= $description.$args->link_after;
-	            $item_output .= '</a>';
-	            $item_output .= $args->after;
-
-	            $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-			}
-
-			function start_lvl(&$output, $depth) {
-			    $indent = str_repeat("\t", $depth);
-			    $output .= "\n$indent<ul class=\"nav nav-list\">\n";
-			}
-	}
 
 
 	#################################
