@@ -80,7 +80,7 @@
 
 				<?php bc_tophead(); ?>
 
-<div id="main-wrap" class="<?= $mayflowerVersionCSS ?>">
+<div id="main-wrap" class="<?php echo $mayflowerVersionCSS; ?>">
 	<div id="main" class="container">
     	<div id="site-header" class="row">
        		<div class="span8">

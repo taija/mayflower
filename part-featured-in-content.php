@@ -35,7 +35,7 @@
 									<?php } else { ?>
 				
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-in-content');?></a>
-								<?	} //end else ?>
+								<?php	} //end else ?>
 							<?php
 									//should we show title & excerpt?
 									$mayflower_options = mayflower_get_options();
@@ -57,7 +57,7 @@
 													<?php } else { ?>
 														<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 		
-												<?	} //end else ?>
+												<?php	} //end else ?>
 											<?php } else { } ?>
 		
 											<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
@@ -100,7 +100,7 @@
 								<?php } else { ?>
 			
 							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-							<?	} //end else ?>
+							<?php	} //end else ?>
 			
 						<?php
 								//should we show title & excerpt?
@@ -123,7 +123,7 @@
 												<?php } else { ?>
 													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 	
-											<?	} //end else ?>
+											<?php	} //end else ?>
 										<?php } else { } ?>
 	
 										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
