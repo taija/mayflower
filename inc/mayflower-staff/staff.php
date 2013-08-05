@@ -405,25 +405,6 @@ return $title;
 add_filter( 'enter_title_here', 'mayflower_staff_title_text' );
 
 
-/////////////////////////////////////////
-// Sub-Menu for sortables
-/////////////////////////////////////////
-/*
-add_action( 'admin_menu', 'mayflower_staff_sub_menu' );
-
-	function mayflower_staff_sub_menu() {
-	    add_submenu_page(
-	        'edit.php?post_type=staff',
-	        'Order Slides',
-	        'Order',
-	        'edit_pages', 'staff-order',
-	        'staff_staff_order_page'
-	    );
-	}
-*/
-
-
-
 ///////////////////////////////////////
 // Custom Columns for Staff Post type
 ///////////////////////////////////////

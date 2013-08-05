@@ -244,23 +244,6 @@ return $title;
 add_filter( 'enter_title_here', 'mayflower_slider_title_text' );
 
 
-/////////////////////////////////////////
-// Sub-Menu for sortables
-/////////////////////////////////////////
-/*
-add_action( 'admin_menu', 'mayflower_staff_sub_menu' );
-
-	function mayflower_staff_sub_menu() {
-	    add_submenu_page(
-	        'edit.php?post_type=slider',
-	        'Order Slides',
-	        'Order',
-	        'edit_pages', 'slider-order',
-	        'slider_staff_order_page'
-	    );
-	}
-*/
-
 ///////////////////////////////////////
 // Custom Columns for Slider Post type
 ///////////////////////////////////////
