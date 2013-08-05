@@ -37,10 +37,14 @@
 	<?php
 	//Set up a class depending on mayflower version used
 	$mayflowerVersionCSS = "globals-branded";
+	Global $mayflowerVersion;
 	if( $mayflower_options['mayflower_version'] == 'department' ) {
 		$mayflowerVersionCSS = "globals-lite";
-	}	
-		
+		$mayflowerVersion = "lite";
+	} else {
+		$mayflowerVersion = "branded";
+	}
+	
 	##############################################
 	### Branded or Lite versions of the header
 	##############################################

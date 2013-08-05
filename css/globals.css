@@ -97,6 +97,9 @@ audio:not([controls]) {
 img {
 	border: 0;
 	-ms-interpolation-mode: bicubic;
+  	max-width: 100%;
+ 	width: auto; /*thks IE7/8*/
+ 	height: auto;
 }
 
 
@@ -1578,13 +1581,8 @@ a.text-success:focus {
 
 .content-padding {
 	padding:  0	1em;
-	-webkit-transition: padding 0.5s ease;
-	-moz-transition: padding 0.5s ease;
-	-ms-transition: padding 0.5s ease;
-	-o-transition: padding 0.5s ease;
-	transition: padding 0.5s ease;
 }
-@media screen and (min-width: 37em) {
+@media screen and (min-width: 55em) {
 	.content-padding {
 		padding:  0	2em;
 	}	
