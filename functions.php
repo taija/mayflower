@@ -29,7 +29,7 @@
 		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network_options.php');
+	    require( get_template_directory() . '/inc/functions/network-options.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
