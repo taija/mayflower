@@ -227,7 +227,6 @@ ul.top-actions li.top-actions a:focus {
 }
 
 /*bigfooter*/
-
 #bigfoot { 
 	background-color: #E1E1E1;
     border-bottom: 1px solid #999999;
@@ -305,6 +304,19 @@ ul.top-actions li.top-actions a:focus {
 #legalbar li.last a {padding-left: 0; background: none; }
 #legalbar span { padding-left: 21px;}
 
+
+@media screen and (min-width: 40em) {
+	#main-wrap,
+	#main-nav-wrap,
+	#bigfoot,
+	#top-wrapper { padding: 0 0.3333333em; }
+}
+@media screen and (min-width: 50em) {
+	#main-wrap,
+	#main-nav-wrap,
+	#bigfoot,
+	#top-wrapper { padding: 0 0.66667em; }
+}
 
 /* Slider */
 
@@ -521,7 +533,7 @@ a img.aligncenter {
   padding: .33333em .66666667em;
   text-decoration: none;
   text-shadow: 0 1px 0 #003d79;
-  border-right: 1px solid rgba(255, 255, 255, );
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   font-size: .9em;
 }
 
