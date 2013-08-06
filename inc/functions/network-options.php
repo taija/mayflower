@@ -180,11 +180,13 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		
 		?>
 		
+		
 		<form method="post">
 		<input type="hidden" name="action" value="update_mayflower_settings" />
 		<?php 
 		$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' ); 
 		$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+		$globals_version = $network_mayflower_settings['globals_version']; 
 				
 		
 		wp_nonce_field('save_network_mayflower_settings', 'my-network-plugin');
@@ -192,12 +194,23 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		<table class="form-table">
 		                <tr valign="top">  
 		                    <th scope="row">  
-		                        <label for="high_alert">  
+		                        <label for="mayflower_version">  
 		                            Mayflower Version
 		                        </label>   
 		                    </th>  
 		                    <td>  
 		                       <input type="text" name="network_mayflower_settings[mayflower_version]" value="<?php echo $mayflower_version; ?>"/>  			
+		                    </td>  
+		                    
+		                </tr>  
+		                <tr valign="top">  
+		                    <th scope="row">  
+		                        <label for="globals_version">  
+		                            Globals Version
+		                        </label>   
+		                    </th>  
+		                    <td>  
+		                       <input type="text" name="network_mayflower_settings[globals_version]" value="<?php echo $globals_version; ?>"/>  			
 		                    </td>  
 		                    
 		                </tr>  
@@ -208,6 +221,8 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		
 		</p>
 		</form>
+		
+
 		
 		    <?php
 		

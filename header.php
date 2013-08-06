@@ -3,6 +3,7 @@
 // Get Mayflower version number from Mayflower network settings
 	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
  	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+	$globals_version = $network_mayflower_settings['globals_version'];
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
 		
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/bootstrap.css">-->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_version; ?>" type="text/css" media="screen" />
