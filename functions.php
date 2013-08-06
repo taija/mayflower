@@ -29,7 +29,7 @@
 		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network_options_deux.php');
+	    require( get_template_directory() . '/inc/functions/network_options.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
@@ -58,7 +58,7 @@ function load_custom_widgets() {
 	        $wp_admin_bar->add_menu( array(
 	        'parent' => '',
 	        'id' => 'mayflower-settings',
-	        'title' => __('Theme Options'),
+	        'title' => 'Theme Options',
 	        'href' => admin_url( 'themes.php?page=mayflower-settings')
 	    ) );
 
@@ -84,6 +84,12 @@ function load_custom_widgets() {
 		if( file_exists(get_template_directory() . '/inc/mayflower-staff/staff.php') )
 		    require( get_template_directory() . '/inc/mayflower-staff/staff.php');
 		}
+
+	// Staff
+		if ( current_user_can('manage_network') ) {
+			if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') )
+			    require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
+		} // end current_user_can
 
 	// Social Links
 	if( file_exists(get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php') )
@@ -120,11 +126,7 @@ add_post_type_support( 'page', 'excerpt' );
 			add_image_size( 'staff-thumbnail', 300, 200, true );
 	        add_image_size( 'featured-full', 1200,500,true);
 	        add_image_size( 'featured-in-content', 900,375,true);
-	}
-
-	// Custom Menus
-	if (function_exists('add_theme_support')) {
-	    add_theme_support('menus');
+	        add_image_size( 'home-small-ad', 300,200,true);
 	}
 
 ######################################
@@ -246,7 +248,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 	   $header_top =  $bc_globals_themepath . "/common/litehead.html";
 	   include_once($header_top);
 	}
-	add_action('btheme_header','bc_tophead');
+	add_action('mayflower_header','bc_tophead');
 
 ########################################
 //add college head - big html dropdown
@@ -258,7 +260,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 		include_once($header_top_big);
 	}
 
-	add_action('btheme_header','bc_tophead_big');
+	add_action('mayflower_header','bc_tophead_big');
 
 ###########################
 // Custom do_settings_sections function
