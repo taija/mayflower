@@ -1,4 +1,10 @@
 <?php global $mayflower_options; $mayflower_options = mayflower_get_options(); ?>
+<?php
+// Get Mayflower version number from Mayflower network settings
+	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+ 	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -20,7 +26,7 @@
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/bootstrap.css">-->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_version; ?>" type="text/css" media="screen" />
 
 			<?php
 				if( $mayflower_options['skin'] != 'default-color-scheme' ) { ?>
@@ -118,11 +124,11 @@
                         /** Loading WordPress Custom Menu with Fallback to wp_list_pages **/
                         wp_nav_menu( array(
 							'theme_location' => 'nav-top',
-                            'menu' => 'top-nav',
+                            'menu' => 'main-nav',
                             'container_class' => 'nav-collapse',
                             'menu_class' => 'nav',
                             'fallback_cb' => 'false',
-                            'menu_id' => 'top-nav')
+                            'menu_id' => 'main-nav')
                         );
                     ?>
             </div><!-- navbar-inner -->
