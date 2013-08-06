@@ -20,19 +20,19 @@ Author URI:
 
     function bc_slider_register() {
 		$labels = array(
-			'name' => _x('Featured Slider', 'post type general name'),
-			'singular_name' => _x('Slide', 'post type singular name'),
-			'add_new' => _x('Add New', 'Slide'),
-			'add_new_item' => __('Add New Slide'),
-			'edit_item' => __('Edit Slide'),
-			'new_item' => __('New Slide'),
-			'all_items' => __('Slide List'),
-			'view_item' => __('View Slide'),
-			'search_items' => __('Search Slides'),
-			'not_found' =>  __('No Slides found'),
-			'not_found_in_trash' => __('No Slides found in Trash'),
+			'name' => 'Featured Slider',
+			'singular_name' => 'Slide', 
+			'add_new' => 'Add New', 'Slide',
+			'add_new_item' => 'Add New Slide',
+			'edit_item' => 'Edit Slide',
+			'new_item' => 'New Slide',
+			'all_items' => 'Slide List',
+			'view_item' => 'View Slide',
+			'search_items' => 'Search Slides',
+			'not_found' =>  'No Slides found',
+			'not_found_in_trash' => 'No Slides found in Trash',
 			'parent_item_colon' => '',
-			'menu_name' => __('Featured Slider')
+			'menu_name' => 'Featured Slider'
 		);
 
         $args = array(
@@ -62,7 +62,8 @@ function mayflower_register_slider_sort_page() {
 		'edit.php?post_type=slider',
 		'Order Slides',
 		'Re-Order',
-		'edit_pages', 'slider-order',
+		'edit_pages', 
+		'slider-order',
 		'slider_order_page'
 	);
 }
@@ -254,9 +255,9 @@ add_filter('manage_edit-slider_columns', 'add_slider_columns');
 function add_slider_columns($slider_columns) {
 		$slider_columns = array (
 		'cb' => '<input type="checkbox" />',
-		'thumbnail' => __('Featured Image'),
-		'title' => __('Title'),
-		'slider_link_to' => __('External URL'),
+		'thumbnail' => 'Featured Image',
+		'title' => 'Title',
+		'slider_link_to' => 'External URL',
 	);
 //remove unwanted default columns
 		unset($slider_columns['author']);

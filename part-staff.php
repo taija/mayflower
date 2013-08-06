@@ -43,7 +43,7 @@
 							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
 						}
 						else {
-							echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/img/thumbnail-default.png" />';
+							echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
 						}
 					?>
 

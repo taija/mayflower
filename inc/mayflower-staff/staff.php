@@ -42,19 +42,19 @@ add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
 
     function bc_staff_register() {
 		$labels = array(
-			'name' => _x('Staff', 'post type general name'),
-			'singular_name' => _x('Staff', 'post type singular name'),
-			'add_new' => _x('Add New', 'Staff'),
-			'add_new_item' => __('Add New Staff'),
-			'edit_item' => __('Edit Staff'),
-			'new_item' => __('New Staff'),
-			'all_items' => __('Staff List'),
-			'view_item' => __('View Staff'),
-			'search_items' => __('Search Staff'),
-			'not_found' =>  __('No Staff found'),
-			'not_found_in_trash' => __('No Staff found in Trash'),
+			'name' => 'Staff',
+			'singular_name' => 'Staff', 
+			'add_new' => 'Add New', 'Staff',
+			'add_new_item' => 'Add New Staff',
+			'edit_item' => 'Edit Staff',
+			'new_item' => 'New Staff',
+			'all_items' => 'Staff List',
+			'view_item' => 'View Staff',
+			'search_items' => 'Search Staff',
+			'not_found' =>  'No Staff found',
+			'not_found_in_trash' => 'No Staff found in Trash',
 			'parent_item_colon' => '',
-			'menu_name' => __('Staff')
+			'menu_name' => 'Staff'
 		);
 
         $args = array(
@@ -415,13 +415,13 @@ add_filter('manage_edit-staff_columns', 'add_new_staff_columns');
 function add_new_staff_columns($staff_columns) {
 		$staff_columns = array (
 			'cb' => '<input type="checkbox" />',
-			'thumbnail' => __( 'Photo' ),
-			'title' => __('Name'),
-			'staff_email' => __('Email'),
-			'staff_position' => __('Position'),
-			'staff_phone' => __('Phone'),
-			'staff_hours' => __('Office Hours'),
-			'staff_office_location' => __('Office Location'),
+			'thumbnail' =>  'Photo',
+			'title' => 'Name',
+			'staff_email' => 'Email',
+			'staff_position' => 'Position',
+			'staff_phone' => 'Phone',
+			'staff_hours' => 'Office Hours',
+			'staff_office_location' => 'Office Location',
 		);
 
 //		$new_columns['date'] = __('Date Added', 'column name');
@@ -450,7 +450,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -465,7 +465,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -480,7 +480,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -495,7 +495,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -510,7 +510,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
