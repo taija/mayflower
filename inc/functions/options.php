@@ -324,6 +324,29 @@ function mayflower_get_option_parameters() {
 			'default' => '5'
 		),
 		
+
+        'slider_order' => array(
+			'name' => 'slider_order',
+			'title' => __( 'Slide Order', 'mayflower' ),
+			'type' => 'select',
+			'valid_options' => array(
+				'menu-order' => array(
+					'name' => 'menu-order',
+					'title' => __( 'Sort Order', 'mayflower' )
+				),
+				'random' => array(
+					'name' => 'random',
+					'title' => __( 'Random', 'mayflower' )
+				),
+
+			),
+			'description' => __( 'How should we sort the slides?', 'mayflower' ),
+			'section' => 'slider',
+			'tab' => 'home',
+			'since' => '1.0',
+			'default' => 'menu-order'
+		),
+
 		
 		'slider_layout' => array(
 			'name' => 'slider_layout',
@@ -347,6 +370,7 @@ function mayflower_get_option_parameters() {
 			'since' => '1.0',
 			'default' => 'featured-full'
 		),
+
 		'slider_title' => array(
 			'name' => 'slider_title',
 			'title' => __( 'Show title?', 'mayflower' ),
