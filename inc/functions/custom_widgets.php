@@ -7,8 +7,8 @@
  class My_Nav_Menu_Widget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array( 'description' => __('Use this widget to add one of your custom menus as a widget.') );
-		parent::__construct( 'nav_menu', __('Custom Menu'), $widget_ops );
+		$widget_ops = array( 'description' => 'Use this widget to add one of your custom menus as a widget.' );
+		parent::__construct( 'nav_menu', 'Custom Menu', $widget_ops );
 	}
 
 	function widget($args, $instance) {
@@ -70,11 +70,11 @@ wp_nav_menu( $defaults );
 		}
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:') ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php 'Title:' ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $title; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('nav_menu'); ?>"><?php _e('Select Menu:'); ?></label>
+			<label for="<?php echo $this->get_field_id('nav_menu'); ?>"><?php 'Select Menu:'; ?></label>
 			<select id="<?php echo $this->get_field_id('nav_menu'); ?>" name="<?php echo $this->get_field_name('nav_menu'); ?>">
 		<?php
 			foreach ( $menus as $menu ) {
