@@ -57,19 +57,17 @@ Sections here:
 
 #top-wrapper {
 	background: #003d79 url(img/headbgwide.jpg) repeat-x;
-	margin-top: 10px;
-	
 }
 
 .container.logobar {
-	margin-top: -10px;
+	background: url("img/headbg.jpg") repeat-y scroll 0 0 #003D79;
 }
 
 .container.logobar .border {
-	x-moz-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
-	x-webkit-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	-moz-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
+	-webkit-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
-	background: url("img/headbg.jpg") repeat-y scroll 0 0 #003D79;
+	
 }
 
 .header-search form {
@@ -84,8 +82,8 @@ Sections here:
 	overflow: hidden;
 }
 #main-nav {
-	x-moz-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
-	x-webkit-box-shadow: -2px 1px 3px rgba(0, 32, 63, 0.7), 2px 1px 3px rgba(0, 32, 63, 0.7);
+	-moz-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
+	-webkit-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	position: relative;
 }

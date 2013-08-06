@@ -1,7 +1,7 @@
 /* Globals 
 
 Sections
-- Reset / Set CSS 
+- Rebase CSS
 - Site Structure
 - Components
 - Breakpoints
@@ -48,7 +48,7 @@ Name	Size em/px		 	Ised in
 
 /* ************************************** */
 /* ************************************** */
-/*	RESET/SET CSS                         */      
+/*	REBASE CSS                            */      
 /* ************************************** */
 /* ************************************** */
 
@@ -72,7 +72,6 @@ body {
 	color: #444;
 	background-color: #F2F2F2;  
 }
-
 article,
 aside,
 details,
@@ -93,7 +92,6 @@ video {
 audio:not([controls]) {
 	display: none;
 }
-
 img {
 	border: 0;
 	-ms-interpolation-mode: bicubic;
@@ -101,8 +99,6 @@ img {
  	width: auto; /*thks IE7/8*/
  	height: auto;
 }
-
-
 a {
 	outline: none;
 	color: #008AD0;
@@ -177,27 +173,21 @@ h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
 	margin-top: 0.66666667em;
 	margin-top: 0.66666667rem;
 }
-
 h1 + p {
 	margin-top: 0.66666667em;
 }
 h2 + p, h3 + p, h4 + p, h5 + p, h6 + p  { 
 	margin-top: 0
 }
-
-
 address {
   display: block;
   margin-top: 1em;
   font-style: normal;
 }
-
-
 blockquote,
 q {
 	quotes: none;
 }
-
 blockquote {
 	font-family:Georgia, "Times New Roman", Times, serif;
 	line-height: 1.66666667em;
@@ -232,11 +222,9 @@ blockquote small {
   display: block;
   color: #999999;
 }
-
 blockquote small:before {
   content: '\2014 \00A0';
 }
-
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -264,15 +252,12 @@ td {
   vertical-align: top;
   border-top: .066667em solid #E0E0E0;
 }
-
 .table th {
   font-weight: bold;
 }
-
 .table thead th {
   vertical-align: bottom;
 }
-
 .table caption + thead tr:first-child th,
 .table caption + thead tr:first-child td,
 .table colgroup + thead tr:first-child th,
@@ -281,21 +266,17 @@ td {
 .table thead:first-child tr:first-child td {
   border-top: 0;
 }
-
 .table tbody + tbody {
   border-top: 0.33333em solid #E0E0E0;
 }
-
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
   background-color: #f7f7f7;
 }
-
 .table-hover tbody tr:hover > td,
 .table-hover tbody tr:hover > th {
   background-color: #f0f0f0;
 }
-
 h1:first-child,
 h2:first-child,
 h3:first-child,
@@ -310,41 +291,31 @@ address:first-child
 table:first-child { 
 	margin-top: 0;
 }
-
 dl:first-child dt:first-child {
 	margin-top: 0
 }
-
-
 small {
   font-size: .8em;
   line-height: 1.666666em;
 }
-
 strong {
   font-weight: bold;
 }
-
 em {
   font-style: italic;
 }
-
 cite {
   font-style: normal;
 }
-
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999999;
 }
-
 abbr.initialism {
   font-size: 90%;
   text-transform: uppercase;
 }
-
-
 code,
 pre {
   padding: 0 3px 2px; /*review*/
