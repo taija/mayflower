@@ -62,18 +62,13 @@ Template Name: BC home page
 	### Branded or Lite versions of the header
 	##############################################
 
-		//$options = get_option('mayflower_site_options');
 
 		###############################
 		### --- Branded version --- ###
 		###############################
 		
 		
-		if( $mayflower_options['mayflower_version'] == 'department'  ) {
-			bc_tophead();
-		} else {
 			bc_tophead_big();
-		}
 		
 	
 			
@@ -163,7 +158,7 @@ Template Name: BC home page
 									<?php } else { ?>
 	
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-								<?	} //end else ?>
+								<?php	} //end else ?>
 	
 							<?php
 								//should we show title & excerpt?
@@ -186,7 +181,7 @@ Template Name: BC home page
 												<?php } else { ?>
 													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 	
-											<?	} //end else ?>
+											<?php	} //end else ?>
 										<?php } else { } ?>
 	
 										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
@@ -229,7 +224,7 @@ Template Name: BC home page
 									<?php } else { ?>
 	
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-								<?	} //end else ?>
+								<?php	} //end else ?>
 	
 							<?php
 								//should we show title & excerpt?
@@ -252,7 +247,7 @@ Template Name: BC home page
 												<?php } else { ?>
 													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 	
-											<?	} //end else ?>
+											<?php	} //end else ?>
 										<?php } else { } ?>
 	
 										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
@@ -335,7 +330,9 @@ Template Name: BC home page
 	<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply</strong> for admissions</a></p>
     <!--<p id="donate"><a href="https://bellevuecollege.edu/foundation/donate/">Give to Bellevue College</a></p>-->
     
-    <p id="homead"><a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a></p>
+    <p id="homead">
+    	<a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a>
+	</p>
 	
 	
 
