@@ -316,6 +316,18 @@ function mayflower_get_option_parameters() {
 					'name' => '10',
 					'title' => __( '10', 'mayflower' )
 				),
+				'11' => array(
+					'name' => '11',
+					'title' => __( '11', 'mayflower' )
+				),
+				'12' => array(
+					'name' => '12',
+					'title' => __( '12', 'mayflower' )
+				),
+				'13' => array(
+					'name' => '13',
+					'title' => __( '13', 'mayflower' )
+				),
 			),
 			'description' => __( 'How many featured slides should we show?', 'mayflower' ),
 			'section' => 'slider',
