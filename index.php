@@ -1,3 +1,8 @@
+<?php
+	if ( is_main_site() && is_front_page() ) {
+		get_template_part('template-front-page');
+	} else { 
+?>
 <?php get_header(); ?>
 
 	<?php
@@ -8,6 +13,9 @@
 		 //echo do_shortcode('[OneClassInformation course="ABE" number="042"]');
 	?>
 		<?php
+				
+
+
 				// Sidebar Layout
 				if ( $current_layout == 'content-sidebar' || $current_layout == 'sidebar-content' ) {
 				get_template_part('layout-sidebar');
@@ -18,3 +26,4 @@
 				}
 		 ?>
 <?php get_footer(); ?>
+<?php } //end check for bc home page ?> 
