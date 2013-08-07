@@ -187,6 +187,7 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' ); 
 		$mayflower_version = $network_mayflower_settings['mayflower_version']; 
 		$globals_version = $network_mayflower_settings['globals_version']; 
+		$globals_path = $network_mayflower_settings['globals_path']; 
 				
 		
 		wp_nonce_field('save_network_mayflower_settings', 'my-network-plugin');
@@ -211,6 +212,17 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		                    </th>  
 		                    <td>  
 		                       <input type="text" name="network_mayflower_settings[globals_version]" value="<?php echo $globals_version; ?>"/>  			
+		                    </td>  
+		                    
+		                </tr>  
+		                <tr valign="top">  
+		                    <th scope="row">  
+		                        <label for="globals_path">  
+		                            Globals Path
+		                        </label>   
+		                    </th>  
+		                    <td>  
+		                       <input type="text" name="network_mayflower_settings[globals_path]" value="<?php echo $globals_path; ?>"/>  			
 		                    </td>  
 		                    
 		                </tr>  
