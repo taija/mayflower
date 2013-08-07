@@ -143,6 +143,14 @@ function remove_calendar_widget() {
 
 add_action( 'widgets_init', 'remove_calendar_widget' );
 
+
+######################################
+// Remvoe Wordpress Version Number
+######################################
+
+function remove_wp_version() { return ''; }
+add_filter('the_generator', 'remove_wp_version');
+
 ######################################
 // Wordpress Widget Area Setup
 ######################################
