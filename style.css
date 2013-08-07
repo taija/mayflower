@@ -151,7 +151,7 @@ a#bc-logo:focus {
 }
 @media screen and (min-width: 23em) {
 	#college-search-field {
-		width: 220px
+		width: 230px
 	}
 }
 @media screen and (min-width: 37em) {
@@ -333,24 +333,24 @@ ul#college-top-actions li.top-actions a:focus {
 }
 
 /* Legal footer*/
-#legalbar { clear: left; margin: 0 auto; padding: 13px 0 14px 0; }
-#bigfoot + .container #legalbar {
-		xbackground: url(/globals/2.0/img/foot-shadow-bot.png) no-repeat top center transparent;
-		padding-top: 1.3333em;
-		padding-bottom: 1em;}
+#legalbar { 
+	clear: left; 
+	margin: 0 auto; 
+	padding: 1.3333em 0 1em 0;
+	text-align: center; 
+}
 #legalbar a:focus { outline: dotted 1px #003D79}
-
 #legalbar h3 { position: absolute; left: -9999px; top: -9999px }
-
-#legalbar {
-		padding:0; 
-		text-align: center; 
-		font-size: 12px;}
 #legalbar li { 
 	display: inline; 
 	padding:0;
 	margin: 0} 
-#legalbar li a { padding-left: 22px; color: #666; line-height: 21px; background: url(/globals/2.0/img/foot-legal-sep.gif) repeat-y 9px 1px}
+#legalbar li a { 
+	padding-left: 2em;
+	color: #666;
+	background: url(/globals/2.0/img/foot-legal-sep.gif) repeat-y 0.8em 1px;
+	font-size: .8em;
+	white-space: nowrap;}
 #legalbar li a:hover,
 #legalbar li a:focus { color: #003D79;}
 #legalbar li.first a {padding-left: 0; background: none; }
@@ -657,6 +657,12 @@ a img.aligncenter {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27445f', endColorstr='#143351', GradientType=0);
 	border-left: 1px solid #002d3f;
 	border-right: 1px solid #002d3f;
+}
+
+.nav-classes li#nav-classes a, .nav-programs li#nav-programs a, .nav-enrollment li#nav-enrollment a, .nav-resources li#nav-resources a, .nav-news li#nav-news a, .nav-about li#nav-about a {
+    background: url("img/bg-main-nav-hover.png") repeat-x scroll 0 0 #457BAA;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 
