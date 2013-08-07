@@ -330,12 +330,12 @@ function mayflower_get_option_parameters() {
 			'title' => __( 'Slide Order', 'mayflower' ),
 			'type' => 'select',
 			'valid_options' => array(
-				'menu-order' => array(
-					'name' => 'menu-order',
+				'menu_order' => array(
+					'name' => 'menu_order',
 					'title' => __( 'Sort Order', 'mayflower' )
 				),
-				'random' => array(
-					'name' => 'random',
+				'rand' => array(
+					'name' => 'rand',
 					'title' => __( 'Random', 'mayflower' )
 				),
 
@@ -344,7 +344,7 @@ function mayflower_get_option_parameters() {
 			'section' => 'slider',
 			'tab' => 'home',
 			'since' => '1.0',
-			'default' => 'menu-order'
+			'default' => 'menu_order'
 		),
 
 		

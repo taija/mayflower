@@ -1,10 +1,10 @@
-<?php
-/*
-Template Name: BC home page
-*/
-?>
-
 <?php global $mayflower_options; $mayflower_options = mayflower_get_options(); ?>
+<?php
+// Get Mayflower version number from Mayflower network settings
+	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+ 	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+	$globals_version = $network_mayflower_settings['globals_version'];
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -22,7 +22,7 @@ Template Name: BC home page
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/bootstrap.css">-->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="screen" />
@@ -116,175 +116,12 @@ Template Name: BC home page
          </section>
 		<section id="homeslider">
 		
-			 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
+					<?php get_template_part('part-featured-full'); ?>
 
-
-
-<?php if ( is_front_page() ) {
-
-	    $mayflower_options = mayflower_get_options();
-	    if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-full') { ?>
-					<div id="myCarousel" class="carousel slide full box-shadow">
-						 <ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
-
-						<div class="carousel-inner">
-							<?php
-							$the_query = new WP_Query(array(
-								'post_type'=>'slider',
-								'orderby'=> 'menu_order',
-								'order'=> 'ASC',
-								'posts_per_page' => 1,
-							));
-							while ( $the_query->have_posts() ) :
-							$the_query->the_post();
-							?>
-	
-							<div class="item active">
-								<?php
-							        // If url field has content, add the URL to the post thumbnail.
-									$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
-								        if ( !empty( $slider_ext_url ) )
-									{ ?>
-	
-									<h2>
-										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-									</h2>
-	
-									<?php } else { ?>
-	
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-								<?php	} //end else ?>
-	
-							<?php
-								//should we show title & excerpt?
-								$mayflower_options = mayflower_get_options();
-									if ($mayflower_options['slider_title'] == 'true' || $mayflower_options['slider_excerpt'] == 'true' ) { ?>
-	
-	
-									<div class="carousel-caption">
-										<?php
-											if ($mayflower_options['slider_title'] == 'true') {
-										        // If a post class has input, sanitize it and add it to the post class array.
-												$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
-											        if ( !empty( $slider_ext_url ) )
-												{ ?>
-	
-												<h2>
-													<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-												</h2>
-	
-												<?php } else { ?>
-													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
-	
-											<?php	} //end else ?>
-										<?php } else { } ?>
-	
-										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
-											<?php the_excerpt(); ?>
-										<?php } else { } ?>
-	
-									</div><!-- carousel-caption -->
-	
-							<?php } else  { } ?>
-	
-							</div><!-- item active -->
-	
-							<?php
-								endwhile;
-									wp_reset_postdata();
-							?>
-	
-							<?php
-								$the_query = new WP_Query(array(
-									'post_type'=>'slider',
-									'orderby'=> 'menu_order',
-									'order'=>'ASC',
-									'posts_per_page' => ($mayflower_options['slider_number_slides'] -1), // subtract 1 (-1) is here to account for the first loop.
-									'offset' => 1
-								));
-								while ( $the_query->have_posts() ) :
-								$the_query->the_post();
-							?>
-							<div class="item">
-								<?php
-							        // If a post class has input, sanitize it and add it to the post class array.
-									$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
-								        if ( !empty( $slider_ext_url ) )
-									{ ?>
-	
-									<h2>
-										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-									</h2>
-	
-									<?php } else { ?>
-	
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-								<?php	} //end else ?>
-	
-							<?php
-								//should we show title & excerpt?
-								$mayflower_options = mayflower_get_options();
-									if ($mayflower_options['slider_title'] == 'true' || $mayflower_options['slider_excerpt'] == 'true' ) { ?>
-	
-	
-									<div class="carousel-caption">
-										<?php
-											if ($mayflower_options['slider_title'] == 'true') {
-										        // If a post class has input, sanitize it and add it to the post class array.
-												$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
-											        if ( !empty( $slider_ext_url ) )
-												{ ?>
-	
-												<h2>
-													<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-												</h2>
-	
-												<?php } else { ?>
-													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
-	
-											<?php	} //end else ?>
-										<?php } else { } ?>
-	
-										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
-											<?php the_excerpt(); ?>
-										<?php } else { } ?>
-	
-									</div><!-- carousel-caption -->
-	
-							<?php } else  { } ?>
-	
-							</div><!-- item -->
-	
-							<?php
-								endwhile;
-								wp_reset_postdata();
-							?>
-						</div><!-- carousel-inner -->
-	
-						<?php
-							$published_posts = wp_count_posts('slider')->publish;
-							if ($published_posts >1 ) { ?>
-								<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-								<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-						<?php } else //don't show controls ?>
-	
-					</div><!-- #myCarousel -->
-	
-
-		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { } ?>
-
-<?php
-} else {
-	// This is not a homepage so display nothing
-		}
-?>
-</section> 
-</div><!--.row-->
+		</section> 
+	</div><!--.row-->
 
 <div class="content-row">
 
@@ -331,10 +168,39 @@ Template Name: BC home page
     <!--<p id="donate"><a href="https://bellevuecollege.edu/foundation/donate/">Give to Bellevue College</a></p>-->
     
     <p id="homead">
-    	<a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a>
+		<?php
+			$the_query = new WP_Query(array(
+				'post_type'=>'small_ad',
+				'orderby'=> 'rand',
+				'order'=> 'ASC',
+				'posts_per_page' => 1,
+			));
+
+			while ( $the_query->have_posts() ) :
+			$the_query->the_post();
+		?>
+
+		<?php
+	        // If url field has content, add the URL to the post thumbnail.
+			$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+		        if ( !empty( $slider_ext_url ) )
+			{ ?>
+
+			<h2>
+				<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?></a>
+			</h2>
+
+			<?php } else { ?>
+
+		<a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?> </a>
+		<?php	} //end else ?>
+
+<!--     	<a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a> -->
 	</p>
-	
-	
+		<?php
+			endwhile;
+				wp_reset_postdata();
+		?>
 
 </div>
 </div><!-- .row -->	
