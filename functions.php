@@ -245,15 +245,15 @@ add_filter('the_generator', 'remove_wp_version');
 //set globals path
 #########################
 
-	$bc_globals_themepath = $_SERVER['DOCUMENT_ROOT'] . "/globals/2.0";
-
+	$bc_globals_html_filepath = $_SERVER['DOCUMENT_ROOT'] . "/g/2/h/";
+	
 #######################################
 //add college head - skinny id bar
 #######################################
 
 	function bc_tophead(){
-	   global $bc_globals_themepath;
-	   $header_top =  $bc_globals_themepath . "/common/litehead.html";
+	   global $bc_globals_html_filepath;
+	   $header_top =  $bc_globals_html_filepath . "lhead.html";
 	   include_once($header_top);
 	}
 	add_action('mayflower_header','bc_tophead');
@@ -263,8 +263,8 @@ add_filter('the_generator', 'remove_wp_version');
 #########################################
 
 	function bc_tophead_big() {
-		global $bc_globals_themepath;
-		$header_top_big = $bc_globals_themepath . "/common/bighead.html";
+		global $bc_globals_html_filepath;
+		$header_top_big = $bc_globals_html_filepath . "bhead.html";
 		include_once($header_top_big);
 	}
 
@@ -352,9 +352,9 @@ jQuery(document).ready( function() {
 ###################
 
 	function bc_footer() {
-		global $bc_globals_themepath;
-		   $bc_footer =  $bc_globals_themepath . "/common/bigfoot.html";
-		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
+		global $bc_globals_html_filepath;
+		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
 		   include_once($bc_footer);
 		   include_once($bc_footerlegal);
 	}
@@ -365,8 +365,8 @@ jQuery(document).ready( function() {
 ###################
 
 	function bc_footer_legal() {
-		global $bc_globals_themepath;
-		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
+		global $bc_globals_html_filepath;
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
 		   
 		   include_once($bc_footerlegal);
 		 
