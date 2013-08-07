@@ -5,7 +5,6 @@
  	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
 	$globals_version = $network_mayflower_settings['globals_version'];
 ?>
-
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -22,7 +21,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
-		
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/globals.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/bootstrap.css">-->
@@ -33,8 +31,9 @@
 				if( $mayflower_options['skin'] != 'default-color-scheme' ) { ?>
 				<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/skins/'.$mayflower_options['skin'] . '.css' ?>" type="text/css" media="screen" />
 				<?php }  ?>
-
 	
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/test.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/respond.js"></script>
 
 	<?php wp_head(); ?>
 </head>
