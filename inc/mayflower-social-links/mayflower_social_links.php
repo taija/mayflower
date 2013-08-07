@@ -21,7 +21,13 @@ div.widget[id*=_monkeyman_] .widget-title {
 </style>
 EOF;
     // registers your stylesheet
-    wp_register_style( 'mayflower_social_styles', $css_path );
+
+		wp_register_style( 'mayflower_social_styles', 
+			$css_path, 
+			array(), 
+			null, 
+			'all' );
+			
 
     // loads your stylesheet
     wp_enqueue_style( 'mayflower_social_styles' );
