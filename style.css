@@ -659,6 +659,12 @@ a img.aligncenter {
 	border-right: 1px solid #002d3f;
 }
 
+.nav-classes li#nav-classes a, .nav-programs li#nav-programs a, .nav-enrollment li#nav-enrollment a, .nav-resources li#nav-resources a, .nav-news li#nav-news a, .nav-about li#nav-about a {
+    background: url("img/bg-main-nav-hover.png") repeat-x scroll 0 0 #457BAA;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 
 li.nav-header {
 	display: block;
