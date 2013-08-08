@@ -574,9 +574,19 @@ echo '
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
 
-
-	Global $mayflowerVersion;
-	$mayflowerVersion = "branded";
+	//$mayflower_options['mayflower_version']
+	//global $mayflowerVersion;
+	//global $mayflower_brand;
+	//$mayflowerVersionCSS
+	//mayflower_brand_css
+	$mayflower_brand = $mayflower_options['mayflower_brand'];
+	$mayflower_brand_css = "";
+	if( $mayflower_brand == 'lite' ) {
+		$mayflower_brand_css = "globals-lite";
+	} else {
+		$mayflower_brand_css = "globals-branded";
+	}
+	
 	
 	// Get Mayflower network setting values
 	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
