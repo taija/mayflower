@@ -2,9 +2,9 @@
 </div><!-- #main-wrap -->
 
 		<?php 
-		global $globals_path, $globals_path_over_http, $mayflower_version, $mayflowerVersion;
+		global $globals_path, $globals_path_over_http, $mayflower_version, $mayflower_brand;
 		//echo " Globals Path: " . $globals_path . ". HTTP Path: " . $globals_path_over_http;
-		if( $mayflowerVersion == 'lite') {
+		if( $mayflower_brand == 'lite') {
 			bc_footer_legal();
 		} else {
 			bc_footer();

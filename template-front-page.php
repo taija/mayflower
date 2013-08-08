@@ -5,6 +5,8 @@
 	global $mayflower_version;
 	global $globals_version;
 	global $globals_path_over_http;
+	global $mayflower_brand;
+	global $mayflower_brand_css;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -27,24 +29,7 @@
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">-->
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_version; ?>" type="text/css" media="screen" />
 
-	<?php
-	//Set up a class depending on mayflower version used
-	$mayflowerVersionCSS = "globals-branded";
-	global $mayflowerVersion;
-	if( $mayflower_options['mayflower_version'] == 'department' ) {
-		$mayflowerVersionCSS = "globals-lite";
-		$mayflowerVersion = "lite";
-	} else {
-		$mayflowerVersion = "branded";
-		
-		//Apply color scheme if available
-		if( $mayflower_options['skin'] != 'default-color-scheme' ) { ?>
-			<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/skins/'.$mayflower_options['skin'] . '.css' ?>" type="text/css" media="screen" /> <?php 
-		}  
-	}
-	
-	?>
-	
+
     <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
     <!--[if IE]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/responsive-nav.js/1.0.14/responsive-nav.min.js"></script><![endif]-->
 
@@ -59,8 +44,8 @@
             
 
 
-<div id="main-wrap">
-		<div class="container wrapper bcause-branded"><!-- box shadow container --> <!--NEED TO UPDATE BCAUSE reference-->
+<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+		<div class="container wrapper">
 		<div class="container"><!-- content container -->
 
 

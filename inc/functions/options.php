@@ -168,25 +168,25 @@ add_filter( 'mayflower_option_defaults', 'mayflower_define_default_options_tab' 
 function mayflower_get_option_parameters() {
 
     $options = array(
-        'mayflower_version' => array(
-			'name' => 'mayflower_version',
-			'title' => __( 'Mayflower Version', 'mayflower' ),
+        'mayflower_brand' => array(
+			'name' => 'mayflower_brand',
+			'title' => __( 'Mayflower Brand', 'mayflower' ),
 			'type' => 'select',
 			'valid_options' => array(
 				'official' => array(
-					'name' => 'official',
-					'title' => __( 'Official - Branded Version', 'mayflower' )
+					'name' => 'branded',
+					'title' => __( 'Branded: Main college branding', 'mayflower' )
 				),
 				'department' => array(
-					'name' => 'department',
-					'title' => __( 'Department - Lite Version', 'mayflower' )
+					'name' => 'lite',
+					'title' => __( 'Lite - Department branding', 'mayflower' )
 				)
 			),
 			'description' => __( 'Choose which version of the theme to enable for this site.', 'mayflower' ),
 			'section' => 'version',
 			'tab' => 'general',
 			'since' => '1.0',
-			'default' => 'department'
+			'default' => 'lite'
 		),
         'global_nav_selection' => array(
 			'name' => 'global_nav_selection',
@@ -722,8 +722,8 @@ function mayflower_get_settings_page_tabs() {
 			'sections' => array(
 				'version' => array(
 					'name' => 'version',
-					'title' => __( 'Mayflower Version', 'mayflower' ),
-					'description' => __( 'Which version of Mayflower Theme should be used for this site?', 'mayflower' )
+					'title' => __( 'Mayflower Branding', 'mayflower' ),
+					'description' => __( 'Which branding of Mayflower Theme should be used for this site?', 'mayflower' )
 				),
 				/*
 				'global_nav' => array(
