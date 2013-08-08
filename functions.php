@@ -577,5 +577,14 @@ echo '
 
 	Global $mayflowerVersion;
 	$mayflowerVersion = "branded";
-
+	
+	// Get Mayflower network setting values
+	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+	$globals_version = $network_mayflower_settings['globals_version']; 
+	$globals_path = $network_mayflower_settings['globals_path']; 
+	$globals_path_over_http = $globals_path;
+	if (empty($globals_path)) {
+		$globals_path_over_http = "/g/2/";
+	}
 ?>

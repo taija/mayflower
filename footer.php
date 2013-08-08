@@ -2,8 +2,8 @@
 </div><!-- #main-wrap -->
 
 		<?php 
-		Global $mayflowerVersion;
-		//echo "Version + " . $mayflowerVersion;
+		global $globals_path, $globals_path_over_http, $mayflower_version;
+		//echo " Globals Path: " . $globals_path . ". HTTP Path: " . $globals_path_over_http;
 		if( $mayflowerVersion == 'lite') {
 			bc_footer_legal();
 		} else {
@@ -11,16 +11,11 @@
 		}
 		?>
         
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/site.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="<?php echo $globals_path_over_http; ?>j/bootstrap.min.js"></script>
+<script src="<?php echo $globals_path_over_http; ?>j/g.js"></script>
 <?php wp_footer(); ?>
 
-<?php
-// Get Mayflower version number from Mayflower network settings
-	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
- 	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
-?>
 <!-- Mayflower Version: <?php echo $mayflower_version; ?> -->
 </body>
 </html>
