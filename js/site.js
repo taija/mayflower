@@ -39,3 +39,8 @@ jQuery('#main-nav').find('.navbar-inner').noisy({
     'fallback' : '', 
     'monochrome' : true
 });
+
+jQuery(document).ready(function(){
+  $(".carousel-indicators li:first").addClass("active");
+  $(".carousel-inner .item:first").addClass("active");
+});

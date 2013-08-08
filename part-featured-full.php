@@ -6,10 +6,20 @@
 			<div class="row">
 				<div class="span12">
 					<div id="myCarousel" class="carousel slide full">
-						 <ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
+
+						<ol class="carousel-indicators">
+							<?php
+								$number = 0;
+								$the_query = new WP_Query(array(
+									'post_type'=>'slider',
+									'posts_per_page' => ($mayflower_options['slider_number_slides'] ), 
+								));
+								while ( $the_query->have_posts() ) :
+								$the_query->the_post();
+								?>
+						<li data-target="#myCarousel" data-slide-to="<?php echo $number++; ?>"></li>
+
+						<?php endwhile; wp_reset_postdata(); ?>
 						</ol>
 
 						<div class="carousel-inner">
