@@ -591,15 +591,14 @@ a img.aligncenter {
 #main-nav.navbar .nav > li > a {
   float: none;
   color: #f2f2f2;
-  padding: .33333em .66666667em;
+  padding: .33333em .6em;
   text-decoration: none;
   text-shadow: 0 1px 0 #003d79;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   font-size: .9em;
 }
 
-
-@media screen and (min-width: 43.5em) {
+@media screen and (min-width: 44.5em) {
 	#main-nav.navbar .nav > li > a {
 	  padding: .33333em 1em;
 	  transition: padding .5s ease;
