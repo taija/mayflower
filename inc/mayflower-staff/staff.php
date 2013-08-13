@@ -203,33 +203,7 @@ function mayflower_staff_enqueue_scripts() {
 	wp_enqueue_script( 'mayflower-admin-scripts', get_template_directory_uri() . '/js/sorting-v2.js' );
 }
 
-///////////////////////////////////////
-// - Register and write the ajax callback function to actually update the posts.
-///////////////////////////////////////
 
-
-add_action( 'wp_ajax_staff_update_post_order', 'staff_update_post_order' );
-
-function staff_update_post_order() {
-	global $wpdb;
-
-	$post_type     = $_POST['postType'];
-	$order        = $_POST['order'];
-
-	/**
-	*    Expect: $sorted = array(
-	*                menu_order => post-XX
-	*            );
-	*/
-	foreach( $order as $menu_order => $post_id )
-	{
-		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
-		$menu_order     = intval($menu_order);
-		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
-	}
-
-	die( '1' );
-}
 
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_staff_custom_meta_box' );
@@ -253,7 +227,7 @@ add_action('add_meta_boxes', 'add_staff_custom_meta_box');
 
 
 // Field Array
-$prefix = 'staff_';
+$prefix = '_staff_';
 $staff_custom_meta_fields = array(
 	array(
 		'label'=> 'Email',

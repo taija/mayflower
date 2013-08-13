@@ -167,36 +167,6 @@ function mayflower_slider_enqueue_scripts() {
 
 
 
-///////////////////////////////////////
-// - Register and write the ajax callback function to actually update the posts.
-///////////////////////////////////////
-
-
-add_action( 'wp_ajax_slider_update_post_order', 'slider_update_post_order' );
-
-function slider_update_post_order() {
-	global $wpdb;
-
-	$post_type     = $_POST['postType'];
-	$order        = $_POST['order'];
-
-	/**
-	*    Expect: $sorted = array(
-	*                menu_order => post-XX
-	*            );
-	*/
-	foreach( $order as $menu_order => $post_id )
-	{
-		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
-		$menu_order     = intval($menu_order);
-		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
-	}
-
-	die( '1' );
-}
-
-
-
 
 
 
@@ -315,7 +285,7 @@ function add_slider_ext_url_mb() {
 add_action('add_meta_boxes', 'add_slider_ext_url_mb');
 
 // Field Array
-$prefix = 'slider_';
+$prefix = '_slider_';
 $custom_meta_fields = array(
 	array(
 		'label'=> 'Slider Link',

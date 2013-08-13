@@ -124,7 +124,7 @@ function add_small_ad_ext_url_mb() {
 add_action('add_meta_boxes', 'add_small_ad_ext_url_mb');
 
 // Field Array
-$prefix = 'small_ad_';
+$prefix = '_small_ad_';
 $custom_meta_fields = array(
 	array(
 		'label'=> 'Small Ad URL',
