@@ -11,13 +11,24 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<title><?php 
-		if (is_front_page() ) { bloginfo('name');
-			?> @ Bellevue College<?php 
-		} else {
-			wp_title(" :: ",true, 'right'); 
-		} 
+	<title> 
+		<?php 
+			$post_meta_data = get_post_custom($post->ID);
+			if (isset($post_meta_data['_seo_custom_page_title'][0])) { 
+				echo $post_meta_data['_seo_custom_page_title'][0];
+			} else { 
+				if (is_front_page() ) { bloginfo('name');
+					?> @ Bellevue College<?php 
+				} else {
+					wp_title(" :: ",true, 'right'); 
+				} 
+		}
 	?></title>
+
+<?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?><?php echo '<meta name="description" content="'?><?php echo $post_meta_data['_seo_meta_description'][0] . '" />'; ?> <?php  } else { } ?>
+
+<?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?><?php echo '<meta name="keywords" content="'?><?php echo $post_meta_data['_seo_meta_keywords'][0] . '" />'; ?> <?php  } else { } ?>
+
 	
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
