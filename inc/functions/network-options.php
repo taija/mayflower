@@ -136,45 +136,45 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 
 
 ###############################
-// Mayflower Network Settings
+// Globals Settings
 ###############################
 
-		add_action( 'network_admin_menu', 'mayflower_network_menu_settings');
+		add_action( 'network_admin_menu', 'globals_network_menu_settings');
 		
-		function mayflower_network_menu_settings(){
+		function globals_network_menu_settings(){
 		
-		     add_menu_page ('Mayflower Network Settings', 'Mayflower Network', 'manage_network', 'mayflower-settings', 'mayflower_network_mayflower_settings');
+		     add_menu_page ('Globals Settings', 'Globals Settings', 'manage_network', 'globals-settings', 'globals_network_settings');
 		
 		}
 		
-		function mayflower_network_mayflower_settings() {
+		function globals_network_settings() {
 		
 		    if (is_multisite() && current_user_can('manage_network'))  {
 		
 		        ?>
 		    <div class="wrap">
 		
-		    <h2>Mayflower Network Settings</h2>
+		    <h2>Globals Settings</h2>
 		
 		    <?php 
 		
-		    if (isset($_POST['action']) && $_POST['action'] == 'update_mayflower_settings') {
+		    if (isset($_POST['action']) && $_POST['action'] == 'update_globals_settings') {
 		
-		    check_admin_referer('save_network_mayflower_settings', 'my-network-plugin');
+		    check_admin_referer('save_network_globals_settings', 'my-network-plugin');
 		
 		    //sample code from Professional WordPress book
 		
 		    //store option values in a variable
-		        $network_mayflower_settings = $_POST['network_mayflower_settings'];
+		        $network_globals_settings = $_POST['network_globals_settings'];
 		
 		        //use array map function to sanitize option values
-		        $network_mayflower_settings = array_map( 'sanitize_text_field', $network_mayflower_settings );
+		        $network_globals_settings = array_map( 'sanitize_text_field', $network_globals_settings );
 		
 		        //save option values
-		        update_site_option( 'mayflower_network_mayflower_settings', $network_mayflower_settings );
+		        update_site_option( 'globals_network_settings', $network_globals_settings );
 		
 		        //just assume it all went according to plan
-		        echo '<div id="message" class="updated fade"><p><strong>Rave Alert Network Settings Updated!</strong></p></div>';
+		        echo '<div id="message" class="updated fade"><p><strong>Globals Settings Updated!</strong></p></div>';
 		
 		}//if POST
 		
@@ -182,39 +182,18 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		
 		
 		<form method="post">
-		<input type="hidden" name="action" value="update_mayflower_settings" />
+		<input type="hidden" name="action" value="update_globals_settings" />
 		<?php 
-		$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' ); 
-		$mayflower_version = $network_mayflower_settings['mayflower_version']; 
-		$globals_version = $network_mayflower_settings['globals_version']; 
-		$globals_path = $network_mayflower_settings['globals_path']; 
+		$network_globals_settings = get_site_option( 'globals_network_settings' ); 
+		$globals_path = $network_globals_settings['globals_path']; 
+		$globals_url = $network_globals_settings['globals_url']; 
+		$globals_version = $network_globals_settings['globals_version']; 
+		$globals_cache_version = $network_globals_settings['globals_cache_version']; 
 				
 		
-		wp_nonce_field('save_network_mayflower_settings', 'my-network-plugin');
+		wp_nonce_field('save_network_globals_settings', 'my-network-plugin');
 		?>
 		<table class="form-table">
-		                <tr valign="top">  
-		                    <th scope="row">  
-		                        <label for="mayflower_version">  
-		                            Mayflower Version
-		                        </label>   
-		                    </th>  
-		                    <td>  
-		                       <input type="text" name="network_mayflower_settings[mayflower_version]" value="<?php echo $mayflower_version; ?>"/>  			
-		                    </td>  
-		                    
-		                </tr>  
-		                <tr valign="top">  
-		                    <th scope="row">  
-		                        <label for="globals_version">  
-		                            Globals Version
-		                        </label>   
-		                    </th>  
-		                    <td>  
-		                       <input type="text" name="network_mayflower_settings[globals_version]" value="<?php echo $globals_version; ?>"/>  			
-		                    </td>  
-		                    
-		                </tr>  
 		                <tr valign="top">  
 		                    <th scope="row">  
 		                        <label for="globals_path">  
@@ -222,14 +201,43 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 		                        </label>   
 		                    </th>  
 		                    <td>  
-		                       <input type="text" name="network_mayflower_settings[globals_path]" value="<?php echo $globals_path; ?>"/>  			
-		                    </td>  
-		                    
+		                       <input size="50" type="text" name="network_globals_settings[globals_path]" value="<?php //if (isset $globals_path) { echo $globals_path; } else { } ?>"/>  			
+		                    </td>  		                    
+		                </tr>  
+		                <tr valign="top">  
+		                    <th scope="row">  
+		                        <label for="globals_path">  
+		                            Globals URL
+		                        </label>   
+		                    </th>  
+		                    <td>  
+		                       <input size="50" type="text" name="network_globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>  			
+		                    </td>
+	                    </tr>
+		                <tr valign="top">
+		                    <th scope="row">
+		                        <label for="globals_version">
+		                            Globals Version
+		                        </label>
+		                    </th>
+		                    <td>
+		                       <input size="50" type="text" name="network_globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>  			
+		                    </td>		                    
+		                </tr>  
+		                <tr valign="top">
+		                    <th scope="row">
+		                        <label for="globals_version">
+		                            Globals Cache Version
+		                        </label>
+		                    </th>
+		                    <td>
+		                       <input size="50" type="text" name="network_globals_settings[globals_cache_version]" value="<?php echo $globals_cache_version; ?>"/>  			
+		                    </td>		                    
 		                </tr>  
 		            </table>
 		
 		            <p class="submit">
-		        <input type="submit" class="button-primary" name="update_mayflower_settings" value="Save Settings" />
+		        <input type="submit" class="button-primary" name="update_globals_settings" value="Save Settings" />
 		
 		</p>
 		</form>
