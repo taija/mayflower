@@ -1,15 +1,15 @@
 <?php
 /**
- * Oenology Theme custom functions
+ * Mayflower Theme custom functions
  *
  * Contains all of the Theme's custom functions, which include
  * helper functions and various filters.
  *
- * @package 	Oenology
+ * @package 	Mayflower
  * @copyright	Copyright (c) 2010, Chip Bennett
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @since 		Oenology 1.0
+ * @since 		Mayflower 1.0
  */
 
 /**
@@ -201,9 +201,9 @@ function mayflower_get_404_content() {
 	$mayflower_404_intro .= '<p>';
 
 	// array to hold suggestions
-	if ( ! isset ( $oenology404suggestions ) ) {
-		$oenology404postsuggestions = false;
-		$oenology404pagesuggestions = false;
+	if ( ! isset ( $mayflower404suggestions ) ) {
+		$mayflower404postsuggestions = false;
+		$mayflower404pagesuggestions = false;
 	}
 
 	// Extract search term from URL
@@ -218,22 +218,22 @@ function mayflower_get_404_content() {
 
 	// Search for posts
 	$posts = get_posts( array( "s" => $search_words ) );
-	$oenology404postsuggestions = $posts;
+	$mayflower404postsuggestions = $posts;
 
 	// Search for pages
 	$pages = get_posts( array( "s" => $search_words, "post_type" => "page" ) );
-	$oenology404pagesuggestions = $pages;
+	$mayflower404pagesuggestions = $pages;
 
-	$oenology404suggestions = array_merge ( $oenology404postsuggestions, $oenology404pagesuggestions );
-	$oenology404nopostsorpages = true;
+	$mayflower404suggestions = array_merge ( $mayflower404postsuggestions, $mayflower404pagesuggestions );
+	$mayflower404nopostsorpages = true;
 
-	if ( ! isset ( $oenology404suggestions ) || ! is_array( $oenology404suggestions ) || count( $oenology404suggestions ) == 0 )  {
-		$oenology404nopostsorpages = true;
+	if ( ! isset ( $mayflower404suggestions ) || ! is_array( $mayflower404suggestions ) || count( $mayflower404suggestions ) == 0 )  {
+		$mayflower404nopostsorpages = true;
 	} else {
-		$oenology404nopostsorpages = false;
+		$mayflower404nopostsorpages = false;
 
 		// Display list of post suggestions
-		$suggestedposts = $oenology404postsuggestions;
+		$suggestedposts = $mayflower404postsuggestions;
 		if ( $suggestedposts > 0 ) {
 
 			$mayflower_404_posts .= '<p>' . __( 'Here is a list of posts that you might have been looking for:', 'mayflower' ) . '</p>';
@@ -263,7 +263,7 @@ function mayflower_get_404_content() {
 		}
 
 		// Display list of page suggestions
-		$suggestedpages = $oenology404pagesuggestions;
+		$suggestedpages = $mayflower404pagesuggestions;
 		if ( $suggestedpages > 0 ) {
 
 			$mayflower_404_pages .= '<p>' . __( 'Here is a list of pages that you might have been looking for:', 'mayflower' ) . '</p>';
@@ -294,11 +294,11 @@ function mayflower_get_404_content() {
 	}
 
 	// See if we've matched a category
-	$oenology404nocategories = true;
+	$mayflower404nocategories = true;
 	$categories = get_categories( array ( "name__like" => $search ) );
 	if ( count( $categories ) > 0 ) {
 
-		$oenology404nocategories = false;
+		$mayflower404nocategories = false;
 
 		$mayflower_404_category .= '<p>'. __( 'Perhaps you were looking for something in one of the following categories?', 'mayflower' ) . '</p>';
 		$mayflower_404_category .= '<ul class="oenology404_suggestions">';
@@ -308,11 +308,11 @@ function mayflower_get_404_content() {
 		$mayflower_404_category .= '</ul>';
 	}
 	// See if we've matched a tag
-	$oenology404notags = true;
+	$mayflower404notags = true;
 	$tags = get_tags( array ( "name__like" => $search ) );
 	if ( count( $tags ) > 0 ) {
 
-		$oenology404notags = false;
+		$mayflower404notags = false;
 
 		$mayflower_404_tag = '<p>' . __( 'Perhaps you were looking for something with one of the following tags?', 'mayflower' ) . '</p>';
 		$mayflower_404_tag .= '<ul class="oenology404_suggestions">';
@@ -332,12 +332,12 @@ function mayflower_get_404_content() {
 	// Concatenate "results" output
 	$mayflower_404_results = apply_filters( 'mayflower_404_intro', $mayflower_404_intro ) . apply_filters( 'mayflower_404_posts', $mayflower_404_posts ) . apply_filters( 'mayflower_404_pages', $mayflower_404_pages ) . apply_filters( 'mayflower_404_category', $mayflower_404_category ) . apply_filters( 'mayflower_404_tag', $mayflower_404_tag );
 
-	$oenology404noresults = false;
+	$mayflower404noresults = false;
 
-	if ( $oenology404nopostsorpages && $oenology404nocategories && $oenology404notags ) {
-		$oenology404noresults = true;
+	if ( $mayflower404nopostsorpages && $mayflower404nocategories && $mayflower404notags ) {
+		$mayflower404noresults = true;
 	}
-	$mayflower_404 = ( $oenology404noresults ? apply_filters( 'mayflower_404_noresults', $mayflower_404_noresults ) : apply_filters( 'mayflower_404_results', $mayflower_404_results ) );
+	$mayflower_404 = ( $mayflower404noresults ? apply_filters( 'mayflower_404_noresults', $mayflower_404_noresults ) : apply_filters( 'mayflower_404_results', $mayflower_404_results ) );
 
 	return apply_filters( 'mayflower_404', $mayflower_404 );
 }
@@ -596,7 +596,7 @@ function mayflower_get_header_textcolor() {
 
 
 /**
- * Define Oenology Admin Page Tab Markup
+ * Define Mayflower Admin Page Tab Markup
  *
  * @uses	mayflower_get_current_tab()	defined in \functions\options.php
  * @uses	mayflower_get_settings_page_tabs()	defined in \functions\options.php
@@ -674,7 +674,7 @@ function mayflower_get_paginate_archive_page_links( $type = 'plain', $endsize = 
  *
  * @param	none
  * @return	array	Post format types supported by the Theme
- * @since	Oenology 1.2
+ * @since	Mayflower 1.2
  */
 /*
 function mayflower_get_post_formats() {
@@ -744,10 +744,10 @@ function mayflower_get_post_formats() {
 }
 */
 /**
- * Oenology Theme Social Networks
+ * Mayflower Theme Social Networks
  *
  * Array that holds all of the valid social
- * networks for Oenology.
+ * networks for Mayflower.
  *
  * @return	array	$socialnetworks	array of arrays of social network parameters
  */
@@ -858,7 +858,7 @@ function mayflower_get_support_feed() {
 	include_once( ABSPATH . WPINC . '/feed.php' );
 
 	// Fetch the feed object
-	$rss = fetch_feed( 'http://wordpress.org/support/rss/theme/oenology' );
+	$rss = fetch_feed( 'http://wordpress.org/support/rss/theme/mayflower' );
 
 	// Error handling
 	if ( ! is_wp_error( $rss ) ) {
