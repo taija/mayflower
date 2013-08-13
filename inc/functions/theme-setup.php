@@ -1,17 +1,17 @@
 <?php
 /**
- * Oenology Theme Setup
+ * Mayflower Theme Setup
  *
- * This file defines the setup functions for the Oenology Theme.
+ * This file defines the setup functions for the Mayflower Theme.
  *
  * For more information on hooks, actions, and filters,
  * see {@link http://codex.wordpress.org/Plugin_API Plugin API}.
  *
- * @package 	Oenology
+ * @package 	Mayflower
  * @copyright	Copyright (c) 2011, Chip Bennett
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @since 		Oenology 1.0
+ * @since 		Mayflower 1.0
  */
 
 /**
@@ -144,7 +144,7 @@ function mayflower_setup() {
 	 * Translations can be added to the /languages
 	 * directory.
 	 *
-	 * @since	Oenology 2.2
+	 * @since	Mayflower 2.2
 	 */
 	load_theme_textdomain( 'mayflower', get_template_directory() . '/languages' );
 
@@ -282,7 +282,7 @@ function mayflower_setup() {
 	 * Allow Theme to incorporate forum functionality
 	 * via the bbPress Plugin. Placeholder for now, for
 	 * testing purposes. Full bbPress support will be
-	 * included in a future version of Oenology.
+	 * included in a future version of Mayflower.
 	 *
 	 * Child Themes can remove support for this feature via
 	 * remove_theme_support( 'bbpress' ).
