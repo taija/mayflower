@@ -28,6 +28,7 @@
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" href="<?php echo $globals_path_over_http; ?>c/g.css?ver=<?php echo $globals_version; ?>">
+    <link rel="stylesheet" media="print" href="<?php echo $globals_path_over_http; ?>c/p.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">-->
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
 
