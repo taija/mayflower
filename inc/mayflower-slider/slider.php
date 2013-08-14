@@ -235,7 +235,7 @@ function add_slider_columns($slider_columns) {
 		'cb' => '<input type="checkbox" />',
 		'thumbnail' => 'Featured Image',
 		'title' => 'Title',
-		'slider_link_to' => 'External URL',
+		'slider_link_to' => 'Slide URL',
 	);
 //remove unwanted default columns
 		unset($slider_columns['author']);
@@ -260,7 +260,7 @@ function add_slider_columns($slider_columns) {
 			case 'slider_link_to':
 
 				/* Get the post meta. */
-				$slider_ext_url = get_post_meta( $post->ID, 'slider_url', true );
+				$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
 					echo $slider_ext_url;
 
 			break;
@@ -298,7 +298,7 @@ $slider_custom_meta_fields = array(
 	array(
 		'label'=> 'Slide URL',
 		'desc'	=> 'Enter the URL associated with this ad.',
-		'id'	=> $prefix.'text',
+		'id'	=> $prefix.'url',
 		'type'	=> 'text'
 	),
 );

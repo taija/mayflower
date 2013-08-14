@@ -151,12 +151,14 @@
 
 		<?php
 	        // If url field has content, add the URL to the post thumbnail.
-			$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
-		        if ( !empty( $slider_ext_url ) )
+				$small_ad_ext_url = get_post_meta( $post->ID, '_small_ad_url', true );
+
+
+		        if ( !empty( $small_ad_ext_url ) )
 			{ ?>
 
 			<h2>
-				<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?></a>
+				<a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?></a>
 			</h2>
 
 			<?php } else { ?>

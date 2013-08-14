@@ -91,7 +91,7 @@ function add_small_ad_columns($small_ad_columns) {
 			case 'small_ad_link_to':
 
 				/* Get the post meta. */
-				$small_ad_ext_url = get_post_meta( $post->ID, 'small_ad_url', true );
+				$small_ad_ext_url = get_post_meta( $post->ID, '_small_ad_url', true );
 					echo $small_ad_ext_url;
 
 			break;

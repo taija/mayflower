@@ -37,7 +37,7 @@
 							<div class="item active">
 								<?php
 							        // If url field has content, add the URL to the post thumbnail.
-									$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+									$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 								        if ( !empty( $slider_ext_url ) )
 									{ ?>
 	
@@ -60,7 +60,7 @@
 										<?php
 											if ($mayflower_options['slider_title'] == 'true') {
 										        // If a post class has input, sanitize it and add it to the post class array.
-												$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+												$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 											        if ( !empty( $slider_ext_url ) )
 												{ ?>
 	
@@ -103,7 +103,7 @@
 							<div class="item">
 								<?php
 							        // If a post class has input, sanitize it and add it to the post class array.
-									$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+									$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 								        if ( !empty( $slider_ext_url ) )
 									{ ?>
 	
@@ -126,7 +126,7 @@
 										<?php
 											if ($mayflower_options['slider_title'] == 'true') {
 										        // If a post class has input, sanitize it and add it to the post class array.
-												$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+												$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 											        if ( !empty( $slider_ext_url ) )
 												{ ?>
 	
