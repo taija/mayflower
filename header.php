@@ -60,7 +60,17 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+<?php
+		//display ravealert message
+	$rave_message = get_site_option('ravealert_currentMsg');
+	$rave_class = get_site_option('ravealert_classCurrentMsg');
+	if($rave_message!="")
+	{
+	?>
+	<div id='alertmessage' class="<?php echo $rave_class;?>"><?php echo $rave_message;?></div>
+	<?php
+	}
+	?>
 	
     <?php
 	##############################################
