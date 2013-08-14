@@ -47,6 +47,14 @@ function load_custom_widgets() {
 	register_widget("My_Nav_Menu_Widget");
 }
 
+////////////////////////////////////////////////////
+// Remove Unneeded Meta Boxes on Pages
+/////////////////////////////////////////////////////
+
+function mayflower_remove_meta_boxes() {
+  remove_meta_box('postimagediv', 'page', 'side');
+}
+add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
 
 
 ############################
@@ -154,6 +162,18 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 
 function remove_wp_version() { return ''; }
 add_filter('the_generator', 'remove_wp_version');
+
+
+######################################
+// Add frontend style to wysiwyg editor
+######################################
+
+function mayflower_add_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
+}
+add_action( 'init', 'mayflower_add_editor_styles' );
+
+
 
 ######################################
 // Wordpress Widget Area Setup
