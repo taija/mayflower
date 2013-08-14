@@ -16,6 +16,10 @@
 <script src="<?php echo $globals_path_over_http; ?>j/g.js"></script>
 <?php wp_footer(); ?>
 
-<!-- Mayflower Version: <?php echo $mayflower_version; ?> -->
+<!-- <?php
+$mayflower_version = wp_get_theme();
+echo $mayflower_version->Name . " version " . $mayflower_version->Version;
+?>  -->
+
 </body>
 </html>
