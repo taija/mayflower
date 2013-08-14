@@ -118,14 +118,14 @@ function add_small_ad_ext_url_mb() {
 		'Link to URL', // $title
 		'show_small_ad_ext_url', // $callback
 		'small_ad', // $post_type
-		'side', // $context
-		'low') // $priority
+		'normal', // $context
+		'high') // $priority
 ;}
 add_action('add_meta_boxes', 'add_small_ad_ext_url_mb');
 
 // Field Array
 $prefix = '_small_ad_';
-$custom_meta_fields = array(
+$bchome_custom_meta_fields = array(
 	array(
 		'label'=> 'Small Ad URL',
 		'desc'	=> '',
@@ -136,14 +136,15 @@ $custom_meta_fields = array(
 
 // The Callback
 function show_small_ad_ext_url() {
-global $custom_meta_fields, $post;
+global $bchome_custom_meta_fields, $post;
 // Use nonce for verification
 echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
     // Begin the field table and loop
     echo '<table class="form-table">';
-    foreach ($custom_meta_fields as $field) {
+    foreach ($bchome_custom_meta_fields as $field) {
         // get value of this field if it exists for this post
         $meta = get_post_meta($post->ID, $field['id'], true);
+
         // begin a table row with
         echo '<tr>
                 <th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
@@ -165,7 +166,7 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
 
 // Save the Data
 function save_small_ad_custom_meta($post_id) {
-    global $custom_meta_fields;
+    global $bchome_custom_meta_fields;
 
 	// verify nonce
 	if ( !isset( $_POST['custom_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['custom_meta_box_nonce'], basename( __FILE__ ) ) )
@@ -183,7 +184,7 @@ function save_small_ad_custom_meta($post_id) {
 			return $post_id;
 	}
 	// loop through fields and save the data
-	foreach ($custom_meta_fields as $field) {
+	foreach ($bchome_custom_meta_fields as $field) {
 		$old = get_post_meta($post_id, $field['id'], true);
 		$new = $_POST[$field['id']];
 		if ($new && $new != $old) {

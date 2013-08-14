@@ -12,12 +12,12 @@ Author URI:
 ########################################
 ## - Hide Page Links to in Slider posts
 ########################################
-
+/*
 function plt_hide_ui() {
-get_post_types( array('show_ui' => false ) );
+get_post_types( array('show_ui' => false, ) );
 }
-add_filter('do_meta_boxes','plt_hide_ui');
-
+add_filter('page-links-to-post-types','plt_hide_ui');
+*/
 ///////////////////////////////////////
 // - Setup Slider Custom Post type - //
 ///////////////////////////////////////
@@ -284,7 +284,7 @@ add_action( 'load-post-new.php', 'add_slider_ext_url_mb' );
 function add_slider_ext_url_mb() {
     add_meta_box(
 		'slider_external_url', // $id
-		'External URL', // $title
+		'Slide URL', // $title
 		'show_slider_ext_url', // $callback
 		'slider', // $page
 		'normal', // $context
@@ -294,23 +294,23 @@ add_action('add_meta_boxes', 'add_slider_ext_url_mb');
 
 // Field Array
 $prefix = '_slider_';
-$custom_meta_fields = array(
+$slider_custom_meta_fields = array(
 	array(
-		'label'=> 'Slider Link',
-		'desc'	=> '',
-		'id'	=> $prefix.'url',
-		'type'	=> 'url'
+		'label'=> 'Slide URL',
+		'desc'	=> 'Enter the URL associated with this ad.',
+		'id'	=> $prefix.'text',
+		'type'	=> 'text'
 	),
 );
 
 // The Callback
 function show_slider_ext_url() {
-global $custom_meta_fields, $post;
+global $slider_custom_meta_fields, $post;
 // Use nonce for verification
 echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
     // Begin the field table and loop
     echo '<table class="form-table">';
-    foreach ($custom_meta_fields as $field) {
+    foreach ($slider_custom_meta_fields as $field) {
         // get value of this field if it exists for this post
         $meta = get_post_meta($post->ID, $field['id'], true);
         // begin a table row with
@@ -319,11 +319,9 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
                 <td>';
                 switch($field['type']) {
                     // case items will go here
-
-					case 'url':
+					case 'text':
 					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="http://" />
 					        <br /><span class="description">'.$field['desc'].'</span>';
-						echo '<p>If you want to link to an external page, enter the URL here.</p>';
 					break;
 
                 } //end switch
@@ -334,7 +332,7 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
 
 // Save the Data
 function save_slider_custom_meta($post_id) {
-    global $custom_meta_fields;
+    global $slider_custom_meta_fields;
 
 	// verify nonce
 	if ( !isset( $_POST['custom_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['custom_meta_box_nonce'], basename( __FILE__ ) ) )
@@ -352,7 +350,7 @@ function save_slider_custom_meta($post_id) {
 			return $post_id;
 	}
 	// loop through fields and save the data
-	foreach ($custom_meta_fields as $field) {
+	foreach ($slider_custom_meta_fields as $field) {
 		$old = get_post_meta($post_id, $field['id'], true);
 		$new = $_POST[$field['id']];
 		if ($new && $new != $old) {
