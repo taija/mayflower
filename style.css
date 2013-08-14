@@ -200,7 +200,7 @@ a#bc-logo:focus {
 	}
 	#main-nav-link { display: none;}
 	#main-nav-wrap {
-		display: table-caption;
+		display: table-header-group;
 	}
 	#nav-top {
 		position: absolute !important;
