@@ -143,7 +143,14 @@ a#bc-logo:focus {
 #college-search-field {
 	background-color: rgba(255, 255, 255, 0.9);
 	width: 120px;
-	}	
+	}
+#main-nav-link-wrap { 
+	text-align: center;
+}
+#main-nav-link {
+	margin: 0.66666em 0;
+}
+	
 @media screen and (min-width: 20em) {
 	#college-search-field {
 		width: 180px
@@ -194,6 +201,10 @@ a#bc-logo:focus {
 	#main-nav-link { display: none;}
 	#main-nav-wrap {
 		display: table-caption;
+	}
+	#nav-top {
+		position: absolute !important;
+		left: -9999999px !important;
 	}
 }
 @media screen and (min-width: 41em) {
@@ -584,15 +595,30 @@ a img.aligncenter {
 #main-nav.navbar .nav > li > a {
   float: none;
   color: #f2f2f2;
-  padding: .33333em .66666667em;
+  padding: .33333em 1em;
+  padding: .33333em 1rem;
   text-decoration: none;
   text-shadow: 0 1px 0 #003d79;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   font-size: .9em;
 }
 
-
-@media screen and (min-width: 43.5em) {
+#main-nav #nav-top  {
+	
+}
+#main-nav #nav-top a {
+	background-color: white;
+	color: #003d79;
+	text-align: right;
+	text-shadow: none;
+}
+@media screen and (min-width: 40em) {
+	#main-nav.navbar .nav > li > a {
+	  padding: .33333em .6em;
+	  transition: padding .5s ease;
+	}
+}
+@media screen and (min-width: 44.5em) {
 	#main-nav.navbar .nav > li > a {
 	  padding: .33333em 1em;
 	  transition: padding .5s ease;
