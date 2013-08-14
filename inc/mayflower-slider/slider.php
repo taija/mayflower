@@ -9,9 +9,17 @@ Author URI:
 */
 
 
+########################################
+## - Hide Page Links to in Slider posts
+########################################
+
+function plt_hide_ui() {
+get_post_types( array('show_ui' => false ) );
+}
+add_filter('do_meta_boxes','plt_hide_ui');
 
 ///////////////////////////////////////
-// - Setup Staff Custom Post type - //
+// - Setup Slider Custom Post type - //
 ///////////////////////////////////////
 
 
@@ -171,7 +179,7 @@ function mayflower_slider_enqueue_scripts() {
 
 
 ###########################
-// - Remove Title & WYSIWYG Editor from Staff Post type
+// - Remove Title & WYSIWYG Editor from Slider Post type
 // - http://codex.wordpress.org/Function_Reference/remove_post_type_support
 
 //	add_action('init', 'remove_slider_meta');
@@ -184,7 +192,7 @@ function mayflower_slider_enqueue_scripts() {
 //
 
 ////////////////////////////////////////////////////
-// Remove Unncessary Meta Boxes on Staff Admin Screen
+// Remove Unncessary Meta Boxes on Slider Admin Screen
 /////////////////////////////////////////////////////
 
 
@@ -201,7 +209,7 @@ add_action( 'admin_menu', 'slider_remove_meta_boxes' );
 endif;
 
 /////////////////////////////////////////
-// Custom Post Title text for Staff CPT
+// Custom Post Title text for Slider CPT
 /////////////////////////////////////////
 
 function mayflower_slider_title_text( $title ){
