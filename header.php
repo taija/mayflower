@@ -2,11 +2,13 @@
 	global $mayflower_options; 
 	$mayflower_options = mayflower_get_options();
 	
-	global $mayflower_version;
 	global $globals_version;
 	global $globals_path_over_http;
 	global $mayflower_brand;
 	global $mayflower_brand_css;
+
+	global $mayflower_theme_version;
+	$mayflower_theme_version = wp_get_theme();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -38,7 +40,7 @@
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" href="<?php echo $globals_path_over_http; ?>c/g.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">-->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_version; ?>" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
 
 	<?php
 
