@@ -34,7 +34,7 @@
 
 
     <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/response.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
 
 	<?php wp_head(); ?>
 </head>
