@@ -25,19 +25,6 @@ function remove_plt_from_slider( $post_types )
     return $post_types;
 }
 
-add_filter( 'page-links-to-post-types', 'remove_plt_from_staff' );
-
-function remove_plt_from_staff( $post_types )
-{
-    $key = array_search( 'staff',  $post_types );
-    if( $key !== false ) {
-        unset($post_types[$key]);
-    }
-
-    return $post_types;
-}
-
-
 ///////////////////////////////////////
 // - Setup Slider Custom Post type - //
 ///////////////////////////////////////

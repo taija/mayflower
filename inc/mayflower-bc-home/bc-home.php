@@ -1,5 +1,22 @@
 <?php
 
+########################################
+## - Hide Page Links to in Small Ad posts
+########################################
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_small_ad' );
+
+function remove_plt_from_small_ad( $post_types )
+{
+    $key = array_search( 'small_ad',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
+}
+
+
 #################################
 // Small Ads Custom Post Type
 #################################
