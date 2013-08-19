@@ -34,7 +34,7 @@
 
 
     <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if IE]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/responsive-nav.js/1.0.14/responsive-nav.min.js"></script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/response.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
 
 	<?php wp_head(); ?>
 </head>
