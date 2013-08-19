@@ -339,21 +339,7 @@ function custom_do_settings_fields($page, $section) {
     }
 }
 */
-###########################
-// Hide Global Nav Option if Lite version is selected
-###########################
-/*
-jQuery(document).ready( function() {
-  jQuery('theme_mayflower_options[mayflower_version]').bind('change', function (e) {
-    if( jQuery('theme_mayflower_options[mayflower_version]').val() == 'official') {
-      jQuery('#OtherDiv').show();
-    }
-    else{
-      jQuery('#OtherDiv').hide();
-    }
-  });
-});
-*/
+
 ###########################
 //set up college headscripts
 ##########################

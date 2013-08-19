@@ -8,6 +8,22 @@ Author: Bellevue College DevCom
 Author URI:
 */
 
+########################################
+## - Hide Page Links to in Staff posts
+########################################
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_staff' );
+
+function remove_plt_from_staff( $post_types )
+{
+    $key = array_search( 'staff',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
+}
+
 
 ///////////////////////////////////////
 // - Get the Slider plugin stylesheet
