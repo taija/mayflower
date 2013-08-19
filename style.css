@@ -1078,8 +1078,10 @@ list-style-type: none;
 #home-sidelinks li {
 	margin: 0;
 }
-#homead {
-	text-align: center
+#homead {}
+#homead img{
+	display: block;
+	margin: 0 auto;
 }
 #apply {
 	margin-bottom: 2em;
