@@ -617,6 +617,9 @@ a img.aligncenter {
 	  padding: .33333em .55em;
 	  transition: padding .5s ease;
 	}
+	#main-nav.navbar .nav > li:last-child > a {
+		border-right: 1px solid rgba(255, 255, 255, 0.04);
+	}
 }
 @media screen and (min-width: 45.2em) {
 	#main-nav.navbar .nav > li > a {
