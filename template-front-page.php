@@ -109,11 +109,25 @@
               <h2>News &amp; Announcements</h2>
     </header>
     <div  class="content-padding">
-          <ul>
-             <li><a href="http://news.bellevuecollege.edu/2013/06/bellevue-college-wins-prestigious-climate-leadership-award/">Bellevue College wins prestigious climate leadership award</a></li>
-              <li><a href="http://news.bellevuecollege.edu/2013/05/nursing-instructor-earns-presitigious-scholarship/">Nursing instructor earns prestigious scholarship</a></li>
+		<ul>
+			<?php
+				$the_query = new WP_Query(array(
+					'post_type'=>'post',
+					'category_name' => 'news',
+					'orderby'=> 'date',
+					'order'=> 'ASC',
+				));
+	
+				while ( $the_query->have_posts() ) :
+				$the_query->the_post();
+			?>
+ 
+ 				<li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
               
-              <li><a href="http://news.bellevuecollege.edu/2013/05/bellevue-college-working-to-close-skills-gap-that-hinders-employment/">Bellevue College working to close 'skills gap' that hinders employment</a></li>
+			<?php
+				endwhile;
+					wp_reset_postdata();
+			?>
               <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
         </ul>
     </div>
@@ -125,11 +139,25 @@
     </header>
     <div  class="content-padding">
           <ul>
-        <!-- begin event listing -->
-            <li><a href="http://bellevuecollege.edu/events/event-details/?mc_id=1818"><strong>7/25</strong> - Healthcare Programs Information Session</a></li>
-            <li><a href="http://bellevuecollege.edu/events/event-details/?mc_id=1229"><strong>8/10</strong> - Diagnostic Ultrasound August Graduation</a></li>
-            <li><a href="http://bellevuecollege.edu/events/event-details/?cid=all&amp;mc_id=1820"><strong>8/15</strong> - Healthcare Programs Information Session</a></li>
+			<?php
+				$the_query = new WP_Query(array(
+					'post_type'=>'post',
+					'category_name' => 'events',
+					'orderby'=> 'date',
+					'order'=> 'ASC',
+				));
+	
+				while ( $the_query->have_posts() ) :
+				$the_query->the_post();
+			?>
+	        <!-- begin event listing -->
+            <li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
             <!-- end event listing -->
+			<?php
+				endwhile;
+					wp_reset_postdata();
+			?>
+
             <li><a class="more" href="http://bellevuecollege.edu/events"><strong>More events...</strong></a></li>
             <li><a id="calendar" href="/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
             
