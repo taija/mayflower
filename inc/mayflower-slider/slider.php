@@ -12,16 +12,35 @@ Author URI:
 ########################################
 ## - Hide Page Links to in Slider posts
 ########################################
-/*
-function plt_hide_ui() {
-get_post_types( array('show_ui' => false, ) );
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_slider' );
+
+function remove_plt_from_slider( $post_types )
+{
+    $key = array_search( 'slider',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
 }
-add_filter('page-links-to-post-types','plt_hide_ui');
-*/
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_staff' );
+
+function remove_plt_from_staff( $post_types )
+{
+    $key = array_search( 'staff',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
+}
+
+
 ///////////////////////////////////////
 // - Setup Slider Custom Post type - //
 ///////////////////////////////////////
-
 
 
     add_action('init', 'bc_slider_register');
@@ -235,7 +254,7 @@ function add_slider_columns($slider_columns) {
 		'cb' => '<input type="checkbox" />',
 		'thumbnail' => 'Featured Image',
 		'title' => 'Title',
-		'slider_link_to' => 'Slide URL',
+		'slider_link_to' => 'External URL',
 	);
 //remove unwanted default columns
 		unset($slider_columns['author']);
@@ -298,7 +317,7 @@ $slider_custom_meta_fields = array(
 	array(
 		'label'=> 'Slide URL',
 		'desc'	=> 'Enter the URL associated with this ad.',
-		'id'	=> $prefix.'url',
+		'id'	=> $prefix.'text',
 		'type'	=> 'text'
 	),
 );
