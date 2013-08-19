@@ -460,6 +460,21 @@ tbody.ui-sortable td {
 }
 
 
+/* ##################################### */
+/* Slider bc home page override */
+.bchomepage .carousel-caption h2 {
+	display: inline;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: Helvetica,​Arial,​sans-serif;}
+.bchomepage .carousel-caption p {
+	display: none;
+}
+@media screen and (min-width: 60em) {
+	.bchomepage .carousel-caption p {
+		display: inline;
+	}
+}
 
 
 
