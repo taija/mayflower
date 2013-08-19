@@ -114,7 +114,9 @@ add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
 	//Multiple Content Blocks
 	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
 	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
-
+//Rave Alert functionality
+if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
+	    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
 
 #######################################
 // adds wordpress theme support
@@ -651,5 +653,30 @@ function mayflower_cpt_update_post_order() {
 
 	die( '1' );
 }
+/*
+	Cron Job for RaveAlert. Cron runs the functions located in alertnotification.php file.
+*/	
+	
+	add_filter('cron_schedules', 'new_interval');
+
+// add once 1 minute interval to wp schedules
+function new_interval($interval) {
+
+    $interval['minutes_1'] = array('interval' => 1*60, 'display' => 'Once 1 minutes');
+
+    return $interval;
+}
+add_action( 'my_cron', 'myCronFunction' );
+//error_log("WP functions file running");
+//function my_activation() {
+	if ( ! wp_next_scheduled( 'my_cron' ) ) {
+	  wp_schedule_event( time(), 'minutes_1', 'my_cron' );
+	}
+	else
+	{
+		//error_log("my cron is already scheduled");
+	}
+	wp_cron();
+
 
 ?>
