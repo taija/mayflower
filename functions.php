@@ -386,44 +386,6 @@ function custom_do_settings_fields($page, $section) {
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
 
-###################
-//college footer analytics
-###################
-
-	function mayflower_analytics() {
-	?>
-	        <script type="text/javascript">
-			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-			</script>
-
-
-			<script type="text/javascript">
-			/*multisite test setup*/
-			try {
-			var altpageTracker = _gat._getTracker("UA-17566683-1");
-			altpageTracker._setDomainName(".bellevuecollege.edu");
-			altpageTracker._setAllowLinker(true);
-			altpageTracker._setAllowHash(false);
-			altpageTracker._trackPageview();
-			} catch (err) { }
-
-			/*juse depts.bellevuecollege.edu*/
-			try {
-			var deptspageTracker = _gat._getTracker("UA-3966899-5");
-			deptspageTracker._setDomainName(".bellevuecollege.edu");
-			deptspageTracker._setAllowLinker(true);
-			deptspageTracker._setAllowHash(false);
-			deptspageTracker._trackPageview();
-			} catch (err) { }
-
-
-			</script>
-
-	<?php
-	}
-	add_action('wp_footer', 'mayflower_analytics', 30);
-
 ##########################
 //site specific analytics
 ##########################
