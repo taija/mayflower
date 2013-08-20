@@ -34,7 +34,7 @@
 
 
     <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/response.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
 
 	<?php wp_head(); ?>
 </head>
@@ -174,7 +174,7 @@
 	<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply</strong> for admissions</a></p>
     <!--<p id="donate"><a href="https://bellevuecollege.edu/foundation/donate/">Give to Bellevue College</a></p>-->
     
-    <p id="homead">
+    
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
@@ -195,17 +195,14 @@
 		        if ( !empty( $small_ad_ext_url ) )
 			{ ?>
 
-			<h2>
-				<a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?></a>
-			</h2>
+			<p id="homead">
+				<a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow'));?></a>
+			</p>
 
-			<?php } else { ?>
-
-		<a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad');?> </a>
-		<?php	} //end else ?>
+			<?php }  //end if ?>
 
 <!--     	<a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a> -->
-	</p>
+	
 		<?php
 			endwhile;
 				wp_reset_postdata();

@@ -3,7 +3,7 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.0.3.4
+Version: 1.0.3.6
 */
 
 
@@ -80,7 +80,8 @@ Sections here:
 	background: #003d79 url(img/headbgwide.jpg) 0 -20px repeat-x;
 	border-bottom: 2px solid #002d3f;
 	overflow: hidden;
-}
+	*display: none;   /*IE7 and below */
+} 
 .branded #main-nav { 
 	-moz-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	-webkit-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
@@ -149,6 +150,7 @@ a#bc-logo:focus {
 }
 #main-nav-link {
 	margin: 0.66666em 0;
+	*display: none; /*IE7 and below*/
 }
 	
 @media screen and (min-width: 20em) {
@@ -201,6 +203,7 @@ a#bc-logo:focus {
 	#main-nav-link { display: none;}
 	#main-nav-wrap {
 		display: table-header-group;
+		*display: none;   /*IE7 and below */
 	}
 	#nav-top {
 		position: absolute !important;
@@ -311,6 +314,7 @@ ul#college-top-actions li.top-actions a:focus {
 	padding: 0;
 	font-size: 0.9em;
 	color: #777;
+	display: inline;
 	}
 #bigfoot h3 {
 	font-size: .9em;
@@ -460,6 +464,24 @@ tbody.ui-sortable td {
 }
 
 
+/* ##################################### */
+/* Slider bc home page override */
+.bchomepage .carousel-inner {
+	box-shadow: 0 2px 8px #cdcdcd;
+}
+.bchomepage .carousel-caption h2 {
+	display: inline;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: Helvetica,​Arial,​sans-serif;}
+.bchomepage .carousel-caption p {
+	display: none;
+}
+@media screen and (min-width: 60em) {
+	.bchomepage .carousel-caption p {
+		display: inline;
+	}
+}
 
 
 
@@ -616,6 +638,9 @@ a img.aligncenter {
 	#main-nav.navbar .nav > li > a {
 	  padding: .33333em .55em;
 	  transition: padding .5s ease;
+	}
+	#main-nav.navbar .nav > li:last-child > a {
+		border-right: 1px solid rgba(255, 255, 255, 0.04);
 	}
 }
 @media screen and (min-width: 45.2em) {
@@ -1075,8 +1100,10 @@ list-style-type: none;
 #home-sidelinks li {
 	margin: 0;
 }
-#homead {
-	text-align: center
+#homead {}
+#homead img{
+	display: block;
+	margin: 0 auto;
 }
 #apply {
 	margin-bottom: 2em;
