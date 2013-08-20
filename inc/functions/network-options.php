@@ -93,7 +93,7 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 									
                     </th>  
                     <td>  
-                       <textarea name="network_settings[ravealert_college_openmessage]" ><?php echo $ravealert_college_openmessage; ?></textarea>  			
+                       <textarea name="network_settings[ravealert_college_openmessage]" cols="78" ><?php echo $ravealert_college_openmessage; ?></textarea>  			
                     </td>  
                 </tr> 
 				<tr valign="top">  
@@ -104,7 +104,7 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 									
                     </th>  
                     <td>  
-                       <textarea name="network_settings[ravealert_xml_feedurl]" ><?php echo $ravealert_xml_feedurl; ?></textarea>  			
+                       <textarea name="network_settings[ravealert_xml_feedurl]" cols="78"><?php echo $ravealert_xml_feedurl; ?></textarea>  			
                     </td>  
                 </tr> 
 				<tr valign="top">  
@@ -115,13 +115,13 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 									
                     </th>  
                     <td>  
-                       <input type="text" name="network_settings[ravealert_clearCacheCommand]" value="<?php echo $ravealert_clearCacheCommand; ?>"/>  			
+                       <input type="text" size="80" name="network_settings[ravealert_clearCacheCommand]" value="<?php echo $ravealert_clearCacheCommand; ?>"/>  			
                     </td>  
                 </tr> 
 				<tr valign="top">  
                     <th scope="row">  
                         <label>  
-                            Current Message Displayed
+                            Latest Message Displayed
                         </label>
 									
                     </th>  
