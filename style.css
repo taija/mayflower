@@ -314,7 +314,6 @@ ul#college-top-actions li.top-actions a:focus {
 	padding: 0;
 	font-size: 0.9em;
 	color: #777;
-	display: inline;
 	}
 #bigfoot h3 {
 	font-size: .9em;
@@ -331,7 +330,7 @@ ul#college-top-actions li.top-actions a:focus {
 	margin-top: 1.3333em;
 }
 .social-media li{
-	
+	display: inline;
 }
 .social-media a {
 	display: block;
