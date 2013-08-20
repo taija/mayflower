@@ -150,6 +150,7 @@ a#bc-logo:focus {
 }
 #main-nav-link {
 	margin: 0.66666em 0;
+	*display: none; /*IE7 and below*/
 }
 	
 @media screen and (min-width: 20em) {
