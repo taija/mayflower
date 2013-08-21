@@ -304,8 +304,8 @@ $slider_custom_meta_fields = array(
 	array(
 		'label'=> 'Slide URL',
 		'desc'	=> 'Enter the URL associated with this ad.',
-		'id'	=> $prefix.'text',
-		'type'	=> 'text'
+		'id'	=> $prefix.'url',
+		'type'	=> 'url'
 	),
 );
 
@@ -325,7 +325,7 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
                 <td>';
                 switch($field['type']) {
                     // case items will go here
-					case 'text':
+					case 'url':
 					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="http://" />
 					        <br /><span class="description">'.$field['desc'].'</span>';
 					break;
