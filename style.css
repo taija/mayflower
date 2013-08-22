@@ -304,7 +304,8 @@ ul#college-top-actions li.top-actions a:focus {
     border-top: 1px solid #999999;
 }
 #bigfoot .inner {
-	box-shadow: 0 4px 5px #666;
+	box-shadow: -2px 2px 2px #BBBBBB, 2px 2px 2px #BBBBBB;
+	box-shadow: -2px 2px 2px rgba(160, 160, 160, 0.7), 2px 2px 2px rgba(160, 160, 160, 0.7);
 	padding-top: 1.3333333em;
 	padding-bottom: 1.3333333em;
 	background-color: #E5E5E5;}
@@ -353,8 +354,11 @@ ul#college-top-actions li.top-actions a:focus {
 #legalbar { 
 	clear: left; 
 	margin: 0 auto; 
-	padding: 1.3333em 0 1em 0;
+	padding: 1em 0 1em 0;
 	text-align: center; 
+}
+#bigfoot + .container #legalbar {
+	padding: 0.66666667em 0 1em 0;
 }
 #legalbar a:focus { outline: dotted 1px #003D79}
 #legalbar h3 { position: absolute; left: -9999px; top: -9999px }
