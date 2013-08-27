@@ -281,7 +281,16 @@ ul#college-top-actions li.top-actions a:focus {
 	ul#college-top-actions li.top-actions{ 
 		float: right;
 		padding: 0 1px 0 0; 
-		background: url(/globals/2.0/img/divider.png) no-repeat  100% 51%;
+	}
+	ul#college-top-actions li:after {
+		color: white;
+		color: rgba(255, 255, 255, 0.1);
+		content: "|";
+		display: block;
+		float: left;
+	}
+	ul#college-top-actions li:first-child:after{
+		content: "";
 	}
 	ul#college-top-actions li:first-child{ 
 		background: none; 
@@ -292,6 +301,7 @@ ul#college-top-actions li.top-actions a:focus {
 	ul#college-top-actions a.top-actions { 
 		padding: 0 0.8em; 
 		text-decoration: underline; 
+		color: white;
 		color: rgba( 255, 255, 255, .8); 
 	}
 	ul#college-top-actions li:first-child a.top-actions { padding-right: 0}
