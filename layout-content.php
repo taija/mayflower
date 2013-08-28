@@ -31,22 +31,6 @@
 							?>
 					<div id="content">
 						<div class="content-padding">
-							<?php if ( is_active_sidebar( 'aside-widget-area' ) ) : ?>
-								<div class="span2 aside pull-right">
-									<div id="feature">
-										<div class="content-padding">
-
-												<?php // Multi-Content Block Code ?>
-												<?php the_block('Jumpy'); ?>
-
-												<?php // Global Widget Area ?>
-												<?php dynamic_sidebar( 'aside-widget-area' ); ?>
-
-										</div><!-- content-padding -->
-									</div><!-- feature -->
-								</div><!-- span2 -->
-							<?php endif; ?>
-
 
 							<?php if($post->post_content=="") : ?>
 							<!-- Don't display empty the_content or surround divs -->

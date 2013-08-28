@@ -74,6 +74,13 @@ add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
 
 	add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
+############################
+// show admin bar only for editors and higher
+############################
+
+if (!current_user_can('edit_pages')) {
+	add_filter('show_admin_bar', '__return_false');
+}
 
 #####################################################
 // Load up our plugins
@@ -112,11 +119,12 @@ add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
 //	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
 	//Multiple Content Blocks
-	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
-	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
-//Rave Alert functionality
-if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
-	    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
+//	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
+//	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
+
+	//Rave Alert functionality
+	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
+		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
 
 #######################################
 // adds wordpress theme support
@@ -142,6 +150,25 @@ add_post_type_support( 'page', 'excerpt' );
 	        add_image_size( 'featured-in-content', 900,375,true);
 	        add_image_size( 'home-small-ad', 300,200,true);
 	}
+
+######################################
+// Remove Comments Feed
+######################################
+
+remove_action('wp_head', 'feed_links', 2); 
+add_action('wp_head', 'my_feed_links');
+
+function my_feed_links() {
+  if ( !current_theme_supports('automatic-feed-links') ) return;
+
+  // post feed 
+  ?>
+  <link rel="alternate" type="<?php echo feed_content_type(); ?>" 
+        title="<?php printf(__('%1$s %2$s Feed'), get_bloginfo('name'), ' &raquo; '); ?>"
+        href="<?php echo get_feed_link(); ?> " />
+  <?php 
+}
+
 
 ######################################
 // Remove WordPress default widgets
@@ -183,17 +210,16 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 
 	function mayflower_widgets_init() {
 
-		// Global Widget Area - located just below the sidebar nav.
+		// Static Page Widget Area - located just below the global nav on static pages.
 		register_sidebar( array(
-			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
-			'id' => 'global-widget-area',
-			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
+			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
+			'id' => 'page-widget-area',
+			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
 			'before_widget' => '',
 			'after_widget' => '',
-			'before_title' => '<h3 class="global-widget-area">',
+			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
 		) );
-
 
 		// Blog Widget Area - located just below the global nav on blog pages.
 		register_sidebar( array(
@@ -206,18 +232,19 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'after_title' => '</h3>',
 		) );
 
-		// Static Page Widget Area - located just below the global nav on static pages.
+		// Global Widget Area - located just below the sidebar nav.
 		register_sidebar( array(
-			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
-			'id' => 'page-widget-area',
-			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
+			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
+			'id' => 'global-widget-area',
+			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
 			'before_widget' => '',
 			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
+			'before_title' => '<h3 class="global-widget-area">',
 			'after_title' => '</h3>',
 		) );
 
 		// Aside Widget Area - aside located in right column of page content.
+/*
 		register_sidebar( array(
 			'name' => __( 'In-Page Aside Widget Area', 'mayflower' ),
 			'id' => 'aside-widget-area',
@@ -227,6 +254,7 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
 		) );
+*/
 		// Area 3, located in left column of footer.
 /*
 		register_sidebar( array(
