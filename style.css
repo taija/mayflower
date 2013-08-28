@@ -253,7 +253,8 @@ ul#college-top-actions li.top-actions{
 ul#college-top-actions a { 
 	font-size: 0.8em;
 	color: white;
-	color: rgba(255, 255, 255, .8);
+	color: rgba(255,255,255,0.8);
+	*color: white;/*IE7 and below */
 	display: block; 
 	float: left;
 	padding: 0 1em; 
@@ -292,8 +293,6 @@ ul#college-top-actions li.top-actions a:focus {
 	ul#college-top-actions a.top-actions { 
 		padding: 0 0.8em; 
 		text-decoration: underline; 
-		color: white;
-		color: rgba( 255, 255, 255, .8); 
 	}
 	ul#college-top-actions li:first-child a.top-actions { padding-right: 0}
 }
