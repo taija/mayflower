@@ -50,43 +50,6 @@
 
 											<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-											<div id="content">
-												<div class="content-padding">
-
-												<?php $my_block = get_the_block('Jumpy'); ?>
-													<?php if ( is_active_sidebar( 'aside-widget-area' )  || $my_block != '')  { ?>
-															<div class="row">
-																<div class="span2 aside-border-left pull-right">
-																	<div id="feature">
-	
-																				<?php // Multi-Content Block Code ?>
-																				<?php the_block('Jumpy'); ?>
-	
-																				<?php // Global Widget Area ?>
-																				<?php dynamic_sidebar( 'aside-widget-area' ); ?>
-	
-																	</div><!-- feature -->
-																</div><!-- span2 -->
-	
-																<div class="span9">
-																	<?php if($post->post_content=="") : ?>
-																	<!-- Don't display empty the_content or surround divs -->
-										
-																	<?php else : ?>
-																	<!-- Do stuff when the_content has content -->
-																		<div class="page-content">
-																			<?php if (is_front_page() ) {
-																				//don't show the title on the home page
-																				} else { ?>
-																				<h1><?php the_title(); ?></h1>
-																				<?php 	}; ?>
-																			<?php the_content(); ?>
-																		</div><!-- page-content -->
-																<?php endif; ?>
-																</div><!-- span9 -->
-															</div><!-- row -->
-
-												<?php } else {  ?>
 													<div id="content">
 														<div class="content-padding">
 																<?php if($post->post_content=="") : ?>
@@ -103,19 +66,19 @@
 																		<?php the_content(); ?>
 																	</div><!-- page-content -->
 															<?php endif; ?>
-												<?php }; ?> 
 
-												<?php
-													get_template_part('part-blogroll');
-												?>
+															<?php
+																get_template_part('part-blogroll');
+															?>
 
-											<?php endwhile; else: ?>
-											<p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
-											<?php endif; ?>
+															<?php endwhile; else: ?>
+															<p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
+															<?php endif; ?>
 
-									<?php } ?>
-										</div><!-- content-padding -->
-									</div><!-- #content -->
+												<?php } ?>
+														</div><!-- content-padding -->
+													</div><!-- #content -->
+												</div><!-- span9 -->
 								<?php
 									$mayflower_options = mayflower_get_options();
 									$current_layout = $mayflower_options['default_layout'];
@@ -123,7 +86,7 @@
 											get_sidebar();
 										} else {};
 								?>
-							</div><!-- span9 -->
+ 
 		</div><!-- row -->
 	</div><!-- span12 -->
 </div><!-- #content-wrap .row -->
