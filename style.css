@@ -56,11 +56,11 @@ Sections here:
 }
 
 #top-wrap.branded {
-	background: #003d79 url(img/headbgwide.jpg) repeat-x;
+	background: #003d79 url(/g/2/i/headbgwide.jpg) repeat-x;
 }
 
 .container.logobar {
-	background: url("img/headbg.jpg") repeat-y scroll 0 0 #003D79;
+	background: url(/g/2/i/headbg.jpg) repeat-y scroll 0 0 #003D79;
 }
 
 .container.logobar .border {
@@ -77,7 +77,7 @@ Sections here:
 
 
 #main-nav-wrap {
-	background: #003d79 url(img/headbgwide.jpg) 0 -20px repeat-x;
+	background: #003d79 url(/g/2/i/headbgwide.jpg) 0 -20px repeat-x;
 	border-bottom: 2px solid #002d3f;
 	overflow: hidden;
 	*display: none;   /*IE7 and below */
@@ -92,17 +92,8 @@ Sections here:
 	display:none;  /*IE8+ hack when it renders in compatibility mode*/
 }
 
-.lite {}
-.branded {}
-#top-wrap.lite {
-	
-}
-
-#smallhead-wrap {
-	background: #003d79 url(/globals/2.0/img/headbgwidetile.jpg);
-}
 #smallhead {	
-	background: #003d79 url(/globals/2.0/img/headbg.jpg) repeat-y;
+	background: #003d79 url(/g/2/i/headbg.jpg) repeat-y;
 	position: relative;
 	zoom: 1 /*IE hack, see next line*/;
 	padding: 0 1em;
@@ -130,10 +121,10 @@ Sections here:
 	width: auto;
 	margin: 0 auto;}
 .lite #bc-logo:hover {
-	background: url(/globals/2.0/img/homepage.png) no-repeat 100% 0.5em;
+	background: url(/g/2/i/homepage.png) no-repeat 100% 0.5em;
 }
 .branded #bc-logo:hover {
-	background: url(/globals/2.0/img/homepage.png) no-repeat 350px 17px;
+	background: url(/g/2/i/homepage.png) no-repeat 350px 17px;
 }
 a#bc-logo:focus {
 	outline: 1px dotted white;
@@ -370,24 +361,33 @@ ul#college-top-actions li.top-actions a:focus {
 #bigfoot + .container #legalbar {
 	padding: 0.66666667em 0 1em 0;
 }
-#legalbar a:focus { outline: dotted 1px #003D79}
-#legalbar h3 { position: absolute; left: -9999px; top: -9999px }
+#legalbar a:focus { 
+	outline: dotted 1px #003D79}
 #legalbar li { 
 	display: inline; 
 	padding:0;
 	margin: 0} 
 #legalbar li a { 
-	padding-left: 2em;
+	padding: 0 1em;
 	color: #666;
-	background: url(/globals/2.0/img/foot-legal-sep.gif) repeat-y 0.8em 1px;
+	border-left: 1px solid #DDDDDD;
 	font-size: .8em;
 	white-space: nowrap;}
 #legalbar li a:hover,
-#legalbar li a:focus { color: #003D79;}
-#legalbar li.first a {padding-left: 0; background: none; }
-#legalbar li.last { float: none; clear: left; display: block; padding: 0}
-#legalbar li.last a {padding-left: 0; background: none; }
-#legalbar span { padding-left: 21px;}
+#legalbar li a:focus { 
+	color: #003D79;}
+#legalbar li.first a {
+	border-left: none;}
+#legalbar li.last { 
+	float: none; 
+	clear: left; 
+	display: block; 
+	padding: 0}
+#legalbar li.last a {
+	padding-left: 0; 
+	border-left: none; }
+#legalbar span { 
+	padding-left: 21px;}
 
 
 @media screen and (min-width: 40em) {
@@ -605,7 +605,6 @@ a img.aligncenter {
 
 #main-nav.navbar {
 	margin: 0;
-	font-size: 15px;
 }
 
 #main-nav .navbar-inner {
@@ -618,7 +617,7 @@ a img.aligncenter {
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1d67a2', endColorstr='#23588c', GradientType=0);
 	border: 0;
-	border-top: 1px solid #457baa;
+	border-top: 0.0666667em solid #457baa;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
@@ -697,9 +696,15 @@ a img.aligncenter {
 
 #main-nav.navbar .nav > li > a:focus,
 #main-nav.navbar .nav > li > a:hover {
-  background: #457baa url(img/bg-main-nav-hover.png) repeat-x;
-  color: #fff;
-  text-decoration: none;
+	color: #fff;
+	text-decoration: none;
+	background: rgb(129,167,200);
+	background: -moz-linear-gradient(top, rgb(129,167,200) 0%, rgb(62,116,163) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(129,167,200)), color-stop(100%,rgb(62,116,163)));
+	background: -webkit-linear-gradient(top, rgb(129,167,200) 0%,rgb(62,116,163) 100%);
+	background: -o-linear-gradient(top, rgb(129,167,200) 0%,rgb(62,116,163) 100%);
+	background: -ms-linear-gradient(top, rgb(129,167,200) 0%,rgb(62,116,163) 100%);
+	background: linear-gradient(to bottom, rgb(129,167,200) 0%,rgb(62,116,163) 100%);
 }
 
 
@@ -726,12 +731,47 @@ a img.aligncenter {
 	border-right: 1px solid #002d3f;
 }
 
-.nav-classes li#nav-classes a, .nav-programs li#nav-programs a, .nav-enrollment li#nav-enrollment a, .nav-resources li#nav-resources a, .nav-news li#nav-news a, .nav-about li#nav-about a {
-    background: url("img/bg-main-nav-hover.png") repeat-x scroll 0 0 #457BAA;
+.nav-classes #main-nav.navbar .nav > li#nav-classes > a,
+.nav-programs #main-nav.navbar .nav > li#nav-programs > a,
+.nav-enrollment #main-nav.navbar .nav > li#nav-enrollment > a,
+.nav-services #main-nav.navbar .nav > li#nav-services > a,
+.nav-campuslife #main-nav.navbar .nav > li#nav-campuslife > a,
+.nav-about #main-nav.navbar .nav > li#nav-about > a {
     color: #FFFFFF;
     text-decoration: none;
+	background: rgb(39,68,97);
+	background: -moz-linear-gradient(top,  rgb(39,68,97) 0%, rgb(20,53,83) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(39,68,97)), color-stop(100%,rgb(20,53,83)));
+	background: -webkit-linear-gradient(top,  rgb(39,68,97) 0%,rgb(20,53,83) 100%);
+	background: -o-linear-gradient(top,  rgb(39,68,97) 0%,rgb(20,53,83) 100%);
+	background: -ms-linear-gradient(top,  rgb(39,68,97) 0%,rgb(20,53,83) 100%);
+	background: linear-gradient(to bottom,  rgb(39,68,97) 0%,rgb(20,53,83) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#274461', endColorstr='#143553',GradientType=0 );
+	margin-top: -0.0666667em;
+	padding-top: 0.3999999em;
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.nav-classes #main-nav.navbar .nav > li#nav-classes > a:hover,
+.nav-programs #main-nav.navbar .nav > li#nav-programs > a:hover,
+.nav-enrollment #main-nav.navbar .nav > li#nav-enrollment > a:hover,
+.nav-services #main-nav.navbar .nav > li#nav-services > a:hover,
+.nav-campuslife #main-nav.navbar .nav > li#nav-campuslife > a:hover,
+.nav-about #main-nav.navbar .nav > li#nav-about > a:hover,
+.nav-classes #main-nav.navbar .nav > li#nav-classes > a:focus,
+.nav-programs #main-nav.navbar .nav > li#nav-programs > a:focus,
+.nav-enrollment #main-nav.navbar .nav > li#nav-enrollment > a:focus,
+.nav-services #main-nav.navbar .nav > li#nav-services > a:focus,
+.nav-campuslife #main-nav.navbar .nav > li#nav-campuslife > a:focus,
+.nav-about #main-nav.navbar .nav > li#nav-about > a:focus {
+	background: rgb(45,82,118);
+	background: -moz-linear-gradient(top, rgb(45,82,118) 0%, rgb(20,53,83) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(45,82,118)), color-stop(100%,rgb(20,53,83)));
+	background: -webkit-linear-gradient(top, rgb(45,82,118) 0%,rgb(20,53,83) 100%);
+	background: -o-linear-gradient(top, rgb(45,82,118) 0%,rgb(20,53,83) 100%);
+	background: -ms-linear-gradient(top, rgb(45,82,118) 0%,rgb(20,53,83) 100%);
+	background: linear-gradient(to bottom, rgb(45,82,118) 0%,rgb(20,53,83) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d5276', endColorstr='#143553',GradientType=0 );
+}
 
 li.nav-header {
 	display: block;
@@ -941,7 +981,7 @@ ul.section-nav li.menu-item a {
 
 ul.section-nav li.current-menu-item a span.arrow,
 ul.section-nav li.menu-item a:hover span.arrow {
-	background:  transparent url(img/section-nav-arrow.png) no-repeat 0px 1px;
+	xbackground:  transparent url(img/section-nav-arrow.png) no-repeat 0px 1px;
 	display: block;
 	float: left;
 	width: 20px;
@@ -962,7 +1002,7 @@ ul.section-nav ul.sub-menu span.arrow {
 ul.section-nav ul.sub-menu li.menu-item a span.arrow,
 ul.section-nav li.current-menu-item ul.sub-menu li a:hover span.arrow,
 ul.section-nav ul.sub-menu li.menu-item a:hover span.arrow {
-	background:  transparent url(img/section-nav-arrow.png) no-repeat 0px -63px;
+	xbackground:  transparent url(img/section-nav-arrow.png) no-repeat 0px -63px;
 }
 
 ul.section-nav li.current-menu-item ul.sub-menu li a span.arrow {
