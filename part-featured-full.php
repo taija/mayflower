@@ -3,8 +3,6 @@
 	    $mayflower_options = mayflower_get_options();
 	    if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-full') { ?>
 
-			<div class="row">
-				<div class="span12">
 					<div id="myCarousel" class="carousel slide full">
 
 						<ol class="carousel-indicators">
@@ -165,8 +163,6 @@
 	
 					</div><!-- #myCarousel -->
 	
-				</div><!-- span12 -->
-			</div><!-- row -->
 
 		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { } ?>
 
