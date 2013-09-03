@@ -34,7 +34,7 @@
 	
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -87,16 +87,26 @@
 
 			bc_tophead_big();
 
-			//display site title on branded version ?>
-
-			<div class="container header">
-				<h1 class="site-title">
-					<?php bloginfo( 'name' ); ?>
-				</h1>
-			</div><!-- container header -->
-
-		<div class="container wrapper">
-		<div class="container content"><!-- content container -->
+			//display site title on branded version 
+			
+			if ( is_main_site() && is_front_page() ) {
+			?>
+            
+			<?php
+			} else {
+			?>
+                <div class="container header">
+                    <h1 class="site-title">
+                        <?php bloginfo( 'name' ); ?>
+                    </h1>
+                </div><!-- container header -->
+			<?php
+			}
+			?>
+            
+        	<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+                <div class="container wrapper">
+              		<div class="container"><!-- content container -->
 
 		<?php } //end branded
 
