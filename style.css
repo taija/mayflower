@@ -8,12 +8,6 @@ Version: 1.1.0.2
 
 
 
-@media (max-width: 480px) {
-	.footer-widgets .span3 {
-		border-right: 0px solid #e6e6e6;
-	}
-}
-
 /* Dodgy CSS ^_^ */
 .wp-list-table td { background: white; }
 .wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
@@ -639,9 +633,6 @@ a img.aligncenter {
   font-size: .9em;
 }
 
-#main-nav #nav-top  {
-	
-}
 #main-nav #nav-top a {
 	background-color: white;
 	color: #003d79;
@@ -775,9 +766,6 @@ a img.aligncenter {
 li.nav-header {
 	display: block;
 	padding: 3px 15px;
-/*    font-family: Georgia,"Times New Roman",Times,serif;
-	line-height: 28px;
-*/
 	font-weight: normal;
 	font-size: 13px;
 	color: #fff;
@@ -1042,25 +1030,6 @@ div.widget[id*=_bcause_] .widget-title {
     color: #2191bf;
 }
 
-/* ----- Footer Widget Area ----- */
-/* ############################## */
-
-div.container.footer-widgets {
-	background: #f0f0f0;
-	border-top: 1px solid #e6e6e6;
-	padding: 21px 0px;
-}
-
-div.container.footer-widgets .content-border-right {
-	border-right: 1px solid #e6e6e6;
-}
-
-.footer-widgets h2.widget-title {
-	color: #666;
-	font-weight: bold;
-	font-size: 13px;
-	margin: 0;
-}
 
 
 /* ------- BC Home Page only  --- */
@@ -1114,13 +1083,10 @@ div.container.footer-widgets .content-border-right {
 	margin-top: 2em;
 }
 
-
-
 #home-sidelinks {
 	border-top: 1px dotted #bbb;
 	padding-top: 1.666667em;
 }
-
 
 #home-news,
 #home-events {
@@ -1194,7 +1160,6 @@ list-style-type: none;
 	}
 }
 @media screen and (min-width: 40em) {
-	
 	.content-row {
 		display: table;
 		width: 100%;
@@ -1246,16 +1211,7 @@ list-style-type: none;
 		margin-left: 0;
 		display: table-cell;
 		vertical-align:top;
-		/*Old Flex
-		-webkit-box-flex: 0;      
-  		-moz-box-flex: 0;         
-		box-flex: 0;*/
  		width: 37.5%;            
-
-		/*New Flex
-		-webkit-flex: 1 1 50%;
-		-ms-flex: 1 1 50%;
-		flex: 1 1 50%;*/
 	 }
 	.no-display-table #home-news {
 		float: left;
@@ -1266,16 +1222,7 @@ list-style-type: none;
 		margin-left: 0;
 		display: table-cell;
 		vertical-align:top;
-		/*Old Flex
-		-webkit-box-flex: 02;      
-  		-moz-box-flex: 0;         
-		box-flex : 0;*/
  		width: 37.5%;               
-  
-		/*New Flex
-		-webkit-flex: 1 1 50%;
-		-ms-flex: 1 1 50%;
-		flex: 1 1 50%;*/
 	}
 	.no-display-table #home-events {
 		float: left;
@@ -1292,22 +1239,9 @@ list-style-type: none;
 		
 		padding-top: 0;
 		border: none;
-		
-		/*Old Flex
-		-webkit-box-flex: 0;      
-  		-moz-box-flex: 0;        
-		 box-flex : 0;*/
-		 
  		 width: 230px; 
 		 padding-left: 2.127659574468085%;      
 		 padding-left: 1em\9; /*IE8 not like percentage padding*/    
-  
-		/*New Flex
-		-webkit-flex: 0 0 230px;
-		-ms-flex: 0 0 230px;
-		flex: 0 0 230px;
-		border-top: 0;
-		padding-top: 0*/
 	}
 	.no-display-table #home-sidelinks {
 		float: left;
@@ -1322,7 +1256,6 @@ list-style-type: none;
 }
 @media screen and (min-width: 50em) {
 	#menusfor ul {
-		
 		margin-top: .333333333em;
 	}
 	
@@ -1338,28 +1271,10 @@ list-style-type: none;
 	}
 }
 
-
-
 @media screen and (min-width: 45em) {
 	#home-events h2,
 	#home-news h2 {
 		font-size: 1.2em;
 		line-height: 1.66667em;
-	}
-}
-@media screen and (min-width: 50em) {
-	#home-sidelinks {
-		/*
-		-webkit-flex: 0 0 300px;
-		-ms-flex: 0 0 300px;
-		flex: 0 0 300px;
-		*/
-	}
-}
-@media screen and (min-width: 60em) {
-	#home-sidelinks {
-		/*
-		flex: 0 0 250px;
-		*/
 	}
 }
