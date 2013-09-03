@@ -1,5 +1,4 @@
-	<div id="content-wrap" class="row">
-		<div class="span12">
+	<div id="content-wrap">
 
 			<?php
 				// If we are loading the Blog home page (home.php)
@@ -59,5 +58,4 @@
 					</div><!-- content-padding -->
 			</div><!-- #content -->
 				<?php } ?>
-		</div><!-- span12 -->
-	</div><!-- #content-wrap  .row -->
+	</div><!-- #content-wrap  -->

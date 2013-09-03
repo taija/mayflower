@@ -1,5 +1,4 @@
-	<div id="content-wrap" class="row">
-		<div class="span12">
+	<div id="content-wrap">
 				<?php get_template_part('part-featured-full'); ?>
 
 						<div class="row">
@@ -88,5 +87,4 @@
 								?>
  
 		</div><!-- row -->
-	</div><!-- span12 -->
-</div><!-- #content-wrap .row -->
+</div><!-- #content-wrap-->
