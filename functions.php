@@ -180,6 +180,7 @@ function remove_calendar_widget() {
 	unregister_widget('WP_Widget_Search');
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Comments');
+	unregister_widget('WP_Widget_Pages');
 }
 
 add_action( 'widgets_init', 'remove_calendar_widget' );
