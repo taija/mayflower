@@ -95,7 +95,7 @@
 			if ( is_main_site() && is_front_page() ) {
 				//do nothing
 			} else { ?>
-                <div class="container header">
+                <div id="site-header">
                     <h1 class="site-title">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
