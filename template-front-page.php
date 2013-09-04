@@ -1,107 +1,91 @@
-<div class="content-row bchomepage" id="content">
-        
-        <ul id="mobilelinks" class="clearfix">
-            <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
-            <li><a href="http://bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
-            <li><a href="http://bellevuecollege.edu/contacts/" class="btn btn-info">Contact Us</a></li>
-		</ul>
-        
-        
-        <section class="box-shadow" id="menusfor">
-        	<div class="content-padding">
-                <h2>Menus for:</h2>
-                <ul>
-                    <li><a href="http://bellevuecollege.edu/students/">Students</a></li>
-                    <li><a href="http://bellevuecollege.edu/future/">Future Students</a></li>
-                    <li><a href="http://bellevuecollege.edu/isp/">International Students</a></li>
-                    <li><a href="http://bellevuecollege.edu/employees/">Faculty &amp; Staff</a></li>
-                    <li><a href="http://bellevuecollege.edu/businesses/">Businesses</a></li>
-                    <li><a href="http://bellevuecollege.edu/visitors/">Visitors &amp; Community</a></li>
-             	</ul>
-             </div>
-         </section>
-		<section id="homeslider">
-		
-				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
-					<?php get_template_part('part-featured-full'); ?>
-
-		</section> 
-	</div><!--.row-->
+<div class="content-row bchomepage" id="content"> 
+    <ul id="mobilelinks" class="clearfix">
+        <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
+        <li><a href="http://bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
+        <li><a href="http://bellevuecollege.edu/contacts/" class="btn btn-info">Contact Us</a></li>
+    </ul><!--#mobilelinks -->
+    <section class="box-shadow" id="menusfor">
+        <div class="content-padding">
+            <h2>Menus for:</h2>
+            <ul>
+                <li><a href="http://bellevuecollege.edu/students/">Students</a></li>
+                <li><a href="http://bellevuecollege.edu/future/">Future Students</a></li>
+                <li><a href="http://bellevuecollege.edu/isp/">International Students</a></li>
+                <li><a href="http://bellevuecollege.edu/employees/">Faculty &amp; Staff</a></li>
+                <li><a href="http://bellevuecollege.edu/businesses/">Businesses</a></li>
+                <li><a href="http://bellevuecollege.edu/visitors/">Visitors &amp; Community</a></li>
+            </ul>
+        </div>
+	</section><!--#menusfor-->
+	<section id="homeslider">
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php 
+		//display featured slider
+		get_template_part('part-featured-full'); 
+		?>
+    </section><!--#homeslider-->
+</div><!--#content .row-->
 
 <div class="content-row">
-
-<section id="home-news">
-    <header class="content-padding">
-              <h2>News &amp; Announcements</h2>
-    </header>
-    <div  class="content-padding">
-		<ul>
-			<?php
-				$the_query = new WP_Query(array(
-					'post_type'=>'post',
-					'category_name' => 'news',
-					'orderby'=> 'date',
-					'order'=> 'ASC',
-				));
-	
-				while ( $the_query->have_posts() ) :
-				$the_query->the_post();
-			?>
- 
- 				<li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-              
-			<?php
-				endwhile;
-					wp_reset_postdata();
-			?>
-              <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
-        </ul>
-    </div>
-</section>
-
-<section id="home-events">
-    <header class="content-padding">
-              <h2>Events</h2>
-    </header>
-    <div  class="content-padding">
-          <ul>
-			<?php
-				$the_query = new WP_Query(array(
-					'post_type'=>'post',
-					'category_name' => 'events',
-					'orderby'=> 'date',
-					'order'=> 'ASC',
-				));
-	
-				while ( $the_query->have_posts() ) :
-				$the_query->the_post();
-			?>
-	        <!-- begin event listing -->
-            <li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-            <!-- end event listing -->
-			<?php
-				endwhile;
-					wp_reset_postdata();
-			?>
-
-            <li><a class="more" href="http://bellevuecollege.edu/events"><strong>More events...</strong></a></li>
-            <li><a id="calendar" href="/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
-            
-        </ul>
-    </div>
-</section>
-
-<!--<div id="homeads">
-
-	
-</div>-->
-
-<div id="home-sidelinks">
-	<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply</strong> for admissions</a></p>
-    <!--<p id="donate"><a href="https://bellevuecollege.edu/foundation/donate/">Give to Bellevue College</a></p>-->
+    <section id="home-news">
+        <header class="content-padding">
+			<h2>News &amp; Announcements</h2>
+        </header>
+        <div class="content-padding">
+            <ul>
+                <?php
+                    $the_query = new WP_Query(array(
+                        'post_type'=>'post',
+                        'category_name' => 'news',
+                        'orderby'=> 'date',
+                        'order'=> 'ASC',
+                    ));
+        
+                    while ( $the_query->have_posts() ) :
+                    $the_query->the_post(); ?>
+     
+                    <li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+                  
+                <?php
+                    endwhile;
+                        wp_reset_postdata();
+                ?>
+                  <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
+            </ul>
+        </div><!--.content-padding-->
+	</section>
+	<section id="home-events">
+        <header class="content-padding">
+                  <h2>Events</h2>
+        </header>
+    	<div class="content-padding">
+			<ul>
+				<?php
+                    $the_query = new WP_Query(array(
+                        'post_type'=>'post',
+                        'category_name' => 'events',
+                        'orderby'=> 'date',
+                        'order'=> 'ASC',
+                    ));
+        
+                    while ( $the_query->have_posts() ) :
+                    $the_query->the_post();
+                ?>
+                <!-- begin event listing -->
+                <li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+                <!-- end event listing -->
+                <?php
+                    endwhile;
+                        wp_reset_postdata();
+                ?>
     
-    
+                <li><a class="more" href="http://bellevuecollege.edu/events"><strong>More events...</strong></a></li>
+                <li><a id="calendar" href="/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
+        	</ul>
+    	</div><!--.content-padding-->
+	</section><!--#home-events-->
+	<div id="home-sidelinks">
+		<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply</strong> for admissions</a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
@@ -112,34 +96,23 @@
 
 			while ( $the_query->have_posts() ) :
 			$the_query->the_post();
-		?>
-
-		<?php
+		
 	        // If url field has content, add the URL to the post thumbnail.
 				$small_ad_ext_url = get_post_meta( $post->ID, '_small_ad_url', true );
 
-
-		        if ( !empty( $small_ad_ext_url ) )
-			{ ?>
-
-			<p id="homead">
-				<a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow'));?></a>
-			</p>
-
+		        if ( !empty( $small_ad_ext_url ) ){ ?>
+                    <p id="homead">
+                        <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow'));?></a>
+                    </p>
 			<?php }  //end if ?>
-
-<!--     	<a href="http://bellevuecollege.edu/athletics/"><img src="/globals/2.0/temp/adsmall2.gif" class="box-shadow"></a> -->
 	
 		<?php
 			endwhile;
 				wp_reset_postdata();
 		?>
-
-</div>
-</div><!-- .row -->	
-</div> <!-- #mainwrap-->					
-				
-           
+	</div><!--#home-sidelinks-->
+</div><!-- .content-row -->	
+	         
 <?php endwhile; else: ?>
 <p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
 <?php endif; ?>
