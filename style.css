@@ -1039,9 +1039,13 @@ div.widget[id*=_bcause_] .widget-title {
 	box-shadow: 0 2px 8px #cdcdcd;
 	background-color: white;
 }
-.content-row, .row-spacing {
+.content-row {
 	margin-top: 2em;
 	margin-bottom: 2em;
+}
+.row-padding {
+	padding-top: 2em;
+	padding-bottom: 2em;
 }
 .homerow1 {}
 #mobilelinks {
