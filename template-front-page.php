@@ -1,77 +1,4 @@
-<?php 
-	global $mayflower_options; 
-	$mayflower_options = mayflower_get_options();
-	
-	global $globals_version;
-	global $globals_path_over_http;
-	global $mayflower_brand;
-	global $mayflower_brand_css;
-
-	global $mayflower_theme_version;
-	$mayflower_theme_version = wp_get_theme();
-?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-	<title><?php 
-		if (is_front_page() ) { bloginfo('name');
-			?> @ Bellevue College<?php 
-		} else {
-			wp_title(" :: ",true, 'right'); 
-		} 
-	?></title>
-	
-    <meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
-    <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
-    <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" href="<?php echo $globals_path_over_http; ?>c/g.css?ver=<?php echo $globals_version; ?>">
-    <link rel="stylesheet" media="print" href="<?php echo $globals_path_over_http; ?>c/p.css?ver=<?php echo $globals_version; ?>">
-	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">-->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
-
-
-    <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
-
-	<?php wp_head(); ?>
-</head>
-
-<body <?php body_class(); ?>>
-<?php
-		//display ravealert message
-	$rave_message = get_site_option('ravealert_currentMsg');
-	$rave_class = get_site_option('ravealert_classCurrentMsg');
-	if($rave_message!="")
-	{
-	?>
-	<div id='alertmessage' class="<?php echo $rave_class;?>"><?php echo $rave_message;?></div>
-	<?php
-	}
-	?>
-	<?php
-		bc_tophead_big();
-	 ?>
-            
-
-
-<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-		<div class="container wrapper">
-		<div class="container"><!-- content container -->
-
-
-	<?php
-		$mayflower_options = mayflower_get_options();
-		$current_layout = $mayflower_options['default_layout'];
-
-		 //echo do_shortcode('[AllClassInformation course="ECON"]');
-		 //echo do_shortcode('[OneClassInformation course="ABE" number="042"]');
-	?>
-		
- 
-        <div class="content-row bchomepage" id="content">
+<div class="content-row bchomepage" id="content">
         
         <ul id="mobilelinks" class="clearfix">
             <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
@@ -213,13 +140,6 @@
 </div> <!-- #mainwrap-->					
 				
            
-
-
-	<?php endwhile; else: ?>
-    <p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
-    <?php endif; ?>
-
-	
-    
-    
-<?php get_footer(); ?>
+<?php endwhile; else: ?>
+<p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
+<?php endif; ?>
