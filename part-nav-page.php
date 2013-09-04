@@ -1,4 +1,4 @@
-		<div id="content">
+		<div id="content" class="row-padding">
 		<?php while ( have_posts() ) : the_post(); ?>
 		
             <div class="content-padding">

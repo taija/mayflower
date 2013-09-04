@@ -1,7 +1,7 @@
-	<div id="content-wrap">
+	<div id="content">
 				<?php get_template_part('part-featured-full'); ?>
 
-						<div class="row">
+						<div class="row row-padding">
 						<?php
 							$mayflower_options = mayflower_get_options();
 							$current_layout = $mayflower_options['default_layout'];
@@ -49,7 +49,7 @@
 
 											<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-													<div id="content">
+													
 														<div class="content-padding">
 																<?php if($post->post_content=="") : ?>
 																<!-- Don't display empty the_content or surround divs -->
@@ -76,7 +76,7 @@
 
 												<?php } ?>
 														</div><!-- content-padding -->
-													</div><!-- #content -->
+													
 												</div><!-- span9 -->
 								<?php
 									$mayflower_options = mayflower_get_options();
@@ -86,5 +86,5 @@
 										} else {};
 								?>
  
-		</div><!-- row -->
-</div><!-- #content-wrap-->
+		</div><!-- .row .row-padding -->
+</div><!-- #content-->

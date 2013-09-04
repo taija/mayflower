@@ -1,5 +1,3 @@
-	<div id="content-wrap">
-
 			<?php
 				// If we are loading the Blog home page (home.php)
 					if ( is_home() ) {
@@ -22,14 +20,15 @@
 					get_template_part('part-single');
 			}
 					else { ?>
-
+						
+                      <div id="content">
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 							<?php
 								get_template_part('part-featured-full');
 							?>
-					<div id="content">
-						<div class="content-padding">
+					
+						<div class="content-padding row-padding">
 
 							<?php if($post->post_content=="") : ?>
 							<!-- Don't display empty the_content or surround divs -->
@@ -58,4 +57,3 @@
 					</div><!-- content-padding -->
 			</div><!-- #content -->
 				<?php } ?>
-	</div><!-- #content-wrap  -->
