@@ -1035,7 +1035,6 @@ div.widget[id*=_bcause_] .widget-title {
 /* ------- BC Home Page only  --- */
 /* ############################## */
 
-#content.bchomepage { padding: 0;}
 .box-shadow {
 	box-shadow: 0 2px 8px #cdcdcd;
 	background-color: white;
