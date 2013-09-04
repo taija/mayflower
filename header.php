@@ -79,44 +79,35 @@
 
 		//$options = get_option('mayflower_site_options');
 
-		###############################
-		### --- Branded version --- ###
-		###############################
+		
 
 		if( $mayflower_brand == 'branded' )  {
-
-			bc_tophead_big();
-
-			//display site title on branded version 
-			
-			if ( is_main_site() && is_front_page() ) {
-			?>
+			###############################
+			### --- Branded version --- ###
+			###############################
+			bc_tophead_big();?>
             
+            <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+            <div id="main" class="container">
+
 			<?php
-			} else {
-			?>
+			//display site title on branded version 
+			if ( is_main_site() && is_front_page() ) {
+				//do nothing
+			} else { ?>
                 <div class="container header">
                     <h1 class="site-title">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
-                </div><!-- container header -->
-			<?php
+                </div><!-- container header --> <?php
 			}
-			?>
-            
-        	<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-                <div class="container wrapper">
-              		<div class="container"><!-- content container -->
-
-		<?php } //end branded
-
-		############################
-		### --- Lite version --- ###
-		############################
-
-		 else { ?>
-
-				<?php bc_tophead(); ?>
+			
+		} else { 
+			############################
+			### --- Lite version --- ###
+			############################
+		
+			bc_tophead(); ?>
 
 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
 	<div id="main" class="container">
