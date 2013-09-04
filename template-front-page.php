@@ -1,4 +1,4 @@
-<div class="content-row bchomepage" id="content"> 
+<div class="content-row transparent" id="content"> 
     <ul id="mobilelinks" class="clearfix">
         <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
         <li><a href="http://bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
