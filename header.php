@@ -87,14 +87,23 @@
 			###############################
 			bc_tophead_big();?>
             
-            <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-            <div id="main" class="container">
-
 			<?php
 			//display site title on branded version 
 			if ( is_main_site() && is_front_page() ) {
-				//do nothing
+				?>
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?> bchome">
+           		<div id="main" class="container">
+				<?php
+			} else if (is_404()){
+				?>
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+           		<div id="main" class="container">
+				<?php
 			} else { ?>
+            
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+           		<div id="main" class="container">
+				
                 <div id="site-header">
                     <h1 class="site-title">
                         <?php bloginfo( 'name' ); ?>

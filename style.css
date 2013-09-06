@@ -398,6 +398,15 @@ ul#college-top-actions li.top-actions a:focus {
 	#main-nav-wrap,
 	#bigfoot,
 	#top-wrap { padding: 0 0.3333333em; }
+	
+	#main-wrap.globals-branded {
+		padding-top: 2em;
+		padding-bottom: 2em;
+	} 
+	#main-wrap.bchome {
+		padding-top:0;
+		padding-bottom: 0;
+	}
 }
 @media screen and (min-width: 50em) {
 	#main-wrap,

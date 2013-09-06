@@ -8,10 +8,8 @@
  */
 
 get_header(); ?>
-
-<div id="content-wrap">
 	
-		<div class="content-padding" id="content">
+		<div class="content-padding row-padding" id="content">
 
 
 
@@ -58,8 +56,6 @@ get_header(); ?>
 
 		</div><!-- content-padding -->
 
-
-</div><!-- #content-wrap -->
 
 
 <?php get_footer(); ?>
