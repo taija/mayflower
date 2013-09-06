@@ -112,7 +112,7 @@
 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
 	<div id="main" class="container">
     	<div id="site-header" class="row">
-       		<div class="span8">
+       		<!--<div class="span8">-->
                 <div class="content-padding">
                     <?php 
                     //the header_image functionality is not set on dashboard yet.  Still needs to be defined
@@ -127,18 +127,20 @@
                         <p class="site-description"><?php bloginfo('description'); ?></p>
 
                     <?php endif; ?>
-                </div><!-- header-logo -->
-            </div><!-- span8 -->
+                    
+                        <div class="header-search content-padding <?php 
+							if ( get_bloginfo('description') ) { 
+								echo 'header-search-w-description';
+							}
+							?>">
+							<?php get_search_form(); ?>	
+                        </div> <!--content-padding -->	
+                
+                </div><!-- .content-padding -->
+            <!--</div> span8 -->
             
-            <div class="span4 header-search pull-right">
-                <div class="content-padding <?php 
-                    if ( get_bloginfo('description') ) { 
-                        echo 'top-spacing10';
-                    }
-                    ?>">
-                    <?php get_search_form(); ?>	
-                </div><!-- content-padding -->		
-            </div><!-- span4 -->
+            	
+         
         </div> <!--#site-header .row-->
             
         <div class="navbar">
