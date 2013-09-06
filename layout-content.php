@@ -35,7 +35,7 @@
 						<h1><?php the_title(); ?></h1>
 						<?php 	}; ?>
 					<?php the_content(); ?>
-				</div><!-- page-content -->
+				</div><!-- .content-padding -->
 	
 			<?php endif; ?>
 	

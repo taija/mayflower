@@ -104,11 +104,13 @@
                 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
            		<div id="main" class="container">
 				
+                <div class="content-padding">
                 <div id="site-header">
                     <h1 class="site-title">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
-                </div><!-- container header --> <?php
+                </div><!-- container header --> 
+				</div><!-- content-padding --><?php
 			}
 			
 		} else { 
