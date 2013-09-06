@@ -41,7 +41,7 @@
 					echo '<div class="row">';
 			}
 		?>
-			<div class="span4 top-spacing25">
+			<div class="span4 top-spacing15">
 				<div class="content-padding">
 					<h2>
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
