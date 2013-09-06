@@ -1,5 +1,7 @@
 <?php if ( is_front_page() ) {
-
+	?>
+    	<div class="content-padding top-spacing30">
+    <?php
 	// This is a homepage
     //Display the Featured Slider and fill the entire space above the content
 	    $mayflower_options = mayflower_get_options();
@@ -144,7 +146,7 @@
 				<?php endwhile; ?>
 				<?php	wp_reset_postdata(); ?>
 
-
+			</div><!--.content-padding-->
 		<?php } elseif( $mayflower_options['blog_homepage_toggle'] == 'false' ) { ?>
 
 		<?php } // end if show nothing ?>
