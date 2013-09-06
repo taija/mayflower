@@ -1,4 +1,3 @@
-<div id="content">
 <?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<?php if($post->post_content=="") : ?>
@@ -170,4 +169,3 @@
 				<?php endwhile; wp_reset_postdata(); ?>
 	</ul>
 <?php } // end elseif  ?>
-</div><!--#content-->

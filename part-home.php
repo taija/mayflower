@@ -1,6 +1,4 @@
-<div id="content">
-
-				<?php
+<?php
 					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$sticky = get_option( 'sticky_posts' );
 					$args = array(
@@ -150,6 +148,4 @@
 							<?php next_posts_link('Next page <i class="icon-chevron-right"></i>'); ?>
 						</li>
 					</ul>
-				<?php	wp_reset_query(); ?>
-
-</div><!--#content-->
+<?php	wp_reset_query(); ?>
