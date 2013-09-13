@@ -8,7 +8,11 @@ Version: 1.2.0.0
 
 
 
-/* Dodgy CSS ^_^ */
+/* ###################################### */
+/* ----- Dashboard CSS  -  to move  ----- */
+/* ###################################### */
+
+/* Used in staff & Slider CPT  */
 .wp-list-table td { background: white; }
 .wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
 .wp-list-table .column-sorting img { cursor: move; }
