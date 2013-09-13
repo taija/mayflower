@@ -64,8 +64,13 @@ Sections here:
 .container.logobar .border {
 	-moz-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	-webkit-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
-	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
-	
+	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);	
+}
+
+.ie7 .container.logobar .border,
+.ie8 .container.logobar .border{
+	border-left: 1px solid #002c57;
+	border-right: 1px solid #002c57;
 }
 .header-search{
 	margin-top: 0.66667em;
@@ -316,7 +321,15 @@ ul#college-top-actions li.top-actions a:focus {
 	box-shadow: -2px 2px 2px rgba(160, 160, 160, 0.7), 2px 2px 2px rgba(160, 160, 160, 0.7);
 	padding-top: 1.3333333em;
 	padding-bottom: 1.3333333em;
-	background-color: #E5E5E5;}
+	background-color: #E5E5E5;
+}
+
+.ie7 #bigfoot .inner,
+.ie8 #bigfoot .inner {
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+		
 #bigfoot ul {
 	margin: 0;
 	padding: 0;
@@ -373,9 +386,10 @@ ul#college-top-actions li.top-actions a:focus {
 #legalbar li { 
 	display: inline; 
 	padding:0;
-	margin: 0} 
+	margin: 0;
+	list-style-type: none;} 
 #legalbar li a { 
-	padding: 0 1em;
+	padding: 0 0.9em 0 1em;
 	color: #666;
 	border-left: 1px solid #DDDDDD;
 	font-size: .8em;

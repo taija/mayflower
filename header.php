@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 	global $mayflower_options; 
 	$mayflower_options = mayflower_get_options();
@@ -10,8 +11,13 @@
 	global $mayflower_theme_version;
 	$mayflower_theme_version = wp_get_theme();
 ?>
-<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html <?php language_attributes(); ?> class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html <?php language_attributes(); ?>>
+<!--<![endif]-->
 <head>
 	<title> 
 		<?php 
@@ -34,7 +40,7 @@
 	
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
