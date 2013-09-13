@@ -39,8 +39,8 @@
 			$count++;
 			if ($count == 1) {
 					echo '<div class="row">';
-			}
-		?>
+			}  ?>
+            
 			<div class="span4 top-spacing15">
 				<div class="content-padding">
 					<h2>
@@ -52,16 +52,13 @@
 						edit_post_link('edit', '<small>', '</small>');
 					?>
 				</div><!-- content-padding -->
-			</div><!-- span4 -->
-	
-	
-		<?php 
-		if ($count == $columnNum) {
-			echo '</div> <!-- .row -->';
-			$count = 0;
-		}
-		
-
+			</div><!-- span4 -->  <?php 
+			
+            if ($count == $columnNum) {
+                echo '</div> <!-- .row -->';
+                $count = 0;
+            }
+			
 		endwhile; 
 		
 		if ($count > 0 ) {
