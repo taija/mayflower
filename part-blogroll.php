@@ -1,10 +1,12 @@
 <?php if ( is_front_page() ) {
-
+	?>
+    	
+    <?php
 	// This is a homepage
     //Display the Featured Slider and fill the entire space above the content
 	    $mayflower_options = mayflower_get_options();
 	    if( $mayflower_options['blog_homepage_toggle'] === true) { ?>
-
+			<div class="content-padding top-spacing30">
 				<?php // Loop for posts
 					$sticky = get_option( 'sticky_posts' );
 					$args = array(
@@ -144,7 +146,7 @@
 				<?php endwhile; ?>
 				<?php	wp_reset_postdata(); ?>
 
-
+			</div><!--.content-padding-->
 		<?php } elseif( $mayflower_options['blog_homepage_toggle'] == 'false' ) { ?>
 
 		<?php } // end if show nothing ?>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 	global $mayflower_options; 
 	$mayflower_options = mayflower_get_options();
@@ -10,8 +11,13 @@
 	global $mayflower_theme_version;
 	$mayflower_theme_version = wp_get_theme();
 ?>
-<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html <?php language_attributes(); ?> class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html <?php language_attributes(); ?>>
+<!--<![endif]-->
 <head>
 	<title> 
 		<?php 
@@ -34,7 +40,7 @@
 	
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -79,49 +85,51 @@
 
 		//$options = get_option('mayflower_site_options');
 
-		###############################
-		### --- Branded version --- ###
-		###############################
+		
 
 		if( $mayflower_brand == 'branded' )  {
-
-			bc_tophead_big();
-
-			//display site title on branded version 
-			
-			if ( is_main_site() && is_front_page() ) {
-			?>
+			###############################
+			### --- Branded version --- ###
+			###############################
+			bc_tophead_big();?>
             
 			<?php
-			} else {
-			?>
-                <div class="container header">
+			//display site title on branded version 
+			if ( is_main_site() && is_front_page() ) {
+				?>
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?> bchome">
+           		<div id="main" class="container">
+				<?php
+			} else if (is_404()){
+				?>
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+           		<div id="main" class="container">
+				<?php
+			} else { ?>
+            
+                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+           		<div id="main" class="container">
+				
+                <div class="content-padding">
+                <div id="site-header">
                     <h1 class="site-title">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
-                </div><!-- container header -->
-			<?php
+                </div><!-- container header --> 
+				</div><!-- content-padding --><?php
 			}
-			?>
-            
-        	<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-                <div class="container wrapper">
-              		<div class="container"><!-- content container -->
-
-		<?php } //end branded
-
-		############################
-		### --- Lite version --- ###
-		############################
-
-		 else { ?>
-
-				<?php bc_tophead(); ?>
+			
+		} else { 
+			############################
+			### --- Lite version --- ###
+			############################
+		
+			bc_tophead(); ?>
 
 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
 	<div id="main" class="container">
     	<div id="site-header" class="row">
-       		<div class="span8">
+       		<!--<div class="span8">-->
                 <div class="content-padding">
                     <?php 
                     //the header_image functionality is not set on dashboard yet.  Still needs to be defined
@@ -136,18 +144,20 @@
                         <p class="site-description"><?php bloginfo('description'); ?></p>
 
                     <?php endif; ?>
-                </div><!-- header-logo -->
-            </div><!-- span8 -->
+                    
+                        <div class="header-search content-padding <?php 
+							if ( get_bloginfo('description') ) { 
+								echo 'header-search-w-description';
+							}
+							?>">
+							<?php get_search_form(); ?>	
+                        </div> <!--content-padding -->	
+                
+                </div><!-- .content-padding -->
+            <!--</div> span8 -->
             
-            <div class="span4 header-search pull-right">
-                <div class="content-padding <?php 
-                    if ( get_bloginfo('description') ) { 
-                        echo 'top-spacing10';
-                    }
-                    ?>">
-                    <?php get_search_form(); ?>	
-                </div><!-- content-padding -->		
-            </div><!-- span4 -->
+            	
+         
         </div> <!--#site-header .row-->
             
         <div class="navbar">

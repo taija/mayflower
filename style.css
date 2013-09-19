@@ -3,12 +3,16 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.1.0.2
+Version: 1.2.0.1
 */
 
 
 
-/* Dodgy CSS ^_^ */
+/* ###################################### */
+/* ----- Dashboard CSS  -  to move  ----- */
+/* ###################################### */
+
+/* Used in staff & Slider CPT  */
 .wp-list-table td { background: white; }
 .wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
 .wp-list-table .column-sorting img { cursor: move; }
@@ -60,16 +64,19 @@ Sections here:
 .container.logobar .border {
 	-moz-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
 	-webkit-box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
-	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);
-	
+	box-shadow: -3px 1px 2px rgba(0, 32, 63, 0.4), 3px 1px 2px rgba(0, 32, 63, 0.4);	
 }
 
-.header-search form {
-	float: right;
+.ie7 .container.logobar .border,
+.ie8 .container.logobar .border{
+	border-left: 1px solid #002c57;
+	border-right: 1px solid #002c57;
 }
-.header-search fieldset {white-space:nowrap;}
-
-
+.header-search{
+	margin-top: 0.66667em;
+}
+.header-search fieldset {
+	white-space:nowrap;}
 #main-nav-wrap {
 	background: #003d79 url(/g/2/i/headbgwide.jpg) 0 -20px repeat-x;
 	border-bottom: 2px solid #002d3f;
@@ -198,6 +205,18 @@ a#bc-logo:focus {
 		left: -9999999px !important;
 	}
 }
+@media screen and (min-width: 50em) {
+	#site-header > .content-padding { position: relative}
+	.header-search{
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin-top: 0.3333333em;
+	}
+	.header-search-w-description {
+		margin-top: 1em;
+	}
+}
 @media screen and (min-width: 41em) {
 	#college-search-field {
 		width: 200px; 
@@ -302,7 +321,15 @@ ul#college-top-actions li.top-actions a:focus {
 	box-shadow: -2px 2px 2px rgba(160, 160, 160, 0.7), 2px 2px 2px rgba(160, 160, 160, 0.7);
 	padding-top: 1.3333333em;
 	padding-bottom: 1.3333333em;
-	background-color: #E5E5E5;}
+	background-color: #E5E5E5;
+}
+
+.ie7 #bigfoot .inner,
+.ie8 #bigfoot .inner {
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+		
 #bigfoot ul {
 	margin: 0;
 	padding: 0;
@@ -359,9 +386,10 @@ ul#college-top-actions li.top-actions a:focus {
 #legalbar li { 
 	display: inline; 
 	padding:0;
-	margin: 0} 
+	margin: 0;
+	list-style-type: none;} 
 #legalbar li a { 
-	padding: 0 1em;
+	padding: 0 0.9em 0 1em;
 	color: #666;
 	border-left: 1px solid #DDDDDD;
 	font-size: .8em;
@@ -388,6 +416,15 @@ ul#college-top-actions li.top-actions a:focus {
 	#main-nav-wrap,
 	#bigfoot,
 	#top-wrap { padding: 0 0.3333333em; }
+	
+	#main-wrap.globals-branded {
+		padding-top: 2em;
+		padding-bottom: 2em;
+	} 
+	#main-wrap.bchome {
+		padding-top:0;
+		padding-bottom: 0;
+	}
 }
 @media screen and (min-width: 50em) {
 	#main-wrap,
@@ -1035,7 +1072,6 @@ div.widget[id*=_bcause_] .widget-title {
 /* ------- BC Home Page only  --- */
 /* ############################## */
 
-#content.bchomepage { padding: 0;}
 .box-shadow {
 	box-shadow: 0 2px 8px #cdcdcd;
 	background-color: white;
@@ -1043,6 +1079,10 @@ div.widget[id*=_bcause_] .widget-title {
 .content-row {
 	margin-top: 2em;
 	margin-bottom: 2em;
+}
+.row-padding {
+	padding-top: 2em;
+	padding-bottom: 2em;
 }
 .homerow1 {}
 #mobilelinks {

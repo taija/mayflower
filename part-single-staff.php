@@ -1,4 +1,3 @@
-<div id="content">
 part-single-staff
 <?php
 	if (have_posts()) : while (have_posts()) : the_post();
@@ -79,4 +78,3 @@ part-single-staff
 	<?php endwhile; ?>
 
 <?php wp_reset_query(); endif; ?>
-</div><!--#content-->
