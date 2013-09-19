@@ -3,10 +3,20 @@
     if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-in-content') { ?>
 	
 				<div id="myCarousel" class="carousel slide">
-					 <ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
+
+					<ol class="carousel-indicators">
+						<?php
+							$number = 0;
+							$the_query = new WP_Query(array(
+								'post_type'=>'slider',
+								'posts_per_page' => ($mayflower_options['slider_number_slides'] ), 
+							));
+							while ( $the_query->have_posts() ) :
+							$the_query->the_post();
+							?>
+					<li data-target="#myCarousel" data-slide-to="<?php echo $number++; ?>"></li>
+
+					<?php endwhile; wp_reset_postdata(); ?>
 					</ol>
 
 					<div class="carousel-inner">
@@ -24,7 +34,7 @@
 							<div class="item active">
 								<?php
 							        // If a post class has input, sanitize it and add it to the post class array.
-									$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+									$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 								        if ( !empty( $slider_ext_url ) )
 									{ ?>
 				
@@ -35,7 +45,7 @@
 									<?php } else { ?>
 				
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-in-content');?></a>
-								<?	} //end else ?>
+								<?php	} //end else ?>
 							<?php
 									//should we show title & excerpt?
 									$mayflower_options = mayflower_get_options();
@@ -46,7 +56,7 @@
 											<?php
 												if ($mayflower_options['slider_title'] == 'true') {
 											        // If a post class has input, sanitize it and add it to the post class array.
-													$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+													$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 												        if ( !empty( $slider_ext_url ) )
 													{ ?>
 		
@@ -57,7 +67,7 @@
 													<?php } else { ?>
 														<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 		
-												<?	} //end else ?>
+												<?php	} //end else ?>
 											<?php } else { } ?>
 		
 											<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>
@@ -79,7 +89,7 @@
 								'post_type'=>'slider',
 								'orderby' => 'menu_order',
 								'order'=> 'ASC',
-								'posts_per_page' => 4,
+								'posts_per_page' => ($mayflower_options['slider_number_slides'] -1), // subtract 1 (-1) is here to account for the first loop.
 								'offset' => 1
 							));
 							while ( $the_query->have_posts() ) :
@@ -89,7 +99,7 @@
 						<div class="item">
 							<?php
 						        // If a post class has input, sanitize it and add it to the post class array.
-								$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+								$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 							        if ( !empty( $slider_ext_url ) )
 								{ ?>
 			
@@ -100,7 +110,7 @@
 								<?php } else { ?>
 			
 							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-							<?	} //end else ?>
+							<?php	} //end else ?>
 			
 						<?php
 								//should we show title & excerpt?
@@ -112,7 +122,7 @@
 										<?php
 											if ($mayflower_options['slider_title'] == 'true') {
 										        // If a post class has input, sanitize it and add it to the post class array.
-												$slider_ext_url = get_post_meta($post->ID, 'slider_url', true);
+												$slider_ext_url = get_post_meta($post->ID, '_slider_url', true);
 											        if ( !empty( $slider_ext_url ) )
 												{ ?>
 	
@@ -123,7 +133,7 @@
 												<?php } else { ?>
 													<h2><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h2>
 	
-											<?	} //end else ?>
+											<?php	} //end else ?>
 										<?php } else { } ?>
 	
 										<?php if ($mayflower_options['slider_excerpt'] == 'true' ) { ?>

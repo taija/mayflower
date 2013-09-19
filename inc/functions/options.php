@@ -168,25 +168,25 @@ add_filter( 'mayflower_option_defaults', 'mayflower_define_default_options_tab' 
 function mayflower_get_option_parameters() {
 
     $options = array(
-        'mayflower_version' => array(
-			'name' => 'mayflower_version',
-			'title' => __( 'Mayflower Version', 'mayflower' ),
+        'mayflower_brand' => array(
+			'name' => 'mayflower_brand',
+			'title' => __( 'Mayflower Brand', 'mayflower' ),
 			'type' => 'select',
 			'valid_options' => array(
 				'official' => array(
-					'name' => 'official',
-					'title' => __( 'Official - Branded Version', 'mayflower' )
+					'name' => 'branded',
+					'title' => __( 'Branded: Main college branding', 'mayflower' )
 				),
 				'department' => array(
-					'name' => 'department',
-					'title' => __( 'Department - Lite Version', 'mayflower' )
+					'name' => 'lite',
+					'title' => __( 'Lite - Department branding', 'mayflower' )
 				)
 			),
 			'description' => __( 'Choose which version of the theme to enable for this site.', 'mayflower' ),
 			'section' => 'version',
 			'tab' => 'general',
 			'since' => '1.0',
-			'default' => 'department'
+			'default' => 'lite'
 		),
         'global_nav_selection' => array(
 			'name' => 'global_nav_selection',
@@ -271,6 +271,95 @@ function mayflower_get_option_parameters() {
 			'since' => '1.0',
 			'default' => false
 		),
+        'slider_number_slides' => array(
+			'name' => 'slider_number_slides',
+			'title' => __( 'Number of slides?', 'mayflower' ),
+			'type' => 'select',
+			'valid_options' => array(
+				'1' => array(
+					'name' => '1',
+					'title' => __( '1', 'mayflower' )
+				),
+				'2' => array(
+					'name' => '2',
+					'title' => __( '2', 'mayflower' )
+				),
+				'3' => array(
+					'name' => '3',
+					'title' => __( '3', 'mayflower' )
+				),
+				'4' => array(
+					'name' => '4',
+					'title' => __( '4', 'mayflower' )
+				),
+				'5' => array(
+					'name' => '5',
+					'title' => __( '5', 'mayflower' )
+				),
+				'6' => array(
+					'name' => '6',
+					'title' => __( '6', 'mayflower' )
+				),
+				'7' => array(
+					'name' => '7',
+					'title' => __( '7', 'mayflower' )
+				),
+				'8' => array(
+					'name' => '8',
+					'title' => __( '8', 'mayflower' )
+				),
+				'9' => array(
+					'name' => '9',
+					'title' => __( '9', 'mayflower' )
+				),
+				'10' => array(
+					'name' => '10',
+					'title' => __( '10', 'mayflower' )
+				),
+				'11' => array(
+					'name' => '11',
+					'title' => __( '11', 'mayflower' )
+				),
+				'12' => array(
+					'name' => '12',
+					'title' => __( '12', 'mayflower' )
+				),
+				'13' => array(
+					'name' => '13',
+					'title' => __( '13', 'mayflower' )
+				),
+			),
+			'description' => __( 'How many featured slides should we show?', 'mayflower' ),
+			'section' => 'slider',
+			'tab' => 'home',
+			'since' => '1.0',
+			'default' => '5'
+		),
+		
+
+        'slider_order' => array(
+			'name' => 'slider_order',
+			'title' => __( 'Slide Order', 'mayflower' ),
+			'type' => 'select',
+			'valid_options' => array(
+				'menu_order' => array(
+					'name' => 'menu_order',
+					'title' => __( 'Sort Order', 'mayflower' )
+				),
+				'rand' => array(
+					'name' => 'rand',
+					'title' => __( 'Random', 'mayflower' )
+				),
+
+			),
+			'description' => __( 'How should we sort the slides?', 'mayflower' ),
+			'section' => 'slider',
+			'tab' => 'home',
+			'since' => '1.0',
+			'default' => 'menu_order'
+		),
+
+		
 		'slider_layout' => array(
 			'name' => 'slider_layout',
 			'title' => __( 'Slider Layout', 'mayflower' ),
@@ -293,6 +382,7 @@ function mayflower_get_option_parameters() {
 			'since' => '1.0',
 			'default' => 'featured-full'
 		),
+
 		'slider_title' => array(
 			'name' => 'slider_title',
 			'title' => __( 'Show title?', 'mayflower' ),
@@ -632,8 +722,8 @@ function mayflower_get_settings_page_tabs() {
 			'sections' => array(
 				'version' => array(
 					'name' => 'version',
-					'title' => __( 'Mayflower Version', 'mayflower' ),
-					'description' => __( 'Which version of Mayflower Theme should be used for this site?', 'mayflower' )
+					'title' => __( 'Mayflower Branding', 'mayflower' ),
+					'description' => __( 'Which branding of Mayflower Theme should be used for this site?', 'mayflower' )
 				),
 				/*
 				'global_nav' => array(

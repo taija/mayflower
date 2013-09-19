@@ -8,28 +8,51 @@ Author: Bellevue College DevCom
 Author URI:
 */
 
+########################################
+## - Hide Page Links to in Staff posts
+########################################
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_staff' );
+
+function remove_plt_from_staff( $post_types )
+{
+    $key = array_search( 'staff',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
+}
+
 
 ///////////////////////////////////////
 // - Get the Slider plugin stylesheet
 ///////////////////////////////////////
-add_action( 'wp_enqueue_scripts', 'add_staff_stylesheet' );
-function add_staff_stylesheet() {
 
-    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
-    // registers your stylesheet
-    wp_register_style( 'staff_styles', $css_path );
+	function add_staff_stylesheet() {
+	
+	    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
+	    // registers your stylesheet
+		wp_register_style( 'staff_styles', 
+			$css_path, 
+			array(), 
+			null, 
+			'all' );
 
-    // loads your stylesheet
-    wp_enqueue_style( 'staff_styles' );
-}
-
-function staff_admin_styles($hook) {
-    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
-	if('edit.php?post_type=staff' !=$hook )
-        wp_register_style( 'staff_styles', $css_path );
-        wp_enqueue_style( 'staff_styles' );
-}
-add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
+	    //wp_register_style( 'staff_styles', $css_path );
+	
+	    // loads your stylesheet
+	    wp_enqueue_style( 'staff_styles' );
+	}
+	add_action( 'wp_enqueue_scripts', 'add_staff_stylesheet' );
+	
+	function staff_admin_styles($hook) {
+	    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
+		if('edit.php?post_type=staff' !=$hook )
+	        wp_register_style( 'staff_styles', $css_path );
+	        wp_enqueue_style( 'staff_styles' );
+	}
+	add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
 
 
 ///////////////////////////////////////
@@ -42,19 +65,19 @@ add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
 
     function bc_staff_register() {
 		$labels = array(
-			'name' => _x('Staff', 'post type general name'),
-			'singular_name' => _x('Staff', 'post type singular name'),
-			'add_new' => _x('Add New', 'Staff'),
-			'add_new_item' => __('Add New Staff'),
-			'edit_item' => __('Edit Staff'),
-			'new_item' => __('New Staff'),
-			'all_items' => __('Staff List'),
-			'view_item' => __('View Staff'),
-			'search_items' => __('Search Staff'),
-			'not_found' =>  __('No Staff found'),
-			'not_found_in_trash' => __('No Staff found in Trash'),
+			'name' => 'Staff',
+			'singular_name' => 'Staff', 
+			'add_new' => 'Add New', 'Staff',
+			'add_new_item' => 'Add New Staff',
+			'edit_item' => 'Edit Staff',
+			'new_item' => 'New Staff',
+			'all_items' => 'Staff List',
+			'view_item' => 'View Staff',
+			'search_items' => 'Search Staff',
+			'not_found' =>  'No Staff found',
+			'not_found_in_trash' => 'No Staff found in Trash',
 			'parent_item_colon' => '',
-			'menu_name' => __('Staff')
+			'menu_name' => 'Staff'
 		);
 
         $args = array(
@@ -196,33 +219,7 @@ function mayflower_staff_enqueue_scripts() {
 	wp_enqueue_script( 'mayflower-admin-scripts', get_template_directory_uri() . '/js/sorting-v2.js' );
 }
 
-///////////////////////////////////////
-// - Register and write the ajax callback function to actually update the posts.
-///////////////////////////////////////
 
-
-add_action( 'wp_ajax_staff_update_post_order', 'staff_update_post_order' );
-
-function staff_update_post_order() {
-	global $wpdb;
-
-	$post_type     = $_POST['postType'];
-	$order        = $_POST['order'];
-
-	/**
-	*    Expect: $sorted = array(
-	*                menu_order => post-XX
-	*            );
-	*/
-	foreach( $order as $menu_order => $post_id )
-	{
-		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
-		$menu_order     = intval($menu_order);
-		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
-	}
-
-	die( '1' );
-}
 
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_staff_custom_meta_box' );
@@ -246,7 +243,7 @@ add_action('add_meta_boxes', 'add_staff_custom_meta_box');
 
 
 // Field Array
-$prefix = 'staff_';
+$prefix = '_staff_';
 $staff_custom_meta_fields = array(
 	array(
 		'label'=> 'Email',
@@ -405,25 +402,6 @@ return $title;
 add_filter( 'enter_title_here', 'mayflower_staff_title_text' );
 
 
-/////////////////////////////////////////
-// Sub-Menu for sortables
-/////////////////////////////////////////
-/*
-add_action( 'admin_menu', 'mayflower_staff_sub_menu' );
-
-	function mayflower_staff_sub_menu() {
-	    add_submenu_page(
-	        'edit.php?post_type=staff',
-	        'Order Slides',
-	        'Order',
-	        'edit_pages', 'staff-order',
-	        'staff_staff_order_page'
-	    );
-	}
-*/
-
-
-
 ///////////////////////////////////////
 // Custom Columns for Staff Post type
 ///////////////////////////////////////
@@ -434,13 +412,13 @@ add_filter('manage_edit-staff_columns', 'add_new_staff_columns');
 function add_new_staff_columns($staff_columns) {
 		$staff_columns = array (
 			'cb' => '<input type="checkbox" />',
-			'thumbnail' => __( 'Photo' ),
-			'title' => __('Name'),
-			'staff_email' => __('Email'),
-			'staff_position' => __('Position'),
-			'staff_phone' => __('Phone'),
-			'staff_hours' => __('Office Hours'),
-			'staff_office_location' => __('Office Location'),
+			'thumbnail' =>  'Photo',
+			'title' => 'Name',
+			'staff_email' => 'Email',
+			'staff_position' => 'Position',
+			'staff_phone' => 'Phone',
+			'staff_hours' => 'Office Hours',
+			'staff_office_location' => 'Office Location',
 		);
 
 //		$new_columns['date'] = __('Date Added', 'column name');
@@ -469,7 +447,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -484,7 +462,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -499,7 +477,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
-				echo __( '' );
+				echo '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -514,7 +492,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else
@@ -529,7 +507,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
-				echo __( '' );
+				echo  '' ;
 
 			/* If there is a duration, append 'minutes' to the text string. */
 			else

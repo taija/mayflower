@@ -1,4 +1,3 @@
-<div id="content">
 <?php  if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<?php if($post->post_content=="") : ?>
@@ -43,7 +42,7 @@
 							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
 						}
 						else {
-							echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/img/thumbnail-default.png" />';
+							echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
 						}
 					?>
 
@@ -170,4 +169,3 @@
 				<?php endwhile; wp_reset_postdata(); ?>
 	</ul>
 <?php } // end elseif  ?>
-</div><!--#content-->

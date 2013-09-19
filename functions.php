@@ -26,12 +26,36 @@
 		require( get_template_directory() . '/inc/functions/theme-setup.php' );
 	    require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 		require( get_template_directory() . '/inc/functions/widgets.php' );
+		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
+	    require( get_template_directory() . '/inc/functions/network-options.php');
 		require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
 		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
+		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
+		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+
+
+##################################
+## Custom Menu Widget Override
+##################################
+
+function load_custom_widgets() {
+	unregister_widget("WP_Nav_Menu_Widget");
+	register_widget("My_Nav_Menu_Widget");
+}
+
+////////////////////////////////////////////////////
+// Remove Unneeded Meta Boxes on Pages
+/////////////////////////////////////////////////////
+
+function mayflower_remove_meta_boxes() {
+  remove_meta_box('postimagediv', 'page', 'side');
+}
+add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
+
 
 ############################
 // Custom Admin Bar Items
@@ -42,7 +66,7 @@
 	        $wp_admin_bar->add_menu( array(
 	        'parent' => '',
 	        'id' => 'mayflower-settings',
-	        'title' => __('Theme Options'),
+	        'title' => 'Theme Options',
 	        'href' => admin_url( 'themes.php?page=mayflower-settings')
 	    ) );
 
@@ -50,6 +74,13 @@
 
 	add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
+############################
+// show admin bar only for editors and higher
+############################
+
+if (!current_user_can('edit_pages')) {
+	add_filter('show_admin_bar', '__return_false');
+}
 
 #####################################################
 // Load up our plugins
@@ -69,18 +100,31 @@
 		    require( get_template_directory() . '/inc/mayflower-staff/staff.php');
 		}
 
+	// SEO
+			if( file_exists(get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php') )
+			    require( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php');
+
+	// Home Page
+		if ( current_user_can('manage_network') ) {
+			if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') )
+			    require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
+		} // end current_user_can
+
 	// Social Links
-	if( file_exists(get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php') )
-	    require( get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php');
+//	if( file_exists(get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php') )
+//	    require( get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php');
 
 	//Location
-	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
-	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
+//	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
+//	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
 	//Multiple Content Blocks
-	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
-	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
+//	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
+//	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
 
+	//Rave Alert functionality
+	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
+		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
 
 #######################################
 // adds wordpress theme support
@@ -100,15 +144,31 @@ add_post_type_support( 'page', 'excerpt' );
 	        set_post_thumbnail_size( 150, 150 );
 	        add_image_size( 'lite_header_logo', 1170, 63, true);
 			add_image_size( 'edit-screen-thumbnail', 100, 100, true );
+			add_image_size( 'sort-screen-thumbnail', 300, 125, true );
 			add_image_size( 'staff-thumbnail', 300, 200, true );
 	        add_image_size( 'featured-full', 1200,500,true);
 	        add_image_size( 'featured-in-content', 900,375,true);
+	        add_image_size( 'home-small-ad', 300,200,true);
 	}
 
-	// Custom Menus
-	if (function_exists('add_theme_support')) {
-	    add_theme_support('menus');
-	}
+######################################
+// Remove Comments Feed
+######################################
+
+remove_action('wp_head', 'feed_links', 2); 
+add_action('wp_head', 'my_feed_links');
+
+function my_feed_links() {
+  if ( !current_theme_supports('automatic-feed-links') ) return;
+
+  // post feed 
+  ?>
+  <link rel="alternate" type="<?php echo feed_content_type(); ?>" 
+        title="<?php printf(__('%1$s %2$s Feed'), get_bloginfo('name'), ' &raquo; '); ?>"
+        href="<?php echo get_feed_link(); ?> " />
+  <?php 
+}
+
 
 ######################################
 // Remove WordPress default widgets
@@ -120,38 +180,36 @@ function remove_calendar_widget() {
 	unregister_widget('WP_Widget_Search');
 	unregister_widget('WP_Widget_Meta');
 	unregister_widget('WP_Widget_Recent_Comments');
+	unregister_widget('WP_Widget_Pages');
 }
 
 add_action( 'widgets_init', 'remove_calendar_widget' );
+
+
+######################################
+// Remvoe Wordpress Version Number
+######################################
+
+function remove_wp_version() { return ''; }
+add_filter('the_generator', 'remove_wp_version');
+
+
+######################################
+// Add frontend style to wysiwyg editor
+######################################
+
+function mayflower_add_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
+}
+add_action( 'init', 'mayflower_add_editor_styles' );
+
+
 
 ######################################
 // Wordpress Widget Area Setup
 ######################################
 
 	function mayflower_widgets_init() {
-
-		// Global Widget Area - located just below the sidebar nav.
-		register_sidebar( array(
-			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
-			'id' => 'global-widget-area',
-			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
-
-
-		// Blog Widget Area - located just below the global nav on blog pages.
-		register_sidebar( array(
-			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
-			'id' => 'blog-widget-area',
-			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
 
 		// Static Page Widget Area - located just below the global nav on static pages.
 		register_sidebar( array(
@@ -164,7 +222,30 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 			'after_title' => '</h3>',
 		) );
 
+		// Blog Widget Area - located just below the global nav on blog pages.
+		register_sidebar( array(
+			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
+			'id' => 'blog-widget-area',
+			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
+			'before_widget' => '',
+			'after_widget' => '',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+		) );
+
+		// Global Widget Area - located just below the sidebar nav.
+		register_sidebar( array(
+			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
+			'id' => 'global-widget-area',
+			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
+			'before_widget' => '',
+			'after_widget' => '',
+			'before_title' => '<h3 class="global-widget-area">',
+			'after_title' => '</h3>',
+		) );
+
 		// Aside Widget Area - aside located in right column of page content.
+/*
 		register_sidebar( array(
 			'name' => __( 'In-Page Aside Widget Area', 'mayflower' ),
 			'id' => 'aside-widget-area',
@@ -174,6 +255,7 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
 		) );
+*/
 		// Area 3, located in left column of footer.
 /*
 		register_sidebar( array(
@@ -218,38 +300,30 @@ add_action( 'widgets_init', 'remove_calendar_widget' );
 //set globals path
 #########################
 
-	$bc_globals_themepath = $_SERVER['DOCUMENT_ROOT'] . "/globals/bcause";
-
+	$bc_globals_html_filepath = $_SERVER['DOCUMENT_ROOT'] . "/g/2/h/";
+	
 #######################################
 //add college head - skinny id bar
 #######################################
 
 	function bc_tophead(){
-	   global $bc_globals_themepath;
-	   $header_top =  $bc_globals_themepath . "/common/bc_header_top_small.html";
-	   $header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-	   $header_bottom =  $bc_globals_themepath . "/common/bc_header_bottom_small.html";
+	   global $bc_globals_html_filepath;
+	   $header_top =  $bc_globals_html_filepath . "lhead.html";
 	   include_once($header_top);
-	   include_once($header_menu);
-	   include_once($header_bottom);
 	}
-	add_action('btheme_header','bc_tophead');
+	add_action('mayflower_header','bc_tophead');
 
 ########################################
 //add college head - big html dropdown
 #########################################
 
 	function bc_tophead_big() {
-		global $bc_globals_themepath;
-		$header_top_big = $bc_globals_themepath . "/common/bc_header_top_big.html";
-		$header_menu =  $bc_globals_themepath . "/common/bc_header_menu.html";
-		$header_bottom_big = $bc_globals_themepath . "/common/bc_header_bottom_big.html";
+		global $bc_globals_html_filepath;
+		$header_top_big = $bc_globals_html_filepath . "bhead.html";
 		include_once($header_top_big);
-		include_once($header_menu);
-		include_once($header_bottom_big);
 	}
 
-	add_action('btheme_header','bc_tophead_big');
+	add_action('mayflower_header','bc_tophead_big');
 
 ###########################
 // Custom do_settings_sections function
@@ -294,21 +368,7 @@ function custom_do_settings_fields($page, $section) {
     }
 }
 */
-###########################
-// Hide Global Nav Option if Lite version is selected
-###########################
-/*
-jQuery(document).ready( function() {
-  jQuery('theme_mayflower_options[mayflower_version]').bind('change', function (e) {
-    if( jQuery('theme_mayflower_options[mayflower_version]').val() == 'official') {
-      jQuery('#OtherDiv').show();
-    }
-    else{
-      jQuery('#OtherDiv').hide();
-    }
-  });
-});
-*/
+
 ###########################
 //set up college headscripts
 ##########################
@@ -333,14 +393,11 @@ jQuery(document).ready( function() {
 ###################
 
 	function bc_footer() {
-		global $bc_globals_themepath;
-		   $bc_footer =  $bc_globals_themepath . "/common/bigfoot_content.html";
-		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
-		   ?>
-	       <div id="bigfoot"><?php
+		global $bc_globals_html_filepath;
+		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
 		   include_once($bc_footer);
 		   include_once($bc_footerlegal);
-		   ?>  </div><?php
 	}
 	add_action('btheme_footer', 'bc_footer', 50);
 
@@ -349,53 +406,14 @@ jQuery(document).ready( function() {
 ###################
 
 	function bc_footer_legal() {
-		global $bc_globals_themepath;
-		   $bc_footerlegal =  $bc_globals_themepath . "/common/legallinks.html";
-		   ?>
-	       <div id="bigfoot"><?php
+		global $bc_globals_html_filepath;
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
+		   
 		   include_once($bc_footerlegal);
-		   ?>  </div><?php
+		 
 	}
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
-
-###################
-//college footer analytics
-###################
-
-	function mayflower_analytics() {
-	?>
-	        <script type="text/javascript">
-			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-			</script>
-
-
-			<script type="text/javascript">
-			/*multisite test setup*/
-			try {
-			var altpageTracker = _gat._getTracker("UA-17566683-1");
-			altpageTracker._setDomainName(".bellevuecollege.edu");
-			altpageTracker._setAllowLinker(true);
-			altpageTracker._setAllowHash(false);
-			altpageTracker._trackPageview();
-			} catch (err) { }
-
-			/*juse depts.bellevuecollege.edu*/
-			try {
-			var deptspageTracker = _gat._getTracker("UA-3966899-5");
-			deptspageTracker._setDomainName(".bellevuecollege.edu");
-			deptspageTracker._setAllowLinker(true);
-			deptspageTracker._setAllowHash(false);
-			deptspageTracker._trackPageview();
-			} catch (err) { }
-
-
-			</script>
-
-	<?php
-	}
-	add_action('wp_footer', 'mayflower_analytics', 30);
 
 ##########################
 //site specific analytics
@@ -425,6 +443,19 @@ jQuery(document).ready( function() {
 	add_action('wp_footer', 'mayflower_sitespecific_analytics', 30);
 
 
+############################
+// Force IE Edge in WP Admin
+############################
+
+//hook the administrative header output
+add_action('admin_head', 'force_ie_edge_admin');
+
+function force_ie_edge_admin() {
+echo '
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+';
+}
+
 
 ############################
 // Custom Widget Styles
@@ -447,194 +478,182 @@ jQuery(document).ready( function() {
 	<?php
 	}
 
-	?><?php /*
-
-	///////////////////////////////////////////////////////////////////////////////////////////
-	// Reorder Posts
-	// CODE TO ADD POST PER PAGE FILTER
-	///////////////////////////////////////////////////////////////////////////////////////////
-	    add_filter( 'edit_posts_per_page', 'reorder_edit_posts_per_page', 10, 2 );
-	    function reorder_edit_posts_per_page( $per_page, $post_type ) {
-
-	        // CHECK USER PERMISSIONS
-	        if ( !current_user_can('edit_others_pages') )
-	            return;
-	        $post_type_object = get_post_type_object( $post_type );
-
-	        // ONLY APPLY TO HIERARCHICAL POST TYPE
-	        if ( !$post_type_object->hierarchical )
-	            return;
-
-	        // ADD POST PER PAGE DROP DOWN UI
-	        add_action( 'restrict_manage_posts', 'reorder_posts_per_page_filter' );
-
-	        // ADD SPECIAL STYLES (MOVE CURSOR & SPINNING LOADER AFTER REORDER)
-	        wp_enqueue_script( 'page-ordering', WP_CONTENT_URL . '/themes/mayflower_clear/js/sorting.js', array('jquery-ui-sortable'), '0.8.4', true );
-	        add_action( 'admin_print_styles', 'reorder_admin_styles' );
-
-	        if ( isset( $_GET['spo'] ) && is_numeric( $_GET['spo'] ) && ( $_GET['spo'] == -1 || ($_GET['spo']%10) == 0 ) ) :
-	            global $edit_per_page, $user_ID;
-	            $per_page = $_GET['spo'];
-	            if ( $per_page == -1 )
-	                $per_page = 99999;
-	            update_user_option( $user_ID, $edit_per_page, $per_page );
-	        endif;
-	        return $per_page;
-	    }
 
 
-	    // STYLING CSS FOR THE AJAX
-	       function reorder_admin_styles() {
-	        echo '<style type="text/css">table.widefat tbody th, table.widefat tbody td { cursor: move; }</style>';
-	       }
-
-
-	    // FUNCTION TO CREATE THE NUMBER OF POSTS PER PAGE DROPDOWN UI
-	       function reorder_posts_per_page_filter() {
-	        global $per_page;
-	        $spo = isset($_GET['spo']) ? (int)$_GET['spo'] : $per_page;
-	       ?>
-	        Display:<select name="spo" style="width: 100px;">
-	            <option<?php selected( $spo, -1 ); ?> value="-1"><?php _e('All Results'); ?></option>
-	            <?php for( $i=10;$i<=100;$i+=10 ) : ?>
-	            <option<?php selected( $spo, $i ); ?> value="<?php echo $i ?>"><?php echo $i; ?> <?php _e('Results'); ?></option>
-	            <?php endfor; ?>
-	        </select>
-	       <?php
-	       }
-
-
-
-	    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    // ACTUAL AJAX REQUEST FOR SORTING PAGES
-	    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	    add_action( 'wp_ajax_simple_page_ordering', 'reorder_do_page_ordering' );
-	    function reorder_do_page_ordering() {
-
-	        // RECHECK PERMISSIONS
-	        if ( !current_user_can('edit_others_pages') || !isset($_POST['id']) || empty($_POST['id']) || ( !isset($_POST['previd']) && !isset($_POST['nextid']) ) )
-	            die(-1);
-
-	        // IS IT A REAL POST?
-	        if ( !$post = get_post( $_POST['id'] ) )
-	            die(-1);
-	        $previd = isset($_POST['previd']) ? $_POST['previd'] : false;
-	        $nextid = isset($_POST['nextid']) ? $_POST['nextid'] : false;
-	        if ( $previd ) {
-
-	            // FETCH ALL THE SIBLINGS (RELATIVE ORDERING)
-	            $siblings = get_posts(array( 'depth' => 1, 'numberposts' => -1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->post_parent, 'orderby' => 'menu_order', 'order' => 'ASC', 'exclude' => $post->ID ));
-	            foreach( $siblings as $sibling ) :
-
-	                // BEGIN UPDATING MENU ORDERS
-	                if ( $sibling->ID == $previd ) {
-	                    $menu_order = $sibling->menu_order + 1;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $post->ID, 'menu_order' => $menu_order ));
-	                    continue;
-	                }
-
-	                // NOTHING LEFT TO DO - NUMBERS CORRECTLY PADDED
-	                if ( isset($menu_order) && $menu_order < $sibling->menu_order )
-	                    break;
-
-	                // NEED TO UPDATE THE SIBLINGS MENU ORDER AS WELL
-	                if ( isset($menu_order) ) {
-	                    $menu_order++;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $sibling->ID, 'menu_order' => $menu_order ));
-	                }
-	            endforeach;
-	        }
-
-	        if ( !isset($menu_order) && $nextid ) {
-
-	            // FETCH ALL THE SIBLINGS (RELATIVE ORDERING)
-	            $siblings = get_posts(array( 'depth' => 1, 'numberposts' => -1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->post_parent, 'orderby' => 'menu_order', 'order' => 'DESC', 'exclude' => $post->ID ));
-	            foreach( $siblings as $sibling ) :
-
-	                // START UPDATING MENU ORDERS
-	                if ( $sibling->ID == $nextid ) {
-	                    $menu_order = $sibling->menu_order - 1;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $post->ID, 'menu_order' => $menu_order ));
-	                    continue;
-	                }
-
-	                // NOTHING LEFT TO DO - NUMBER ALREADY PADDED
-	                if ( isset($menu_order) && $menu_order > $sibling->menu_order )
-	                    break;
-
-	                // NEED TO UPDATE THE SIBLING MENU ORDER
-	                if ( isset($menu_order) ) {
-	                    $menu_order--;
-	                    // UPDATE THE ACTUAL MOVED POST TO 1 AFTER PREV
-	                    wp_update_post(array( 'ID' => $sibling->ID, 'menu_order' => $menu_order ));
-	                }
-	            endforeach;
-	        }
-
-	        // FETCH ALL THE SIBLINGS WITH RELATIVE ORDERING AND IF THE MOVED POST HAS CHILDREN REFRESH THE PAGE
-	        $children = get_posts(array( 'depth' => 1, 'numberposts' => 1, 'post_type' => $post->post_type, 'post_status' => 'publish,pending,draft,future,private', 'post_parent' => $post->ID ));
-	        if ( !empty($children) )
-	            die('children');
-	        die();
-	    }
-
+	#################################
+	/*
+		This function is a shortcode to get class schedule data returned as json string for a given course name or a course name and number.
+		Fogbugz #2154
 	*/
-	?>
+	#################################
 
-	<?php
-	#########################
-	//
-	########################
+	function AllClassInformationRoutine($args)
+	{
+		$course = $args["course"];
+		if(!empty($course))
+		{
+			$url = CLASSESURL.$course."?format=json";
+			$json = file_get_contents($url,0,null,null);
+			$html = decodejsonClassInfo($json);
+			return $html;
+		}
+		return null;
+	}
+	function OneClassInformationRoutine($args)
+	{
+		$course = $args["course"];
+		$number = $args["number"];
+		if(!empty($course) && !empty($number))
+		{
+			$url = CLASSESURL.$course."?format=json";
+			$json = file_get_contents($url,0,null,null);
+			$html = decodejsonClassInfo($json,$number);
+			return $html;
+		}
+		return null;
+	}
 
-	class description_walker extends Walker_Nav_Menu {
-	      function start_el(&$output, $item, $depth, $args)
-	      {
-	           global $wp_query;
-	           $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-
-	           $class_names = $value = '';
-
-	           $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-
-	           $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-	           $class_names = ' class="'. esc_attr( $class_names ) . '"';
-
-	           $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
-
-	           $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-	           $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-	           $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-	           $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-
-	           $prepend = '<div class="top sans">';
-	           $append = '</div>';
-	           $description  = ! empty( $item->title ) ? '<div class="bottom">'.esc_attr( $item->attr_title ).'</div>' : '';
-
-	           if($depth != 0)
-	           {
-	                     $description = $append = $prepend = "";
-	           }
-
-	            $item_output = $args->before;
-	            $item_output .= '<a'. $attributes .'>';
-	            $item_output .= $args->link_before .$prepend.apply_filters( 'the_title', $item->title, $item->ID ).$append;
-	            $item_output .= $description.$args->link_after;
-	            $item_output .= '</a>';
-	            $item_output .= $args->after;
-
-	            $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+	function decodejsonClassInfo($jsonString,$number = NULL)
+	{
+		$decodeJson = json_decode($jsonString,true);
+		$htmlString = "";
+		$courses = $decodeJson["Courses"];
+		$htmlString .= "<div class='classDescriptions'>";
+		foreach($courses as $sections)
+		{
+			if($number!=null)
+			{
+				if($sections["Number"] == $number)
+				{
+					$htmlString .= getHtmlForCourse($sections);
+				}				
 			}
-
-			function start_lvl(&$output, $depth) {
-			    $indent = str_repeat("\t", $depth);
-			    $output .= "\n$indent<ul class=\"nav nav-list\">\n";
+			else
+			{
+				$htmlString .= getHtmlForCourse($sections);
 			}
+		}
+		$htmlString .= "</div>"; //classDescriptions
+
+		return $htmlString;
+	}
+
+	function getHtmlForCourse($sections)
+	{
+		$htmlString .= "<div class='classInfo'>";
+		$htmlString .= "<h2 class='classHeading'>";
+			$courseUrl = CLASSESURL.$sections["Subject"];
+			if($sections["IsCommonCourse"])
+			{
+				$courseUrl .= "&";
+			}
+			$courseUrl .= "/".$sections["Number"];
+			
+			$htmlString .= "<a href='".$courseUrl."''>";
+			$htmlString .= "<span class='courseID'>".$sections["Descriptions"][0]["CourseID"]."</span>";
+			$htmlString .= "<span class='courseTitle'>".$sections["Title"]."</span>";
+			$htmlString .= "<span class='courseCredits'> &#8226; ";
+			
+			if($sections["IsVariableCredits"])
+			{					
+				$htmlString .= "V1-".$sections["Credits"]." <abbr title='variable credit'>Cr.</abbr>";
+			}
+			else
+			{
+				$htmlString .= $sections["Credits"]." <abbr title='credit(s)'>Cr.</abbr>";
+			}
+			$htmlString .= "</span>";
+			$htmlString .= "</a>";
+			$htmlString .= "</h2>";//classHeading 
+			$htmlString .= "<p class='classDescription'>" . $sections["Descriptions"][0]["Description"] . "</p>";
+			$htmlString .= "<p class='classDetailsLink'>";
+			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
+			$htmlString .= "</p>";
+			$htmlString .= "</div>"; //classInfo
+			return $htmlString;
 	}
 
 
-	###
+	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
+	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
+
+	//$mayflower_options['mayflower_version']
+	//global $mayflowerVersion;
+	//global $mayflower_brand;
+	//$mayflowerVersionCSS
+	//mayflower_brand_css
+	$mayflower_brand = $mayflower_options['mayflower_brand'];
+	$mayflower_brand_css = "";
+	if( $mayflower_brand == 'lite' ) {
+		$mayflower_brand_css = "globals-lite";
+	} else {
+		$mayflower_brand_css = "globals-branded";
+	}
+	
+	
+	// Get Mayflower network setting values
+	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
+	$globals_version = $network_mayflower_settings['globals_version']; 
+	$globals_path = $network_mayflower_settings['globals_path']; 
+	$globals_path_over_http = $globals_path;
+	if (empty($globals_path)) {
+		$globals_path_over_http = "/g/2/";
+	}
+
+///////////////////////////////////////
+// - CPT Re-ordering
+// - Register and write the ajax callback function to actually update the posts.
+// * Set action in sorting-v2.js to the function name below
+///////////////////////////////////////
+
+
+add_action( 'wp_ajax_mayflower_cpt_update_post_order', 'mayflower_cpt_update_post_order' );
+
+function mayflower_cpt_update_post_order() {
+	global $wpdb;
+
+	$post_type     = $_POST['postType'];
+	$order        = $_POST['order'];
+
+	/**
+	*    Expect: $sorted = array(
+	*                menu_order => post-XX
+	*            );
+	*/
+	foreach( $order as $menu_order => $post_id )
+	{
+		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
+		$menu_order     = intval($menu_order);
+		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
+	}
+
+	die( '1' );
+}
+/*
+	Cron Job for RaveAlert. Cron runs the functions located in alertnotification.php file.
+*/	
+	
+	add_filter('cron_schedules', 'new_interval');
+
+// add once 1 minute interval to wp schedules
+function new_interval($interval) {
+
+    $interval['minutes_1'] = array('interval' => 1*60, 'display' => 'Once 1 minutes');
+
+    return $interval;
+}
+add_action( 'my_cron', 'myCronFunction' );
+//error_log("WP functions file running");
+//function my_activation() {
+	if ( ! wp_next_scheduled( 'my_cron' ) ) {
+	  wp_schedule_event( time(), 'minutes_1', 'my_cron' );
+	}
+	else
+	{
+		//error_log("my cron is already scheduled");
+	}
+	wp_cron();
+
+
 ?>

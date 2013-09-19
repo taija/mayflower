@@ -9,30 +9,44 @@ Author URI:
 */
 
 
+########################################
+## - Hide Page Links to in Slider posts
+########################################
+
+add_filter( 'page-links-to-post-types', 'remove_plt_from_slider' );
+
+function remove_plt_from_slider( $post_types )
+{
+    $key = array_search( 'slider',  $post_types );
+    if( $key !== false ) {
+        unset($post_types[$key]);
+    }
+
+    return $post_types;
+}
 
 ///////////////////////////////////////
-// - Setup Staff Custom Post type - //
+// - Setup Slider Custom Post type - //
 ///////////////////////////////////////
-
 
 
     add_action('init', 'bc_slider_register');
 
     function bc_slider_register() {
 		$labels = array(
-			'name' => _x('Featured Slider', 'post type general name'),
-			'singular_name' => _x('Slide', 'post type singular name'),
-			'add_new' => _x('Add New', 'Slide'),
-			'add_new_item' => __('Add New Slide'),
-			'edit_item' => __('Edit Slide'),
-			'new_item' => __('New Slide'),
-			'all_items' => __('Slide List'),
-			'view_item' => __('View Slide'),
-			'search_items' => __('Search Slides'),
-			'not_found' =>  __('No Slides found'),
-			'not_found_in_trash' => __('No Slides found in Trash'),
+			'name' => 'Featured Slider',
+			'singular_name' => 'Slide', 
+			'add_new' => 'Add New', 'Slide',
+			'add_new_item' => 'Add New Slide',
+			'edit_item' => 'Edit Slide',
+			'new_item' => 'New Slide',
+			'all_items' => 'Slide List',
+			'view_item' => 'View Slide',
+			'search_items' => 'Search Slides',
+			'not_found' =>  'No Slides found',
+			'not_found_in_trash' => 'No Slides found in Trash',
 			'parent_item_colon' => '',
-			'menu_name' => __('Featured Slider')
+			'menu_name' => 'Featured Slider'
 		);
 
         $args = array(
@@ -62,7 +76,8 @@ function mayflower_register_slider_sort_page() {
 		'edit.php?post_type=slider',
 		'Order Slides',
 		'Re-Order',
-		'edit_pages', 'slider-order',
+		'edit_pages', 
+		'slider-order',
 		'slider_order_page'
 	);
 }
@@ -97,39 +112,12 @@ function slider_order_page() {
 			<?php while( $slides->have_posts() ) : $slides->the_post(); ?>
 				<tr id="post-<?php the_ID(); ?>">
 					<td class="column-order"><img src="<?php echo get_stylesheet_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
-					<td class="column-thumbnail">
+					<td class="thumbnail column-thumbnail">
 						<div class="item active">
 							<div class="img-wrapper">
-								<?php the_post_thumbnail( 'featured-full' ); ?>
+								<?php the_post_thumbnail( 'sort-screen-thumbnail' ); ?>
 
 
-								<div class="carousel-caption">
-
-<?php
-	$mayflower_options = mayflower_get_options();
-	if ( ! isset( $mayflower_options['slider_title'] ) )
-		$mayflower_options['slider_title'] = 0;
-
-	    if( $mayflower_options['slider_title'] == 1) {
-?>
-
-									<h2><?php the_title();?></h2>
-<?php } else { } ?>
-
-<?php
-	$mayflower_options = mayflower_get_options();
-	if ( ! isset( $mayflower_options['slider_excerpt'] ) )
-		$mayflower_options['slider_excerpt'] = 0;
-
-	    if( $mayflower_options['slider_excerpt'] == 1) {
-?>
-
-									<?php the_excerpt(); ?>
-<?php } else { } ?>
-
-
-
-								</div><!-- carousel-caption -->
 
 							</div><!-- img-wrapper -->
 						</div><!-- item active -->
@@ -193,41 +181,11 @@ function mayflower_slider_enqueue_scripts() {
 
 
 
-///////////////////////////////////////
-// - Register and write the ajax callback function to actually update the posts.
-///////////////////////////////////////
-
-
-add_action( 'wp_ajax_slider_update_post_order', 'slider_update_post_order' );
-
-function slider_update_post_order() {
-	global $wpdb;
-
-	$post_type     = $_POST['postType'];
-	$order        = $_POST['order'];
-
-	/**
-	*    Expect: $sorted = array(
-	*                menu_order => post-XX
-	*            );
-	*/
-	foreach( $order as $menu_order => $post_id )
-	{
-		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
-		$menu_order     = intval($menu_order);
-		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
-	}
-
-	die( '1' );
-}
-
-
-
 
 
 
 ###########################
-// - Remove Title & WYSIWYG Editor from Staff Post type
+// - Remove Title & WYSIWYG Editor from Slider Post type
 // - http://codex.wordpress.org/Function_Reference/remove_post_type_support
 
 //	add_action('init', 'remove_slider_meta');
@@ -240,7 +198,7 @@ function slider_update_post_order() {
 //
 
 ////////////////////////////////////////////////////
-// Remove Unncessary Meta Boxes on Staff Admin Screen
+// Remove Unncessary Meta Boxes on Slider Admin Screen
 /////////////////////////////////////////////////////
 
 
@@ -257,7 +215,7 @@ add_action( 'admin_menu', 'slider_remove_meta_boxes' );
 endif;
 
 /////////////////////////////////////////
-// Custom Post Title text for Staff CPT
+// Custom Post Title text for Slider CPT
 /////////////////////////////////////////
 
 function mayflower_slider_title_text( $title ){
@@ -271,23 +229,6 @@ return $title;
 add_filter( 'enter_title_here', 'mayflower_slider_title_text' );
 
 
-/////////////////////////////////////////
-// Sub-Menu for sortables
-/////////////////////////////////////////
-/*
-add_action( 'admin_menu', 'mayflower_staff_sub_menu' );
-
-	function mayflower_staff_sub_menu() {
-	    add_submenu_page(
-	        'edit.php?post_type=slider',
-	        'Order Slides',
-	        'Order',
-	        'edit_pages', 'slider-order',
-	        'slider_staff_order_page'
-	    );
-	}
-*/
-
 ///////////////////////////////////////
 // Custom Columns for Slider Post type
 ///////////////////////////////////////
@@ -298,9 +239,9 @@ add_filter('manage_edit-slider_columns', 'add_slider_columns');
 function add_slider_columns($slider_columns) {
 		$slider_columns = array (
 		'cb' => '<input type="checkbox" />',
-		'thumbnail' => __('Featured Image'),
-		'title' => __('Title'),
-		'slider_link_to' => __('External URL'),
+		'thumbnail' => 'Featured Image',
+		'title' => 'Title',
+		'slider_link_to' => 'External URL',
 	);
 //remove unwanted default columns
 		unset($slider_columns['author']);
@@ -318,14 +259,14 @@ function add_slider_columns($slider_columns) {
 	switch( $column ) {
 
 		    case 'thumbnail':
-					echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
+					echo get_the_post_thumbnail( $post->ID, 'sort-screen-thumbnail' );
 					break;
 					    default:
 
 			case 'slider_link_to':
 
 				/* Get the post meta. */
-				$slider_ext_url = get_post_meta( $post->ID, 'slider_url', true );
+				$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
 					echo $slider_ext_url;
 
 			break;
@@ -349,7 +290,7 @@ add_action( 'load-post-new.php', 'add_slider_ext_url_mb' );
 function add_slider_ext_url_mb() {
     add_meta_box(
 		'slider_external_url', // $id
-		'External URL', // $title
+		'Slide URL', // $title
 		'show_slider_ext_url', // $callback
 		'slider', // $page
 		'normal', // $context
@@ -358,11 +299,11 @@ function add_slider_ext_url_mb() {
 add_action('add_meta_boxes', 'add_slider_ext_url_mb');
 
 // Field Array
-$prefix = 'slider_';
-$custom_meta_fields = array(
+$prefix = '_slider_';
+$slider_custom_meta_fields = array(
 	array(
-		'label'=> 'Slider Link',
-		'desc'	=> '',
+		'label'=> 'Slide URL',
+		'desc'	=> 'Enter the URL associated with this ad.',
 		'id'	=> $prefix.'url',
 		'type'	=> 'url'
 	),
@@ -370,12 +311,12 @@ $custom_meta_fields = array(
 
 // The Callback
 function show_slider_ext_url() {
-global $custom_meta_fields, $post;
+global $slider_custom_meta_fields, $post;
 // Use nonce for verification
 echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
     // Begin the field table and loop
     echo '<table class="form-table">';
-    foreach ($custom_meta_fields as $field) {
+    foreach ($slider_custom_meta_fields as $field) {
         // get value of this field if it exists for this post
         $meta = get_post_meta($post->ID, $field['id'], true);
         // begin a table row with
@@ -384,11 +325,9 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
                 <td>';
                 switch($field['type']) {
                     // case items will go here
-
 					case 'url':
 					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="http://" />
 					        <br /><span class="description">'.$field['desc'].'</span>';
-						echo '<p>If you want to link to an external page, enter the URL here.</p>';
 					break;
 
                 } //end switch
@@ -399,7 +338,7 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
 
 // Save the Data
 function save_slider_custom_meta($post_id) {
-    global $custom_meta_fields;
+    global $slider_custom_meta_fields;
 
 	// verify nonce
 	if ( !isset( $_POST['custom_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['custom_meta_box_nonce'], basename( __FILE__ ) ) )
@@ -417,7 +356,7 @@ function save_slider_custom_meta($post_id) {
 			return $post_id;
 	}
 	// loop through fields and save the data
-	foreach ($custom_meta_fields as $field) {
+	foreach ($slider_custom_meta_fields as $field) {
 		$old = get_post_meta($post_id, $field['id'], true);
 		$new = $_POST[$field['id']];
 		if ($new && $new != $old) {
