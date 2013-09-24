@@ -423,20 +423,19 @@ function custom_do_settings_fields($page, $section) {
 		$mayflower_options = mayflower_get_options();
 
 		if ($mayflower_options['ga_code']) {
-
-	 ?>
-
-		<script type="text/javascript">
-			/*Site-Specific GA code*/
-			try {
-			var sitepageTracker = _gat._getTracker("<?php echo $mayflower_options['ga_code'] ?>");
-			sitepageTracker._setDomainName(".bellevuecollege.edu");
-			sitepageTracker._setAllowLinker(true);
-			sitepageTracker._setAllowHash(false);
-			sitepageTracker._trackPageview();
-			} catch (err) { }
-		</script>
-		<?php } // end if
+		// Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
+	 	?>
+			<script type="text/javascript">
+                /*Site-Specific GA code*/
+				_gaq.push(
+				  ['site._setAccount', '<?php echo $mayflower_options['ga_code'] ?>'],
+				  ['site._setDomainName', 'bellevuecollege.edu'],
+				  ['site._setAllowLinker', true],
+				  ['site._trackPageview']
+				);
+            </script>
+		<?php
+		} // end if
 
 
 	} // end function
