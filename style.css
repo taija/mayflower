@@ -3,9 +3,8 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.2.1.0b
+Version: 1.2.1.0c
 */
-
 
 
 /* ###################################### */
@@ -18,67 +17,18 @@ Version: 1.2.1.0b
 .wp-list-table .column-sorting img { cursor: move; }
 .wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
 
-
-
-/* ###################################### */
-/* ----- Need to move to Globals    ----- */
-/* ###################################### */
-/*
-
-Sections here:
-- Slider
-*/
-
-/* Slider */
-.carousel { margin-bottom: 0}  /* NEED TO MOVE TO GLOBALS!!!*/
-.carousel .attachment-featured-full {}
-
-.carousel .attachment-featured-in-content {}
-
-.carousel h2 {
-	margin-top: 0px;
-	padding: 0;
-	color: #fff;
-	line-height: 0.6666667em;
+/* ##################################### */
+/* Carousel Admin */
+.column-thumbnail {
+	width: 140px;
 }
-
-
-
-.carousel-caption h2 {
-  font-size: 1.4em;   /*is this necessary?*/
-  line-height: 1.429em;
-  margin: 0;
-}
-
-.carousel-caption p{
-  xline-height: 21px;
-  margin: 0;
-}
-
-.carousel-caption a {
-  color: #ffffff;
-  xline-height: 21px;
-  margin: 0;
-  text-decoration: none;
-}
-.carousel-caption a:focus,
-.carousel-caption a:hover { 
-	color: white; 
-	text-decoration: underline}
-
 .widefat .carousel-caption p {   /*what's widefat?*/
   margin: 0;
   padding: 0;
 }
-
-.carousel-caption h2 {     /*when is this different than just .carousel h2*/
-	font-size: 1.4em;
-	padding: 0;
-}
 .widefat td {
 	padding: 4px 7px;
 }
-
 td.column-thumbnail .active .img-wrapper {
 	position: relative;
 	max-width: 1024px;
@@ -95,33 +45,14 @@ tbody.ui-sortable td {
 	padding: 10px 0px;
 }
 
-.column-thumbnail {
-	width: 140px;
-}
-
-#myCarousel .full {
-	border-top: 1px solid #1a1a1a;
-}
 
 
-/* ##################################### */
-/* Slider bc home page override */
-.bchomepage .carousel-inner {
-	box-shadow: 0 2px 8px #cdcdcd;
-}
-.bchomepage .carousel-caption h2 {
-	display: inline;
-	font-size: 1em;
-	font-weight: bold;
-	font-family: Helvetica,​Arial,​sans-serif;}
-.bchomepage .carousel-caption p {
-	display: none;
-}
-@media screen and (min-width: 60em) {
-	.bchomepage .carousel-caption p {
-		display: inline;
-	}
-}
+/* ###################################### */
+/* ----- Need to move to Globals    ----- */
+/* ###################################### */
+
+
+
 
 
 
@@ -891,5 +822,24 @@ list-style-type: none;
 	#home-news h2 {
 		font-size: 1.2em;
 		line-height: 1.66667em;
+	}
+}
+
+/* ##################################### */
+/* Slider bc home page override */
+.bchomepage .carousel-inner {
+	box-shadow: 0 2px 8px #cdcdcd;
+}
+.bchomepage .carousel-caption h2 {
+	display: inline;
+	font-size: 1em;
+	font-weight: bold;
+	font-family: Helvetica,​Arial,​sans-serif;}
+.bchomepage .carousel-caption p {
+	display: none;
+}
+@media screen and (min-width: 60em) {
+	.bchomepage .carousel-caption p {
+		display: inline;
 	}
 }
