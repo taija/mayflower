@@ -637,14 +637,6 @@ ul.section-nav ul.sub-menu {
 }
 
 
-/* ###################### */
-/* ----- BC Widgets ----- */
-/* ###################### */
-div.widget[id*=_bcause_] .widget-title {
-    color: #2191bf;
-}
-
-
 
 /* ------- BC Home Page only  --- */
 /* ############################## */
