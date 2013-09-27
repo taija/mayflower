@@ -455,15 +455,30 @@ echo '
 ';
 }
 
-############################
+########################################
 // Give active menu item 'active' class
-############################
+########################################
 
 add_filter('nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2);
 function mayflower_nav_active_class($classes, $item){
-     if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes) ){
+     if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)){
              $classes[] = 'active ';
      }
+	
+	/*Apply active class on blog post parent*/
+	if ( is_singular('post') ) {
+		if( in_array('current_page_parent', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+	
+	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent 
+	if ( is_singular('staff') ) {
+		if( in_array('staff', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+		
      return $classes;
 }
 
