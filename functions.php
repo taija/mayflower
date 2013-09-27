@@ -483,6 +483,20 @@ function mayflower_nav_active_class($classes, $item){
 }
 
 
+################################################################################
+// - Apply mayflower custom CSS  (currently for staff/slider cpt)
+################################################################################
+	
+	function mayflower_dashboard_styles($hook) {
+	    $css_path = get_template_directory_uri() . '/css/dashboard.css';
+		if('edit.php?post_type=staff' !=$hook )
+	        wp_register_style( 'mayflower_dashboard', $css_path );
+	        wp_enqueue_style( 'mayflower_dashboard' );
+	}
+	add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
+	
+	
+
 ############################
 // Custom Widget Styles
 ############################

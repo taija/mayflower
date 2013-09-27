@@ -377,40 +377,31 @@ list-style-type: none;
 }
 
 
+
+/* ####################################### */
+/* ----- Staff CPT styles - to move  ----- */
 /* ###################################### */
-/* ----- Dashboard CSS  -  to move  ----- */
-/* ###################################### */
 
-/* Used in staff & Slider CPT  */
-.wp-list-table td { background: white; }
-.wp-list-table .column-sorting { padding: 3px 10px; width: 50px; }
-.wp-list-table .column-sorting img { cursor: move; }
-.wp-list-table td.column-sorting { vertical-align: middle; text-align: center; }
-
-/* ##################################### */
-/* Carousel Admin */
-.column-thumbnail {
-	width: 140px;
-}
-.widefat .carousel-caption p {   /*what's widefat?*/
-  margin: 0;
-  padding: 0;
-}
-.widefat td {
-	padding: 4px 7px;
-}
-td.column-thumbnail .active .img-wrapper {
-	position: relative;
-	max-width: 1024px;
+.staff-details h1,
+.staff-details h2,
+.staff-details h3 {
+	padding: 0;
+	margin: 0;
 }
 
-td.column-thumbnail img {
-    height: auto;
-    max-height: 210px;
-    max-width: 1170px;
-    width: 100%;
+.staff-details h3 {
+	margin-bottom: 21px;
+}
+.staff-details h3 {
+	font-style: normal;
+	color: #000;
 }
 
-tbody.ui-sortable td {
-	padding: 10px 0px;
+.staff-details ul {
+	margin: 0;
+	padding: 0;
+
+}
+.staff-details li {
+	list-style: none;
 }

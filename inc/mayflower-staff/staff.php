@@ -26,36 +26,6 @@ function remove_plt_from_staff( $post_types )
 
 
 ///////////////////////////////////////
-// - Get the Slider plugin stylesheet
-///////////////////////////////////////
-
-	function add_staff_stylesheet() {
-	
-	    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
-	    // registers your stylesheet
-		wp_register_style( 'staff_styles', 
-			$css_path, 
-			array(), 
-			null, 
-			'all' );
-
-	    //wp_register_style( 'staff_styles', $css_path );
-	
-	    // loads your stylesheet
-	    wp_enqueue_style( 'staff_styles' );
-	}
-	add_action( 'wp_enqueue_scripts', 'add_staff_stylesheet' );
-	
-	function staff_admin_styles($hook) {
-	    $css_path = WP_CONTENT_URL . '/themes/mayflower/inc/mayflower-staff/css/staff_styles.css';
-		if('edit.php?post_type=staff' !=$hook )
-	        wp_register_style( 'staff_styles', $css_path );
-	        wp_enqueue_style( 'staff_styles' );
-	}
-	add_action( 'admin_enqueue_scripts', 'staff_admin_styles' );
-
-
-///////////////////////////////////////
 // - Setup Staff Custom Post type - //
 ///////////////////////////////////////
 // include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
