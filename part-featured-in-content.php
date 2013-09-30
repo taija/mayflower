@@ -38,9 +38,9 @@
 								        if ( !empty( $slider_ext_url ) )
 									{ ?>
 				
-									<h2>
+									
 										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title();; ?>"><?php the_post_thumbnail('featured-in-content');?></a>
-									</h2>
+									
 				
 									<?php } else { ?>
 				
@@ -103,9 +103,9 @@
 							        if ( !empty( $slider_ext_url ) )
 								{ ?>
 			
-								<h2>
+								
 									<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-in-content');?></a>
-								</h2>
+								
 			
 								<?php } else { ?>
 			

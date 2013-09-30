@@ -423,20 +423,19 @@ function custom_do_settings_fields($page, $section) {
 		$mayflower_options = mayflower_get_options();
 
 		if ($mayflower_options['ga_code']) {
-
-	 ?>
-
-		<script type="text/javascript">
-			/*Site-Specific GA code*/
-			try {
-			var sitepageTracker = _gat._getTracker("<?php echo $mayflower_options['ga_code'] ?>");
-			sitepageTracker._setDomainName(".bellevuecollege.edu");
-			sitepageTracker._setAllowLinker(true);
-			sitepageTracker._setAllowHash(false);
-			sitepageTracker._trackPageview();
-			} catch (err) { }
-		</script>
-		<?php } // end if
+		// Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
+	 	?>
+			<script type="text/javascript">
+                /*Site-Specific GA code*/
+				_gaq.push(
+				  ['site._setAccount', '<?php echo $mayflower_options['ga_code'] ?>'],
+				  ['site._setDomainName', 'bellevuecollege.edu'],
+				  ['site._setAllowLinker', true],
+				  ['site._trackPageview']
+				);
+            </script>
+		<?php
+		} // end if
 
 
 	} // end function
@@ -456,6 +455,47 @@ echo '
 ';
 }
 
+########################################
+// Give active menu item 'active' class
+########################################
+
+add_filter('nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2);
+function mayflower_nav_active_class($classes, $item){
+     if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)){
+             $classes[] = 'active ';
+     }
+	
+	/*Apply active class on blog post parent*/
+	if ( is_singular('post') ) {
+		if( in_array('current_page_parent', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+	
+	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent 
+	if ( is_singular('staff') ) {
+		if( in_array('staff', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+		
+     return $classes;
+}
+
+
+################################################################################
+// - Apply mayflower custom CSS  (currently for staff/slider cpt)
+################################################################################
+	
+	function mayflower_dashboard_styles($hook) {
+	    $css_path = get_template_directory_uri() . '/css/dashboard.css';
+		if('edit.php?post_type=staff' !=$hook )
+	        wp_register_style( 'mayflower_dashboard', $css_path );
+	        wp_enqueue_style( 'mayflower_dashboard' );
+	}
+	add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
+	
+	
 
 ############################
 // Custom Widget Styles
@@ -654,6 +694,4 @@ add_action( 'my_cron', 'myCronFunction' );
 		//error_log("my cron is already scheduled");
 	}
 	wp_cron();
-
-
 ?>
