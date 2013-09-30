@@ -68,15 +68,16 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
+				</div><!-- content-padding -->
 						<hr />
 					<?php } else {} ?>
-				</div><!-- content-padding -->
-
 				<?php endwhile;?>
 				<?php wp_reset_postdata(); ?>
 
 				<?php // Loop for posts
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$args = array(
+						'paged' => $paged,
 						'post_type' => 'post',
 						'order_by'=> 'date',
 						'order' => 'DESC',
