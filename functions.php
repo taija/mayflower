@@ -216,10 +216,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
 			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-static">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widget-title content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Blog Widget Area - located just below the global nav on blog pages.
@@ -227,10 +227,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
 			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-blog">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widget-title content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Global Widget Area - located just below the sidebar nav.
@@ -238,10 +238,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
 			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="global-widget-area">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="global-widget-area content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Aside Widget Area - aside located in right column of page content.
