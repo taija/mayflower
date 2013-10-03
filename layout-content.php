@@ -10,7 +10,7 @@
 	} else if ( is_page_template('page-staff.php') ) {
 		// If we are loading the staff page template
 		get_template_part('part-staff');
-	} else if ( is_single('staff') ) {
+	} else if ( is_singular('staff') ) {
 		// If we are loading the single-staff 
 		get_template_part('part-single-staff');
 	} else if ( is_page_template('page-nav-page.php') ) {
