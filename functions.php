@@ -632,7 +632,7 @@ function mayflower_nav_active_class($classes, $item){
 	
 	
 	// Get Mayflower network setting values
-	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
 	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
 	$globals_version = $network_mayflower_settings['globals_version']; 
 	$globals_path = $network_mayflower_settings['globals_path']; 
