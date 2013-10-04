@@ -406,25 +406,34 @@ list-style-type: none;
 /* ####################################### */
 /* ----- Temo side navigation/widget areas styles ----- */
 /* ###################################### */
-h2.global-widget-area { 
+.sidebar h2.global-widget-area { 
 	color: white;
-	font-size: 1em;
+	font-size: 0.9em;
 	background-color: #003d79;
+	padding-top: 0.333333em;
+	padding-top: 0.333333rem;
+	padding-bottom: 0.333333em;
+	padding-bottom: 0.333333rem;
 }
-.wp-widget .menu {
-	
+.sidebar .menu {
+	border-right: 1px solid #E6E6E6;
 }
-.wp-widget ul.menu {
+.sidebar  ul.menu {
 	padding: 0;
 	margin: 0
 }
-.wp-widget .menu li{
+.sidebar .menu li{
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
-.wp-widget .menu a{
-	padding: 0 2em;
+.sidebar .menu a{
+	padding: 0 1em;
 	display: block;
-	border-top: 0.0333333em 1px black;
+	border-bottom: 1px solid #F0F4F7
+}
+@media screen and (min-width: 55em) {
+	.sidebar .menu a {
+		padding:  0	2em;
+	}	
 }
