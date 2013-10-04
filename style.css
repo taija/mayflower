@@ -412,6 +412,7 @@ list-style-type: none;
 	background-color: #003d79;
 	line-height: 1.66667em;
 }
+.sidebar .wp-widget { margin-bottom: 2em;}
 .sidebarleft .menu {
 	border-right: 1px solid #E6E6E6;
 }
