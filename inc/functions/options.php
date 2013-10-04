@@ -209,6 +209,10 @@ function mayflower_get_option_parameters() {
 					'name' => 'nav-enrollment',
 					'title' => __( 'Enrollment', 'mayflower' )
 				),
+				'nav-services' => array(
+					'name' => 'nav-services',
+					'title' => __( 'Services', 'mayflower' )
+				),
 				'nav-campuslife' => array(
 					'name' => 'nav-campuslife',
 					'title' => __( 'Campus Life', 'mayflower' )
