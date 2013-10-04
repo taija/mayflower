@@ -105,7 +105,7 @@ a img.aligncenter {
 /* ###################################### */
 
 .box-shadow {
-	box-shadow: 0 2px 8px #cdcdcd;
+	box-shadow: 0 2px 4px #ddd;
 	background-color: white;
 }
 .content-row {
@@ -417,7 +417,7 @@ h2.global-widget-area {
 	background-color: #003d79;
 }
 .wp-widget .menu {
-	border-left: 1px solid red;
+	
 }
 .wp-widget ul.menu {
 	padding: 0;

@@ -1,4 +1,8 @@
-<div id="content">
+<?php 
+global $mayflower_brand; 
+?>
+
+<div id="content" <?php if( $mayflower_brand == 'branded' )  {?> class="box-shadow"<?php }?>>
 	<?php get_template_part('part-featured-full'); ?>
 	<div class="row row-padding">  <?php
 	
