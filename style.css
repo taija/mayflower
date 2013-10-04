@@ -103,11 +103,6 @@ a img.aligncenter {
 /* ###################################### */
 /* ----- BC Home Page only          ----- */
 /* ###################################### */
-
-.box-shadow {
-	box-shadow: 0 2px 4px #ddd;
-	background-color: white;
-}
 .content-row {
 	margin-top: 2em;
 	margin-bottom: 2em;
