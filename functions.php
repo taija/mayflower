@@ -216,10 +216,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
 			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-static">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widget-title content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Blog Widget Area - located just below the global nav on blog pages.
@@ -227,10 +227,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
 			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-blog">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widget-title content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Global Widget Area - located just below the sidebar nav.
@@ -238,10 +238,10 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
 			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="global-widget-area">',
-			'after_title' => '</h3>',
+			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="global-widget-area content-padding">',
+			'after_title' => '</h2>',
 		) );
 
 		// Aside Widget Area - aside located in right column of page content.
@@ -423,20 +423,19 @@ function custom_do_settings_fields($page, $section) {
 		$mayflower_options = mayflower_get_options();
 
 		if ($mayflower_options['ga_code']) {
-
-	 ?>
-
-		<script type="text/javascript">
-			/*Site-Specific GA code*/
-			try {
-			var sitepageTracker = _gat._getTracker("<?php echo $mayflower_options['ga_code'] ?>");
-			sitepageTracker._setDomainName(".bellevuecollege.edu");
-			sitepageTracker._setAllowLinker(true);
-			sitepageTracker._setAllowHash(false);
-			sitepageTracker._trackPageview();
-			} catch (err) { }
-		</script>
-		<?php } // end if
+		// Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
+	 	?>
+			<script type="text/javascript">
+                /*Site-Specific GA code*/
+				_gaq.push(
+				  ['site._setAccount', '<?php echo $mayflower_options['ga_code'] ?>'],
+				  ['site._setDomainName', 'bellevuecollege.edu'],
+				  ['site._setAllowLinker', true],
+				  ['site._trackPageview']
+				);
+            </script>
+		<?php
+		} // end if
 
 
 	} // end function
@@ -456,6 +455,47 @@ echo '
 ';
 }
 
+########################################
+// Give active menu item 'active' class
+########################################
+
+add_filter('nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2);
+function mayflower_nav_active_class($classes, $item){
+     if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)){
+             $classes[] = 'active ';
+     }
+	
+	/*Apply active class on blog post parent*/
+	if ( is_singular('post') ) {
+		if( in_array('current_page_parent', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+	
+	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent 
+	if ( is_singular('staff') ) {
+		if( in_array('staff', $classes)){
+             $classes[] = 'active ';
+     	}
+	}
+		
+     return $classes;
+}
+
+
+################################################################################
+// - Apply mayflower custom CSS  (currently for staff/slider cpt)
+################################################################################
+	
+	function mayflower_dashboard_styles($hook) {
+	    $css_path = get_template_directory_uri() . '/css/dashboard.css';
+		if('edit.php?post_type=staff' !=$hook )
+	        wp_register_style( 'mayflower_dashboard', $css_path );
+	        wp_enqueue_style( 'mayflower_dashboard' );
+	}
+	add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
+	
+	
 
 ############################
 // Custom Widget Styles
@@ -592,7 +632,7 @@ echo '
 	
 	
 	// Get Mayflower network setting values
-	$network_mayflower_settings = get_site_option( 'mayflower_network_mayflower_settings' );
+	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
 	$mayflower_version = $network_mayflower_settings['mayflower_version']; 
 	$globals_version = $network_mayflower_settings['globals_version']; 
 	$globals_path = $network_mayflower_settings['globals_path']; 
@@ -654,6 +694,4 @@ add_action( 'my_cron', 'myCronFunction' );
 		//error_log("my cron is already scheduled");
 	}
 	wp_cron();
-
-
 ?>

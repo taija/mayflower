@@ -53,38 +53,38 @@
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
-							<?php if (isset($post_meta_data['staff_position'][0])) { ?>
+							<?php if (isset($post_meta_data['_staff_position'][0])) { ?>
 								<h3>
-									<?php echo $post_meta_data['staff_position'][0]; ?>
+									<?php echo $post_meta_data['_staff_position'][0]; ?>
 								</h3>													
 							<?php } ?>
 
 							<ul>
 
-								<?php if (isset($post_meta_data['staff_email'][0])) { ?>
+								<?php if (isset($post_meta_data['_staff_email'][0])) { ?>
 									<li>
 										<strong>Email: </strong>
-										<a href="mailto:<?php echo $post_meta_data['staff_email'][0];  ?>"><?php echo $post_meta_data['staff_email'][0]; ?></a>
+										<a href="mailto:<?php echo $post_meta_data['_staff_email'][0];  ?>"><?php echo $post_meta_data['_staff_email'][0]; ?></a>
 									</li>
 								<?php } ?>
 
-								<?php if (isset($post_meta_data['staff_phone'][0])) { ?>
+								<?php if (isset($post_meta_data['_staff_phone'][0])) { ?>
 									<li>
 										<strong>Phone: </strong>
-										<?php echo $post_meta_data['staff_phone'][0];  ?>
+										<?php echo $post_meta_data['_staff_phone'][0];  ?>
 									</li>
 								<?php } ?>
 
-								<?php if (isset($post_meta_data['staff_office_location'][0])) { ?>
+								<?php if (isset($post_meta_data['_staff_office_location'][0])) { ?>
 									<li>
 										<strong>Office Location: </strong>
-										<?php echo $post_meta_data['staff_office_location'][0];  ?>
+										<?php echo $post_meta_data['_staff_office_location'][0];  ?>
 									</li>
 								<?php } ?>
 
-								<?php if (isset($post_meta_data['staff_office_hours'][0])) { ?>
+								<?php if (isset($post_meta_data['_staff_office_hours'][0])) { ?>
 									<li>
-										<strong>Office Hours: </strong><?php echo $post_meta_data['staff_office_hours'][0];  ?>
+										<strong>Office Hours: </strong><?php echo $post_meta_data['_staff_office_hours'][0];  ?>
 									</li>
 								<?php } ?>
 
