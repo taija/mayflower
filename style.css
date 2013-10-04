@@ -359,19 +359,19 @@ list-style-type: none;
 
 /* ##################################### */
 /* Slider bc home page override */
-.bchomepage .carousel-inner {
+.bchome .carousel-inner {
 	box-shadow: 0 2px 8px #cdcdcd;
 }
-.bchomepage .carousel-caption h2 {
+.bchome .carousel-caption h2 {
 	display: inline;
 	font-size: 1em;
 	font-weight: bold;
 	font-family: Helvetica,​Arial,​sans-serif;}
-.bchomepage .carousel-caption p {
+.bchome .carousel-caption p {
 	display: none;
 }
 @media screen and (min-width: 60em) {
-	.bchomepage .carousel-caption p {
+	.bchome .carousel-caption p {
 		display: inline;
 	}
 }
