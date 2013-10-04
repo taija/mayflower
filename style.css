@@ -408,19 +408,23 @@ list-style-type: none;
 /* ###################################### */
 .sidebar h2.global-widget-area { 
 	color: white;
-	font-size: 0.9em;
+	font-size: 1em;
 	background-color: #003d79;
-	padding-top: 0.333333em;
-	padding-top: 0.333333rem;
-	padding-bottom: 0.333333em;
-	padding-bottom: 0.333333rem;
+	line-height: 1.66667em;
 }
-.sidebar .menu {
+.sidebarleft .menu {
 	border-right: 1px solid #E6E6E6;
 }
-.sidebar  ul.menu {
+.sidebarright .menu {
+	border-left: 1px solid #E6E6E6;
+}
+.sidebar ul.menu {
 	padding: 0;
-	margin: 0
+	margin: 0;
+	border-top: 1px solid #003d79;
+}
+.sidebar h2 + div ul.menu {
+	border-top: none;
 }
 .sidebar .menu li{
 	list-style-type: none;
