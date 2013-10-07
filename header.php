@@ -113,7 +113,22 @@
                 <div class="content-padding">
                 <div id="site-header">
                     <h1 class="site-title">
-                        <?php bloginfo( 'name' ); ?>
+                        <?php 
+						if ( is_main_site()) {
+							if ($post->post_parent=="0"){
+								the_title();
+							} else {
+								if(intval($post->post_parent)>0)
+								{
+									while(intval($post->post_parent)>0)
+										$post = get_post($post->post_parent);
+								}
+								echo '<a href="'.get_permalink($post->post_parent).'">'.get_the_title($post->post_parent).'</a>';
+							}
+						} else {
+							bloginfo( 'name' ); 
+						}
+						?>
                     </h1>
                 </div><!-- container header --> 
 				</div><!-- content-padding --><?php
