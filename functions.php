@@ -34,6 +34,7 @@
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
 		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
+//		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
 
@@ -711,13 +712,14 @@ add_action( 'load-post-new.php', 'add_global_section_meta_box' );
 
 
 /* Adds a box to the main column on the Post and Page edit screens */
-function add_global_section_meta_box() {
-	if ( is_main_site()) {
-		$screens = array( 'post', 'page' );
+function add_global_section_meta_box() { 
+	global $post; 
+	if ( is_main_site() &&  ($post->post_parent=="0")) {			
+		$screens = array('page');
 		foreach ($screens as $screen) {
 			add_meta_box(
 				'global_section_meta_box',
-				'Globals',
+				'College Navigation Area',
 				'global_section_meta_box',
 				$screen,
 				'normal',
@@ -733,15 +735,9 @@ add_action('add_meta_boxes', 'add_global_section_meta_box');
 // Field Array
 $prefix = '_gnav_';
 $global_section_meta_fields = array(
-	array(
-		'label'=> 'This page title is section title',
-		'desc'	=> '',
-		'id'	=> $prefix.'meta_description',
-		'type'	=> 'checkbox'
-	), 
     array(  
-        'label'=> 'College Navigation Selection',  
-        'desc'  => 'Change if you want this page to show as a different navigation menu for this page',  
+        'label'=> 'College navigation menu',  
+        'desc'  => 'This page and all it\'s children will have the above college navigation area selected',  
         'id'    => $prefix.'select',  
         'type'  => 'select',  
         'options' => array (  
