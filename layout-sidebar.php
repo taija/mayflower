@@ -37,12 +37,16 @@ global $mayflower_brand;
 			get_template_part('part-single');
 		} else {
 			if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-				<div class="content-padding">
+				<div class="content-padding <?php 
+					if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
+						echo "row-padding";
+					} 
+				?>">
 					<?php if($post->post_content=="") : ?>
                     	<!-- Don't display empty the_content or surround divs -->
                     <?php else : ?>
 			<!-- Do stuff when the_content has content -->
-				<div class="content-padding">
+				
 					<?php if (is_front_page() ) {
 						//don't show the title on the home page
 						} else { ?>
@@ -56,7 +60,7 @@ global $mayflower_brand;
 							}	
 						}; ?>
 					<?php the_content(); ?>
-				</div><!-- .content-padding -->
+				
 	
 			<?php endif; 
 							
