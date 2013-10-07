@@ -413,7 +413,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			case 'staff_email':
 			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, 'staff_email', true );
+			$staff_meta = get_post_meta( $post_id, '_staff_email', true );
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
@@ -428,7 +428,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			case 'staff_position':
 			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, 'staff_position', true );
+			$staff_meta = get_post_meta( $post_id, '_staff_position', true );
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
@@ -443,7 +443,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			case 'staff_phone':
 			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, 'staff_phone', true );
+			$staff_meta = get_post_meta( $post_id, '_staff_phone', true );
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $staff_meta ) )
@@ -458,7 +458,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			case 'staff_hours':
 			/* Get the post meta. */
-			$duration = get_post_meta( $post_id, 'staff_office_hours', true );
+			$duration = get_post_meta( $post_id, '_staff_office_hours', true );
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
@@ -473,7 +473,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 			case 'staff_office_location':
 			/* Get the post meta. */
-			$duration = get_post_meta( $post_id, 'staff_office_location', true );
+			$duration = get_post_meta( $post_id, '_staff_office_location', true );
 
 			/* If no duration is found, output a default message. */
 			if ( empty( $duration ) )
