@@ -1,7 +1,17 @@
 <?php while ( have_posts() ) : the_post(); ?>
 
 	<div class="content-padding">
-	<h1><?php the_title(); ?></h1>
+    <?php 
+	if ( is_main_site()) {
+		if(intval($post->post_parent)>0){
+			?><h1><?php the_title(); ?></h1><?php
+		}
+	} else {
+		?><h1><?php the_title(); ?></h1><?php
+	}
+	?>
+                        
+	
 
 	<?php if($post->post_content=="") : ?>
 	<!-- Don't display empty the_content or surround divs -->

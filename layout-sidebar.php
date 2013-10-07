@@ -41,17 +41,24 @@ global $mayflower_brand;
 					<?php if($post->post_content=="") : ?>
                     	<!-- Don't display empty the_content or surround divs -->
                     <?php else : ?>
-						<!-- Do stuff when the_content has content -->
-                        <div class="page-content">
-                            <?php if (is_front_page() ) {
-                                //don't show the title on the home page
-                                } else { ?>
-                                <h1><?php the_title(); ?></h1>
-                                	<?php 	
-								}; ?>
-                            <?php the_content(); ?>
-                        </div><!-- page-content -->
-					<?php endif; 
+			<!-- Do stuff when the_content has content -->
+				<div class="content-padding">
+					<?php if (is_front_page() ) {
+						//don't show the title on the home page
+						} else { ?>
+                        <?php 
+							if ( is_main_site()) {
+								if(intval($post->post_parent)>0){
+									?><h1><?php the_title(); ?></h1><?php
+								}
+							} else {
+								?><h1><?php the_title(); ?></h1><?php
+							}	
+						}; ?>
+					<?php the_content(); ?>
+				</div><!-- .content-padding -->
+	
+			<?php endif; 
 							
 					get_template_part('part-blogroll'); ?>
 				</div><!-- content-padding -->
