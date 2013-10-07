@@ -738,7 +738,7 @@ $global_section_meta_fields = array(
     array(  
         'label'=> 'College navigation menu',  
         'desc'  => 'This page and all it\'s children will have the above college navigation area selected',  
-        'id'    => $prefix.'select',  
+        'id'    => $prefix.'college_nav_menu',  
         'type'  => 'select',  
         'options' => array (  
             'nav-home' => array (  
@@ -843,7 +843,7 @@ function save_global_section_meta($post_id) {
 			return $post_id;
 	}
 	// loop through fields and save the data
-	foreach ($seo_seo_meta_fields as $field) {
+	foreach ($global_section_meta_fields as $field) {
 		$old = get_post_meta($post_id, $field['id'], true);
 		$new = $_POST[$field['id']];
 		if ($new && $new != $old) {
