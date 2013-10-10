@@ -714,17 +714,22 @@ add_action( 'load-post-new.php', 'add_global_section_meta_box' );
 /* Adds a box to the main column on the Post and Page edit screens */
 function add_global_section_meta_box() { 
 	global $post; 
-	if ( is_main_site() &&  ($post->post_parent=="0")) {			
-		$screens = array('page');
-		foreach ($screens as $screen) {
-			add_meta_box(
-				'global_section_meta_box',
-				'College Navigation Area',
-				'global_section_meta_box',
-				$screen,
-				'normal',
-				'low'
-			);
+	if ( is_main_site()) {
+		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
+			if ("0" == $post->post_parent){
+			//if (intval($post->post_parent)>0) {			
+				$screens = array('page');
+				foreach ($screens as $screen) {
+					add_meta_box(
+						'global_section_meta_box',
+						'College Navigation Area',
+						'global_section_meta_box',
+						$screen,
+						'normal',
+						'low'
+					);
+				}
+			}
 		}
 	}
 }
