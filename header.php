@@ -80,10 +80,12 @@
 			$post_top_parent_id = $post->ID;  //now we now the top parent
 		}
 	}
+	echo '<!-- parentid= '. $post_top_parent_id . '-->';
 	?>            
 </head>
 
 <body <?php 
+
 		//if this is the root site, set main college nav menu to highlight.
 		if ($is_main_site == TRUE){
 			if($post_top_parent_id == 0){
@@ -93,7 +95,7 @@
 					body_class();
 				}	
 			} else {
-				$meta_values = get_post_meta( $post_top_parent_id, _gnav_college_nav_menu, true );
+				$meta_values = get_post_meta( $post_top_parent_id, '_gnav_college_nav_menu', true );
 				if (isset($meta_values)) {
 					body_class($meta_values);	
 				} else {
