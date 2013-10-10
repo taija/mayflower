@@ -197,17 +197,25 @@ function mayflower_get_option_parameters() {
 					'name' => 'nav-home',
 					'title' => __( 'Home', 'mayflower' )
 				),
+				'nav-classes' => array(
+					'name' => 'nav-classes',
+					'title' => __( 'Classes', 'mayflower' )
+				),
 				'nav-programs' => array(
 					'name' => 'nav-programs',
-					'title' => __( 'Programs', 'mayflower' )
+					'title' => __( 'Programs of Study', 'mayflower' )
 				),
 				'nav-enrollment' => array(
 					'name' => 'nav-enrollment',
 					'title' => __( 'Enrollment', 'mayflower' )
 				),
-				'nav-resources' => array(
-					'name' => 'nav-resources',
-					'title' => __( 'Campus Resources', 'mayflower' )
+				'nav-services' => array(
+					'name' => 'nav-services',
+					'title' => __( 'Services', 'mayflower' )
+				),
+				'nav-campuslife' => array(
+					'name' => 'nav-campuslife',
+					'title' => __( 'Campus Life', 'mayflower' )
 				),
 				'nav-about' => array(
 					'name' => 'nav-about',

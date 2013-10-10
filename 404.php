@@ -9,7 +9,7 @@
 
 get_header(); ?>
 	
-		<div class="content-padding row-padding" id="content">
+		<div class="content-padding row-padding box-shadow" id="content">
 
 
 

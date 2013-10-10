@@ -1,4 +1,8 @@
-<div id="content">
+<?php 
+global $mayflower_brand; 
+?>
+
+<div id="content" <?php if( $mayflower_brand == 'branded' )  {?> class="box-shadow"<?php }?>>
 <?php
 	get_template_part('part-featured-full'); 
 	?>
@@ -32,15 +36,21 @@
 					<?php if (is_front_page() ) {
 						//don't show the title on the home page
 						} else { ?>
-						<h1><?php the_title(); ?></h1>
-						<?php 	}; ?>
+                        <?php 
+							if ( is_main_site()) {
+								if(intval($post->post_parent)>0){
+									?><h1><?php the_title(); ?></h1><?php
+								}
+							} else {
+								?><h1><?php the_title(); ?></h1><?php
+							}	
+						}; ?>
 					<?php the_content(); ?>
 				</div><!-- .content-padding -->
 	
-			<?php endif; ?>
-	
-			<?php
-				get_template_part('part-blogroll');
+			<?php endif; 
+			
+			get_template_part('part-blogroll');
 			
 		endwhile; else: ?>
 		<p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
