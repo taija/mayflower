@@ -67,8 +67,8 @@
 	$post_top_parent_id = 0; //if needed, this ID is set to the top parent of this post
 	$is_main_site = FALSE;  //assume the site is not the root site, unless otherwhise specified
 	
-	//set $post_top_parent_id and $is_main_site for later use
-	if ( is_main_site()) {
+	//set $post_top_parent_id and $is_main_site for later use (ignore error404 page)
+	if ( is_main_site() && !(is_404())) {
 		$is_main_site = TRUE;  //this is the root site
 		if ($post->post_parent!="0"){
 			//this page has a parent
