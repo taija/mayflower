@@ -32,6 +32,7 @@
 				} 
 		}
 	?></title>
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
 
 <?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?><?php echo '<meta name="description" content="'?><?php echo $post_meta_data['_seo_meta_description'][0] . '" />'; ?> <?php  } else { } ?>
 
@@ -40,7 +41,6 @@
 	
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
