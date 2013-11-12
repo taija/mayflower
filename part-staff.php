@@ -29,7 +29,7 @@
             <div class="content-padding top-spacing15">
 			<?php
 				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => 50, 'orderby' => 'menu_order', 'order' => 'ASC') );
+				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
 
 				while ( $loop->have_posts() ) : $loop->the_post();
 			?>
@@ -108,7 +108,7 @@
 
 			<?php
 				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => 50, 'orderby' => 'menu_order', 'order' => 'ASC') );
+				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
 
 				while ( $loop->have_posts() ) : $loop->the_post();
 			?>
