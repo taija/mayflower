@@ -127,6 +127,11 @@ if (!current_user_can('edit_pages')) {
 	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
 		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
 
+
+	//Service Forms functionality
+if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
+	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
+
 #######################################
 // adds wordpress theme support
 #######################################
@@ -828,6 +833,7 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 	echo '</table>'; // end table
 }
 
+
 // Save the Data
 function save_global_section_meta($post_id) {
     global $global_section_meta_fields;
@@ -859,4 +865,5 @@ function save_global_section_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_global_section_meta');
+
 ?>
