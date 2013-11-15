@@ -302,6 +302,17 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 	add_action( 'widgets_init', 'mayflower_widgets_init' );
 
 
+function widget_empty_title($output='') {
+
+    if ($output == '&nbsp') {
+        return '';
+    }
+    return $output;
+}
+add_filter('widget_title', 'widget_empty_title');
+
+
+
 #########################
 //set globals path
 #########################
