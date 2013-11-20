@@ -467,9 +467,7 @@ function custom_do_settings_fields($page, $section) {
 add_action('admin_head', 'force_ie_edge_admin');
 
 function force_ie_edge_admin() {
-echo '
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-';
+echo '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 }
 
 ########################################
