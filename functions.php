@@ -127,6 +127,11 @@ if (!current_user_can('edit_pages')) {
 	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
 		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
 
+
+	//Service Forms functionality
+if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
+	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
+
 #######################################
 // adds wordpress theme support
 #######################################
@@ -295,6 +300,17 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 
 	/** Register sidebars by running mayflower_widgets_init() on the widgets_init hook. */
 	add_action( 'widgets_init', 'mayflower_widgets_init' );
+
+
+function widget_empty_title($output='') {
+
+    if ($output == '&nbsp') {
+        return '';
+    }
+    return $output;
+}
+add_filter('widget_title', 'widget_empty_title');
+
 
 
 #########################
@@ -828,6 +844,7 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 	echo '</table>'; // end table
 }
 
+
 // Save the Data
 function save_global_section_meta($post_id) {
     global $global_section_meta_fields;
@@ -859,4 +876,5 @@ function save_global_section_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_global_section_meta');
+
 ?>

@@ -425,7 +425,7 @@ list-style-type: none;
 	padding: 0;
 }
 .sidebar ul.menu { 
-	border-top: 1px solid #003d79;
+	border-top: 1px solid #F0F4F7;
 	border-bottom: 1px solid #F0F4F7
 }
 .sidebar h2 + div ul.menu {
