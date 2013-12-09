@@ -528,16 +528,18 @@ function mayflower_get_option_parameters() {
 				  'title' => __( 'Sidebar Right, Content Left', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
+				/*
 				'content' => array(
 				  'name' => 'content',
 				  'title' => __( 'One column, no sidebar', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
+				*/
 			),
 			'description' => '',
 			'section' => 'site_defaults',
 			'tab' => 'general',
-			'since' => '1.0',
+			'since' => '1.3.3',
 			'default' => 'sidebar-content'
 		),
 		'skin' => array(
@@ -753,7 +755,7 @@ function mayflower_get_settings_page_tabs() {
 				'site_defaults' => array(
 					'name' => 'site_defaults',
 					'title' => __( 'Site Defaults', 'mayflower' ),
-					'description' => __( 'Manage default settings for this web site.', 'mayflower' )
+					'description' => __( 'Manage default layout & color options for this web site. <br /><br /><em>*Note that if sidebar widget area are empty there will be no sidebar and the page content will fill the whole content area.</em> ', 'mayflower' )
 				),
 				/*
 				'skin' => array(
