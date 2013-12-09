@@ -210,6 +210,15 @@ function mayflower_add_editor_styles() {
 add_action( 'init', 'mayflower_add_editor_styles' );
 
 
+###########
+// Combination to include all blog related functions
+########
+
+function is_blog () {
+	global  $post;
+	$posttype = get_post_type($post);
+	return (($posttype == 'post') && ((is_archive()) || (is_author()) || (is_category()) || (is_home()) || (is_single()) || (is_tag())));
+}
 
 ######################################
 // Wordpress Widget Area Setup
@@ -217,11 +226,22 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 
 	function mayflower_widgets_init() {
 
+		// Top Global Widget Area - located just below the sidebar nav.
+		register_sidebar( array(
+			'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
+			'id' => 'top-global-widget-area',
+			'description' => __( 'This is the top global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
+			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'after_widget' => '</div>',
+			'before_title' => '<h2 class="widget-title content-padding">',
+			'after_title' => '</h2>',
+		) );
+
 		// Static Page Widget Area - located just below the global nav on static pages.
 		register_sidebar( array(
 			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
-			'description' => __( 'This is the static page widget area. Items will appear on static pages.', 'mayflower' ),
+			'description' => __( 'This is the static page widget area. Items will appear on all static pages.', 'mayflower' ),
 			'before_widget' => '<div class="wp-widget wp-widget-static">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
@@ -232,70 +252,24 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 		register_sidebar( array(
 			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
-			'description' => __( 'This is the blog widget area. Items will appear on blog pages.', 'mayflower' ),
+			'description' => __( 'This is the blog widget area. Items will appear on all blog related pages.', 'mayflower' ),
 			'before_widget' => '<div class="wp-widget wp-widget-blog">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
 		) );
 
-		// Global Widget Area - located just below the sidebar nav.
+		// Bottom Global Widget Area - located just below the sidebar nav.
 		register_sidebar( array(
-			'name' => __( 'Global Sidebar Widget Area', 'mayflower' ),
+			'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
-			'description' => __( 'This is the global widget area. Items will appear throughout the web site.', 'mayflower' ),
+			'description' => __( 'This is the bottom global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
 			'before_widget' => '<div class="wp-widget wp-widget-global">',
 			'after_widget' => '</div>',
-			'before_title' => '<h2 class="global-widget-area content-padding">',
+			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
 		) );
 
-		// Aside Widget Area - aside located in right column of page content.
-/*
-		register_sidebar( array(
-			'name' => __( 'In-Page Aside Widget Area', 'mayflower' ),
-			'id' => 'aside-widget-area',
-			'description' => __( 'This is the widget area for asides in pages.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-		) );
-*/
-		// Area 3, located in left column of footer.
-/*
-		register_sidebar( array(
-			'name' => __( 'Footer Left Column Widget', 'mayflower' ),
-			'id' => 'footer-left-widget-area',
-			'description' => __( 'This is the widget area for the left column of the footer.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h2 class="widget-title">',
-			'after_title' => '</h2>',
-		) );
-
-		// Area 4, located in middle column of footer.
-		register_sidebar( array(
-			'name' => __( 'Footer Center Column Widget', 'mayflower' ),
-			'id' => 'footer-center-widget-area',
-			'description' => __( 'This is the widget area for the center column of the footer.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h2 class="widget-title">',
-			'after_title' => '</h2>',
-		) );
-
-		// Area 5, located in right column of footer.
-		register_sidebar( array(
-			'name' => __( 'Footer Right Column Widget', 'mayflower' ),
-			'id' => 'footer-right-widget-area',
-			'description' => __( 'This is the widget area for the right column of the footer.', 'mayflower' ),
-			'before_widget' => '',
-			'after_widget' => '',
-			'before_title' => '<h2 class="widget-title">',
-			'after_title' => '</h2>',
-		) );
-*/
 	}
 
 	/** Register sidebars by running mayflower_widgets_init() on the widgets_init hook. */
@@ -311,6 +285,21 @@ function widget_empty_title($output='') {
 }
 add_filter('widget_title', 'widget_empty_title');
 
+############################################
+//Customize widget areas for certain pages
+############################################
+/*
+add_filter( 'sidebars_widgets', 'control_widget_pages' );
+
+function control_widget_pages( $sidebars_widgets ) {
+
+	if(is_home() || is_single() ) 
+
+		$sidebars_widgets['page-widget-area'] = false;
+
+	return $sidebars_widgets;
+}
+*/
 
 
 #########################
