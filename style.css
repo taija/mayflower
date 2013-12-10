@@ -3,7 +3,7 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.2.3.2
+Version: 1.2.3.3
 */
 
 
@@ -406,17 +406,23 @@ list-style-type: none;
 /* ####################################### */
 /* ----- Temo side navigation/widget areas styles ----- */
 /* ###################################### */
-.sidebar h2.global-widget-area { 
+.sidebar h2.widget-title { 
 	color: white;
 	font-size: 1em;
 	background-color: #003d79;
 	line-height: 1.66667em;
 }
+.sidebar div.textwidget, .sidebar div.tagcloud {
+	padding-left: 2em;
+	margin-top: 0.333333em;
+}
 .sidebar .wp-widget { margin-bottom: 2em;}
-.sidebarleft .menu {
+.sidebarleft .menu,
+.sidebarleft ul {
 	border-right: 1px solid #E6E6E6;
 }
-.sidebarright .menu {
+.sidebarright .menu,
+.sidebarright ul {
 	border-left: 1px solid #E6E6E6;
 }
 .sidebar .wp-widget > ul,
@@ -424,28 +430,33 @@ list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-.sidebar ul.menu { 
+.sidebar ul.menu, 
+.sidebar ul { 
 	border-top: 1px solid #F0F4F7;
 	border-bottom: 1px solid #F0F4F7
 }
 .sidebar h2 + div ul.menu {
 	border-top: none;
 }
-.sidebar ul.menu ul {
+.sidebar ul.menu ul,
+.sidebar ul ul  {
 	margin: 0;
 	padding: 0;}
-.sidebar .menu li{
+.sidebar .menu li, 
+.sidebar li{
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	line-height: 1.33333em;
 }
-.sidebar .menu a{
+.sidebar .menu a, 
+.sidebar li a{
 	padding: 0.3333em 1em;
 	display: block;
 	border-top: 1px solid #F0F4F7
 }
-.sidebar .menu > li:first-child > a {
+.sidebar .menu > li:first-child > a,
+.sidebar > li:first-child > a {
 	border-top: none;}
 .sidebar .sub-menu li a {
 	padding-left: 2.33333em;
@@ -454,12 +465,14 @@ list-style-type: none;
 .sidebar .sub-menu .sub-menu li a {
 	padding-left: 3.66666em;
 }
-.sidebar .menu .current_page_item > a {
+.sidebar .menu .current_page_item > a,
+.sidebar .current_page_item > a {
 	text-decoration: none;
 	color: #555;
 }
 @media screen and (min-width: 55em) {
-	.sidebar .menu a {
+	.sidebar .menu a,
+	.sidebar li a {
 		padding-left:2em;
 		padding-right:2em;
 	}	
