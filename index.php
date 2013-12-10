@@ -1,4 +1,4 @@
-index.php<?php get_header(); 
+<?php get_header(); 
 
 
  //echo do_shortcode('[AllClassInformation course="ECON"]');
