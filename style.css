@@ -354,6 +354,7 @@ list-style-type: none;
 
 /* ##################################### */
 /* Slider bc home page override */
+/* ###################################### */
 .bchome .carousel-inner {
 	box-shadow: 0 2px 8px #cdcdcd;
 }
@@ -372,7 +373,21 @@ list-style-type: none;
 }
 
 
+/* ####################################### */
+/* ----- Page template overrides ----- */
+/* ###################################### */
 
+.nav-page h2 {
+	margin-top: 0;
+}
+
+.nav-page img {
+	margin-top: 0;
+}
+
+div.nav-page {
+	margin-bottom: 2em;
+}
 /* ####################################### */
 /* ----- Staff CPT styles - to move  ----- */
 /* ###################################### */

@@ -52,7 +52,20 @@
 			}  ?>
             
 			<div class="span4 top-spacing15">
-				<div class="content-padding">
+				<div class="content-padding nav-page">
+
+						    <a class="" href="<?php the_permalink(); ?>">
+							<?php
+								if ( has_post_thumbnail() ) {
+									the_post_thumbnail('home-small-ad', array('class' => ''));
+
+								}
+								else {
+
+								}
+							?>
+
+							    </a>
 					<h2>
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</h2>
@@ -61,7 +74,7 @@
 						the_excerpt();
 						edit_post_link('edit', '<small>', '</small>');
 					?>
-				</div><!-- content-padding -->
+				</div><!-- content-padding .nav-page -->
 			</div><!-- span4 -->  <?php 
 			
             if ($count == $columnNum) {
