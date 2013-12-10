@@ -180,7 +180,7 @@ function my_feed_links() {
 // Remove WordPress default widgets
 ######################################
 
-function remove_calendar_widget() {
+function mayflower_remove_default_widgets() {
 
 	unregister_widget('WP_Widget_Calendar');
 	unregister_widget('WP_Widget_Search');
@@ -189,7 +189,7 @@ function remove_calendar_widget() {
 	unregister_widget('WP_Widget_Pages');
 }
 
-add_action( 'widgets_init', 'remove_calendar_widget' );
+add_action( 'widgets_init', 'mayflower_remove_default_widgets' );
 
 
 ######################################
