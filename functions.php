@@ -51,12 +51,12 @@ function load_custom_widgets() {
 ////////////////////////////////////////////////////
 // Remove Unneeded Meta Boxes on Pages
 /////////////////////////////////////////////////////
-
+/*
 function mayflower_remove_meta_boxes() {
   remove_meta_box('postimagediv', 'page', 'side');
 }
 add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
-
+*/
 
 ############################
 // Custom Admin Bar Items
