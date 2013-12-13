@@ -12,12 +12,12 @@
 		<?php endif; ?>
 
 		<?php if ( is_active_sidebar( 'page-widget-area' ) ) : ?>
-			<?php if(is_home() || is_single() || is_blog() ) { } else 
+			<?php if( mayflower_is_blog() ) { } else 
 			 dynamic_sidebar( 'page-widget-area' ); ?>
 		<?php endif; ?>
 	
 		<?php if ( is_active_sidebar( 'blog-widget-area' ) ) : ?>
-			<?php if( is_home() || is_single() || is_blog() ) :?>
+			<?php if( mayflower_is_blog() ) :?>
 				<?php dynamic_sidebar( 'blog-widget-area' ); ?>
 			<?php endif;?>
 		<?php endif; ?>

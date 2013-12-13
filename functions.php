@@ -214,10 +214,8 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 // Combination to include all blog related functions
 ########
 
-function is_blog () {
-	global  $post;
-	$posttype = get_post_type($post);
-	return (($posttype == 'post') && ((is_archive()) || (is_author()) || (is_category()) || (is_home()) || (is_single()) || (is_tag())));
+function mayflower_is_blog () {
+	if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
 }
 
 ######################################
