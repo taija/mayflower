@@ -36,7 +36,7 @@
 
 				
 				    <div class="media">
-				    <a class="pull-left" href="<?php the_permalink(); ?>">
+				    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
 					<?php
 						if ( has_post_thumbnail() ) {
 							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
