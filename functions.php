@@ -299,13 +299,17 @@ function control_widget_pages( $sidebars_widgets ) {
 }
 */
 
-
 #########################
 //set globals path
 #########################
+	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
+	$globals_path = $network_mayflower_settings['globals_path']; 
+	if (empty($globals_path)) {
+		$globals_path =  $_SERVER['DOCUMENT_ROOT'] . "/g/2/";
+	}
 
-	$bc_globals_html_filepath = $_SERVER['DOCUMENT_ROOT'] . "/g/2/h/";
-	
+	$bc_globals_html_filepath = $globals_path . "h/";
+
 #######################################
 //add college head - skinny id bar
 #######################################
@@ -619,11 +623,6 @@ function mayflower_nav_active_class($classes, $item){
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
 
-	//$mayflower_options['mayflower_version']
-	//global $mayflowerVersion;
-	//global $mayflower_brand;
-	//$mayflowerVersionCSS
-	//mayflower_brand_css
 	$mayflower_brand = $mayflower_options['mayflower_brand'];
 	$mayflower_brand_css = "";
 	if( $mayflower_brand == 'lite' ) {
@@ -632,15 +631,14 @@ function mayflower_nav_active_class($classes, $item){
 		$mayflower_brand_css = "globals-branded";
 	}
 	
-	
 	// Get Mayflower network setting values
 	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	//$mayflower_version = $network_mayflower_settings['mayflower_version']; 
 	$globals_version = $network_mayflower_settings['globals_version']; 
 	$globals_path = $network_mayflower_settings['globals_path']; 
-	$globals_path_over_http = $globals_path;
-	if (empty($globals_path)) {
-		$globals_path_over_http = "/g/2/";
+	$globals_url = $network_mayflower_settings['globals_url']; 
+	$globals_path_over_http = $globals_url;
+	if (empty($globals_url)) {
+		$globals_url = "/g/2/";
 	}
 
 ///////////////////////////////////////

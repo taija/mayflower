@@ -4,7 +4,8 @@
 	$mayflower_options = mayflower_get_options();
 	
 	global $globals_version;
-	global $globals_path_over_http;
+	global $globals_url;
+	global $globals_path;
 	global $mayflower_brand;
 	global $mayflower_brand_css;
 
@@ -31,6 +32,7 @@
 			} 
 		}
 	?></title>
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?><?php echo '<meta name="description" content="'?><?php echo $post_meta_data['_seo_meta_description'][0] . '" />'; ?> <?php  } else { } ?>
 	<?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?><?php echo '<meta name="keywords" content="'?><?php echo $post_meta_data['_seo_meta_keywords'][0] . '" />'; ?> <?php  } else { } ?>
@@ -39,8 +41,8 @@
     <link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" href="<?php echo $globals_path_over_http; ?>c/g.css?ver=<?php echo $globals_version; ?>">
-    <link rel="stylesheet" media="print" href="<?php echo $globals_path_over_http; ?>c/p.css?ver=<?php echo $globals_version; ?>">
+    <link rel="stylesheet" href="<?php echo $globals_url; ?>c/g.css?ver=<?php echo $globals_version; ?>">
+    <link rel="stylesheet" media="print" href="<?php echo $globals_url; ?>c/p.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/font-awesome.css">-->
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
 
@@ -54,8 +56,8 @@
 	
 	?>
 	
-    <script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_path_over_http; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
+    <script type="text/javascript" src="<?php echo $globals_url; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
+    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_url; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
 
 	<?php wp_head(); 
 	
@@ -80,7 +82,6 @@
 </head>
 
 <body <?php 
-
 		//if this is the root site, set main college nav menu to highlight.
 		if ($is_main_site == TRUE){
 			if($post_top_parent_id == 0){
