@@ -1,4 +1,4 @@
-part-blogroll<?php if ( is_front_page() ) {
+<?php if ( is_front_page() ) {
 	?>
     	
     <?php
