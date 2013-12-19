@@ -210,13 +210,14 @@ function mayflower_add_editor_styles() {
 add_action( 'init', 'mayflower_add_editor_styles' );
 
 
-###########
-// Combination to include all blog related functions
-########
+#############################
+// Add *_is_blog function
+#############################
 
 function mayflower_is_blog () {
-	if (is_home() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
+	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
 }
+
 
 ######################################
 // Wordpress Widget Area Setup
@@ -302,6 +303,7 @@ function control_widget_pages( $sidebars_widgets ) {
 #########################
 //set globals path
 #########################
+
 	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
 	$globals_path = $network_mayflower_settings['globals_path']; 
 	if (empty($globals_path)) {
@@ -630,7 +632,7 @@ function mayflower_nav_active_class($classes, $item){
 	} else {
 		$mayflower_brand_css = "globals-branded";
 	}
-	
+
 	// Get Mayflower network setting values
 	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
 	$globals_version = $network_mayflower_settings['globals_version']; 
