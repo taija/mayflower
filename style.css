@@ -3,7 +3,7 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.2.3.4
+Version: 1.2.4
 */
 
 
@@ -481,7 +481,8 @@ div.nav-page {
 	padding-left: 3.66666em;
 }
 .sidebar .menu .current_page_item > a,
-.sidebar .current_page_item > a {
+.sidebar .current_page_item > a,
+.sidebar .current-cat > a {
 	text-decoration: none;
 	color: #555;
 }
