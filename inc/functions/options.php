@@ -197,17 +197,25 @@ function mayflower_get_option_parameters() {
 					'name' => 'nav-home',
 					'title' => __( 'Home', 'mayflower' )
 				),
+				'nav-classes' => array(
+					'name' => 'nav-classes',
+					'title' => __( 'Classes', 'mayflower' )
+				),
 				'nav-programs' => array(
 					'name' => 'nav-programs',
-					'title' => __( 'Programs', 'mayflower' )
+					'title' => __( 'Programs of Study', 'mayflower' )
 				),
 				'nav-enrollment' => array(
 					'name' => 'nav-enrollment',
 					'title' => __( 'Enrollment', 'mayflower' )
 				),
-				'nav-resources' => array(
-					'name' => 'nav-resources',
-					'title' => __( 'Campus Resources', 'mayflower' )
+				'nav-services' => array(
+					'name' => 'nav-services',
+					'title' => __( 'Services', 'mayflower' )
+				),
+				'nav-campuslife' => array(
+					'name' => 'nav-campuslife',
+					'title' => __( 'Campus Life', 'mayflower' )
 				),
 				'nav-about' => array(
 					'name' => 'nav-about',
@@ -520,16 +528,18 @@ function mayflower_get_option_parameters() {
 				  'title' => __( 'Sidebar Right, Content Left', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
+				/*
 				'content' => array(
 				  'name' => 'content',
 				  'title' => __( 'One column, no sidebar', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
+				*/
 			),
 			'description' => '',
 			'section' => 'site_defaults',
 			'tab' => 'general',
-			'since' => '1.0',
+			'since' => '1.3.3',
 			'default' => 'sidebar-content'
 		),
 		'skin' => array(
@@ -745,7 +755,7 @@ function mayflower_get_settings_page_tabs() {
 				'site_defaults' => array(
 					'name' => 'site_defaults',
 					'title' => __( 'Site Defaults', 'mayflower' ),
-					'description' => __( 'Manage default settings for this web site.', 'mayflower' )
+					'description' => __( 'Manage default layout & color options for this web site. <br /><br /><em>*Note that if sidebar widget area are empty there will be no sidebar and the page content will fill the whole content area.</em> ', 'mayflower' )
 				),
 				/*
 				'skin' => array(

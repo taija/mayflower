@@ -32,24 +32,27 @@
 
 						<small>Date posted: <?php echo get_the_date(); ?></small>
 
-
 						<div class="media">
-						    <a class="pull-left" href="<?php the_permalink(); ?>">
-							<?php
-								if ( has_post_thumbnail() ) {
-									the_post_thumbnail('thumbnail', array('class' => 'media-object'));
-										if(get_post(get_post_thumbnail_id())->post_excerpt) { ?>
-											<span class="featured-caption media-object"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></span>
-										<?php } ?>
-							<?php
+			<?php
+				if ( has_post_thumbnail() ) {
+					?>
 
-								}
-								else {
+					 <div class="pull-left wp-caption">
+						<?php
+							the_post_thumbnail('medium', array('class' => 'media-object'));
+								if(get_post(get_post_thumbnail_id())->post_excerpt) {
+                                    $tn_id = get_post_thumbnail_id( $post->ID );
 
-								}
-							?>
-
-							    </a>
+                                    $img = wp_get_attachment_image_src( $tn_id, 'medium' );
+                                    $width = $img[1];
+                                    ?>
+								<p class="featured-caption media-object wp-caption-text" style="width:<?php echo $width.'px';?>"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></p>
+								<?php } ?>
+					 </div>
+				<?php
+					}
+					else {	}
+				?>
 
 							<div class="media-body">
 
@@ -74,6 +77,7 @@
 								?>
 						    </div><!-- media-body -->
 						</div><!-- media -->
+
 						<hr />
 					<?php } else {} ?>
 
@@ -102,22 +106,26 @@
 
 
 						<div class="media">
-						    <a class="pull-left" href="<?php the_permalink(); ?>">
-							<?php
-								if ( has_post_thumbnail() ) {
-									the_post_thumbnail('thumbnail', array('class' => 'media-object'));
-										if(get_post(get_post_thumbnail_id())->post_excerpt) { ?>
-											<span class="featured-caption media-object"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></span>
-										<?php } ?>
-							<?php
+			<?php
+				if ( has_post_thumbnail() ) {
+					?>
 
-								}
-								else {
-									//echo '<img src="' . get_bloginfo( 'stylesheet_directory' ) . '/img/thumbnail-default.png" />';
-								}
-							?>
+					 <div class="pull-left wp-caption">
+						<?php
+							the_post_thumbnail('medium', array('class' => 'media-object'));
+								if(get_post(get_post_thumbnail_id())->post_excerpt) {
+                                    $tn_id = get_post_thumbnail_id( $post->ID );
 
-							    </a>
+                                    $img = wp_get_attachment_image_src( $tn_id, 'medium' );
+                                    $width = $img[1];
+                                    ?>
+								<p class="featured-caption media-object wp-caption-text" style="width:<?php echo $width.'px';?>"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></p>
+								<?php } ?>
+					 </div>
+				<?php
+					}
+					else {	}
+				?>
 
 							<div class="media-body">
 
@@ -131,11 +139,11 @@
 						        <?php
 								} else {
 								?>
-									<p>
-										<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
+						           <p>
+									<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
 									Read More <i class="icon-chevron-right"></i>
-								</a>
-									</p>
+							            </a>
+						            </p>
 						        <?php
 
 								}

@@ -2,7 +2,7 @@
     $mayflower_options = mayflower_get_options();
     if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-in-content') { ?>
 	
-				<div id="myCarousel" class="carousel slide">
+				<div id="myCarousel" class="carousel slide content-padding">
 
 					<ol class="carousel-indicators">
 						<?php

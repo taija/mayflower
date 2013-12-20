@@ -29,14 +29,14 @@
             <div class="content-padding top-spacing15">
 			<?php
 				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => 50, 'orderby' => 'menu_order', 'order' => 'ASC') );
+				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
 
 				while ( $loop->have_posts() ) : $loop->the_post();
 			?>
 
 				
 				    <div class="media">
-				    <a class="pull-left" href="<?php the_permalink(); ?>">
+				    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
 					<?php
 						if ( has_post_thumbnail() ) {
 							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
@@ -108,7 +108,7 @@
 
 			<?php
 				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => 50, 'orderby' => 'menu_order', 'order' => 'ASC') );
+				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
 
 				while ( $loop->have_posts() ) : $loop->the_post();
 			?>

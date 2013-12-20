@@ -9,10 +9,10 @@
 				<small>Date posted: <?php the_date(); ?></small>
 			<?php } ?>
 				    <div class="media">
-				    <a class="pull-left" href="<?php the_permalink(); ?>">
+				    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
 					<?php
 						if ( has_post_thumbnail() ) {
-							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
+							the_post_thumbnail('medium', array('class' => 'media-object'));
 						}
 						else {
 							echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
@@ -24,7 +24,7 @@
 				<div class="media-body">
 					<div class="caption staff-details">
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
-							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+							<h2><?php the_title(); ?></h2>
 
 							<?php if (isset($post_meta_data['_staff_position'][0])) { ?>
 								<h3>
