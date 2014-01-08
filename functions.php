@@ -525,33 +525,46 @@ function mayflower_nav_active_class($classes, $item){
 	<?php
 	}
 
+####################################################
+## Override Dashicons Styles 
+####################################################
 
 
-##############################################
-## Add Course Description Shortcode Button 
-##############################################
+add_action('admin_head', 'override_dashicons');
+
+function override_dashicons() { ?>
+<style>
+.dashicons-welcome-learn-more:before {
+	line-height: 26px;
+}
+  </style>
+<?php }
+
+####################################################
+## Add Course Description Shortcode Button & Modal 
+####################################################
 
 add_action('media_buttons', 'add_shortcode_button', 99);
 
 function add_shortcode_button() {
-            echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="gform_media_icon "></span> ' . __("Add Course", "mayflower") . '</a>';
+            echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="dashicons dashicons-welcome-learn-more"></span> ' . __("Add Course", "mayflower") . '</a>';
         }
 function add_coursedesc_popup() {
 
         ?>
         <script>
             function InsertCourse(){
-                var form_id = jQuery("#add_course_desc").val();
-                if(form_id == ""){
-                    alert("<?php _e("Please select a form", "mayflower") ?>");
+                var subject = jQuery("#add_course_desc").val();
+                if(subject == ""){
+                    alert("<?php _e("Please select a subject", "mayflower") ?>");
                     return;
                 }
 
-                var form_name = jQuery("#add_course_desc option[value='" + form_id + "']").text().replace(/[\[\]]/g, '');
+                var form_name = jQuery("#add_course_desc option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
                 var display_course_description = jQuery("#display_course_description").is(":checked");
                 var description_qs = !display_course_description ? " description=\"false\"" : "";
 
-                window.send_to_editor("[course_description id=\"" + form_id + "\" name=\"" + form_name + "\"" + description_qs + "]");
+                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseID=\"" + form_name + "\"" + description_qs + "]");
             }
         </script>
 
@@ -561,40 +574,32 @@ function add_coursedesc_popup() {
                     <div style="padding:15px 15px 0 15px;">
                         <h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e("Insert a course", "mayflower"); ?></h3>
                         <span>
-                            <?php _e("Select a course to add it to your post or page.", "mayflower"); ?>
+                            <?php _e("Select a subject to add it to your post or page.", "mayflower"); ?>
                         </span>
                     </div>
                     <div style="padding:15px 15px 0 15px;">
+
                         <select id="add_course_desc">
-                            <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
-                            <?php
-                                $forms = RGFormsModel::get_forms(1, "title");
-                                foreach($forms as $form){
-                                    ?>
-                                    <option value="<?php echo absint($form->id) ?>"><?php echo esc_html($form->title) ?></option>
-                                    <?php
-                                }
-                            ?>
-                        </select> <br/>
+                            <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
 								<?php
-								$json_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
-								$json = file_get_contents($json_url);
+								$json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
+								$json = file_get_contents($json_subjects_url,0,null,null);
 								$links = json_decode($json, TRUE);
 								?>
-								<ul>
 								<?php
-								    foreach($links[1] as $key=>$val){ 
+								echo $links;
+								    foreach($links as $key=>$val){ 
 								?>
-								    <li>
-								    <a href="<?php echo $val['Slug'] ?>">
-								        <img scr="<?php echo $val['imgUrl']; ?>" alt="<?php echo $val['alt']; ?>" class="share-icon" />
-								    </a>
-								    </li>
+								    <option>
+								        <?php echo $val['Slug']; ?>
+								    </option>
 								<?php
 								    }
-								?>
-								</ul>
-                        <div style="padding:8px 0 0 0; font-size:11px; font-style:italic; color:#5A5A5A"><?php _e("Can't find your form? Make sure it is active.", "mayflower"); ?></div>
+								?>                        
+                        </select> <br/>
+                        <select id="add_course_id">
+                            <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
+                        </select>
                     </div>
                     <div style="padding:15px 15px 0 15px;">
                         <input type="checkbox" id="display_course_description" checked='checked' /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
