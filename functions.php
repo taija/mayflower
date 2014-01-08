@@ -38,7 +38,6 @@
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
 
-
 ##################################
 ## Custom Menu Widget Override
 ##################################
@@ -525,6 +524,94 @@ function mayflower_nav_active_class($classes, $item){
 	</style>
 	<?php
 	}
+
+
+
+##############################################
+## Add Course Description Shortcode Button 
+##############################################
+
+add_action('media_buttons', 'add_shortcode_button', 99);
+
+function add_shortcode_button() {
+            echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="gform_media_icon "></span> ' . __("Add Course", "mayflower") . '</a>';
+        }
+function add_coursedesc_popup() {
+
+        ?>
+        <script>
+            function InsertCourse(){
+                var form_id = jQuery("#add_course_desc").val();
+                if(form_id == ""){
+                    alert("<?php _e("Please select a form", "mayflower") ?>");
+                    return;
+                }
+
+                var form_name = jQuery("#add_course_desc option[value='" + form_id + "']").text().replace(/[\[\]]/g, '');
+                var display_course_description = jQuery("#display_course_description").is(":checked");
+                var description_qs = !display_course_description ? " description=\"false\"" : "";
+
+                window.send_to_editor("[course_description id=\"" + form_id + "\" name=\"" + form_name + "\"" + description_qs + "]");
+            }
+        </script>
+
+        <div id="select_form" style="display:none;">
+            <div class="wrap">
+                <div>
+                    <div style="padding:15px 15px 0 15px;">
+                        <h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e("Insert a course", "mayflower"); ?></h3>
+                        <span>
+                            <?php _e("Select a course to add it to your post or page.", "mayflower"); ?>
+                        </span>
+                    </div>
+                    <div style="padding:15px 15px 0 15px;">
+                        <select id="add_course_desc">
+                            <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
+                            <?php
+                                $forms = RGFormsModel::get_forms(1, "title");
+                                foreach($forms as $form){
+                                    ?>
+                                    <option value="<?php echo absint($form->id) ?>"><?php echo esc_html($form->title) ?></option>
+                                    <?php
+                                }
+                            ?>
+                        </select> <br/>
+								<?php
+								$json_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
+								$json = file_get_contents($json_url);
+								$links = json_decode($json, TRUE);
+								?>
+								<ul>
+								<?php
+								    foreach($links[1] as $key=>$val){ 
+								?>
+								    <li>
+								    <a href="<?php echo $val['Slug'] ?>">
+								        <img scr="<?php echo $val['imgUrl']; ?>" alt="<?php echo $val['alt']; ?>" class="share-icon" />
+								    </a>
+								    </li>
+								<?php
+								    }
+								?>
+								</ul>
+                        <div style="padding:8px 0 0 0; font-size:11px; font-style:italic; color:#5A5A5A"><?php _e("Can't find your form? Make sure it is active.", "mayflower"); ?></div>
+                    </div>
+                    <div style="padding:15px 15px 0 15px;">
+                        <input type="checkbox" id="display_course_description" checked='checked' /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
+                    </div>
+                    <div style="padding:15px;">
+                        <input type="button" class="button-primary" value="<?php _e("Insert course", "mayflower"); ?>" onclick="InsertCourse();"/>&nbsp;&nbsp;&nbsp;
+                    <a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php _e("Cancel", "mayflower"); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php
+    }
+
+
+add_action('admin_footer',  'add_coursedesc_popup');
 
 
 
