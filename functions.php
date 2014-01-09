@@ -552,30 +552,35 @@ function add_shortcode_button() {
 function add_coursedesc_popup() {
 
         ?>
-        <script type="text/javascript">
+        <script>
             function InsertCourse(){
-                var subject = jQuery("#add_course_desc").val();
+                var subject = jQuery("#add_subject").val();
                 if(subject == ""){
                     alert("<?php _e("Please select a subject", "mayflower") ?>");
                     return;
                 }
+                var courseID = jQuery("#add_course_id").val();
+                if(courseID == ""){
+                    alert("<?php _e("Please select a course", "mayflower") ?>");
+                    return;
+                }
 
-                var form_name = jQuery("#add_course_desc option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
+                var subject_select = jQuery("#add_subject option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
                 var display_course_description = jQuery("#display_course_description").is(":checked");
                 var description_qs = !display_course_description ? " description=\"false\"" : "";
 
-                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseID=\"" + form_name + "\"" + description_qs + "]");
+                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseID=\"" + courseID + "\"" + description_qs + "]");
             }
-            jQuery(document.body).on('change','#add_course_desc',function(){
+            jQuery(document.body).on('change','#add_subject',function(){
                 //alert('Change Happened');
-                var selectedSubject = jQuery('#add_course_desc :selected').text();
+                var selectedSubject = jQuery('#add_subject :selected').text();
                 var selectedSubject = jQuery.trim(selectedSubject);
                 var data = {
                                 action: 'get_course',
                                 subject: selectedSubject
                            };
                 jQuery.post(ajaxurl,data,function(response){
-                    alert('Got this from the server: ' + response);
+                    //alert('Got this from the server: ' + response);
                     var json = JSON.parse(response);
                    // alert(json.Courses);
                     var courses = json.Courses;
@@ -587,8 +592,7 @@ function add_coursedesc_popup() {
 
                 });
             });
-
-        </script>
+		</script>
 
         <div id="select_form" style="display:none;">
             <div class="wrap">
@@ -601,7 +605,7 @@ function add_coursedesc_popup() {
                     </div>
                     <div style="padding:15px 15px 0 15px;">
 
-                        <select id="add_course_desc">
+                        <select id="add_subject">
                             <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
 								<?php
 								$json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
@@ -653,7 +657,6 @@ function get_course_callback() {
     echo $json;
     die();
 }
-
 
 	#################################
 	/*
