@@ -552,7 +552,7 @@ function add_shortcode_button() {
 function add_coursedesc_popup() {
 
         ?>
-        <script>
+        <script type="text/javascript">
             function InsertCourse(){
                 var subject = jQuery("#add_course_desc").val();
                 if(subject == ""){
@@ -566,6 +566,28 @@ function add_coursedesc_popup() {
 
                 window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseID=\"" + form_name + "\"" + description_qs + "]");
             }
+            jQuery(document.body).on('change','#add_course_desc',function(){
+                //alert('Change Happened');
+                var selectedSubject = jQuery('#add_course_desc :selected').text();
+                var selectedSubject = jQuery.trim(selectedSubject);
+                var data = {
+                                action: 'get_course',
+                                subject: selectedSubject
+                           };
+                jQuery.post(ajaxurl,data,function(response){
+                    alert('Got this from the server: ' + response);
+                    var json = JSON.parse(response);
+                   // alert(json.Courses);
+                    var courses = json.Courses;
+                    for(var i=0;i< courses.length;i++)
+                    {
+                        //alert(courses[i].CourseID);
+                        jQuery("#add_course_id").append("<option value='"+courses[i].CourseID+"'>"+courses[i].CourseID+"</option>")
+                    }
+
+                });
+            });
+
         </script>
 
         <div id="select_form" style="display:none;">
@@ -618,6 +640,19 @@ function add_coursedesc_popup() {
 
 add_action('admin_footer',  'add_coursedesc_popup');
 
+/*
+ * Ajax call to get courses
+ * */
+add_action('wp_ajax_get_course','get_course_callback');
+
+function get_course_callback() {
+    $subject = $_POST['subject'];
+    $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+    $json = file_get_contents($json_subjects_url,0,null,null);
+    //$links = json_decode($json, TRUE);
+    echo $json;
+    die();
+}
 
 
 	#################################
