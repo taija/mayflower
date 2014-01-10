@@ -567,9 +567,9 @@ function add_coursedesc_popup() {
 
                 var subject_select = jQuery("#add_subject option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
                 var display_course_description = jQuery("#display_course_description").is(":checked");
-                var description_qs = !display_course_description ? " description=\"false\"" : "";
+                var description_qs = !display_course_description ? " description=\"false\"" : " description=\"true\"";
 
-                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseID=\"" + courseID + "\"" + description_qs + "]");
+                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseid=\"" + courseID + "\"" + description_qs + "]");
             }
             jQuery(document.body).on('change','#add_subject',function(){
                 //alert('Change Happened');
@@ -581,13 +581,27 @@ function add_coursedesc_popup() {
                            };
                 jQuery.post(ajaxurl,data,function(response){
                     //alert('Got this from the server: ' + response);
-                    var json = JSON.parse(response);
-                   // alert(json.Courses);
-                    var courses = json.Courses;
-                    for(var i=0;i< courses.length;i++)
+                    if(response)
                     {
-                        //alert(courses[i].CourseID);
-                        jQuery("#add_course_id").append("<option value='"+courses[i].CourseID+"'>"+courses[i].CourseID+"</option>")
+                        try{
+                            var json = JSON.parse(response);
+                           // alert(json.Courses);
+                            var courses = json.Courses;
+                            var el = jQuery("#add_course_id");
+                            if(courses.length>0)
+                            {
+                                el.empty();
+                                jQuery("#add_course_id").append("<option value=''>Select Course</option>");
+                            }
+
+                            for(var i=0;i < courses.length;i++)
+                            {
+                                //alert(courses[i].CourseID);
+                                jQuery("#add_course_id").append("<option value='"+courses[i].CourseID+"'>"+courses[i].CourseID+"</option>")
+                            }
+                        }catch(e){
+                            alert("Error:",e);
+                        }
                     }
 
                 });
@@ -657,6 +671,31 @@ function get_course_callback() {
     echo $json;
     die();
 }
+add_shortcode('coursedescription', 'coursedescription_func' );
+
+function coursedescription_func($atts)
+{
+      $subject = $atts["subject"];
+      $course = $atts["courseid"];// Attribute name should always read in lower case.
+    $description = $atts["description"];
+    //error_log("Hello". $subject);
+    //error_log("Hello2". $course);
+    if(!empty($course) && !empty($subject))
+    {
+        //error_log("course :".$course);
+        $course_split = explode(" ",$course);
+        $course_letter = $course_split[0];
+        $course_id = $course_split[1];
+        $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+        $json = file_get_contents($url,0,null,null);
+       // error_log("json :".$json);
+        $html = decodejsonClassInfo($json,$course_id,$description);
+        return $html;
+    }
+    return null;
+}
+
+
 
 	#################################
 	/*
@@ -691,24 +730,25 @@ function get_course_callback() {
 		return null;
 	}
 
-	function decodejsonClassInfo($jsonString,$number = NULL)
+	function decodejsonClassInfo($jsonString,$number = NULL,$description = NULL)
 	{
 		$decodeJson = json_decode($jsonString,true);
 		$htmlString = "";
 		$courses = $decodeJson["Courses"];
 		$htmlString .= "<div class='classDescriptions'>";
+       // error_log("courses :".$courses);
 		foreach($courses as $sections)
 		{
 			if($number!=null)
 			{
 				if($sections["Number"] == $number)
 				{
-					$htmlString .= getHtmlForCourse($sections);
+					$htmlString .= getHtmlForCourse($sections,$description);
 				}				
 			}
 			else
 			{
-				$htmlString .= getHtmlForCourse($sections);
+				$htmlString .= getHtmlForCourse($sections,$description);
 			}
 		}
 		$htmlString .= "</div>"; //classDescriptions
@@ -716,7 +756,7 @@ function get_course_callback() {
 		return $htmlString;
 	}
 
-	function getHtmlForCourse($sections)
+	function getHtmlForCourse($sections,$description = NULL)
 	{
 		$htmlString .= "<div class='classInfo'>";
 		$htmlString .= "<h2 class='classHeading'>";
@@ -742,11 +782,16 @@ function get_course_callback() {
 			}
 			$htmlString .= "</span>";
 			$htmlString .= "</a>";
-			$htmlString .= "</h2>";//classHeading 
+			$htmlString .= "</h2>";//classHeading
+        //error_log("description:".$description);
+        if($description=="true")
+        {
+            //error_log("Not here");
 			$htmlString .= "<p class='classDescription'>" . $sections["Descriptions"][0]["Description"] . "</p>";
 			$htmlString .= "<p class='classDetailsLink'>";
 			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
 			$htmlString .= "</p>";
+        }
 			$htmlString .= "</div>"; //classInfo
 			return $htmlString;
 	}
