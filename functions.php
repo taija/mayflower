@@ -642,7 +642,7 @@ function add_coursedesc_popup() {
                         </select>
                     </div>
                     <div style="padding:15px 15px 0 15px;">
-                        <input type="checkbox" id="display_course_description" checked='checked' /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
+                        <input type="checkbox" id="display_course_description"  /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
                     </div>
                     <div style="padding:15px;">
                         <input type="button" class="button-primary" value="<?php _e("Insert course", "mayflower"); ?>" onclick="InsertCourse();"/>&nbsp;&nbsp;&nbsp;
@@ -671,6 +671,7 @@ function get_course_callback() {
     echo $json;
     die();
 }
+
 add_shortcode('coursedescription', 'coursedescription_func' );
 
 function coursedescription_func($atts)
@@ -688,13 +689,12 @@ function coursedescription_func($atts)
         $course_id = $course_split[1];
         $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
         $json = file_get_contents($url,0,null,null);
-       // error_log("json :".$json);
-        $html = decodejsonClassInfo($json,$course_id,$description);
+		// error_log("json :".$json);
+		$html = decodejsonClassInfo($json,$course_id,$description);
         return $html;
     }
     return null;
 }
-
 
 
 	#################################
@@ -758,8 +758,9 @@ function coursedescription_func($atts)
 
 	function getHtmlForCourse($sections,$description = NULL)
 	{
+		$htmlString = "";
 		$htmlString .= "<div class='classInfo'>";
-		$htmlString .= "<h2 class='classHeading'>";
+		$htmlString .= "<div class='classHeading'>";
 			$courseUrl = CLASSESURL.$sections["Subject"];
 			if($sections["IsCommonCourse"])
 			{
@@ -782,7 +783,7 @@ function coursedescription_func($atts)
 			}
 			$htmlString .= "</span>";
 			$htmlString .= "</a>";
-			$htmlString .= "</h2>";//classHeading
+			$htmlString .= "</div>";//classHeading
         //error_log("description:".$description);
         if($description=="true")
         {
@@ -795,7 +796,6 @@ function coursedescription_func($atts)
 			$htmlString .= "</div>"; //classInfo
 			return $htmlString;
 	}
-
 
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
