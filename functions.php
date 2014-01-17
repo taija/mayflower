@@ -687,9 +687,11 @@ function coursedescription_func($atts)
         $course_split = explode(" ",$course);
         $course_letter = $course_split[0];
         $course_id = $course_split[1];
+        $subject = html_entity_decode  ($subject);
         $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+        //error_log("url :".$url);
         $json = file_get_contents($url,0,null,null);
-		// error_log("json :".$json);
+		 //error_log("json :".$json);
 		$html = decodejsonClassInfo($json,$course_id,$description);
         return $html;
     }
@@ -737,20 +739,23 @@ function coursedescription_func($atts)
 		$courses = $decodeJson["Courses"];
 		$htmlString .= "<div class='classDescriptions'>";
        // error_log("courses :".$courses);
-		foreach($courses as $sections)
-		{
-			if($number!=null)
-			{
-				if($sections["Number"] == $number)
-				{
-					$htmlString .= getHtmlForCourse($sections,$description);
-				}				
-			}
-			else
-			{
-				$htmlString .= getHtmlForCourse($sections,$description);
-			}
-		}
+        if(count($courses)>0)
+        {
+            foreach($courses as $sections)
+            {
+                if($number!=null)
+                {
+                    if($sections["Number"] == $number)
+                    {
+                        $htmlString .= getHtmlForCourse($sections,$description);
+                    }
+                }
+                else
+                {
+                    $htmlString .= getHtmlForCourse($sections,$description);
+                }
+            }
+        }
 		$htmlString .= "</div>"; //classDescriptions
 
 		return $htmlString;
