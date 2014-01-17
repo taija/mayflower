@@ -186,7 +186,7 @@ function mayflower_setup() {
 	 *
 	 * @since	WordPress 3.0.0
 	 */
-	add_theme_support( 'custom-background' );
+	//add_theme_support( 'custom-background' );
 
 	/*
 	 * Add Theme support for Custom Header Images
