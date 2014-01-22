@@ -156,6 +156,21 @@ add_post_type_support( 'page', 'excerpt' );
 	        add_image_size( 'home-small-ad', 300,200,true);
 	}
 
+/* custom header support */
+$defaults = array(
+    'default-image'	=> '',
+    'width'			=> 850,
+    'height'		=> 100,
+	'flex-width'	=> true,
+	'flex-height'	=> true,
+    'header-text'	=> false
+ 
+);
+add_theme_support( 'custom-header', $defaults );
+
+/* Post format support */
+add_theme_support( 'post-formats', array( 'video' ) );
+
 ######################################
 // Remove Comments Feed
 ######################################
