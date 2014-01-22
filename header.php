@@ -182,7 +182,9 @@
 	                    //the header_image functionality is not set on dashboard yet.  Still needs to be defined
 	                    $header_image = get_header_image();
 	                    if ( ! empty( $header_image ) ) : ?>
-	                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" height="100px" width="auto" alt="" /></a>
+							<div class="header-image">
+		                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" height="100px" width="auto" alt="" /></a>
+							</div><!-- header-image -->
 	                    <?php else : ?>
 	
 	                        <h1 class="site-title">
