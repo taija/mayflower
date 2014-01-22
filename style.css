@@ -439,6 +439,10 @@ div.nav-page {
 /* ----- Header -------------------------- */
 /* ####################################### */
 
+img.header-image {
+	max-width: 100%;
+	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+}
 ul.header-social-links li {
 	display: inline;
 }

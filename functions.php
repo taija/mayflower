@@ -157,7 +157,7 @@ add_post_type_support( 'page', 'excerpt' );
 	}
 
 /* custom header support */
-$defaults = array(
+$header_args = array(
     'default-image'	=> '',
     'width'			=> 850,
     'height'		=> 100,
@@ -166,7 +166,7 @@ $defaults = array(
     'header-text'	=> false
  
 );
-add_theme_support( 'custom-header', $defaults );
+add_theme_support( 'custom-header', $header_args );
 
 /* Post format support */
 add_theme_support( 'post-formats', array( 'video' ) );

@@ -179,11 +179,11 @@
 	       		<div class="span8">
 	                <div class="content-padding">
 	                    <?php 
-	                    //the header_image functionality is not set on dashboard yet.  Still needs to be defined
+
 	                    $header_image = get_header_image();
 	                    if ( ! empty( $header_image ) ) : ?>
 							<div class="header-image">
-		                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" height="100px" width="auto" alt="" /></a>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
 							</div><!-- header-image -->
 	                    <?php else : ?>
 	
@@ -196,8 +196,8 @@
 	                
 	                </div><!-- .content-padding -->
 	            </div><!-- span8 -->
-	
-	                        <div class="header-search content-padding span4 <?php 
+						<div class="span4">
+	                        <div class="header-search content-padding <?php 
 								if ( get_bloginfo('description') ) { 
 									echo 'header-search-w-description ';
 								} ?> 
@@ -231,10 +231,8 @@
 	                    	</div><!-- social-media -->
 	
 								<?php get_search_form(); ?>	
-	                        </div> <!--content-padding span4 -->	
-	            
-	            	
-	         
+	                        </div> <!--content-padding -->
+						</div><!-- span4 -->
 	        </div> <!--#site-header .row-->
 		</div><!-- container -->            
         <div class="navbar">
