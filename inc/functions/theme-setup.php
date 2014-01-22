@@ -186,7 +186,7 @@ function mayflower_setup() {
 	 *
 	 * @since	WordPress 3.0.0
 	 */
-	add_theme_support( 'custom-background' );
+	//add_theme_support( 'custom-background' );
 
 	/*
 	 * Add Theme support for Custom Header Images
@@ -344,6 +344,7 @@ function mayflower_setup() {
 	// %s is a placeholder for the theme template directory URI.
 
 	// Auto-magically registers the headers included with TwentyEleven if it is installed
+	/*
 	if ( file_exists( get_theme_root() . '/twentyeleven/style.css' ) ) {
 		register_default_headers( array(
 			'wheel' => array(
@@ -433,7 +434,7 @@ function mayflower_setup() {
 			)
 		) );
 	}
-
+*/
 	/*
 	 * Define Nav Menus (since WordPress 3.0)
 	 */
