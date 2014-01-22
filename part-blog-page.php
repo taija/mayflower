@@ -39,7 +39,7 @@
 											
 									        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 												?>
-									        
+
 									            <div class="content-padding <?php 
 									                //display slider in content if option is selected
 									                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
