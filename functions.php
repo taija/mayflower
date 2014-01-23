@@ -156,6 +156,21 @@ add_post_type_support( 'page', 'excerpt' );
 	        add_image_size( 'home-small-ad', 300,200,true);
 	}
 
+/* custom header support */
+$header_args = array(
+    'default-image'	=> '',
+    'width'			=> 850,
+    'height'		=> 100,
+	'flex-width'	=> true,
+	'flex-height'	=> true,
+    'header-text'	=> false
+ 
+);
+add_theme_support( 'custom-header', $header_args );
+
+/* Post format support */
+add_theme_support( 'post-formats', array( 'video' ) );
+
 ######################################
 // Remove Comments Feed
 ######################################
@@ -764,8 +779,8 @@ function coursedescription_func($atts)
 	function getHtmlForCourse($sections,$description = NULL)
 	{
 		$htmlString = "";
-		$htmlString .= "<div class='classInfo'>";
-		$htmlString .= "<div class='classHeading'>";
+		$htmlString .= "<div class='class-info'>";
+		$htmlString .= "<h5 class='class-heading'>";
 			$courseUrl = CLASSESURL.$sections["Subject"];
 			if($sections["IsCommonCourse"])
 			{
@@ -774,9 +789,9 @@ function coursedescription_func($atts)
 			$courseUrl .= "/".$sections["Number"];
 			
 			$htmlString .= "<a href='".$courseUrl."''>";
-			$htmlString .= "<span class='courseID'>".$sections["Descriptions"][0]["CourseID"]."</span>";
-			$htmlString .= "<span class='courseTitle'>".$sections["Title"]."</span>";
-			$htmlString .= "<span class='courseCredits'> &#8226; ";
+			$htmlString .= "<span class='course-id'>".$sections["Descriptions"][0]["CourseID"]."</span>";
+			$htmlString .= " <span class='course-title'>".$sections["Title"]."</span>";
+			$htmlString .= "<span class='course-credits'> &#8226; ";
 			
 			if($sections["IsVariableCredits"])
 			{					
@@ -788,13 +803,13 @@ function coursedescription_func($atts)
 			}
 			$htmlString .= "</span>";
 			$htmlString .= "</a>";
-			$htmlString .= "</div>";//classHeading
+			$htmlString .= "</h5>";//classHeading
         //error_log("description:".$description);
         if($description=="true")
         {
             //error_log("Not here");
-			$htmlString .= "<p class='classDescription'>" . $sections["Descriptions"][0]["Description"] . "</p>";
-			$htmlString .= "<p class='classDetailsLink'>";
+			$htmlString .= "<p class='class-description'>" . $sections["Descriptions"][0]["Description"] . "</p>";
+			$htmlString .= "<p class='class-details-link'>";
 			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
 			$htmlString .= "</p>";
         }
