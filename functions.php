@@ -244,7 +244,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'top-global-widget-area',
 			'description' => __( 'This is the top global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -255,7 +255,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
 			'description' => __( 'This is the static page widget area. Items will appear on all static pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-static">',
+			'before_widget' => '<div class="wp-widget wp-widget-static %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -266,7 +266,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
 			'description' => __( 'This is the blog widget area. Items will appear on all blog related pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-blog">',
+			'before_widget' => '<div class="wp-widget wp-widget-blog %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -277,7 +277,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
 			'description' => __( 'This is the bottom global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -539,6 +539,16 @@ function mayflower_nav_active_class($classes, $item){
 	</style>
 	<?php
 	}
+
+####################################################
+## Gravity Forms Button Filter
+####################################################
+
+// filter the Gravity Forms button type
+add_filter("gform_submit_button", "form_submit_button", 10, 2);
+function form_submit_button($button, $form){
+    return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>Submit</span></button>";
+}
 
 ####################################################
 ## Override Dashicons Styles 
