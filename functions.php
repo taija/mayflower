@@ -38,7 +38,6 @@
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
 
-
 ##################################
 ## Custom Menu Widget Override
 ##################################
@@ -157,6 +156,21 @@ add_post_type_support( 'page', 'excerpt' );
 	        add_image_size( 'home-small-ad', 300,200,true);
 	}
 
+/* custom header support */
+$header_args = array(
+    'default-image'	=> '',
+    'width'			=> 850,
+    'height'		=> 100,
+	'flex-width'	=> true,
+	'flex-height'	=> true,
+    'header-text'	=> false
+ 
+);
+add_theme_support( 'custom-header', $header_args );
+
+/* Post format support */
+add_theme_support( 'post-formats', array( 'video' ) );
+
 ######################################
 // Remove Comments Feed
 ######################################
@@ -230,7 +244,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'top-global-widget-area',
 			'description' => __( 'This is the top global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -241,7 +255,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
 			'id' => 'page-widget-area',
 			'description' => __( 'This is the static page widget area. Items will appear on all static pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-static">',
+			'before_widget' => '<div class="wp-widget wp-widget-static %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -252,7 +266,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
 			'id' => 'blog-widget-area',
 			'description' => __( 'This is the blog widget area. Items will appear on all blog related pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-blog">',
+			'before_widget' => '<div class="wp-widget wp-widget-blog %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -263,7 +277,7 @@ function mayflower_is_blog () {
 			'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
 			'id' => 'global-widget-area',
 			'description' => __( 'This is the bottom global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global">',
+			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h2 class="widget-title content-padding">',
 			'after_title' => '</h2>',
@@ -526,6 +540,188 @@ function mayflower_nav_active_class($classes, $item){
 	<?php
 	}
 
+####################################################
+## Gravity Forms Button Filter
+####################################################
+
+// filter the Gravity Forms button type
+add_filter("gform_submit_button", "form_submit_button", 10, 2);
+function form_submit_button($button, $form){
+    return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>Submit</span></button>";
+}
+
+####################################################
+## Override Dashicons Styles 
+####################################################
+
+
+add_action('admin_head', 'override_dashicons');
+
+function override_dashicons() { ?>
+<style>
+.dashicons-welcome-learn-more:before {
+	line-height: 26px;
+}
+  </style>
+<?php }
+
+####################################################
+## Add Course Description Shortcode Button & Modal 
+####################################################
+
+add_action('media_buttons', 'add_shortcode_button', 99);
+
+function add_shortcode_button() {
+            echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="dashicons dashicons-welcome-learn-more"></span> ' . __("Add Course", "mayflower") . '</a>';
+        }
+function add_coursedesc_popup() {
+
+        ?>
+        <script>
+            function InsertCourse(){
+                var subject = jQuery("#add_subject").val();
+                if(subject == ""){
+                    alert("<?php _e("Please select a subject", "mayflower") ?>");
+                    return;
+                }
+                var courseID = jQuery("#add_course_id").val();
+                if(courseID == ""){
+                    alert("<?php _e("Please select a course", "mayflower") ?>");
+                    return;
+                }
+
+                var subject_select = jQuery("#add_subject option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
+                var display_course_description = jQuery("#display_course_description").is(":checked");
+                var description_qs = !display_course_description ? " description=\"false\"" : " description=\"true\"";
+
+                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseid=\"" + courseID + "\"" + description_qs + "]");
+            }
+            jQuery(document.body).on('change','#add_subject',function(){
+                //alert('Change Happened');
+                var selectedSubject = jQuery('#add_subject :selected').text();
+                var selectedSubject = jQuery.trim(selectedSubject);
+                var data = {
+                                action: 'get_course',
+                                subject: selectedSubject
+                           };
+                jQuery.post(ajaxurl,data,function(response){
+                    //alert('Got this from the server: ' + response);
+                    if(response)
+                    {
+                        try{
+                            var json = JSON.parse(response);
+                           // alert(json.Courses);
+                            var courses = json.Courses;
+                            var el = jQuery("#add_course_id");
+                            if(courses.length>0)
+                            {
+                                el.empty();
+                                jQuery("#add_course_id").append("<option value=''>Select Course</option>");
+                            }
+
+                            for(var i=0;i < courses.length;i++)
+                            {
+                                //alert(courses[i].CourseID);
+                                jQuery("#add_course_id").append("<option value='"+courses[i].CourseID+"'>"+courses[i].CourseID+"</option>")
+                            }
+                        }catch(e){
+                            alert("Error:",e);
+                        }
+                    }
+
+                });
+            });
+		</script>
+
+        <div id="select_form" style="display:none;">
+            <div class="wrap">
+                <div>
+                    <div style="padding:15px 15px 0 15px;">
+                        <h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e("Insert a course", "mayflower"); ?></h3>
+                        <span>
+                            <?php _e("Select a subject to add it to your post or page.", "mayflower"); ?>
+                        </span>
+                    </div>
+                    <div style="padding:15px 15px 0 15px;">
+
+                        <select id="add_subject">
+                            <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
+								<?php
+								$json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
+								$json = file_get_contents($json_subjects_url,0,null,null);
+								$links = json_decode($json, TRUE);
+								?>
+								<?php
+								echo $links;
+								    foreach($links as $key=>$val){ 
+								?>
+								    <option>
+								        <?php echo $val['Slug']; ?>
+								    </option>
+								<?php
+								    }
+								?>                        
+                        </select> <br/>
+                        <select id="add_course_id">
+                            <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
+                        </select>
+                    </div>
+                    <div style="padding:15px 15px 0 15px;">
+                        <input type="checkbox" id="display_course_description"  /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
+                    </div>
+                    <div style="padding:15px;">
+                        <input type="button" class="button-primary" value="<?php _e("Insert course", "mayflower"); ?>" onclick="InsertCourse();"/>&nbsp;&nbsp;&nbsp;
+                    <a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php _e("Cancel", "mayflower"); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php
+    }
+
+
+add_action('admin_footer',  'add_coursedesc_popup');
+
+/*
+ * Ajax call to get courses
+ * */
+add_action('wp_ajax_get_course','get_course_callback');
+
+function get_course_callback() {
+    $subject = $_POST['subject'];
+    $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+    $json = file_get_contents($json_subjects_url,0,null,null);
+    //$links = json_decode($json, TRUE);
+    echo $json;
+    die();
+}
+
+add_shortcode('coursedescription', 'coursedescription_func' );
+
+function coursedescription_func($atts)
+{
+      $subject = $atts["subject"];
+      $course = $atts["courseid"];// Attribute name should always read in lower case.
+    $description = $atts["description"];
+    //error_log("Hello". $subject);
+    //error_log("Hello2". $course);
+    if(!empty($course) && !empty($subject))
+    {
+        //error_log("course :".$course);
+        $course_split = explode(" ",$course);
+        $course_letter = $course_split[0];
+        $course_id = $course_split[1];
+        $subject = html_entity_decode  ($subject);
+        $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+        //error_log("url :".$url);
+        $json = file_get_contents($url,0,null,null);
+		 //error_log("json :".$json);
+		$html = decodejsonClassInfo($json,$course_id,$description);
+        return $html;
+    }
+    return null;
+}
 
 
 	#################################
@@ -561,35 +757,40 @@ function mayflower_nav_active_class($classes, $item){
 		return null;
 	}
 
-	function decodejsonClassInfo($jsonString,$number = NULL)
+	function decodejsonClassInfo($jsonString,$number = NULL,$description = NULL)
 	{
 		$decodeJson = json_decode($jsonString,true);
 		$htmlString = "";
 		$courses = $decodeJson["Courses"];
 		$htmlString .= "<div class='classDescriptions'>";
-		foreach($courses as $sections)
-		{
-			if($number!=null)
-			{
-				if($sections["Number"] == $number)
-				{
-					$htmlString .= getHtmlForCourse($sections);
-				}				
-			}
-			else
-			{
-				$htmlString .= getHtmlForCourse($sections);
-			}
-		}
+       // error_log("courses :".$courses);
+        if(count($courses)>0)
+        {
+            foreach($courses as $sections)
+            {
+                if($number!=null)
+                {
+                    if($sections["Number"] == $number)
+                    {
+                        $htmlString .= getHtmlForCourse($sections,$description);
+                    }
+                }
+                else
+                {
+                    $htmlString .= getHtmlForCourse($sections,$description);
+                }
+            }
+        }
 		$htmlString .= "</div>"; //classDescriptions
 
 		return $htmlString;
 	}
 
-	function getHtmlForCourse($sections)
+	function getHtmlForCourse($sections,$description = NULL)
 	{
-		$htmlString .= "<div class='classInfo'>";
-		$htmlString .= "<h2 class='classHeading'>";
+		$htmlString = "";
+		$htmlString .= "<div class='class-info'>";
+		$htmlString .= "<h5 class='class-heading'>";
 			$courseUrl = CLASSESURL.$sections["Subject"];
 			if($sections["IsCommonCourse"])
 			{
@@ -598,9 +799,9 @@ function mayflower_nav_active_class($classes, $item){
 			$courseUrl .= "/".$sections["Number"];
 			
 			$htmlString .= "<a href='".$courseUrl."''>";
-			$htmlString .= "<span class='courseID'>".$sections["Descriptions"][0]["CourseID"]."</span>";
-			$htmlString .= "<span class='courseTitle'>".$sections["Title"]."</span>";
-			$htmlString .= "<span class='courseCredits'> &#8226; ";
+			$htmlString .= "<span class='course-id'>".$sections["Descriptions"][0]["CourseID"]."</span>";
+			$htmlString .= " <span class='course-title'>".$sections["Title"]."</span>";
+			$htmlString .= "<span class='course-credits'> &#8226; ";
 			
 			if($sections["IsVariableCredits"])
 			{					
@@ -612,15 +813,19 @@ function mayflower_nav_active_class($classes, $item){
 			}
 			$htmlString .= "</span>";
 			$htmlString .= "</a>";
-			$htmlString .= "</h2>";//classHeading 
-			$htmlString .= "<p class='classDescription'>" . $sections["Descriptions"][0]["Description"] . "</p>";
-			$htmlString .= "<p class='classDetailsLink'>";
+			$htmlString .= "</h5>";//classHeading
+        //error_log("description:".$description);
+        if($description=="true")
+        {
+            //error_log("Not here");
+			$htmlString .= "<p class='class-description'>" . $sections["Descriptions"][0]["Description"] . "</p>";
+			$htmlString .= "<p class='class-details-link'>";
 			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
 			$htmlString .= "</p>";
+        }
 			$htmlString .= "</div>"; //classInfo
 			return $htmlString;
 	}
-
 
 	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
 	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');

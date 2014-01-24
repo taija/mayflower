@@ -635,6 +635,61 @@ function mayflower_get_option_parameters() {
 			'default' => '5'
 		),
 
+		'facebook' => array(
+			'name' => 'facebook',
+			'title' => __( 'Facebook URL', 'mayflower' ),
+			'type' => 'text',
+			'sanitize' => 'html',
+			'description' => __( 'ex: http://facebook.com/bellevuecollege', 'mayflower' ),
+			'section' => 'social_links',
+			'tab' => 'social',
+			'since' => '1.4',
+			'default' => ''
+		),
+		'twitter' => array(
+			'name' => 'twitter',
+			'title' => __( 'Twitter URL', 'mayflower' ),
+			'type' => 'text',
+			'sanitize' => 'html',
+			'description' => __( 'ex: https://twitter.com/BellevueCollege', 'mayflower' ),
+			'section' => 'social_links',
+			'tab' => 'social',
+			'since' => '1.4',
+			'default' => ''
+		),
+		'flickr' => array(
+			'name' => 'flickr',
+			'title' => __( 'Flickr URL', 'mayflower' ),
+			'type' => 'text',
+			'sanitize' => 'html',
+			'description' => __( 'ex: http://www.flickr.com/people/bellevuecollege/', 'mayflower' ),
+			'section' => 'social_links',
+			'tab' => 'social',
+			'since' => '1.4',
+			'default' => ''
+		),
+		'linkedin' => array(
+			'name' => 'linkedin',
+			'title' => __( 'Linkedin URL', 'mayflower' ),
+			'type' => 'text',
+			'sanitize' => 'html',
+			'description' => __( 'ex: http://www.linkedin.com/company/bellevue-college', 'mayflower' ),
+			'section' => 'social_links',
+			'tab' => 'social',
+			'since' => '1.4',
+			'default' => ''
+		),
+		'youtube' => array(
+			'name' => 'youtube',
+			'title' => __( 'Youtube URL', 'mayflower' ),
+			'type' => 'text',
+			'sanitize' => 'html',
+			'description' => __( 'ex: http://www.youtube.com/user/BellevueCollege', 'mayflower' ),
+			'section' => 'social_links',
+			'tab' => 'social',
+			'since' => '1.4',
+			'default' => ''
+		),
     );
     return apply_filters( 'mayflower_get_option_parameters', $options );
 }
@@ -795,6 +850,19 @@ function mayflower_get_settings_page_tabs() {
 				*/
 			)
 		),
+
+        'social' => array(
+			'name' => 'social',
+			'title' => __( 'Social Media', 'mayflower' ),
+			'sections' => array(
+				'social_links' => array(
+					'name' => 'social_links',
+					'title' => __( 'Social Media', 'mayflower' ),
+					'description' => __( 'Manage social media sites', 'mayflower' )
+				),
+			)
+		),
+
     );
 	return apply_filters( 'mayflower_get_settings_page_tabs', $tabs );
 }

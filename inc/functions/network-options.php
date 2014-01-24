@@ -213,7 +213,7 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 	                       <input size="50" type="text" name="network_globals_settings[globals_path]" value="<?php 	if (empty($globals_path)) {
 		echo $_SERVER['DOCUMENT_ROOT'] . "/g/2/"; } else {
 	echo $globals_path; }?>"/><i class="fa fa-question-circle"></i>
-	                       <br /><small><strong>Apache example:</strong> /var/www/g/2</small>
+	                       <br /><small><strong>Apache example:</strong> /var/www/g/2/</small>
 	                       <br /><small><strong>Nginx exmample:</strong> /usr/share/nginx/www.bellevuecollege.edu</small>
 
 	                    </td>

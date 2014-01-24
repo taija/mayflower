@@ -174,38 +174,67 @@
 
 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
 	<div id="main" class="container">
-    	<div id="site-header" class="row">
-       		<!--<div class="span8">-->
-                <div class="content-padding">
-                    <?php 
-                    //the header_image functionality is not set on dashboard yet.  Still needs to be defined
-                    $header_image = get_header_image();
-                    if ( ! empty( $header_image ) ) : ?>
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" height="100px" width="auto" alt="" /></a>
-                    <?php else : ?>
+		<div class="container">
+	    	<div id="site-header" class="row">
+	       		<div class="span8">
+	                <div class="content-padding">
+	                    <?php 
 
-                        <h1 class="site-title">
-                            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-                        </h1>
-                        <p class="site-description"><?php bloginfo('description'); ?></p>
-
-                    <?php endif; ?>
-                    
-                        <div class="header-search content-padding <?php 
-							if ( get_bloginfo('description') ) { 
-								echo 'header-search-w-description';
-							}
-							?>">
-							<?php get_search_form(); ?>	
-                        </div> <!--content-padding -->	
-                
-                </div><!-- .content-padding -->
-            <!--</div> span8 -->
-            
-            	
-         
-        </div> <!--#site-header .row-->
-            
+	                    $header_image = get_header_image();
+	                    if ( ! empty( $header_image ) ) : ?>
+							<div class="header-image">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
+							</div><!-- header-image -->
+	                    <?php else : ?>
+	
+	                        <h1 class="site-title">
+	                            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+	                        </h1>
+	                        <p class="site-description"><?php bloginfo('description'); ?></p>
+	
+	                    <?php endif; ?>
+	                
+	                </div><!-- .content-padding -->
+	            </div><!-- span8 -->
+						<div class="span4">
+	                        <div class="header-search content-padding <?php 
+								if ( get_bloginfo('description') ) { 
+									echo 'header-search-w-description ';
+								} ?> 
+								<?php if(get_bloginfo('description') <> '') {  
+									echo 'header-social-links-no-margin ';
+								 } ?>">
+								 
+	                		<div class="social-media">
+	                    		<ul>
+									<?php if (!empty($mayflower_options['facebook'])) {
+										$facebook = esc_url($mayflower_options['facebook'] ); ?>
+										<li><a href="<?php echo $mayflower_options['facebook']; ?>" title="facebook"><img src="<?php echo $globals_url; ?>i/facebook.png" alt="facebook" /></a></li>
+									<?php } ?>
+	
+									<?php if (!empty($mayflower_options['twitter'])) { ?>
+										<li><a href="<?php echo $mayflower_options['twitter']; ?>" title="twitter"><img src="<?php echo $globals_url; ?>i/twitter.png" alt="twitter" /></a></li>
+									<?php } ?>
+									
+									<?php if (!empty($mayflower_options['flickr'])) { ?>
+										<li><a href="<?php echo $mayflower_options['flickr']; ?>" title="flickr"><img src="<?php echo $globals_url; ?>i/flickr.png" alt="flickr" /></a></li>
+									<?php } ?>
+									
+									<?php if (!empty($mayflower_options['youtube'])) { ?>
+										<li><a href="<?php echo $mayflower_options['youtube']; ?>" title="youtube"><img src="<?php echo $globals_url; ?>i/youtube.png" alt="youtube" /></a></li>
+									<?php } ?>
+	
+									<?php if (!empty($mayflower_options['linkedin'])) { ?>
+										<li><a href="<?php echo $mayflower_options['linkedin']; ?>" title="linkedin"><img src="<?php echo $globals_url; ?>i/linkedin.png" alt="facebook" /></a></li>
+									<?php } ?>
+	                    		</ul>
+	                    	</div><!-- social-media -->
+	
+								<?php get_search_form(); ?>	
+	                        </div> <!--content-padding -->
+						</div><!-- span4 -->
+	        </div> <!--#site-header .row-->
+		</div><!-- container -->            
         <div class="navbar">
             <div class="navbar-inner">
                     <?php

@@ -3,7 +3,7 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.2.4
+Version: 1.3
 */
 
 
@@ -11,6 +11,21 @@ Version: 1.2.4
 /* ----- WordPress Core             ----- */
 /* ###################################### */
 
+/* Make sure videos and embeds fit their containers. */
+embed,
+iframe,
+object,
+video {
+	max-width: 100%;
+}
+
+.wp-video {
+	max-width: 100%;
+}
+
+.wp-audio-shortcode {
+	max-width: 100%;
+}
 .alignnone {
     margin: 20px 20px 5px 0;
 }
@@ -98,6 +113,10 @@ a img.aligncenter {
 	margin: 0;
 	padding: 0;
 }
+
+/* Video */
+
+
 
 
 /* ###################################### */
@@ -416,7 +435,25 @@ div.nav-page {
 	list-style: none;
 }
 
+/* ####################################### */
+/* ----- Header -------------------------- */
+/* ####################################### */
 
+img.header-image {
+	max-width: 100%;
+	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
+}
+ul.header-social-links li {
+	display: inline;
+}
+
+/* ####################################### */
+/* ----- Post & Page Content areas ------- */
+/* ####################################### */
+
+.single-featured-thumb {
+	margin: 1.333em 1.3333em .3333em 0;
+}
 
 /* ####################################### */
 /* ----- Temo side navigation/widget areas styles ----- */
@@ -468,7 +505,9 @@ div.nav-page {
 .sidebar li a{
 	padding: 0.3333em 1em;
 	display: block;
-	border-top: 1px solid #F0F4F7
+}
+.sidebar .menu a {
+	border-top: 1px solid #F0F4F7;
 }
 .sidebar .menu > li:first-child > a,
 .sidebar > li:first-child > a {
@@ -485,6 +524,9 @@ div.nav-page {
 .sidebar .current-cat > a {
 	text-decoration: none;
 	color: #555;
+}
+.sidebar .wp-widget select {
+	margin: .5em 2em;
 }
 @media screen and (min-width: 55em) {
 	.sidebar .menu a,
@@ -506,4 +548,56 @@ div.nav-page {
 @media screen and (min-width: 55em) {
 	.sidebar .wp-widget  {
 		font-size: 1em;}
+}
+/* Categories Widget */
+.widget_categories li a {
+	display: inline;
+	line-height: 1.666667em;
+	padding: 0 0 0 2em;
+}
+/* RSS Widget */
+.sidebar .wp-widget h2 a.rsswidget {
+	color: #fff;
+}
+.sidebar .wp-widget div.rssSummary, .sidebar .wp-widget span.rss-date {
+	padding: 0em 2em;
+}
+.sidebar .wp-widget span.rss-date {
+  line-height: 1.666666em;
+    color: #AAAAAA;
+    font-size: 0.75em;
+    margin-left: 0.7em;
+}
+/* List Category Posts Widget */
+.widget_listcategorypostswidget ul img  {
+}
+.widget_listcategorypostswidget strong a, .widget_listcategorypostswidget li {
+	padding: 0 2em;
+}
+.widget_listcategorypostswidget li a {
+	padding: 0;
+}
+lcp_thumbnail {
+	float: left;
+}
+lcp_catlist li {
+	clear: both;
+}
+/* Really Simple Twitter Widget */
+ul.really_simple_twitter_widget li{
+    line-height: 1.4em;
+    padding: 1em;
+}
+ 
+ul.really_simple_twitter_widget li a{
+    display: inline;
+    border: none;
+    padding:0em;
+}
+/* Gravity Forms Widget */
+.gform_widget .gform_wrapper{
+	padding: 0 2em;
+}
+.gform_widget ul.gform_fields {
+	border: none;
 }

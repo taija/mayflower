@@ -6,15 +6,16 @@
 			<?php the_title();?>
 		</h2>
 			<?php if ( is_singular('staff')) { } else {?>
-				<small>Date posted: <?php the_date(); ?></small>
+				<div>
+					<small>Date posted: <?php the_date(); ?></small>
+				</div>
 			<?php } ?>
-		<div class="media">
 	
 			<?php
 				if ( has_post_thumbnail() ) {
 					?>
 
-					 <div class="pull-left wp-caption">
+					 <div class="pull-left wp-caption single-featured-thumb">
 						<?php
 							the_post_thumbnail('medium', array('class' => 'media-object'));
 								if(get_post(get_post_thumbnail_id())->post_excerpt) {
@@ -30,12 +31,9 @@
 					}
 					else {	}
 				?>
+
 	
-			<div class="media-body">
-	
-				<div class="media-content">
 					<?php the_content(); ?>
-				</div><!-- media-content -->
 			    <?php
 				if (is_single($post)){
 				?>
@@ -51,8 +49,6 @@
 	
 				}
 				?>
-		    </div><!-- media-body -->
-		</div><!-- media -->
 	</div><!-- content-padding -->
 
 	<?php endwhile; ?>
