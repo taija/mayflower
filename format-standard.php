@@ -1,4 +1,3 @@
-<div class="content-padding">
 	<h2 <?php post_class() ?>>
 		<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 	</h2>
@@ -52,4 +51,3 @@ if ( has_post_thumbnail() ) {
 		    </div><!-- media-body -->
 		</div><!-- media -->
 	<hr />
-</div><!-- content-padding -->
