@@ -205,6 +205,16 @@ function mayflower_remove_default_widgets() {
 
 add_action( 'widgets_init', 'mayflower_remove_default_widgets' );
 
+######################################
+// Remove default WP Gallery styles
+######################################
+
+// Remove Gallery Styling
+add_filter( 'gallery_style', 'my_gallery_style', 99 );
+
+function my_gallery_style() {
+    return "
+"; } add_filter( 'use_default_gallery_style', '__return_false' );
 
 ######################################
 // Remvoe Wordpress Version Number
