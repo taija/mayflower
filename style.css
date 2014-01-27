@@ -139,6 +139,49 @@ dd.gallery-caption {
 	width: 70%;
 }
 
+.gallery-columns-2 dd.gallery-caption {
+	width: 35%;
+}
+.gallery-columns-3 dd.gallery-caption {
+	width: 53%;
+}
+.gallery-columns-4 dd.gallery-caption {
+	width: 72%;
+}
+/*
+Image sizes depending on the number of columns
+Based on Hybrid theme
+*/
+.gallery-columns-0 .gallery-item {
+width: 100%;
+}
+.gallery-columns-1 .gallery-item {
+width: 100%;
+}
+.gallery-columns-2 .gallery-item {
+width: 50%;
+}
+.gallery-columns-3 .gallery-item {
+width: 33.33%;
+}
+.gallery-columns-4 .gallery-item {
+width: 25%;
+}
+.gallery-columns-5 .gallery-item {
+width: 20%;
+}
+.gallery-columns-6 .gallery-item {
+width: 16.66%;
+}
+.gallery-columns-7 .gallery-item {
+width: 14.28%;
+}
+.gallery-columns-8 .gallery-item {
+width: 12.5%;
+}
+.gallery-columns-9 .gallery-item {
+width: 11.11%;
+}
 @media screen and (min-width: 55em) {
 
 	dd.gallery-caption {
