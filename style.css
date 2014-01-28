@@ -643,19 +643,40 @@ ul.header-social-links li {
     margin-left: 0.7em;
 }
 /* List Category Posts Widget */
-.widget_listcategorypostswidget ul img  {
+.widget_listcategorypostswidget h5 {
+	margin-top: .5em;
 }
-.widget_listcategorypostswidget strong a, .widget_listcategorypostswidget li {
+.widget_listcategorypostswidget ul img, ul.lcp_catlist .lcp_thumbnail img  {
+    background: #fff;
+	color: #888;
+	font-size: .9em;
+	line-height: 1.666667em;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 3px;
+    text-align: center;
+}
+.widget_listcategorypostswidget a, .widget_listcategorypostswidget li {
 	padding: 0 2em;
 }
 .widget_listcategorypostswidget li a {
 	padding: 0;
 }
-lcp_thumbnail {
-	float: left;
+.widget_listcategorypostswidget hr {
+	display: none;
 }
-lcp_catlist li {
+.lcp_catlist li {
 	clear: both;
+}
+.lcp_date, .lcp_author {
+}
+ul.lcp_catlist {
+	list-style-type: none;
+	border: none;
+}
+ul.lcp_catlist li {
+	margin-top: .5em;
+	margin-left: 0;
 }
 /* Really Simple Twitter Widget */
 ul.really_simple_twitter_widget li{

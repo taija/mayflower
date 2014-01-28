@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 $lcp_display_output = '';
 
 // Show category link:
-$lcp_display_output .= $this->get_category_link('strong');
+$lcp_display_output .= '<h5>' . $this->get_category_link('') . '</h5>';
 
 //Add 'starting' tag. Here, I'm using an unordered list (ul) as an example:
 $lcp_display_output .= '<ul class="lcp_catlist">';
@@ -55,23 +55,26 @@ foreach ($this->catlist->get_categories_posts() as $single){
   //Start a List Item for each post:
   $lcp_display_output .= "<li>";
 
+
   //Show the title and link to the post:
-  $lcp_display_output .= $this->get_post_title($single);
+  $lcp_display_output .= '<div class="lcp_title">' . $this->get_post_title($single) . '</div>';
+
+  //Show date:
+  $lcp_display_output .= '<div class="lcp_date"><small>Date posted:  ' . $this->get_date($single) . '</small></div>';
+
+  //Post Thumbnail
+  $lcp_display_output .= '<div class="lcp_thumbnail"> ' . $this->get_thumbnail($single) . '</div>';
 
   //Show comments:
   $lcp_display_output .= $this->get_comments($single);
 
-  //Show date:
-  $lcp_display_output .= '<span class="lcp_date"> ' . $this->get_date($single) . '</span>';
 
   //Show author
-  $lcp_display_output .= '<span class="lcp_author"> ' . $this->get_author($single) . '</span>';
+  $lcp_display_output .= '<div class="lcp_author"><small> ' . $this->get_author($single) . '</small></div>';
 
   //Custom fields:
   $lcp_display_output .= $this->get_custom_fields($this->params['customfield_display'], $single->ID);
 
-  //Post Thumbnail
-  $lcp_display_output .= '<span class="lcp_thumbnail"> ' . $this->get_thumbnail($single) . '</span>';
 
   /**
    * Post content - Example of how to use tag and class parameters:
@@ -86,7 +89,7 @@ foreach ($this->catlist->get_categories_posts() as $single){
   $lcp_display_output .= $this->get_excerpt($single, 'div', 'lcp_excerpt');
 
   //Close li tag
-  $lcp_display_output .= '</li>';
+  $lcp_display_output .= '</li><hr />';
 }
 
 $lcp_display_output .= '</ul>';
@@ -95,6 +98,6 @@ $lcp_display_output .= '</ul>';
 $lcp_display_output .= $this->catlist->get_morelink();
 
 //Pagination
-$lcp_display_output .= $this->get_pagination();
+$lcp_display_output .= '<div class="pagination pagination-centered">' . $this->get_pagination() . '</div>';
 
 $this->lcp_output = $lcp_display_output;
