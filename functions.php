@@ -37,6 +37,7 @@
 //		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+        $gaCode = "";
 
 ##################################
 ## Custom Menu Widget Override
@@ -843,6 +844,7 @@ function coursedescription_func($atts)
 	$globals_path = $network_mayflower_settings['globals_path']; 
 	$globals_url = $network_mayflower_settings['globals_url']; 
 	$globals_path_over_http = $globals_url;
+    $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
 	if (empty($globals_url)) {
 		$globals_url = "/g/2/";
 	}
@@ -1065,5 +1067,34 @@ function save_global_section_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_global_section_meta');
+
+/*
+ *  Adding mayflower theme to have google analytics tracking for logged in users.
+ */
+function google_analytics_dashboard()
+{
+    error_log("GOOGLE ANALYTICS");
+    if(is_user_logged_in())
+    {
+        $network_mayflower_settings = get_site_option( 'globals_network_settings' );
+        $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
+        error_log("google analytics code :".$globals_google_analytics_code);
+        global  $gaCode;
+        $gaCode = "'" . $globals_google_analytics_code . "'";
+        ?>
+
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            var ga_code = <?php echo $gaCode ; ?> ;
+            ga('create', ga_code , 'bellevuecollege.edu');
+            ga('send', 'pageview');
+        </script>
+    <?php
+    }
+}
+add_action('in_admin_footer', 'google_analytics_dashboard');
 
 ?>
