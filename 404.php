@@ -7,7 +7,12 @@
  * @since Twenty Twelve 1.0
  */
 
-get_header(); ?>
+get_header();
+
+// Get referrer
+$referer_parse = parse_url($_SERVER['HTTP_REFERER']);
+
+?>
 	
 		<div class="content-padding row-padding box-shadow" id="content">
 
