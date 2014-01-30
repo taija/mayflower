@@ -1,7 +1,7 @@
 <?php if ( is_front_page() ) {
 
 	    $mayflower_options = mayflower_get_options();
-	    if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-full') { ?>
+	    if( $mayflower_options['slider_toggle'] === true) { ?>
 
 					<div id="myCarousel" class="carousel slide full">
 

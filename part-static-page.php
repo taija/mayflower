@@ -2,14 +2,22 @@
 	 if (is_active_sidebar('top-global-widget-area') || is_active_sidebar('page-widget-area') || is_active_sidebar('global-widget-area')) 
 { ?>
 
-		<div class="row row-padding">  
+<?php
+	$mayflower_options = mayflower_get_options();
+	if( $mayflower_options['slider_toggle'] == 'true' ) { 
+		if ( $mayflower_options['slider_layout'] == 'featured-full' ) { 
+	        get_template_part('part-featured-full'); 
+	    }
+	}
+?>
+	<div class="row row-padding">  
 		<?php
 		$mayflower_options = mayflower_get_options();
 		$current_layout = $mayflower_options['default_layout'];
 		if ( $current_layout == 'sidebar-content' ) { 
 			get_sidebar(); 
 		}; ?>
-			
+
 		    <div class="span9">
 		    <?php 
 		    if( $mayflower_options['slider_toggle'] == 'true' ) { 
@@ -43,7 +51,7 @@
 		            <div class="content-padding <?php 
 		                //display slider in content if option is selected
 		                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
-		                    echo "row-padding";
+		                    echo "top-spacing30";
 		                } 
 		            ?>">
 		            <?php
@@ -96,6 +104,12 @@
 else {
 //SIDEBAR IS EMPTY
 ?>
+		<?php
+			$mayflower_options = mayflower_get_options();
+			if( $mayflower_options['slider_toggle'] == 'true' ) { 
+		        get_template_part('part-featured-full'); 
+			}
+		?>
 	    <div class="row-padding">
 	    <?php
 		if ( is_home() ) {
@@ -121,12 +135,7 @@ else {
 			if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 	?>
 	        
-	            <div class="content-padding <?php 
-	                //display slider in content if option is selected
-	                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
-	                    echo "row-padding";
-	                } 
-	            ?>">
+	            <div class="content-padding">
 	            <?php
 	                
 	            if (is_front_page() ) {
