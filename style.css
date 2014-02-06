@@ -21,6 +21,7 @@ video {
 
 .wp-video {
 	max-width: 100%;
+    float: left;
 }
 
 .wp-audio-shortcode {
