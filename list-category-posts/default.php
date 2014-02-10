@@ -60,7 +60,7 @@ foreach ($this->catlist->get_categories_posts() as $single){
   $lcp_display_output .= '<div class="lcp_title">' . $this->get_post_title($single) . '</div>';
 
   //Show date:
-  $lcp_display_output .= '<div class="lcp_date"><small>Date posted:  ' . $this->get_date($single) . '</small></div>';
+  $lcp_display_output .= '<div class="lcp_date"><small> ' . $this->get_date($single) . '</small></div>';
 
   //Post Thumbnail
   $lcp_display_output .= '<div class="lcp_thumbnail"> ' . $this->get_thumbnail($single) . '</div>';
