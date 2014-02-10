@@ -60,7 +60,7 @@ foreach ($this->catlist->get_categories_posts() as $single){
   $lcp_display_output .= '<div class="lcp_title">' . $this->get_post_title($single) . '</div>';
 
   //Show date:
-  $lcp_display_output .= '<div class="lcp_date"><small> ' . $this->get_date($single) . '</small></div>';
+  $lcp_display_output .= '<div class="lcp_date">  ' . $this->get_date($single) . '</div>';
 
   //Post Thumbnail
   $lcp_display_output .= '<div class="lcp_thumbnail"> ' . $this->get_thumbnail($single) . '</div>';
@@ -70,10 +70,10 @@ foreach ($this->catlist->get_categories_posts() as $single){
 
 
   //Show author
-  $lcp_display_output .= '<div class="lcp_author"><small> ' . $this->get_author($single) . '</small></div>';
+  $lcp_display_output .= '<div class="lcp_author"> ' . $this->get_author($single) . '</div>';
 
   //Custom fields:
-  $lcp_display_output .= $this->get_custom_fields($this->params['customfield_display'], $single->ID);
+//  $lcp_display_output .= $this->get_custom_fields($this->params['customfield_display'], $single->ID);
 
 
   /**
