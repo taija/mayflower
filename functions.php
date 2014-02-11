@@ -132,6 +132,17 @@ if (!current_user_can('edit_pages')) {
 if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
 	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
 
+
+#######################################
+// Load jQuery the WordPress way
+#######################################
+
+function mayflower_load_jquery() {
+    wp_enqueue_script( 'jquery' );
+}
+
+add_action( 'wp_enqueue_scripts', 'mayflower_load_jquery' ); 
+
 #######################################
 // adds wordpress theme support
 #######################################
@@ -350,50 +361,6 @@ function control_widget_pages( $sidebars_widgets ) {
 	add_action('mayflower_header','bc_tophead_big');
 
 ###########################
-// Custom do_settings_sections function
-###########################
-/*
-function custom_do_settings_sections($page) {
-    global $wp_settings_sections, $wp_settings_fields;
-
-    if ( !isset($wp_settings_sections) || !isset($wp_settings_sections[$page]) )
-        return;
-
-    foreach( (array) $wp_settings_sections[$page] as $section ) {
-        echo "<h3 class="$section['title']">{$section['title']}</h3>\n";
-        call_user_func($section['callback'], $section);
-        if ( !isset($wp_settings_fields) ||
-             !isset($wp_settings_fields[$page]) ||
-             !isset($wp_settings_fields[$page][$section['id']]) )
-                continue;
-        echo '<div class="settings-form-wrapper">';
-        custom_do_settings_fields($page, $section['id']);
-        echo '</div>';
-    }
-}
-
-function custom_do_settings_fields($page, $section) {
-    global $wp_settings_fields;
-
-    if ( !isset($wp_settings_fields) ||
-         !isset($wp_settings_fields[$page]) ||
-         !isset($wp_settings_fields[$page][$section]) )
-        return;
-
-    foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
-        echo '<div class="settings-form-row">';
-        if ( !empty($field['args']['label_for']) )
-            echo '<p><label for="' . $field['args']['label_for'] . '">' .
-                $field['title'] . '</label><br />';
-        else
-            echo '<p>' . $field['title'] . '<br />';
-        call_user_func($field['callback'], $field['args']);
-        echo '</p></div>';
-    }
-}
-*/
-
-###########################
 //set up college headscripts
 ##########################
 
@@ -541,7 +508,7 @@ function mayflower_nav_active_class($classes, $item){
 	}
 
 ####################################################
-## Gravity Forms Button Filter
+## Gravity Forms Filters
 ####################################################
 
 // filter the Gravity Forms button type
@@ -549,6 +516,9 @@ add_filter("gform_submit_button", "form_submit_button", 10, 2);
 function form_submit_button($button, $form){
     return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>Submit</span></button>";
 }
+
+// start tab index at position 9 so we don't conflict with skip to links or wp admin bar
+add_filter("gform_tabindex", create_function("", "return 9;"));
 
 ####################################################
 ## Override Dashicons Styles 
@@ -845,6 +815,7 @@ function coursedescription_func($atts)
 	$globals_url = $network_mayflower_settings['globals_url']; 
 	$globals_path_over_http = $globals_url;
     $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
+
 	if (empty($globals_url)) {
 		$globals_url = "/g/2/";
 	}
