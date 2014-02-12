@@ -217,6 +217,7 @@ function mayflower_remove_default_widgets() {
 
 add_action( 'widgets_init', 'mayflower_remove_default_widgets' );
 
+
 ######################################
 // Remvoe Wordpress Version Number
 ######################################
@@ -233,6 +234,107 @@ function mayflower_add_editor_styles() {
     add_editor_style( 'custom-editor-style.css' );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
+
+
+######################################
+// TinyMCE Customizations
+######################################
+
+//show/hide kitchen sink 'show' by default
+	function unhide_kitchensink( $args ) {
+		$args['wordpress_adv_hidden'] = false;
+		return $args;
+	}
+
+	add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
+
+
+// Remove items from default tinymce editor
+function mayflower_tinymce_buttons_remove( $init ) {
+	//remove address and h1
+ $init['theme_advanced_blockformats'] = 'p,pre,h2,h3,h4,h5,h6';
+ $init['theme_advanced_disable'] = 'forecolor,pasteword';
+ return $init;
+}
+add_filter('tiny_mce_before_init', 'mayflower_tinymce_buttons_remove');
+
+
+
+######################################
+// Add our Styles to wysiwyg editor
+######################################
+
+// Add the Style Dropdown Menu to the second row of visual editor buttons
+function my_mce_buttons_2( $buttons ) {
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+
+add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
+
+
+//Add custom styles to tinymce editor
+function my_mce_before_init( $settings ) {
+
+    $style_formats = array(
+		array(
+			'title' => 'Button-Grey',
+			'inline' => 'a',
+			//'selector' => 'a',
+			'classes' => 'btn',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Button-Blue',
+			'block' => 'a',
+			'classes' => 'btn btn-primary',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Button-Black',
+			'block' => 'a',
+			'classes' => 'btn btn-inverse',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Well',
+			'block' => 'p',
+			'classes' => 'well',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Alert',
+			'block' => 'div',
+			'classes' => 'alert',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Danger',
+			'block' => 'div',
+			'classes' => 'alert alert-error',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Info',
+			'block' => 'div',
+			'classes' => 'alert alert-info',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Success',
+			'block' => 'div',
+			'classes' => 'alert alert-success',
+			'wrapper' => true,
+		),
+    );
+
+    $settings['style_formats'] = json_encode( $style_formats );
+
+    return $settings;
+
+}
+
+add_filter( 'tiny_mce_before_init', 'my_mce_before_init' );
 
 
 #############################
