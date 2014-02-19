@@ -64,6 +64,10 @@ error_reporting_file_not_found();
 
 
 <?php get_footer();
+/*
+ * Emails the error to the specified user.
+ * The to and from is set in the wp-config.php file.
+ */
 function error_reporting_file_not_found()
 {
 
@@ -86,11 +90,18 @@ function error_reporting_file_not_found()
     $headers[] = 'From:'.WPMS_MAIL_FROM;
     // $headers[] = 'Reply-To: webmaster@example.com' ;
     //$headers[] = 'X-Mailer: PHP/' . phpversion();
-    $mail_return_value = wp_mail($to,$subject,$message,$headers);
-    error_log("mail return value :".$mail_return_value);
-    if($mail_return_value)
+    if(isset($to) && !empty($to))
     {
-        error_log("Email sent successfully");
+        $mail_return_value = wp_mail($to,$subject,$message,$headers);
+        error_log("mail return value :".$mail_return_value);
+        if($mail_return_value)
+        {
+            error_log("Email sent successfully");
+        }
+    }
+    else
+    {
+        error_log("The 'to' field is empty.");
     }
 }
 //add_action('in_admin_footer', 'error_reporting_file_not_found');
