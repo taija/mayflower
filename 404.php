@@ -9,8 +9,8 @@
 
 get_header();
 
-// Get referrer
-$referer_parse = parse_url($_SERVER['HTTP_REFERER']);
+error_reporting_file_not_found();
+
 
 ?>
 	
@@ -63,4 +63,35 @@ $referer_parse = parse_url($_SERVER['HTTP_REFERER']);
 
 
 
-<?php get_footer(); ?>
+<?php get_footer();
+function error_reporting_file_not_found()
+{
+
+    $referer = $_SERVER['HTTP_REFERER'];
+    $url = $_SERVER['PHP_SELF'];
+    $user = wp_get_current_user();
+    $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    error_log($user->data->user_login);
+    error_log("computer name :".$computer_name);
+    error_log("referre parse :".$referer);
+    $to = WPMS_MAIL_TO;//Getting from wp-config file
+    $subject = "Broken Link Error Report";
+    $message = "";
+    $message .= "User:  ".$user->data->user_login;
+    $message .= "\n\n Hostname:  ".$computer_name;
+    $message .= "\n\n Referer Page:  ".$referer;
+    $message .= "\n\n Current Page:  ".$url;
+    $headers  = array();
+    //$headers[]  = 'MIME-Version: 1.0' ;
+    $headers[] = 'From:'.WPMS_MAIL_FROM;
+    // $headers[] = 'Reply-To: webmaster@example.com' ;
+    //$headers[] = 'X-Mailer: PHP/' . phpversion();
+    $mail_return_value = wp_mail($to,$subject,$message,$headers);
+    error_log("mail return value :".$mail_return_value);
+    if($mail_return_value)
+    {
+        error_log("Email sent successfully");
+    }
+}
+//add_action('in_admin_footer', 'error_reporting_file_not_found');
+?>
