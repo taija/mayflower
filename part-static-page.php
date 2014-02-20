@@ -40,9 +40,6 @@
 		    } else if ( is_single() ) {
 		        // If we are loading the navigation-page page template
 		        get_template_part('part-single');
-									    } else if ( is_archive() ) {
-									        // If we are loading the navigation-page page template
-									        get_template_part('part-blue');
 		    } else {
 				
 		        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
@@ -127,9 +124,6 @@ else {
 		} else if ( is_single() ) {
 			// If we are loading the navigation-page page template
 			get_template_part('part-single');
-									    } else if ( is_archive() ) {
-									        // If we are loading the navigation-page page template
-									        get_template_part('part-blue');
 		} else { 
 		
 			if ( have_posts() ) : while ( have_posts() ) : the_post(); 
