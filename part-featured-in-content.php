@@ -1,6 +1,6 @@
 <?php if ( is_front_page() ) {
     $mayflower_options = mayflower_get_options();
-    if( $mayflower_options['slider_toggle'] === true && $mayflower_options['slider_layout'] === 'featured-in-content') { ?>
+    if( $mayflower_options['slider_toggle'] === true ) { ?>
 	
 				<div id="myCarousel" class="carousel slide content-padding">
 
@@ -18,7 +18,7 @@
 
 					<?php endwhile; wp_reset_postdata(); ?>
 					</ol>
-
+					
 					<div class="carousel-inner">
 						<?php
 						$the_query = new WP_Query(array(
@@ -166,6 +166,6 @@
 		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { } ?>
 <?php
 } else {
-	// This is not a homepage so display nothing
+	// This is not a homepage so display nothing 
 		}
 ?>

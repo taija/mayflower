@@ -132,7 +132,7 @@ function staff_order_page() {
 			<?php while( $slides->have_posts() ) : $slides->the_post(); ?>
 				<tr id="post-<?php the_ID(); ?>">
 					<td class="column-order"><img src="<?php echo get_stylesheet_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
-					<td class="column-thumbnail"><?php the_post_thumbnail( 'featured-full' ); ?></td>
+					<td class="column-thumbnail"><?php the_post_thumbnail( 'edit-screen-thumbnail' ); ?></td>
 					<td class="column-title"><strong><?php the_title(); ?></strong></td>
 					<td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td>
 				</tr>

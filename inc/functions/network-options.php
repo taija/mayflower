@@ -199,6 +199,7 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 	$globals_path = $network_globals_settings['globals_path'];
 	$globals_url = $network_globals_settings['globals_url'];
 	$globals_version = $network_globals_settings['globals_version'];
+	$globals_google_analytics_code = $network_globals_settings['globals_google_analytics_code'];
 
 	wp_nonce_field('save_network_globals_settings', 'my-network-plugin');
 	?>
@@ -239,6 +240,17 @@ wp_nonce_field('save_network_settings', 'my-network-plugin');
 	                       <input size="50" type="text" name="network_globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
 	                    </td>
 	                </tr>
+			 <tr valign="top">
+	                    <th scope="row">
+	                        <label for="globals_google_analytics_code">
+	                            Google Analytics Code
+	                        </label>
+	                    </th>
+	                    <td>
+	                       <input size="50" type="text" name="network_globals_settings[globals_google_analytics_code]" value="<?php echo $globals_google_analytics_code; ?>"/>
+	                    </td>
+	                </tr>
+
 	</table>
 
 	            <p class="submit">

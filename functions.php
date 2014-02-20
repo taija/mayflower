@@ -37,6 +37,7 @@
 //		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+        $gaCode = "";
 
 ##################################
 ## Custom Menu Widget Override
@@ -131,6 +132,17 @@ if (!current_user_can('edit_pages')) {
 if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
 	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
 
+
+#######################################
+// Load jQuery the WordPress way
+#######################################
+
+function mayflower_load_jquery() {
+    wp_enqueue_script( 'jquery' );
+}
+
+add_action( 'wp_enqueue_scripts', 'mayflower_load_jquery' ); 
+
 #######################################
 // adds wordpress theme support
 #######################################
@@ -222,6 +234,107 @@ function mayflower_add_editor_styles() {
     add_editor_style( 'custom-editor-style.css' );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
+
+
+######################################
+// TinyMCE Customizations
+######################################
+
+//show/hide kitchen sink 'show' by default
+	function unhide_kitchensink( $args ) {
+		$args['wordpress_adv_hidden'] = false;
+		return $args;
+	}
+
+	add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
+
+
+// Remove items from default tinymce editor
+function mayflower_tinymce_buttons_remove( $init ) {
+	//remove address and h1
+ $init['theme_advanced_blockformats'] = 'p,pre,h2,h3,h4,h5,h6';
+ $init['theme_advanced_disable'] = 'forecolor,pasteword';
+ return $init;
+}
+add_filter('tiny_mce_before_init', 'mayflower_tinymce_buttons_remove');
+
+
+
+######################################
+// Add our Styles to wysiwyg editor
+######################################
+
+// Add the Style Dropdown Menu to the second row of visual editor buttons
+function my_mce_buttons_2( $buttons ) {
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+
+add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
+
+
+//Add custom styles to tinymce editor
+function my_mce_before_init( $settings ) {
+
+    $style_formats = array(
+		array(
+			'title' => 'Button-Grey',
+			'inline' => 'a',
+			//'selector' => 'a',
+			'classes' => 'btn',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Button-Blue',
+			'block' => 'a',
+			'classes' => 'btn btn-primary',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Button-Black',
+			'block' => 'a',
+			'classes' => 'btn btn-inverse',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Well',
+			'block' => 'p',
+			'classes' => 'well',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Alert',
+			'block' => 'div',
+			'classes' => 'alert',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Danger',
+			'block' => 'div',
+			'classes' => 'alert alert-error',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Info',
+			'block' => 'div',
+			'classes' => 'alert alert-info',
+			'wrapper' => true,
+		),
+		array(
+			'title' => 'Alert-Success',
+			'block' => 'div',
+			'classes' => 'alert alert-success',
+			'wrapper' => true,
+		),
+    );
+
+    $settings['style_formats'] = json_encode( $style_formats );
+
+    return $settings;
+
+}
+
+add_filter( 'tiny_mce_before_init', 'my_mce_before_init' );
 
 
 #############################
@@ -348,50 +461,6 @@ function control_widget_pages( $sidebars_widgets ) {
 	}
 
 	add_action('mayflower_header','bc_tophead_big');
-
-###########################
-// Custom do_settings_sections function
-###########################
-/*
-function custom_do_settings_sections($page) {
-    global $wp_settings_sections, $wp_settings_fields;
-
-    if ( !isset($wp_settings_sections) || !isset($wp_settings_sections[$page]) )
-        return;
-
-    foreach( (array) $wp_settings_sections[$page] as $section ) {
-        echo "<h3 class="$section['title']">{$section['title']}</h3>\n";
-        call_user_func($section['callback'], $section);
-        if ( !isset($wp_settings_fields) ||
-             !isset($wp_settings_fields[$page]) ||
-             !isset($wp_settings_fields[$page][$section['id']]) )
-                continue;
-        echo '<div class="settings-form-wrapper">';
-        custom_do_settings_fields($page, $section['id']);
-        echo '</div>';
-    }
-}
-
-function custom_do_settings_fields($page, $section) {
-    global $wp_settings_fields;
-
-    if ( !isset($wp_settings_fields) ||
-         !isset($wp_settings_fields[$page]) ||
-         !isset($wp_settings_fields[$page][$section]) )
-        return;
-
-    foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
-        echo '<div class="settings-form-row">';
-        if ( !empty($field['args']['label_for']) )
-            echo '<p><label for="' . $field['args']['label_for'] . '">' .
-                $field['title'] . '</label><br />';
-        else
-            echo '<p>' . $field['title'] . '<br />';
-        call_user_func($field['callback'], $field['args']);
-        echo '</p></div>';
-    }
-}
-*/
 
 ###########################
 //set up college headscripts
@@ -541,7 +610,7 @@ function mayflower_nav_active_class($classes, $item){
 	}
 
 ####################################################
-## Gravity Forms Button Filter
+## Gravity Forms Filters
 ####################################################
 
 // filter the Gravity Forms button type
@@ -549,6 +618,9 @@ add_filter("gform_submit_button", "form_submit_button", 10, 2);
 function form_submit_button($button, $form){
     return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>Submit</span></button>";
 }
+
+// start tab index at position 9 so we don't conflict with skip to links or wp admin bar
+add_filter("gform_tabindex", create_function("", "return 9;"));
 
 ####################################################
 ## Override Dashicons Styles 
@@ -844,6 +916,8 @@ function coursedescription_func($atts)
 	$globals_path = $network_mayflower_settings['globals_path']; 
 	$globals_url = $network_mayflower_settings['globals_url']; 
 	$globals_path_over_http = $globals_url;
+    $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
+
 	if (empty($globals_url)) {
 		$globals_url = "/g/2/";
 	}
@@ -1066,5 +1140,34 @@ function save_global_section_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_global_section_meta');
+
+/*
+ *  Adding mayflower theme to have google analytics tracking for logged in users.
+ */
+function google_analytics_dashboard()
+{
+    error_log("GOOGLE ANALYTICS");
+    if(is_user_logged_in())
+    {
+        $network_mayflower_settings = get_site_option( 'globals_network_settings' );
+        $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
+        error_log("google analytics code :".$globals_google_analytics_code);
+        global  $gaCode;
+        $gaCode = "'" . $globals_google_analytics_code . "'";
+        ?>
+
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            var ga_code = <?php echo $gaCode ; ?> ;
+            ga('create', ga_code , 'bellevuecollege.edu');
+            ga('send', 'pageview');
+        </script>
+    <?php
+    }
+}
+add_action('in_admin_footer', 'google_analytics_dashboard');
 
 ?>
