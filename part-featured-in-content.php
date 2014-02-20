@@ -166,7 +166,6 @@
 		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { } ?>
 <?php
 } else {
-	// This is not a homepage so display nothing
-	echo 'nothing'; 
+	// This is not a homepage so display nothing 
 		}
 ?>
