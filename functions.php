@@ -324,6 +324,7 @@ function my_mce_before_init( $settings ) {
 		),
     );
 
+
     $settings['style_formats'] = json_encode( $style_formats );
 
     return $settings;

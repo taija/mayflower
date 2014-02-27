@@ -1,4 +1,9 @@
-<div class="content-row transparent" id="content"> 
+<?php
+define('NEWS_WEBSITE_ID' , 2);
+define('NEW_CATEGORY_NAME', "BC Homepage" );
+?>
+
+<div class="content-row transparent" id="content">
     <ul id="mobilelinks" class="clearfix">
         <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
         <li><a href="http://bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
@@ -34,11 +39,14 @@
         <div class="content-padding">
             <ul>
                 <?php
+                global $switched;
+                switch_to_blog(NEWS_WEBSITE_ID); //switched to 2
                     $the_query = new WP_Query(array(
                         'post_type'=>'post',
-                        'category_name' => 'news',
+                        'category_name' => NEW_CATEGORY_NAME,
                         'orderby'=> 'date',
-                        'order'=> 'ASC',
+                        'order'=> 'DESC',
+                        'posts_per_page' => 3,
                     ));
         
                     while ( $the_query->have_posts() ) :
@@ -48,7 +56,8 @@
                   
                 <?php
                     endwhile;
-                        wp_reset_postdata();
+                       // wp_reset_postdata();
+                restore_current_blog();
                 ?>
                   <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
             </ul>
