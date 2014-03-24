@@ -3,7 +3,7 @@ Theme Name: Mayflower
 Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: DevCom
-Version: 1.4.0.1
+Version: 1.4.1
 */
 
 
@@ -517,7 +517,6 @@ div.nav-page {
 img.header-image {
 	max-width: 100%;
 	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
-    max-height: 100px;
 }
 ul.header-social-links li {
 	display: inline;
