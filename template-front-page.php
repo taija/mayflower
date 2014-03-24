@@ -1,5 +1,5 @@
 <?php
-define('NEWS_WEBSITE_ID' , 2);
+define('NEWS_WEBSITE_ID' , 0);
 define('NEW_CATEGORY_NAME', "BC Homepage" );
 ?>
 
@@ -39,6 +39,8 @@ define('NEW_CATEGORY_NAME', "BC Homepage" );
         <div class="content-padding">
             <ul>
                 <?php
+                if ( is_multisite() )
+                {
                 global $switched;
                 switch_to_blog(NEWS_WEBSITE_ID); //switched to 2
                     $the_query = new WP_Query(array(
@@ -58,6 +60,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage" );
                     endwhile;
                        // wp_reset_postdata();
                 restore_current_blog();
+                }
                 ?>
                   <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
             </ul>
