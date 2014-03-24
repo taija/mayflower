@@ -1159,7 +1159,6 @@ function google_analytics_dashboard()
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             var ga_code = <?php echo $gaCode ; ?> ;
             ga('create', ga_code , 'bellevuecollege.edu', {'siteSpeedSampleRate': 100});
-            ga('create', ga_code , 'bellevuecollege.edu');
             ga('send', 'pageview');
         </script>
     <?php
