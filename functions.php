@@ -328,7 +328,6 @@ function my_mce_before_init( $settings ) {
 		),
     );
 
-
     $settings['style_formats'] = json_encode( $style_formats );
 
     return $settings;
@@ -1156,13 +1155,14 @@ function google_analytics_dashboard()
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
-
+        
         <script type="text/javascript">
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             var ga_code = <?php echo $gaCode ; ?> ;
+            ga('create', ga_code , 'bellevuecollege.edu', {'siteSpeedSampleRate': 100});
             ga('create', ga_code , 'bellevuecollege.edu');
             ga('send', 'pageview');
         </script>
@@ -1170,7 +1170,5 @@ function google_analytics_dashboard()
     }
 }
 add_action('in_admin_footer', 'google_analytics_dashboard');
-
-
 
 ?>
