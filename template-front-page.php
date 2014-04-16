@@ -1,6 +1,6 @@
 <?php
-define('NEWS_WEBSITE_ID' , 0);
-define('NEW_CATEGORY_NAME', "BC Homepage" );
+define('NEWS_WEBSITE_ID', 63);
+define('NEW_CATEGORY_NAME', "BC Homepage");
 ?>
 
 <div class="content-row transparent" id="content">
@@ -42,7 +42,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage" );
                 if ( is_multisite() )
                 {
                 global $switched;
-                switch_to_blog(NEWS_WEBSITE_ID); //switched to 2
+                switch_to_blog(NEWS_WEBSITE_ID); //switched to the news site
                     $the_query = new WP_Query(array(
                         'post_type'=>'post',
                         'category_name' => NEW_CATEGORY_NAME,
@@ -50,20 +50,15 @@ define('NEW_CATEGORY_NAME', "BC Homepage" );
                         'order'=> 'DESC',
                         'posts_per_page' => 3,
                     ));
-        
                     while ( $the_query->have_posts() ) :
                     $the_query->the_post(); ?>
-     
-                    <li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-                  
-                <?php
-                    endwhile;
-                       // wp_reset_postdata();
-                restore_current_blog();
-                }
-                ?>
-                  <li><a class="more" href="http://news.bellevuecollege.edu/"><strong>More news...</strong><span class="arrow"></span></a></li>
-            </ul>
+									<li><a href="<?php echo the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+									<?php endwhile;
+									// wp_reset_postdata();
+									restore_current_blog(); }
+								?>
+									<li><a class="more" href="http://bellevuecollege.edu/news/"><strong>More news...</strong><span class="arrow"></span></a></li>
+						</ul>
         </div><!--.content-padding-->
 	</section>
 	<section id="home-events">
@@ -90,7 +85,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage" );
                     endwhile;
                         wp_reset_postdata();
                 ?>
-    
+
                 <li><a class="more" href="http://bellevuecollege.edu/events"><strong>More events...</strong></a></li>
                 <li><a id="calendar" href="/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
         	</ul>
