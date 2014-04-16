@@ -75,21 +75,16 @@ function error_reporting_file_not_found()
     $url = $_SERVER['PHP_SELF'];
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-    error_log($user->data->user_login);
-    error_log("computer name :".$computer_name);
-    error_log("referre parse :".$referer);
-    $to = WPMS_MAIL_TO;//Getting from wp-config file
+    
+    $to = BC404_MAIL_TO;//Getting from wp-config file
     $subject = "Broken Link Error Report";
     $message = "";
     $message .= "User:  ".$user->data->user_login;
     $message .= "\n\n Hostname:  ".$computer_name;
     $message .= "\n\n Referer Page:  ".$referer;
     $message .= "\n\n Current Page:  ".$url;
-    $headers  = array();
-    //$headers[]  = 'MIME-Version: 1.0' ;
+    $headers  = array(); // Create a single mail function that has headers defined once. 
     $headers[] = 'From:'.WPMS_MAIL_FROM;
-    // $headers[] = 'Reply-To: webmaster@example.com' ;
-    //$headers[] = 'X-Mailer: PHP/' . phpversion();
     if(isset($to) && !empty($to))
     {
         $mail_return_value = wp_mail($to,$subject,$message,$headers);
