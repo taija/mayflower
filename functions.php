@@ -324,6 +324,7 @@ function my_mce_before_init( $settings ) {
 		),
     );
 
+
     $settings['style_formats'] = json_encode( $style_formats );
 
     return $settings;
@@ -612,7 +613,7 @@ function mayflower_nav_active_class($classes, $item){
 // filter the Gravity Forms button type
 add_filter("gform_submit_button", "form_submit_button", 10, 2);
 function form_submit_button($button, $form){
-    return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>Submit</span></button>";
+    return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>" . $form["button"]["text"] . "</span></button>";
 }
 
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
@@ -1151,7 +1152,7 @@ function google_analytics_dashboard()
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
-        
+
         <script type="text/javascript">
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
