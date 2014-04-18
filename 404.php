@@ -23,7 +23,7 @@ error_reporting_file_not_found();
 
 						$errmsgs = "It's not you, it's me.
 						I wasn't expecting this either.
-						I hate to tell you this, but…
+						I hate to tell you this, but...
 						I'm feeling lost too.
 						Oops, something is broken
 						The page went where?
