@@ -252,13 +252,19 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 // Remove items from default tinymce editor
 function mayflower_tinymce_buttons_remove( $init ) {
 	//remove address and h1
- $init['theme_advanced_blockformats'] = 'p,pre,h2,h3,h4,h5,h6';
- $init['theme_advanced_disable'] = 'forecolor,pasteword';
+ $init['block_formats'] = "Paragraph=p; Preformatted=pre; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6";
  return $init;
 }
 add_filter('tiny_mce_before_init', 'mayflower_tinymce_buttons_remove');
 
+function myplugin_tinymce_buttons($buttons)
+{
+    //Remove the text color selector
+    $remove = array('forecolor');
 
+    return array_diff($buttons,$remove);
+}
+add_filter('mce_buttons_2','myplugin_tinymce_buttons');
 
 ######################################
 // Add our Styles to wysiwyg editor
@@ -1165,5 +1171,7 @@ function google_analytics_dashboard()
     }
 }
 add_action('in_admin_footer', 'google_analytics_dashboard');
+
+
 
 ?>
