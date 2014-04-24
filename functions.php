@@ -1173,12 +1173,12 @@ add_action('save_post', 'save_global_section_meta');
  */
 function google_analytics_dashboard()
 {
-    error_log("GOOGLE ANALYTICS");
+    //error_log("GOOGLE ANALYTICS");
     if(is_user_logged_in())
     {
         $network_mayflower_settings = get_site_option( 'globals_network_settings' );
         $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-        error_log("google analytics code :".$globals_google_analytics_code);
+        //error_log("google analytics code :".$globals_google_analytics_code);
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>

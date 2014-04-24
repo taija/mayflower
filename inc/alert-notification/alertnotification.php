@@ -3,7 +3,6 @@
 /*
 	This is the function called by cron job every minute.
 */
-
  function myCronFunction()
 {
 	//error_log("############################CRON TAB is Running #######################");
@@ -83,17 +82,10 @@ function returnHtmlNClearCache($new_data)
 
 function returnContentsOfUrl($url)
 {
-	$ch = curl_init();
-	// set URL and other appropriate options
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	// grab URL and pass it to the browser
-	$output = curl_exec($ch);
-	// close cURL resource, and free up system resources
-	curl_close($ch);
-	//error_log("output :".$output);
-	return $output;
+    $arg = array ( 'method' => 'GET');
+    $output = wp_remote_request ( $url , $arg );
+	//error_log("output :".print_r($output["body"],true));
+	return $output["body"];
 }
 
 /*
