@@ -104,7 +104,7 @@ function getDisplayMessage($url)
 	$returnArray = array();
 	//echo("the xml:".$xml);
 	$html="";
-	if($xml)
+	if($xml && is_string($xml))
 	{
 		$data = simplexml_load_string($xml);
 		//echo "\n<pre>"; print_r($data);
