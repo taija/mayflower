@@ -49,6 +49,8 @@
 	
 				}
 				?>
+				
+				<?php // comments_template(); ?> 
 	</div><!-- content-padding -->
 
 	<?php endwhile; ?>
