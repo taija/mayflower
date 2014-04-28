@@ -248,13 +248,19 @@ add_action( 'init', 'mayflower_add_editor_styles' );
 // Remove items from default tinymce editor
 function mayflower_tinymce_buttons_remove( $init ) {
 	//remove address and h1
- $init['theme_advanced_blockformats'] = 'p,pre,h2,h3,h4,h5,h6';
- $init['theme_advanced_disable'] = 'forecolor,pasteword';
+ $init['block_formats'] = "Paragraph=p; Preformatted=pre; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6";
  return $init;
 }
 add_filter('tiny_mce_before_init', 'mayflower_tinymce_buttons_remove');
 
+function myplugin_tinymce_buttons($buttons)
+{
+    //Remove the text color selector
+    $remove = array('forecolor');
 
+    return array_diff($buttons,$remove);
+}
+add_filter('mce_buttons_2','myplugin_tinymce_buttons');
 
 ######################################
 // Add our Styles to wysiwyg editor
@@ -713,18 +719,22 @@ function add_coursedesc_popup() {
                             <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
 								<?php
 								$json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
-								$json = file_get_contents($json_subjects_url,0,null,null);
-								$links = json_decode($json, TRUE);
-								?>
-								<?php
-								echo $links;
-								    foreach($links as $key=>$val){ 
-								?>
-								    <option>
-								        <?php echo $val['Slug']; ?>
-								    </option>
-								<?php
-								    }
+								//$json = file_get_contents($json_subjects_url,0,null,null);
+                                $json = wp_remote_get($json_subjects_url);
+                                if(!empty($json) && !empty($json['body']))
+                                {
+                                    $links = json_decode($json['body'], TRUE);
+                                    ?>
+                                    <?php
+                                    //error_log("links :". $links);
+                                        foreach($links as $key=>$val){
+                                    ?>
+                                        <option>
+                                            <?php echo trim($val['Slug']); ?>
+                                        </option>
+                                <?php
+                                        }
+                                }
 								?>                        
                         </select> <br/>
                         <select id="add_course_id">
@@ -756,9 +766,13 @@ add_action('wp_ajax_get_course','get_course_callback');
 function get_course_callback() {
     $subject = $_POST['subject'];
     $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
-    $json = file_get_contents($json_subjects_url,0,null,null);
+    $json = wp_remote_get($json_subjects_url);
+    //$json = file_get_contents($json_subjects_url,0,null,null);
     //$links = json_decode($json, TRUE);
-    echo $json;
+    if(!empty($json) && !empty($json['body']))
+    {
+        echo $json['body'];
+    }
     die();
 }
 
@@ -777,13 +791,17 @@ function coursedescription_func($atts)
         $course_split = explode(" ",$course);
         $course_letter = $course_split[0];
         $course_id = $course_split[1];
-        $subject = html_entity_decode  ($subject);
+        $subject = trim(html_entity_decode  ($subject));
         $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
         //error_log("url :".$url);
-        $json = file_get_contents($url,0,null,null);
-		 //error_log("json :".$json);
-		$html = decodejsonClassInfo($json,$course_id,$description);
-        return $html;
+        //$json = file_get_contents($url,0,null,null);
+        $json = wp_remote_get($url);
+		// error_log("json :".$json);
+        if(!empty($json) && !empty($json['body']))
+        {
+		    $html = decodejsonClassInfo($json['body'],$course_id,$description);
+            return $html;
+        }
     }
     return null;
 }
@@ -795,16 +813,20 @@ function coursedescription_func($atts)
 		Fogbugz #2154
 	*/
 	#################################
-
+/*
 	function AllClassInformationRoutine($args)
 	{
-		$course = $args["course"];
+		$course = trim($args["course"]);
 		if(!empty($course))
 		{
 			$url = CLASSESURL.$course."?format=json";
-			$json = file_get_contents($url,0,null,null);
-			$html = decodejsonClassInfo($json);
-			return $html;
+			//$json = file_get_contents($url,0,null,null);
+            $json = wp_remote_get($url);
+            if(!empty($json) && !empty($json['body']))
+            {
+                $html = decodejsonClassInfo($json);
+                return $html;
+            }
 		}
 		return null;
 	}
@@ -815,12 +837,20 @@ function coursedescription_func($atts)
 		if(!empty($course) && !empty($number))
 		{
 			$url = CLASSESURL.$course."?format=json";
-			$json = file_get_contents($url,0,null,null);
-			$html = decodejsonClassInfo($json,$number);
-			return $html;
+			//$json = file_get_contents($url,0,null,null);
+            $json = wp_remote_get($url);
+            if(!empty($json) && !empty($json['body']))
+            {
+                $html = decodejsonClassInfo($json,$number);
+                return $html;
+            }
+
 		}
 		return null;
 	}
+add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
+add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
+*/
 
 	function decodejsonClassInfo($jsonString,$number = NULL,$description = NULL)
 	{
@@ -828,7 +858,7 @@ function coursedescription_func($atts)
 		$htmlString = "";
 		$courses = $decodeJson["Courses"];
 		$htmlString .= "<div class='classDescriptions'>";
-       // error_log("courses :".$courses);
+        //error_log("number :".$number);
         if(count($courses)>0)
         {
             foreach($courses as $sections)
@@ -837,6 +867,7 @@ function coursedescription_func($atts)
                 {
                     if($sections["Number"] == $number)
                     {
+                        //error_log("$$$$$$$$$$$$$$$$$$$$$$$");
                         $htmlString .= getHtmlForCourse($sections,$description);
                     }
                 }
@@ -850,6 +881,7 @@ function coursedescription_func($atts)
 
 		return $htmlString;
 	}
+
 
 	function getHtmlForCourse($sections,$description = NULL)
 	{
@@ -880,7 +912,7 @@ function coursedescription_func($atts)
 			$htmlString .= "</a>";
 			$htmlString .= "</h5>";//classHeading
         //error_log("description:".$description);
-        if($description=="true")
+        if($description=="true" && !empty($sections["Descriptions"]))
         {
             //error_log("Not here");
 			$htmlString .= "<p class='class-description'>" . $sections["Descriptions"][0]["Description"] . "</p>";
@@ -892,8 +924,7 @@ function coursedescription_func($atts)
 			return $htmlString;
 	}
 
-	add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
-	add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
+
 
 	$mayflower_brand = $mayflower_options['mayflower_brand'];
 	$mayflower_brand_css = "";
@@ -1139,12 +1170,12 @@ add_action('save_post', 'save_global_section_meta');
  */
 function google_analytics_dashboard()
 {
-    error_log("GOOGLE ANALYTICS");
+    //error_log("GOOGLE ANALYTICS");
     if(is_user_logged_in())
     {
         $network_mayflower_settings = get_site_option( 'globals_network_settings' );
         $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-        error_log("google analytics code :".$globals_google_analytics_code);
+        //error_log("google analytics code :".$globals_google_analytics_code);
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
@@ -1162,5 +1193,7 @@ function google_analytics_dashboard()
     }
 }
 add_action('in_admin_footer', 'google_analytics_dashboard');
+
+
 
 ?>

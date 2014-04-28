@@ -70,22 +70,23 @@ error_reporting_file_not_found();
  */
 function error_reporting_file_not_found()
 {
-
-    $referer = $_SERVER['HTTP_REFERER'];
-    $url = $_SERVER['PHP_SELF'];
+    $referrer = $_SERVER['HTTP_REFERER'];
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    $missing_page_url = curPageURL();
     
     $to = BC404_MAIL_TO;//Getting from wp-config file
     $subject = "Broken Link Error Report";
     $message = "";
-    $message .= "User:  ".$user->data->user_login;
-    $message .= "\n\n Hostname:  ".$computer_name;
-    $message .= "\n\n Referer Page:  ".$referer;
-    $message .= "\n\n Current Page:  ".$url;
+    $message .= "Date/Time: ".current_time("d/m/Y H:i:s",0);
+    $message .= "\n\nUser:  ".$user->data->user_login;
+    $message .= "\n\nHostname:  ".$computer_name;
+    $message .= "\n\nReferrer Page:  ".$referrer;
+    $message .= "\n\nCurrent Page url:  ".$missing_page_url;
     $headers  = array(); // Create a single mail function that has headers defined once. 
     $headers[] = 'From:'.WPMS_MAIL_FROM;
-    if(isset($to) && !empty($to))
+    error_log("mail attributes :".$to." /n".$subject." /n".$message." /n".$headers);
+    if(isset($to) && !empty($to) && !empty($referrer))
     {
         $mail_return_value = wp_mail($to,$subject,$message,$headers);
         error_log("mail return value :".$mail_return_value);
@@ -96,8 +97,19 @@ function error_reporting_file_not_found()
     }
     else
     {
-        error_log("The 'to' field is empty.");
+        error_log("The 'to' or referrer field is empty.");
     }
+}
+function curPageURL() {
+    $pageURL = 'http';
+    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+    $pageURL .= "://";
+    if ($_SERVER["SERVER_PORT"] != "80") {
+        $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+    } else {
+        $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+    }
+    return $pageURL;
 }
 //add_action('in_admin_footer', 'error_reporting_file_not_found');
 ?>
