@@ -119,10 +119,6 @@ if (!current_user_can('edit_pages')) {
 //	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
 //	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
-	//Multiple Content Blocks
-//	if( file_exists(get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php') )
-//	    require( get_template_directory() . '/inc/multiple-content-blocks-mayflower/multiple-content-blocks.php');
-
 	//Rave Alert functionality
 	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
 		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
@@ -196,7 +192,7 @@ function my_feed_links() {
   // post feed 
   ?>
   <link rel="alternate" type="<?php echo feed_content_type(); ?>" 
-        title="<?php printf(__('%1$s %2$s Feed'), get_bloginfo('name'), ' &raquo; '); ?>"
+        title="<?php printf(__('%1$s %2$s Feed', 'mayflower'), get_bloginfo('name'), ' &raquo; '); ?>"
         href="<?php echo get_feed_link(); ?> " />
   <?php 
 }
