@@ -85,14 +85,14 @@ function mayflower_get_settings_page_cap() {
 	return 'edit_theme_options';
 }
 // Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_oenology-settings', 'mayflower_get_settings_page_cap' );
+add_action( 'option_page_capability_mayflower-settings', 'mayflower_get_settings_page_cap' );
 
 // Same as above for Network Admin
 function mayflower_network_get_settings_page_cap() {
 	return 'edit_theme_options';
 }
 // Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_oenology-settings', 'mayflower_network_get_settings_page_cap' );
+add_action( 'option_page_capability_mayflower-settings', 'mayflower_network_get_settings_page_cap' );
 
 /**
  * Enqueue comment-reply script
