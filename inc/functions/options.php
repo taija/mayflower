@@ -690,6 +690,7 @@ function mayflower_get_option_parameters() {
 			'since' => '1.4',
 			'default' => ''
 		),
+
     );
     return apply_filters( 'mayflower_get_option_parameters', $options );
 }
@@ -851,7 +852,7 @@ function mayflower_get_settings_page_tabs() {
 			)
 		),
 
-        'social' => array(
+      'social' => array(
 			'name' => 'social',
 			'title' => __( 'Social Media', 'mayflower' ),
 			'sections' => array(
