@@ -27,6 +27,7 @@
 	    require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 		require( get_template_directory() . '/inc/functions/widgets.php' );
 		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
+	    require( get_template_directory() . '/inc/functions/options-admin.php');
 	    require( get_template_directory() . '/inc/functions/options.php');
 	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
 	    require( get_template_directory() . '/inc/functions/network-options.php');
