@@ -20,7 +20,7 @@ function returnHtmlNClearCache($new_data)
 	$html = "";
 	$class = "";//Class for the display message
 	
-	if($new_data["description"] != "")
+	if(!empty($new_data["description"]))
 	{
 		$class = $new_data["class"];
 		$html = "<div id='alertmessage' class='".$new_data["class"]."'>".$new_data["description"]."</div>";
@@ -39,8 +39,8 @@ function returnHtmlNClearCache($new_data)
 		add_site_option( "ravealert_classCurrentMsg", "" );
 	}
 	$clearCacheCommand = $network_settings['ravealert_clearCacheCommand'];//error_log("clear cache command:".$clearCacheCommand);"sudo find /var/run/nginx-cache-bc -type f -exec rm {} \;";
-	$clearCacheCommand = base64_decode($clearCacheCommand);	
-	$new_display_message = trim($new_data["description"]);
+	$clearCacheCommand = base64_decode($clearCacheCommand);
+	$new_display_message = !empty($new_data["description"]) ? trim($new_data["description"]) : "";
 			
 //Clear the cache if there is a new message 	
 
