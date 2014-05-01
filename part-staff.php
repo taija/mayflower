@@ -118,17 +118,19 @@
 			<div class="content-padding">
 				<div class="thumbnail">
 					<?php if(has_post_thumbnail()) { ?>
-					<?php echo get_the_post_thumbnail(get_the_ID(), 'staff-thumbnail');  ?>
+					<a href="<?php the_permalink(); ?>">
+						<?php echo get_the_post_thumbnail(get_the_ID(), 'staff-thumbnail');  ?>
+					</a>
 					<?php } else { }?>
 
 					<div class="caption staff-details">
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
-							<h2><?php the_title(); ?></h2>
+							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 							<h3>
 								<?php if (isset($post_meta_data['staff_position'][0])) {
 								echo $post_meta_data['staff_position'][0]; } ?>
 							</h3>
-
+<!-- 
 							<ul>
 								<li>
 									<?php if (isset($post_meta_data['staff_email'][0])) {
@@ -156,6 +158,7 @@
 									<?php the_excerpt(); } ?>
 								</li>
 							</ul>
+-->
 						<!--
 						<p>
 							<a class="btn btn-primary" href="#">Action</a>
