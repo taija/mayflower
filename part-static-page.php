@@ -36,7 +36,10 @@
 		        get_template_part('part-single-staff');
 		    } else if ( is_page_template('page-nav-page.php') ) {
 		        // If we are loading the navigation-page page template
-		        get_template_part('part-nav-page');
+		        get_template_part('part-nav-page-grid');
+		    } else if ( is_page_template('page-nav-page-list.php') ) {
+		        // If we are loading the navigation-page page template
+		        get_template_part('part-nav-page-list');
 		    } else if ( is_single() ) {
 		        // If we are loading the navigation-page page template
 		        get_template_part('part-single');
@@ -118,9 +121,12 @@ else {
 		} else if ( is_singular('staff') ) {
 			// If we are loading the single-staff 
 			get_template_part('part-single-staff');
-		} else if ( is_page_template('page-nav-page.php') ) {
-			// If we are loading the navigation-page page template
-			get_template_part('part-nav-page');
+    } else if ( is_page_template('page-nav-page.php') ) {
+        // If we are loading the navigation-page page template
+        get_template_part('part-nav-page-grid');
+    } else if ( is_page_template('page-nav-page-list.php') ) {
+        // If we are loading the navigation-page page template
+        get_template_part('part-nav-page-list');
 		} else if ( is_single() ) {
 			// If we are loading the navigation-page page template
 			get_template_part('part-single');
