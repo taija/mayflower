@@ -155,14 +155,14 @@ add_post_type_support( 'page', 'excerpt' );
 	// Post Thumbnails
 	if ( function_exists( 'add_theme_support' ) ) {
 		add_theme_support( 'post-thumbnails' );
-	        set_post_thumbnail_size( 150, 150 );
-	        add_image_size( 'lite_header_logo', 1170, 63, true);
-			add_image_size( 'edit-screen-thumbnail', 100, 100, true );
-			add_image_size( 'sort-screen-thumbnail', 300, 125, true );
-			add_image_size( 'staff-thumbnail', 300, 200, true );
-	        add_image_size( 'featured-full', 1200,500,true);
-	        add_image_size( 'featured-in-content', 900,375,true);
-	        add_image_size( 'home-small-ad', 300,200,true);
+			set_post_thumbnail_size( 150, 150 );
+				add_image_size( 'lite_header_logo', 1170, 63, true);
+				add_image_size( 'edit-screen-thumbnail', 100, 100, true );
+				add_image_size( 'sort-screen-thumbnail', 300, 125, true );
+				add_image_size( 'staff-thumbnail', 300, 200, true );
+				add_image_size( 'featured-full', 1200,500,true);
+				add_image_size( 'featured-in-content', 900,375,true);
+				add_image_size( 'home-small-ad', 300,200,true);
 	}
 
 /* custom header support */
@@ -231,7 +231,6 @@ function mayflower_add_editor_styles() {
     add_editor_style( 'custom-editor-style.css' );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
-
 
 ######################################
 // TinyMCE Customizations
