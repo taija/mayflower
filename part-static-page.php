@@ -110,7 +110,7 @@ else {
 		        get_template_part('part-featured-full'); 
 			}
 		?>
-	    <div class="row-padding">
+	    <div class="row row-padding">
 	    <?php
 		if ( is_home() ) {
 			// If we are loading the Blog home page (home.php)

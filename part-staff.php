@@ -109,17 +109,21 @@
 			<?php
 				// Start showing staff list
 				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
-
+        $columnNum = 3;
+        $count = 0;
 				while ( $loop->have_posts() ) : $loop->the_post();
+                    $count++;
+                    if ($count == 1) {
+                        echo '<div class="row">';
+                    }
 			?>
 
-	<ul class="thumbnails">
-		<li class="span4">
+
+		<div class="span4">
 			<div class="content-padding">
-				<div class="thumbnail">
 					<?php if(has_post_thumbnail()) { ?>
 					<a href="<?php the_permalink(); ?>">
-						<?php echo get_the_post_thumbnail(get_the_ID(), 'staff-thumbnail');  ?>
+						<?php echo get_the_post_thumbnail(get_the_ID(), 'thumbnail');  ?>
 					</a>
 					<?php } else { }?>
 
@@ -130,45 +134,18 @@
 								<?php if (isset($post_meta_data['staff_position'][0])) {
 								echo $post_meta_data['staff_position'][0]; } ?>
 							</h3>
-<!-- 
-							<ul>
-								<li>
-									<?php if (isset($post_meta_data['staff_email'][0])) {
-									echo $post_meta_data['staff_email'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_phone'][0])) { ?>
-									<strong>Phone: </strong>
-									<?php echo $post_meta_data['staff_phone'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_office_location'][0])) { ?>
-									<strong>Office Location: </strong>
-									<?php echo $post_meta_data['staff_office_location'][0]; } ?>
-								</li>
-								<li>
-									<?php if (isset($post_meta_data['staff_office_hours'][0])) { ?>
-									<strong>Office Hours: </strong><?php echo $post_meta_data['staff_office_hours'][0]; } ?>
-								</li>
-								<li>
-									<?php // Check to see if the post has content ?>
-									<?php if(empty($post->post_content)) {  } else { ?>
-									<br />
-									<strong>Bio: </strong><br />
-									<?php the_excerpt(); } ?>
-								</li>
-							</ul>
--->
-						<!--
-						<p>
-							<a class="btn btn-primary" href="#">Action</a>
-							<a class="btn" href="#">Action</a>
-						</p>
-						-->
+
 					</div><!-- caption -->
-				</div><!-- thumbnail -->
 			</div><!-- content-padding -->
-		</li>
-				<?php endwhile; wp_reset_postdata(); ?>
-	</ul>
+		</div> <!-- end of span4 -->
+				<?php if ($count == $columnNum) {
+                        echo '</div> <!-- .row -->';
+                        $count = 0;
+                    }
+                endwhile; wp_reset_postdata();
+        if ($count > 0 ) {
+            echo '</div> <!-- .row -->';
+        }
+        ?>
+
 <?php } // end elseif  ?>
