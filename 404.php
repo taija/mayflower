@@ -9,8 +9,8 @@
 
 get_header();
 
-// Get referrer
-$referer_parse = parse_url($_SERVER['HTTP_REFERER']);
+error_reporting_file_not_found();
+
 
 ?>
 	
@@ -63,4 +63,41 @@ $referer_parse = parse_url($_SERVER['HTTP_REFERER']);
 
 
 
-<?php get_footer(); ?>
+<?php get_footer();
+/*
+ * Emails the error to the specified user.
+ * The to and from is set in the wp-config.php file.
+ */
+function error_reporting_file_not_found()
+{
+
+    $referer = $_SERVER['HTTP_REFERER'];
+    $url = $_SERVER['PHP_SELF'];
+    $user = wp_get_current_user();
+    $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    
+    $to = BC404_MAIL_TO;//Getting from wp-config file
+    $subject = "Broken Link Error Report";
+    $message = "";
+    $message .= "User:  ".$user->data->user_login;
+    $message .= "\n\n Hostname:  ".$computer_name;
+    $message .= "\n\n Referer Page:  ".$referer;
+    $message .= "\n\n Current Page:  ".$url;
+    $headers  = array(); // Create a single mail function that has headers defined once. 
+    $headers[] = 'From:'.WPMS_MAIL_FROM;
+    if(isset($to) && !empty($to))
+    {
+        $mail_return_value = wp_mail($to,$subject,$message,$headers);
+        error_log("mail return value :".$mail_return_value);
+        if($mail_return_value)
+        {
+            error_log("Email sent successfully");
+        }
+    }
+    else
+    {
+        error_log("The 'to' field is empty.");
+    }
+}
+//add_action('in_admin_footer', 'error_reporting_file_not_found');
+?>

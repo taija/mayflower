@@ -278,53 +278,49 @@ function my_mce_before_init( $settings ) {
 
     $style_formats = array(
 		array(
+			'title' => 'Alert',
+            'selector' => 'p',
+			'classes' => 'alert',
+		),
+		array(
+			'title' => 'Alert-Danger',
+			'selector' => 'p',
+			'classes' => 'alert alert-error',
+		),
+		array(
+			'title' => 'Alert-Info',
+			'selector' => 'p',
+			'classes' => 'alert wysiwyg_alert alert-info',
+		),
+		array(
+			'title' => 'Alert-Success',
+			'selector' => 'p',
+			'classes' => 'alert alert-success',
+		),
+		array(
+			'title' => 'Button-Black',
+			'inline' => 'button',
+			'classes' => 'btn btn-inverse',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Button-Blue',
+			'inline' => 'button',
+			'classes' => 'btn btn-primary',
+			'wrapper' => false,
+		),
+		array(
 			'title' => 'Button-Grey',
-			'inline' => 'a',
+			'inline' => 'button',
 			//'selector' => 'a',
 			'classes' => 'btn',
 			'wrapper' => false,
 		),
 		array(
-			'title' => 'Button-Blue',
-			'block' => 'a',
-			'classes' => 'btn btn-primary',
-			'wrapper' => false,
-		),
-		array(
-			'title' => 'Button-Black',
-			'block' => 'a',
-			'classes' => 'btn btn-inverse',
-			'wrapper' => false,
-		),
-		array(
 			'title' => 'Well',
-			'block' => 'p',
+			'selector' => 'p',
 			'classes' => 'well',
 			'wrapper' => false,
-		),
-		array(
-			'title' => 'Alert',
-			'block' => 'div',
-			'classes' => 'alert',
-			'wrapper' => true,
-		),
-		array(
-			'title' => 'Alert-Danger',
-			'block' => 'div',
-			'classes' => 'alert alert-error',
-			'wrapper' => true,
-		),
-		array(
-			'title' => 'Alert-Info',
-			'block' => 'div',
-			'classes' => 'alert alert-info',
-			'wrapper' => true,
-		),
-		array(
-			'title' => 'Alert-Success',
-			'block' => 'div',
-			'classes' => 'alert alert-success',
-			'wrapper' => true,
 		),
     );
 
@@ -1155,14 +1151,14 @@ function google_analytics_dashboard()
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
-
+        
         <script type="text/javascript">
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             var ga_code = <?php echo $gaCode ; ?> ;
-            ga('create', ga_code , 'bellevuecollege.edu');
+            ga('create', ga_code , 'bellevuecollege.edu', {'siteSpeedSampleRate': 100});
             ga('send', 'pageview');
         </script>
     <?php
