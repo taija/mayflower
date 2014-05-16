@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Navigation Page (Grid)
+ * Template Name: Navigation Page (List)
  */
 ?>
 <?php get_header(); ?>

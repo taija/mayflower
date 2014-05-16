@@ -2,9 +2,6 @@
 	if (have_posts()) : while (have_posts()) : the_post();
 ?>
 	<div class="content-padding">
-		<h2>
-			<?php the_title();?>
-		</h2>
 			<?php if ( is_singular('staff')) { } else {?>
 				<small>Date posted: <?php the_date(); ?></small>
 			<?php } ?>

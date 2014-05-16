@@ -3,7 +3,6 @@
 /*
 	This is the function called by cron job every minute.
 */
-
  function myCronFunction()
 {
 	//error_log("############################CRON TAB is Running #######################");
@@ -21,7 +20,7 @@ function returnHtmlNClearCache($new_data)
 	$html = "";
 	$class = "";//Class for the display message
 	
-	if($new_data["description"] != "")
+	if(!empty($new_data["description"]))
 	{
 		$class = $new_data["class"];
 		$html = "<div id='alertmessage' class='".$new_data["class"]."'>".$new_data["description"]."</div>";
@@ -40,8 +39,8 @@ function returnHtmlNClearCache($new_data)
 		add_site_option( "ravealert_classCurrentMsg", "" );
 	}
 	$clearCacheCommand = $network_settings['ravealert_clearCacheCommand'];//error_log("clear cache command:".$clearCacheCommand);"sudo find /var/run/nginx-cache-bc -type f -exec rm {} \;";
-	$clearCacheCommand = base64_decode($clearCacheCommand);	
-	$new_display_message = trim($new_data["description"]);
+	$clearCacheCommand = base64_decode($clearCacheCommand);
+	$new_display_message = !empty($new_data["description"]) ? trim($new_data["description"]) : "";
 			
 //Clear the cache if there is a new message 	
 
@@ -83,17 +82,10 @@ function returnHtmlNClearCache($new_data)
 
 function returnContentsOfUrl($url)
 {
-	$ch = curl_init();
-	// set URL and other appropriate options
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	// grab URL and pass it to the browser
-	$output = curl_exec($ch);
-	// close cURL resource, and free up system resources
-	curl_close($ch);
-	//error_log("output :".$output);
-	return $output;
+    $arg = array ( 'method' => 'GET');
+    $output = wp_remote_request ( $url , $arg );
+	//error_log("output :".print_r($output["body"],true));
+	return $output["body"];
 }
 
 /*
@@ -112,7 +104,7 @@ function getDisplayMessage($url)
 	$returnArray = array();
 	//echo("the xml:".$xml);
 	$html="";
-	if($xml)
+	if($xml && is_string($xml))
 	{
 		$data = simplexml_load_string($xml);
 		//echo "\n<pre>"; print_r($data);

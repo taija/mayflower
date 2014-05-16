@@ -1,5 +1,5 @@
 <?php
-define('NEWS_WEBSITE_ID', 63);
+define('NEWS_WEBSITE_ID', 0);
 define('NEW_CATEGORY_NAME', "BC Homepage");
 ?>
 
@@ -56,9 +56,9 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 									<?php endwhile;
 									// wp_reset_postdata();
 									restore_current_blog(); }
-								?>
+									?>
 									<li><a class="more" href="http://bellevuecollege.edu/news/"><strong>More news...</strong><span class="arrow"></span></a></li>
-						</ul>
+									</ul>
         </div><!--.content-padding-->
 	</section>
 	<section id="home-events">

@@ -178,10 +178,8 @@ function mayflower_setup() {
 	 * Allow users to specify a custom background image
 	 * or color.
 	 *
-	 * Note: as of WordPress 3.4, add_custom_background() is
-	 * deprecated, in favor of
-	 * add_theme_support( 'custom-background' ). Child Themes
-	 * can remove support for this feature via
+	 * Note: 
+	 * Child Themes can remove support for this feature via
 	 * remove_theme_support( 'custom-background' ).
 	 *
 	 * @since	WordPress 3.0.0

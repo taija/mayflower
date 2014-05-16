@@ -18,9 +18,9 @@
 
 	<?php else : ?>
 	<!-- Do stuff when the_content has content -->
-		
+	<div class="lead">
 			<?php the_content(); ?>
-		
+	</div>
 
 	<?php endif; ?>
 
