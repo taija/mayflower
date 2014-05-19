@@ -180,6 +180,9 @@ add_theme_support( 'custom-header', $header_args );
 /* Post format support */
 add_theme_support( 'post-formats', array( 'video' ) );
 
+/* Let Tabs Shortcode plugin use bootstrap styles*/
+add_theme_support( 'tabs', 'twitter-bootstrap' );
+
 ######################################
 // Remove Comments Feed
 ######################################
