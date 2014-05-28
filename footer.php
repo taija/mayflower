@@ -14,14 +14,7 @@ if( $mayflower_brand == 'lite') {
 <script src="<?php echo $globals_path_over_http; ?>j/bootstrap.min.js"></script>
 <script src="<?php echo $globals_path_over_http; ?>j/g.js"></script>
 <?php
-	global $bc_globals_html_filepath;
-	$bc_gacode_lite =  $bc_globals_html_filepath . "galite.html";
-	$bc_gacode_branded =  $bc_globals_html_filepath . "gabranded.html";
-	if( $mayflower_brand == 'lite') {
-		include_once($bc_gacode_lite);
-	} else {
-		include_once($bc_gacode_branded);
-	}	
+
 
 wp_footer(); 
 ?>

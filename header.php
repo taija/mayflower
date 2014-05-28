@@ -78,7 +78,8 @@
 		}
 	}
 	echo '<!-- parentid= '. $post_top_parent_id . '-->';
-	?>            
+
+    ?>
 </head>
 
 <body <?php 
