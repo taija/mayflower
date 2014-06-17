@@ -120,12 +120,7 @@ if (!current_user_can('edit_pages')) {
 //	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
 //	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
-	//Rave Alert functionality
-	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
-		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
-
-
-	//Service Forms functionality
+		//Service Forms functionality
 if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
 	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
 
