@@ -953,36 +953,7 @@ function mayflower_cpt_update_post_order() {
 
 	die( '1' );
 }
-/*
-	Cron Job for RaveAlert. Cron runs the functions located in alertnotification.php file.
-*/	
-	
-	add_filter('cron_schedules', 'new_interval');
 
-// add once 1 minute interval to wp schedules
-function new_interval($interval) {
-
-    $interval['minutes_1'] = array('interval' => 1*60, 'display' => 'Once 1 minutes');
-
-    return $interval;
-}
-add_action( 'my_cron', 'myCronFunction' );
-//error_log("WP functions file running");
-//function my_activation() {
-	if ( ! wp_next_scheduled( 'my_cron' ) ) {
-	  wp_schedule_event( time(), 'minutes_1', 'my_cron' );
-	}
-	else
-	{
-		//error_log("my cron is already scheduled");
-	}
-	wp_cron();
-	
-	
-	
-	
-	
-	
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_global_section_meta_box' );
 add_action( 'load-post-new.php', 'add_global_section_meta_box' );
