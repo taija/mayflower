@@ -975,9 +975,11 @@ function mayflower_cpt_update_post_order() {
 
 	die( '1' );
 }
-/*
-	Cron Job for RaveAlert. Cron runs the functions located in alertnotification.php file.
-*/	
+
+####################################################
+## Cron Job for RaveAlert. 
+## Cron runs the functions located in alertnotification.php file.
+####################################################
 	
 	add_filter('cron_schedules', 'new_interval');
 
