@@ -120,12 +120,7 @@ if (!current_user_can('edit_pages')) {
 //	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
 //	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
-	//Rave Alert functionality
-	if( file_exists(get_template_directory() . '/inc/alert-notification/alertnotification.php') )
-		    require( get_template_directory() . '/inc/alert-notification/alertnotification.php');
-
-
-	//Service Forms functionality
+		//Service Forms functionality
 if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
 	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
 
@@ -179,6 +174,9 @@ add_theme_support( 'custom-header', $header_args );
 
 /* Post format support */
 add_theme_support( 'post-formats', array( 'video' ) );
+
+/* Let Tabs Shortcode plugin use bootstrap styles*/
+add_theme_support( 'tabs', 'twitter-bootstrap' );
 
 ######################################
 // Remove Comments Feed
@@ -507,31 +505,6 @@ function control_widget_pages( $sidebars_widgets ) {
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
 
-##########################
-//site specific analytics
-##########################
-
-	function mayflower_sitespecific_analytics () {
-		$mayflower_options = mayflower_get_options();
-
-		if ($mayflower_options['ga_code']) {
-		// Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
-	 	?>
-			<script type="text/javascript">
-                /*Site-Specific GA code*/
-				_gaq.push(
-				  ['site._setAccount', '<?php echo $mayflower_options['ga_code'] ?>'],
-				  ['site._setDomainName', 'bellevuecollege.edu'],
-				  ['site._setAllowLinker', true],
-				  ['site._trackPageview']
-				);
-            </script>
-		<?php
-		} // end if
-
-
-	} // end function
-	add_action('wp_footer', 'mayflower_sitespecific_analytics', 30);
 
 
 ############################
@@ -975,36 +948,7 @@ function mayflower_cpt_update_post_order() {
 
 	die( '1' );
 }
-/*
-	Cron Job for RaveAlert. Cron runs the functions located in alertnotification.php file.
-*/	
-	
-	add_filter('cron_schedules', 'new_interval');
 
-// add once 1 minute interval to wp schedules
-function new_interval($interval) {
-
-    $interval['minutes_1'] = array('interval' => 1*60, 'display' => 'Once 1 minutes');
-
-    return $interval;
-}
-add_action( 'my_cron', 'myCronFunction' );
-//error_log("WP functions file running");
-//function my_activation() {
-	if ( ! wp_next_scheduled( 'my_cron' ) ) {
-	  wp_schedule_event( time(), 'minutes_1', 'my_cron' );
-	}
-	else
-	{
-		//error_log("my cron is already scheduled");
-	}
-	wp_cron();
-	
-	
-	
-	
-	
-	
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_global_section_meta_box' );
 add_action( 'load-post-new.php', 'add_global_section_meta_box' );
@@ -1192,7 +1136,38 @@ function google_analytics_dashboard()
     <?php
     }
 }
-add_action('in_admin_footer', 'google_analytics_dashboard');
+add_action('admin_head', 'google_analytics_dashboard');
+##########################
+//analytics for lite, branded and single site
+##########################
+
+function mayflower_analytics () {
+    global $bc_globals_html_filepath, $mayflower_brand;
+    $bc_gacode_lite =  $bc_globals_html_filepath . "galite.html";
+    $bc_gacode_branded =  $bc_globals_html_filepath . "gabranded.html";
+    if( $mayflower_brand == 'lite') {
+        include_once($bc_gacode_lite);
+    } else {
+        include_once($bc_gacode_branded);
+    }
+    $mayflower_options = mayflower_get_options();
+
+    if ($mayflower_options['ga_code']) {
+        // Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
+        ?>
+        <script type="text/javascript">
+            /*Site-Specific GA code*/
+            ga('create','<?php echo $mayflower_options['ga_code'] ?>','bellevuecollege.edu',{'name':'singlesite'});  //Multisite Tracking Code
+            ga('singlesite.send','pageview');
+
+
+        </script>
+    <?php
+    } // end if
+
+
+} // end function
+add_action('wp_head', 'mayflower_analytics', 30);
 
 
 

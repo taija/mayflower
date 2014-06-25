@@ -5,20 +5,20 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 
 <div class="content-row transparent" id="content">
     <ul id="mobilelinks" class="clearfix">
-        <li><a href="http://bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
-        <li><a href="http://bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
-        <li><a href="http://bellevuecollege.edu/contacts/" class="btn btn-info">Contact Us</a></li>
+        <li><a href="http://www.bellevuecollege.edu/about/gettinghere/maps/" class="btn btn-info">Maps</a></li>
+        <li><a href="http://www.bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
+        <li><a href="http://www.bellevuecollege.edu/contacts/" class="btn btn-info">Contact Us</a></li>
     </ul><!--#mobilelinks -->
     <section class="box-shadow" id="menusfor">
         <div class="content-padding">
             <h2>Menus for:</h2>
             <ul>
-                <li><a href="http://bellevuecollege.edu/students/">Students</a></li>
-                <li><a href="http://bellevuecollege.edu/future/">Future Students</a></li>
-                <li><a href="http://bellevuecollege.edu/isp/">International Students</a></li>
-                <li><a href="http://bellevuecollege.edu/employees/">Faculty &amp; Staff</a></li>
-                <li><a href="http://bellevuecollege.edu/businesses/">Businesses</a></li>
-                <li><a href="http://bellevuecollege.edu/visitors/">Visitors &amp; Community</a></li>
+                <li><a href="http://www.bellevuecollege.edu/students/">Students</a></li>
+                <li><a href="http://www.bellevuecollege.edu/future/">Future Students</a></li>
+                <li><a href="http://www.bellevuecollege.edu/isp/">International Students</a></li>
+                <li><a href="http://www.bellevuecollege.edu/employees/">Faculty &amp; Staff</a></li>
+                <li><a href="http://www.bellevuecollege.edu/businesses/">Businesses</a></li>
+                <li><a href="http://www.bellevuecollege.edu/visitors/">Visitors &amp; Community</a></li>
             </ul>
         </div>
 	</section><!--#menusfor-->
@@ -57,7 +57,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 									// wp_reset_postdata();
 									restore_current_blog(); }
 									?>
-									<li><a class="more" href="http://bellevuecollege.edu/news/"><strong>More news...</strong><span class="arrow"></span></a></li>
+									<li><a class="more" href="http://www.bellevuecollege.edu/news/"><strong>More news...</strong><span class="arrow"></span></a></li>
 									</ul>
         </div><!--.content-padding-->
 	</section>
@@ -86,8 +86,8 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
                         wp_reset_postdata();
                 ?>
 
-                <li><a class="more" href="http://bellevuecollege.edu/events"><strong>More events...</strong></a></li>
-                <li><a id="calendar" href="/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
+                <li><a class="more" href="http://www.bellevuecollege.edu/events"><strong>More events...</strong></a></li>
+                <li><a id="calendar" href="http://www.bellevuecollege.edu/enrollment/calendar/"><strong>Academic Calendar</strong></a> </li>
         	</ul>
     	</div><!--.content-padding-->
 	</section><!--#home-events-->

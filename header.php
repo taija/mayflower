@@ -78,10 +78,11 @@
 		}
 	}
 	echo '<!-- parentid= '. $post_top_parent_id . '-->';
-	?>            
+
+    ?>
 </head>
 
-<body <?php 
+<body <?php
 		//if this is the root site, set main college nav menu to highlight.
 		if ($is_main_site == TRUE){
 			if($post_top_parent_id == 0){
@@ -102,18 +103,7 @@
 			body_class();	
 		}
 ?>>
-<?php
-		//display ravealert message
-	$rave_message = get_site_option('ravealert_currentMsg');
-	$rave_class = get_site_option('ravealert_classCurrentMsg');
-	if($rave_message!="")
-	{
-	?>
-	<div id='alertmessage' class="<?php echo $rave_class;?>"><?php echo $rave_message;?></div>
-	<?php
-	}
-	?>
-	
+
     <?php
 	##############################################
 	### Branded or Lite versions of the header
