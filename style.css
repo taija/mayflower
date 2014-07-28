@@ -206,8 +206,8 @@ width: 11.11%;
 	margin-bottom: 2em;
 }
 .row-padding {
-	padding-top: 2em;
-	padding-bottom: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 .homerow1 {}
 #mobilelinks {
@@ -335,6 +335,10 @@ list-style-type: none;
 		display: table;
 		width: 100%;
 		table-layout: fixed;
+	}
+	.row-padding {
+		padding-top: 2em;
+		padding-bottom: 2em;
 	}
 	
 	#mobilelinks{
