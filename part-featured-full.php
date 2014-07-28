@@ -3,7 +3,7 @@
 	    $mayflower_options = mayflower_get_options();
 	    if( $mayflower_options['slider_toggle'] === true) { ?>
 
-					<div id="myCarousel" class="carousel slide full">
+					<div id="carousel-featured-full" class="carousel slide full">
 
 						<ol class="carousel-indicators">
 							<?php
@@ -15,7 +15,7 @@
 								while ( $the_query->have_posts() ) :
 								$the_query->the_post();
 								?>
-						<li data-target="#myCarousel" data-slide-to="<?php echo $number++; ?>"></li>
+						<li data-target="#carousel-featured-full" data-slide-to="<?php echo $number++; ?>"></li>
 
 						<?php endwhile; wp_reset_postdata(); ?>
 						</ol>
@@ -40,12 +40,12 @@
 									{ ?>
 	
 									
-										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full', array( 'class' => "img-responsive"));?></a>
 									
 	
 									<?php } else { ?>
 	
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full', array( 'class' => "img-responsive"));?></a>
 								<?php	} //end else ?>
 	
 							<?php
@@ -106,12 +106,11 @@
 									{ ?>
 	
 									
-										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full');?></a>
-									
+										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-full', array( 'class' => "img-responsive"));?></a>
 	
 									<?php } else { ?>
 	
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full', array( 'class' => "img-responsive"));?></a>
 								<?php	} //end else ?>
 	
 							<?php
@@ -157,11 +156,11 @@
 						<?php
 							$published_posts = wp_count_posts('slider')->publish;
 							if ($published_posts >1 ) { ?>
-								<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-								<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+								<a class="carousel-control left" href="#carousel-featured-full" data-slide="prev">&lsaquo;</a>
+								<a class="carousel-control right" href="#carousel-featured-full" data-slide="next">&rsaquo;</a>
 						<?php } else //don't show controls ?>
 	
-					</div><!-- #myCarousel -->
+					</div><!-- #carousel-featured-full -->
 	
 
 		<?php } elseif( $mayflower_options['slider_toggle'] == 'false' ) { } ?>

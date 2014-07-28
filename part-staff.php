@@ -114,7 +114,7 @@
 			?>
 
 	<ul class="thumbnails">
-		<li class="span4">
+		<li class="col-md-4">
 			<div class="content-padding">
 				<div class="thumbnail">
 					<?php if(has_post_thumbnail()) { ?>

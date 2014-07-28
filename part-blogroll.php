@@ -64,7 +64,7 @@
 								} else {
 								?>
 						           <p>
-										<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
+										<a class="btn btn-default btn-sm primary-read-more" href="<?php the_permalink(); ?>">
 									Read More <i class="icon-chevron-right"></i>
 							            </a>
 						            </p>

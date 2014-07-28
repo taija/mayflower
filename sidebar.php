@@ -1,11 +1,11 @@
-<div class="sidebar span3 <?php
-	$mayflower_options = mayflower_get_options();
-	$current_layout = $mayflower_options['default_layout'];
-	if ( $current_layout == 'sidebar-content' ) { 
-		?>sidebarleft<?php
-	} else {
-		?>sidebarright<?php
-	}; ?>">
+<div class="sidebar col-md-3 <?php
+		$mayflower_options = mayflower_get_options();
+		$current_layout = $mayflower_options['default_layout'];
+		if ( $current_layout == 'sidebar-content' ) { 
+			?>sidebarleft col-md-pull-9<?php
+		} else {
+			?>sidebarright<?php
+		}; ?>">
 
 		<?php if ( is_active_sidebar( 'top-global-widget-area' ) ) : ?>
 			<?php dynamic_sidebar( 'top-global-widget-area' ); ?>
@@ -26,4 +26,4 @@
 			<?php dynamic_sidebar( 'global-widget-area' ); ?>
 		<?php endif; ?>
 
-</div><!-- span3 -->
+</div><!-- col-md-3 -->

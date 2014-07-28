@@ -18,9 +18,7 @@
 
 	<?php else : ?>
 	<!-- Do stuff when the_content has content -->
-	<div class="lead">
 			<?php the_content(); ?>
-	</div>
 
 	<?php endif; ?>
 
@@ -51,21 +49,19 @@
 					echo '<div class="row">';
 			}  ?>
             
-			<div class="span4 top-spacing15">
+			<div class="col-md-4 top-spacing15">
 				<div class="content-padding nav-page">
 
-						    <a class="" href="<?php the_permalink(); ?>">
 							<?php
-								if ( has_post_thumbnail() ) {
-									the_post_thumbnail('home-small-ad', array('class' => ''));
-
+								if ( has_post_thumbnail() ) { ?>
+									<a class="" href="<?php the_permalink(); ?>">
+										<?php the_post_thumbnail('home-small-ad', array('class' => '')); ?>
+									</a>
+									
+									<?php
 								}
-								else {
-
-								}
+								else {}
 							?>
-
-							    </a>
 					<h2>
 						<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 					</h2>
@@ -75,7 +71,7 @@
 						edit_post_link('edit', '<small>', '</small>');
 					?>
 				</div><!-- content-padding .nav-page -->
-			</div><!-- span4 -->  <?php 
+			</div><!-- col-md-4 -->  <?php 
 			
             if ($count == $columnNum) {
                 echo '</div> <!-- .row -->';
