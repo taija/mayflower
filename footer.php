@@ -1,10 +1,23 @@
+<?php 
+global $mayflower_brand;
+if( $mayflower_brand == 'lite') {
+	get_template_part('part-flexnav');
+} else {
+}
+?>
+			</div><!-- row -->
+		</div><!-- col-md-12 -->
+
 	</div><!-- #main .container -->
 </div><!-- #main-wrap -->
 
 <?php 
+?>
+
+<?php 
 global $globals_path, $globals_path_over_http, $mayflower_version, $mayflower_brand;
-//echo " Globals Path: " . $globals_path . ". HTTP Path: " . $globals_path_over_http;
 if( $mayflower_brand == 'lite') {
+	//get_template_part('part-flexnav');
 	bc_footer_legal();
 } else {
 	bc_footer();

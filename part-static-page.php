@@ -11,14 +11,13 @@
 	}
 ?>
 	<div class="row row-padding">  
-		<?php
-		$mayflower_options = mayflower_get_options();
-		$current_layout = $mayflower_options['default_layout'];
-		if ( $current_layout == 'sidebar-content' ) { 
-			get_sidebar(); 
-		}; ?>
+		    <div class="col-md-9 <?php
+				$mayflower_options = mayflower_get_options();
+				$current_layout = $mayflower_options['default_layout'];
+					if ( $current_layout == 'sidebar-content' ) { 
+						?>col-md-push-3<?php
+					} else {}; ?>">
 
-		    <div class="span9">
 		    <?php 
 		    if( $mayflower_options['slider_toggle'] == 'true' ) { 
 		       if ( $mayflower_options['slider_layout'] == 'featured-in-content' ) { 
@@ -50,7 +49,7 @@
 		        
 		            <div class="content-padding <?php 
 		                //display slider in content if option is selected
-		                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
+		                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content') && is_front_page()){ 
 		                    echo "top-spacing30";
 		                } 
 		            ?>">
@@ -90,13 +89,13 @@
 		        <?php 
 		        endif; 
 		    } ?>
-		    </div><!-- span9 --><?php
-	    
-	    if ( $current_layout == 'content-sidebar' ) {
-	        get_sidebar();
-	    } else {};
-	    ?>
-	 
+		    </div><!-- col-md-9 -->
+					
+			    <?php
+				    //if ( $current_layout == 'content-sidebar' || $current_layout == 'sidebar-content' ) {
+				        get_sidebar();
+				    //} else {};
+			    ?>
 		</div><!-- .row .row-padding -->	
 <?php
 } //END IF SIDEBAR HAS CONTENT

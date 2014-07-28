@@ -3,7 +3,7 @@
     if( $mayflower_options['slider_toggle'] === true ) { ?>
 	
 				<div id="myCarousel" class="carousel slide content-padding">
-
+					<!-- Indicators -->
 					<ol class="carousel-indicators">
 						<?php
 							$number = 0;
@@ -19,6 +19,7 @@
 					<?php endwhile; wp_reset_postdata(); ?>
 					</ol>
 					
+					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<?php
 						$the_query = new WP_Query(array(
@@ -39,12 +40,12 @@
 									{ ?>
 				
 									
-										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title();; ?>"><?php the_post_thumbnail('featured-in-content');?></a>
+										<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title();; ?>"><?php the_post_thumbnail('featured-in-content', array( 'class' => "img-responsive"));?></a>
 									
 				
 									<?php } else { ?>
 				
-								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-in-content');?></a>
+								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-in-content', array( 'class' => "img-responsive"));?></a>
 								<?php	} //end else ?>
 							<?php
 									//should we show title & excerpt?
@@ -104,12 +105,12 @@
 								{ ?>
 			
 								
-									<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-in-content');?></a>
+									<a href="<?php echo esc_url($slider_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('featured-in-content', array( 'class' => "img-responsive"));?></a>
 								
 			
 								<?php } else { ?>
 			
-							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-full');?></a>
+							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('featured-in-content', array( 'class' => "img-responsive"));?></a>
 							<?php	} //end else ?>
 			
 						<?php
@@ -155,8 +156,8 @@
 					<?php
 						$published_posts = wp_count_posts('slider')->publish;
 						if ($published_posts >1 ) { ?>
-							<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-							<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+							<a class="carousel-control left" href="#myCarousel" role="button" data-slide="prev">&lsaquo;</a>
+							<a class="carousel-control right" href="#myCarousel" role="button" data-slide="next">&rsaquo;</a>
 					<?php } else //don't show controls ?>
 			
 				</div><!-- #myCarousel -->

@@ -2,16 +2,16 @@
 	 if (is_active_sidebar('top-global-widget-area') || is_active_sidebar('blog-widget-area') || is_active_sidebar('global-widget-area')) { ?>
 	
 	<?php //IF SIDEBAR HAS CONTENT ?>
-									<div class="row row-padding">  
-									<?php
+							<div class="row row-padding">  
+										
+						    <div class="col-xs-9 col-sm-9 col-md-9 <?php
 									$mayflower_options = mayflower_get_options();
 									$current_layout = $mayflower_options['default_layout'];
-									if ( $current_layout == 'sidebar-content' ) { 
-										get_sidebar(); 
-									}; ?>
-										
-									    <div class="span9">
-									    <?php 
+										if ( $current_layout == 'sidebar-content' ) { 
+											?>col-md-push-3<?php
+										} else {}; ?>">
+								   
+								    <?php 
 									    if( $mayflower_options['slider_toggle'] == 'true' ) { 
 									       if ( $mayflower_options['slider_layout'] == 'featured-in-content' ) { 
 									            get_template_part('part-featured-in-content'); 
@@ -38,7 +38,7 @@
 									    } else {
 											
 									        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
-												?>
+										?>
 
 									            <div class="content-padding <?php 
 									                //display slider in content if option is selected
@@ -82,11 +82,9 @@
 									        <?php 
 									        endif; 
 									    } ?>
-									    </div><!-- span9 --><?php
+									    </div><!-- col-md-9 --><?php
 								    
-								    if ( $current_layout == 'content-sidebar' ) {
 								        get_sidebar();
-								    } else {};
 								    ?>
 								 
 									</div><!-- .row .row-padding -->	
@@ -123,7 +121,7 @@
 								        
 								            <div class="content-padding <?php 
 								                //display slider in content if option is selected
-								                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content')){ 
+								                if ( ($mayflower_options['slider_toggle'] == 'true') && ($mayflower_options['slider_layout'] == 'featured-in-content') ){ 
 								                    echo "row-padding";
 								                } 
 								            ?>">
