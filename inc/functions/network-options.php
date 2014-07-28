@@ -66,7 +66,7 @@ else
 $ravealert_currentMsg = get_site_option('ravealert_currentMsg');
 $ravealert_clearCacheCommand = base64_decode($network_settings['ravealert_clearCacheCommand']);
 $ravealert_college_openmessage = $network_settings['ravealert_college_openmessage'];
- $ravealert_xml_feedurl = $network_settings['ravealert_xml_feedurl'];
+$ravealert_xml_feedurl = $network_settings['ravealert_xml_feedurl'];
 //error_log("reavealert current msg :".$ravealert_currentMsg);
 
 wp_nonce_field('save_network_settings', 'my-network-plugin');
