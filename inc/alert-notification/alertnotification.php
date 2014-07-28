@@ -117,27 +117,29 @@ function getDisplayMessage($url)
 					$description = $data ->channel ->item->description;
 					//echo "\n channel:".print_r($channel);
 					$title = $data ->channel ->item->title;
-					$dcDate = $data ->channel ->item->children('dc',true)->date;
-					$dcDate = str_replace("T"," ",str_replace("Z","", $dcDate));
+					$pubDate = $data ->channel ->item->pubDate;
+//					$pubDate = str_replace("T"," ",str_replace("Z","", $pubDate));
 					//echo "description:".$description;
-					//echo "dcdate :".$dcDate;
-					if (DateTime::createFromFormat('Y-m-d G:i:s', $dcDate) !== FALSE) {
+					//echo "pubDate :".$pubDate;
+//																					Mon, 09 Jun 2014 17:38:05 GMT
+					if (DateTime::createFromFormat('D, d M Y G:i:s O', $pubDate) !== FALSE) {
+//					if (DateTime::createFromFormat('Y-m-d G:i:s', $pubDate) !== FALSE) {
 					  // it's a date
 						//echo "\nvalid date";
 						//$now = time();
 						$now = current_time('timestamp',1);//get_gmt_from_date();//the_date('Y-m-d');
 						//error_log("now in gmt :".$now);
 						//$now = strtotime($now);
-						$dcDate_time = strtotime($dcDate);
+						$pubDate_time = strtotime($pubDate);
 						//error_log("dc date time in gmt :".$dcDate_time);
-						$datediff = $dcDate_time - $now;
+						$datediff = $pubDate_time - $now;
 						//error_log("date diff:".$datediff);
      					//echo floor($datediff/(60*60*24));
      					if($datediff > -1)
      					{
      						$html = "<div class='alert alert-error'>".$description."</div>";
-							$returnArray["description"] = $description;
-							$returnArray["class"] = "alert alert-error";
+								$returnArray["description"] = $description;
+								$returnArray["class"] = "alert alert-error";
      					}
      					else
      					{
@@ -155,7 +157,7 @@ function getDisplayMessage($url)
      							{
 									$returnArray["description"] = "";
 									$returnArray["class"] = "";
-								}								
+									}								
      						}
      					}	
 					}
