@@ -111,7 +111,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 
 		        if ( !empty( $small_ad_ext_url ) ){ ?>
                     <p id="homead">
-                        <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow'));?></a>
+                        <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow img-responsive'));?></a>
                     </p>
 			<?php }  //end if ?>
 	
