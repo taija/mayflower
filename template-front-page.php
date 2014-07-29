@@ -94,7 +94,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
     	</div><!--.content-padding-->
 	</section><!--#home-events-->
 	<div id="home-sidelinks">
-		<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply for admissions</strong>Fall application deadline Sept. 19</a></p>
+		<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply for admissions</strong>Fall deadline Sept. 19</a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
