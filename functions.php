@@ -22,19 +22,19 @@
 	 * Customizer.
 	 */
 
-	    require( get_template_directory() . '/inc/functions/custom.php' );
-		require( get_template_directory() . '/inc/functions/theme-setup.php' );
-	    require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-		require( get_template_directory() . '/inc/functions/widgets.php' );
-		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
-	    require( get_template_directory() . '/inc/functions/options-admin.php');
-	    require( get_template_directory() . '/inc/functions/options.php');
-	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network-options.php');
-		require( get_template_directory() . '/inc/functions/hooks.php' );
+			require( get_template_directory() . '/inc/functions/custom.php' );
+			require( get_template_directory() . '/inc/functions/theme-setup.php' );
+			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
+			require( get_template_directory() . '/inc/functions/widgets.php' );
+			require( get_template_directory() . '/inc/functions/custom_widgets.php' );
+			require( get_template_directory() . '/inc/functions/options-admin.php');
+			require( get_template_directory() . '/inc/functions/options.php');
+			require( get_template_directory() . '/inc/functions/options-customizer.php' );
+			require( get_template_directory() . '/inc/functions/network-options.php');
+			require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
-	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
-		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
+			require( get_template_directory() . '/inc/functions/contextual-help.php' );
+			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
 //		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
@@ -165,8 +165,8 @@ $header_args = array(
     'default-image'	=> '',
     'width'			=> 850,
     'height'		=> 100,
-	'flex-width'	=> true,
-	'flex-height'	=> true,
+//		'flex-width'	=> true,
+//		'flex-height'	=> true,
     'header-text'	=> false
  
 );
@@ -177,6 +177,16 @@ add_theme_support( 'post-formats', array( 'video' ) );
 
 /* Let Tabs Shortcode plugin use bootstrap styles*/
 add_theme_support( 'tabs', 'twitter-bootstrap' );
+
+######################################
+// Customize Excerpt Read More
+######################################
+
+function new_excerpt_more( $more ) {
+	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'your-text-domain') . get_the_title() . '</a>';
+}
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+
 
 ######################################
 // Remove Comments Feed
