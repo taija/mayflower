@@ -55,7 +55,7 @@
 							<?php
 								if ( has_post_thumbnail() ) { ?>
 									<a class="" href="<?php the_permalink(); ?>">
-										<?php the_post_thumbnail('home-small-ad', array('class' => '')); ?>
+										<?php the_post_thumbnail('home-small-ad', array('class' => 'img-responsive')); ?>
 									</a>
 									
 									<?php
