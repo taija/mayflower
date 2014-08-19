@@ -4,7 +4,7 @@ Theme URI: http://bellevuecollege.edu/ir/wordpress/
 Description: The Bellevue College Theme
 Author: Bellevue College Technology Development & Communications Department
 Author URI: http://www.bellevuecollege.edu
-Version: 1.8.1
+Version: 1.8
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
@@ -564,7 +564,7 @@ ul.header-social-links li {
 }
 
 /* ####################################### */
-/* ----- Temo side navigation/widget areas styles ----- */
+/* ----- Navigation/widget areas styles ----- */
 /* ###################################### */
 .sidebar h2.widget-title { 
 	color: white;
