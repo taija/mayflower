@@ -74,30 +74,33 @@ function error_reporting_file_not_found()
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
     $missing_page_url = curPageURL();
-    
-    $to = BC404_MAIL_TO;//Getting from wp-config file
+    if(defined(BC404_MAIL_TO))
+         $to = BC404_MAIL_TO;//Getting from wp-config file
+    else
+        error_log(" BC404_MAIL_TO constant not set. ");
+
     $subject = "Broken Link Error Report";
     $message = "";
     $message .= "Date/Time: ".current_time("d/m/Y H:i:s",0);
-    $message .= "\n\nUser:  ".$user->data->user_login;
+    //$user_login = isset($user) && !empty($user->data) ? $user->data->user_login : "";
+    if(isset($user) && !empty($user->data) && isset($user->data->user_login))
+        $message .= "\n\nUser:  ".$user->data->user_login;
     $message .= "\n\nHostname:  ".$computer_name;
     $message .= "\n\nReferrer Page:  ".$referrer;
     $message .= "\n\nCurrent Page url:  ".$missing_page_url;
     $headers  = array(); // Create a single mail function that has headers defined once. 
     $headers[] = 'From:'.WPMS_MAIL_FROM;
-    error_log("mail attributes :".$to." /n".$subject." /n".$message." /n".$headers);
     if(isset($to) && !empty($to) && !empty($referrer))
     {
         $mail_return_value = wp_mail($to,$subject,$message,$headers);
-        error_log("mail return value :".$mail_return_value);
-        if($mail_return_value)
+        if(!$mail_return_value)
         {
-            error_log("Email sent successfully");
+            error_log("404 page Email was not sent to:".$to);
         }
     }
     else
     {
-        error_log("The 'to' or referrer field is empty.");
+        error_log("404 page email cannot be sent because 'to' or referrer field is empty.");
     }
 }
 function curPageURL() {
