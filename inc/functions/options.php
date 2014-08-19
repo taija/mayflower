@@ -542,6 +542,7 @@ function mayflower_get_option_parameters() {
 			'since' => '1.3.3',
 			'default' => 'sidebar-content'
 		),
+/*
 		'skin' => array(
 			'name' => 'skin',
 			'title' => __( 'Color Scheme', 'mayflower' ),
@@ -572,6 +573,7 @@ function mayflower_get_option_parameters() {
 			'since' => '1.0',
 			'default' => 'default-color-scheme'
 		),
+*/
 		'blog_homepage_toggle' => array(
 			'name' => 'blog_homepage_toggle',
 			'title' => __( 'Enable blog posts on home page?', 'mayflower' ),
@@ -811,7 +813,7 @@ function mayflower_get_settings_page_tabs() {
 				'site_defaults' => array(
 					'name' => 'site_defaults',
 					'title' => __( 'Site Defaults', 'mayflower' ),
-					'description' => __( 'Manage default layout & color options for this web site. <br /><br /><em>*Note that if sidebar widget area are empty there will be no sidebar and the page content will fill the whole content area.</em> ', 'mayflower' )
+					'description' => __( 'Manage default layout options for this web site. <br /><br /><em>*Note that if sidebar widget area are empty there will be no sidebar and the page content will fill the whole content area.</em> ', 'mayflower' )
 				),
 				/*
 				'skin' => array(
