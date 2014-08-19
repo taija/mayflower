@@ -290,23 +290,24 @@ function my_mce_before_init( $settings ) {
 		array(
 			'title' => 'Alert',
             'selector' => 'p',
-			'classes' => 'alert',
+			'classes' => 'alert alert-warning',
 		),
 		array(
 			'title' => 'Alert-Danger',
 			'selector' => 'p',
-			'classes' => 'alert alert-error',
+			'classes' => 'alert alert-error alert-danger',
 		),
 		array(
 			'title' => 'Alert-Info',
 			'selector' => 'p',
-			'classes' => 'alert wysiwyg_alert alert-info',
+			'classes' => 'alert alert-info',
 		),
 		array(
 			'title' => 'Alert-Success',
 			'selector' => 'p',
 			'classes' => 'alert alert-success',
 		),
+/*
 		array(
 			'title' => 'Button-Black',
 			'inline' => 'button',
@@ -326,6 +327,7 @@ function my_mce_before_init( $settings ) {
 			'classes' => 'btn',
 			'wrapper' => false,
 		),
+*/
 		array(
 			'title' => 'Well',
 			'selector' => 'p',
