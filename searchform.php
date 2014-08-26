@@ -1,4 +1,4 @@
-<form class="form-search" method="get" action="http://bellevuecollege.edu/search/">
+<form class="form-search" method="get" action="//www.bellevuecollege.edu/search/">
 	<fieldset>
     <div class="input-group">
       <input type="text" name="txtQuery" class="form-control">
