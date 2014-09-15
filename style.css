@@ -506,9 +506,12 @@ list-style-type: none;
   font-weight: 200;
   line-height: 2em;
 }
-
 .nav-page h2 {
 	margin-top: 0;
+}
+
+.nav-page-list h2 {
+	margin-top: 2rem;
 }
 
 .nav-page img {
