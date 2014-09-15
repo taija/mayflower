@@ -52,18 +52,10 @@
 								if ( has_post_thumbnail() ) {
 									?>
 				
-									 <div class="pull-left wp-caption">
-										<?php
-											the_post_thumbnail('thumbnail', array('class' => 'media-object'));
-												if(get_post(get_post_thumbnail_id())->post_excerpt) {
-                          $tn_id = get_post_thumbnail_id( $post->ID );
+									<a class="" href="<?php the_permalink(); ?>">
+										<?php the_post_thumbnail('thumbnail', array('class' => 'img-responsive')); ?>
+									</a>
 
-                          $img = wp_get_attachment_image_src( $tn_id, 'medium' );
-                          $width = $img[1];
-										?>
-												<p class="featured-caption media-object wp-caption-text" style="width:<?php echo $width.'px';?>"><?php echo get_post( get_post_thumbnail_id() )->post_excerpt ?></p>
-												<?php } ?>
-									 </div><!-- pull-left wp-caption -->
 								<?php
 									}
 									else {	}
