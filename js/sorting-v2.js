@@ -1,5 +1,4 @@
-jQuery(function($) {
-
+jQuery(document).ready(function($) {
 	$('#sortable-table tbody').sortable({
 		axis: 'y',
 		handle: '.column-order img',
