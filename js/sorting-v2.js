@@ -12,9 +12,7 @@ jQuery(document).ready(function($) {
 				postType: $(this).attr('data-post-type'),
 				order: theOrder
 			};
-
 			$.post(ajaxurl, data);
 		}
 	}).disableSelection();
-
 });
