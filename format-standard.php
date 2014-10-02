@@ -39,11 +39,6 @@ if ( has_post_thumbnail() ) {
 		        <?php
 				} else {
 				?>
-					<p>
-						<a class="btn btn-small primary-read-more" href="<?php the_permalink(); ?>">
-					Read More <i class="icon-chevron-right"></i>
-				</a>
-					</p>
 		        <?php
 
 				}

@@ -1,5 +1,4 @@
-jQuery(function($) {
-
+jQuery(document).ready(function($) {
 	$('#sortable-table tbody').sortable({
 		axis: 'y',
 		handle: '.column-order img',
@@ -13,9 +12,7 @@ jQuery(function($) {
 				postType: $(this).attr('data-post-type'),
 				order: theOrder
 			};
-
 			$.post(ajaxurl, data);
 		}
 	}).disableSelection();
-
 });

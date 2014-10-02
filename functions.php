@@ -22,19 +22,19 @@
 	 * Customizer.
 	 */
 
-	    require( get_template_directory() . '/inc/functions/custom.php' );
-		require( get_template_directory() . '/inc/functions/theme-setup.php' );
-	    require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-		require( get_template_directory() . '/inc/functions/widgets.php' );
-		require( get_template_directory() . '/inc/functions/custom_widgets.php' );
-	    require( get_template_directory() . '/inc/functions/options-admin.php');
-	    require( get_template_directory() . '/inc/functions/options.php');
-	    require( get_template_directory() . '/inc/functions/options-customizer.php' );
-	    require( get_template_directory() . '/inc/functions/network-options.php');
-		require( get_template_directory() . '/inc/functions/hooks.php' );
+			require( get_template_directory() . '/inc/functions/custom.php' );
+			require( get_template_directory() . '/inc/functions/theme-setup.php' );
+			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
+			require( get_template_directory() . '/inc/functions/widgets.php' );
+			require( get_template_directory() . '/inc/functions/custom_widgets.php' );
+			require( get_template_directory() . '/inc/functions/options-admin.php');
+			require( get_template_directory() . '/inc/functions/options.php');
+			require( get_template_directory() . '/inc/functions/options-customizer.php' );
+			require( get_template_directory() . '/inc/functions/network-options.php');
+			require( get_template_directory() . '/inc/functions/hooks.php' );
 //		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
-	    require( get_template_directory() . '/inc/functions/contextual-help.php' );
-		require( get_template_directory() . '/inc/functions/dynamic-css.php' );
+			require( get_template_directory() . '/inc/functions/contextual-help.php' );
+			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
 //		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
@@ -165,8 +165,8 @@ $header_args = array(
     'default-image'	=> '',
     'width'			=> 850,
     'height'		=> 100,
-	'flex-width'	=> true,
-	'flex-height'	=> true,
+//		'flex-width'	=> true,
+//		'flex-height'	=> true,
     'header-text'	=> false
  
 );
@@ -177,6 +177,16 @@ add_theme_support( 'post-formats', array( 'video' ) );
 
 /* Let Tabs Shortcode plugin use bootstrap styles*/
 add_theme_support( 'tabs', 'twitter-bootstrap' );
+
+######################################
+// Customize Excerpt Read More
+######################################
+
+function new_excerpt_more( $more ) {
+	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'your-text-domain') . get_the_title() . '</a>';
+}
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+
 
 ######################################
 // Remove Comments Feed
@@ -280,23 +290,24 @@ function my_mce_before_init( $settings ) {
 		array(
 			'title' => 'Alert',
             'selector' => 'p',
-			'classes' => 'alert',
+			'classes' => 'alert alert-warning',
 		),
 		array(
 			'title' => 'Alert-Danger',
 			'selector' => 'p',
-			'classes' => 'alert alert-error',
+			'classes' => 'alert alert-error alert-danger',
 		),
 		array(
 			'title' => 'Alert-Info',
 			'selector' => 'p',
-			'classes' => 'alert wysiwyg_alert alert-info',
+			'classes' => 'alert alert-info',
 		),
 		array(
 			'title' => 'Alert-Success',
 			'selector' => 'p',
 			'classes' => 'alert alert-success',
 		),
+/*
 		array(
 			'title' => 'Button-Black',
 			'inline' => 'button',
@@ -316,6 +327,7 @@ function my_mce_before_init( $settings ) {
 			'classes' => 'btn',
 			'wrapper' => false,
 		),
+*/
 		array(
 			'title' => 'Well',
 			'selector' => 'p',
@@ -1137,6 +1149,7 @@ function google_analytics_dashboard()
     }
 }
 add_action('admin_head', 'google_analytics_dashboard');
+
 ##########################
 //analytics for lite, branded and single site
 ##########################
@@ -1169,6 +1182,25 @@ function mayflower_analytics () {
 } // end function
 add_action('wp_head', 'mayflower_analytics', 30);
 
+##############################################################
+// Responsive image class for posts & remove image dimensions
+##############################################################
+ 
+function bootstrap_responsive_images( $html ){
+  $classes = 'img-responsive'; // separated by spaces, e.g. 'img image-link'
+ 
+  // check if there are already classes assigned to the anchor
+  if ( preg_match('/<img.*? class="/', $html) ) {
+    $html = preg_replace('/(<img.*? class=".*?)(".*?\/>)/', '$1 ' . $classes . ' $2', $html);
+  } else {
+    $html = preg_replace('/(<img.*?)(\/>)/', '$1 class="' . $classes . '" $2', $html);
+  }
+  // remove dimensions from images,, does not need it!
+  $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+  return $html;
+}
+add_filter( 'the_content','bootstrap_responsive_images',10 );
+add_filter( 'post_thumbnail_html', 'bootstrap_responsive_images', 10 );
 
 
 ?>

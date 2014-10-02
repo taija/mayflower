@@ -123,19 +123,19 @@
 			//display site title on branded version 
 			if ( is_main_site() && is_front_page() ) {
 				?>
-                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?> bchome">
-           		<div id="main" class="container">
+					<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?> bchome">
+	          <div id="main" class="container no-padding">
 				<?php
 			} else if (is_404()){
 				?>
-                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-           		<div id="main" class="container">
+					<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+						<div id="main" class="container no-padding">
 				<?php
 			} else { ?>
             
-                <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-           		<div id="main" class="container">
-				
+					<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+						<div id="main" class="container no-padding">
+
                 <div class="content-padding">
                 <div id="site-header">
                     <h1 class="site-title">
@@ -161,12 +161,11 @@
 			############################
 		
 			bc_tophead(); ?>
-
 <div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
-	<div id="main" class="container">
-		<div class="container">
+	<div id="main" class="container no-padding">
+		<div class="container" id="top">
 	    	<div id="site-header" class="row">
-	       		<div class="span8">
+					<div class="col-md-8">
 	                <div class="content-padding">
 	                    <?php 
 
@@ -185,8 +184,8 @@
 	                    <?php endif; ?>
 	                
 	                </div><!-- .content-padding -->
-	            </div><!-- span8 -->
-						<div class="span4">
+	            </div><!-- col-md-8 -->
+						<div class="col-md-4">
 	                        <div class="header-search content-padding <?php 
 								if ( get_bloginfo('description') ) { 
 									echo 'header-search-w-description ';
@@ -223,29 +222,29 @@
 		<?php $mayflower_adminonly_options = get_option( 'mayflower_admin_theme_general_options' ); ?>
 	
 		<?php if( empty( $mayflower_adminonly_options['hide_searchform'] ) ) { ?>
-								<?php get_search_form(); ?>	
+						            <ul id="mobile-nav">
+													<li id="main-nav-link"><a href="#college-navbar" title="Navigation Menu" class="btn btn-default">Menu</a></li>
+							            <li id="college-search-wrap">
+														<?php get_search_form(); ?>	
+													</li>
+												</ul><!-- #mobile-nav -->
 
 		<?php } else {}  ?>
-		
+
 	                        </div> <!--content-padding -->
-						</div><!-- span4 -->
+						</div><!-- col-md-4 -->
 	        </div> <!--#site-header .row-->
-		</div><!-- container -->            
-        <div class="navbar">
-            <div class="navbar-inner">
-                    <?php
-                        /** Loading WordPress Custom Menu with Fallback to wp_list_pages **/
-                        wp_nav_menu( array(
-							'theme_location' => 'nav-top',
-                            'menu' => 'main-nav',
-                            'container_class' => 'nav-collapse',
-                            'menu_class' => 'nav',
-                            'fallback_cb' => 'false',
-                            'menu_id' => 'main-nav')
-                        );
-                    ?>
-            </div><!-- navbar-inner -->
-        </div><!-- navbar -->
-   
+		</div><!-- container -->
+
 		<?php } //end lite
 ?>
+
+<div class="row">
+  <div class="col-md-12">
+
+		<?php
+		//add flexwrap if we are in the lite version
+		global $mayflower_brand;
+		if( $mayflower_brand == 'lite') { ?>
+			  <div class="flexwrap">
+			<?php  } else {} ?>

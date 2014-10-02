@@ -1,5 +1,5 @@
 <?php
-define('NEWS_WEBSITE_ID', 0);
+//define('NEWS_WEBSITE_ID', 0);
 define('NEW_CATEGORY_NAME', "BC Homepage");
 ?>
 
@@ -9,6 +9,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
         <li><a href="http://www.bellevuecollege.edu/about/around/directions/" class="btn btn-info">Directions</a></li>
         <li><a href="http://www.bellevuecollege.edu/contacts/" class="btn btn-info">Contact Us</a></li>
     </ul><!--#mobilelinks -->
+
     <section class="box-shadow" id="menusfor">
         <div class="content-padding">
             <h2>Menus for:</h2>
@@ -22,6 +23,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
             </ul>
         </div>
 	</section><!--#menusfor-->
+
 	<section id="homeslider">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<?php 
@@ -92,7 +94,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
     	</div><!--.content-padding-->
 	</section><!--#home-events-->
 	<div id="home-sidelinks">
-		<p id="apply" ><a href="/enrollment/admissions/#content" class="btn btn-success"><strong>Apply</strong> for admissions</a></p>
+		<p id="apply" ><a href="http://www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success btn-lg"><!-- <strong> -->Apply for Admissions<!-- </strong> Fall deadline Sept. 19--></a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
@@ -109,7 +111,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 
 		        if ( !empty( $small_ad_ext_url ) ){ ?>
                     <p id="homead">
-                        <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow'));?></a>
+                        <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow img-responsive'));?></a>
                     </p>
 			<?php }  //end if ?>
 	

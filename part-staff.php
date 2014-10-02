@@ -118,8 +118,8 @@
                     }
 			?>
 
-
-		<div class="span4">
+	<ul class="thumbnails">
+		<li class="col-md-4">
 			<div class="content-padding">
 					<?php if(has_post_thumbnail()) { ?>
 					<a href="<?php the_permalink(); ?>">
