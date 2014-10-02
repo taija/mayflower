@@ -18,3 +18,7 @@ $RECYCLE.BIN/
 
 # Mac Crap
 .DS_Store
+
+# SASS Config
+config.rb
+.sass-cache
