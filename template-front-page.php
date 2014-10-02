@@ -94,7 +94,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
     	</div><!--.content-padding-->
 	</section><!--#home-events-->
 	<div id="home-sidelinks">
-		<p id="apply" ><a href="http://www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success"><strong>Apply for admissions</strong>Fall deadline Sept. 19</a></p>
+		<p id="apply" ><a href="http://www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success btn-lg"><!-- <strong> -->Apply for Admissions<!-- </strong> Fall deadline Sept. 19--></a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
