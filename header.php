@@ -45,16 +45,6 @@
     <link rel="stylesheet" media="print" href="<?php echo $globals_url; ?>c/p.css?ver=<?php echo $globals_version; ?>">
 	<!--<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css">-->
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
-
-	<?php
-
-	if( $mayflower_brand == 'lite' ) {  //allow for themes only for lite branding
-		if( $mayflower_options['skin'] != 'default-color-scheme' ) { ?>
-			<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/skins/'.$mayflower_options['skin'] . '.css' ?>" type="text/css" media="screen" /> <?php 
-		}  
-	}
-	
-	?>
 	
     <script type="text/javascript" src="<?php echo $globals_url; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
     <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_url; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
