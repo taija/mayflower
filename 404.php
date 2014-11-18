@@ -74,7 +74,7 @@ function error_reporting_file_not_found()
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
     $missing_page_url = curPageURL();
-    if(defined(BC404_MAIL_TO))
+    if(defined("BC404_MAIL_TO"))
          $to = BC404_MAIL_TO;//Getting from wp-config file
     else
         error_log(" BC404_MAIL_TO constant not set. ");
