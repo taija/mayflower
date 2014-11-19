@@ -540,7 +540,7 @@ function mayflower_nav_active_class($classes, $item){
              $classes[] = 'active ';
      }
 	
-	/*Apply active class on blog post parent*/
+	//Apply active class on blog post parent
 	if ( is_singular('post') ) {
 		if( in_array('current_page_parent', $classes)){
              $classes[] = 'active ';
@@ -1202,5 +1202,14 @@ function bootstrap_responsive_images( $html ){
 add_filter( 'the_content','bootstrap_responsive_images',10 );
 add_filter( 'post_thumbnail_html', 'bootstrap_responsive_images', 10 );
 
+
+###############################################################
+// Responsive video - add wrapper div with appropriate classes
+###############################################################
+
+add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
+function my_embed_oembed_html($html, $url, $attr, $post_id) {
+  return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
+}
 
 ?>
