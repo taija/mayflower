@@ -6,7 +6,6 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-
 get_header();
 
 error_reporting_file_not_found();
@@ -70,6 +69,7 @@ error_reporting_file_not_found();
  */
 function error_reporting_file_not_found()
 {
+
     $referrer = $_SERVER['HTTP_REFERER'];
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
@@ -93,6 +93,9 @@ function error_reporting_file_not_found()
     if(isset($to) && !empty($to) && !empty($referrer))
     {
         $mail_return_value = wp_mail($to,$subject,$message,$headers);
+
+
+
         if(!$mail_return_value)
         {
             error_log("404 page Email was not sent to:".$to);
@@ -105,7 +108,7 @@ function error_reporting_file_not_found()
 }
 function curPageURL() {
     $pageURL = 'http';
-    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+    if (isset( $_SERVER["HTTPS"] )  && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
     $pageURL .= "://";
     if ($_SERVER["SERVER_PORT"] != "80") {
         $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
