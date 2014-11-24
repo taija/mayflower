@@ -155,7 +155,7 @@ add_post_type_support( 'page', 'excerpt' );
 				add_image_size( 'edit-screen-thumbnail', 100, 100, true );
 				add_image_size( 'sort-screen-thumbnail', 300, 125, true );
 				add_image_size( 'staff-thumbnail', 300, 200, true );
-				add_image_size( 'featured-full', 1200,500,true);
+				add_image_size( 'featured-full', 1170,488,true);
 				add_image_size( 'featured-in-content', 900,375,true);
 				add_image_size( 'home-small-ad', 300,200,true);
 	}
