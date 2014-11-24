@@ -34,6 +34,7 @@
 		$args = array(
 			'post_type' => 'page',
 			'posts_per_page' => -1,
+			'order' => 'ASC',
 			'orderby' => 'menu_order title',
 			'post_status' => 'publish',
 			'post_parent' => $post->ID
