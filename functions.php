@@ -163,10 +163,10 @@ add_post_type_support( 'page', 'excerpt' );
 /* custom header support */
 $header_args = array(
     'default-image'	=> '',
-    'width'			=> 850,
+    'width'			=> 690,
     'height'		=> 100,
-//		'flex-width'	=> true,
-//		'flex-height'	=> true,
+		//'flex-width'	=> true,
+		'flex-height'	=> true,
     'header-text'	=> false
  
 );
