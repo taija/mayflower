@@ -70,7 +70,7 @@ error_reporting_file_not_found();
 function error_reporting_file_not_found()
 {
 
-    $referrer = $_SERVER['HTTP_REFERER'];
+    $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
     $user = wp_get_current_user();
     $computer_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
     $missing_page_url = curPageURL();
