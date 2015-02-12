@@ -25,31 +25,31 @@
 <?php
 	$mayflower_options = mayflower_get_options();
 	if( $mayflower_options['staff_layout'] == 'list-view' ) { ?>
-			
-            <div class="content-padding top-spacing15">
-			<?php
-				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
-
-				while ( $loop->have_posts() ) : $loop->the_post();
-			?>
+		
+      <div class="content-padding top-spacing15">
+				<?php
+					// Start showing staff list
+					$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
+	
+					while ( $loop->have_posts() ) : $loop->the_post();
+				?>
 
 				
-				    <div class="media">
-				    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
-					<?php
-						if ( has_post_thumbnail() ) {
-							the_post_thumbnail('thumbnail', array('class' => 'media-object'));
-						}
-						else {
-							echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
-						}
-					?>
+			    <div class="media">
+			    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
+				<?php
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail('thumbnail', array('class' => 'media-object'));
+					}
+					else {
+						echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
+					}
+				?>
 
-					    </a>
+				    </a>
 
 				<div class="media-body">
-					<div class="caption staff-details">
+					<div class="caption staff-details content-padding">
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
@@ -96,30 +96,32 @@
 									</li>
 								<?php } ?>
 							</ul>
-					</div><!-- caption -->
+						</div><!-- caption -->
 
-				    </div><!-- media-body -->
+				   </div><!-- media-body -->
 			    </div><!-- media -->
 			
 				<hr />
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div><!-- content-padding -->
 	<?php } elseif( $mayflower_options['staff_layout'] == 'grid-view' ) {  ?>
+	<?php 
+		// ######################## 
+		// Start showing staff grid
+		// ########################
+	?>
+	<?php
+		$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
+    $columnNum = 3;
+    $count = 0;
+		while ( $loop->have_posts() ) : $loop->the_post();
+                $count++;
+                if ($count == 1) {
+                    echo '<div class="row top-spacing15">';
+                }
+	?>
 
-			<?php
-				// Start showing staff list
-				$loop = new WP_Query( array( 'post_type' => 'staff', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC') );
-        $columnNum = 3;
-        $count = 0;
-				while ( $loop->have_posts() ) : $loop->the_post();
-                    $count++;
-                    if ($count == 1) {
-                        echo '<div class="row">';
-                    }
-			?>
-
-	<ul class="thumbnails">
-		<li class="col-md-4">
+		<div class="col-md-4">
 			<div class="content-padding">
 					<?php if(has_post_thumbnail()) { ?>
 					<a href="<?php the_permalink(); ?>">
@@ -135,9 +137,9 @@
 								echo $post_meta_data['staff_position'][0]; } ?>
 							</h3>
 
-					</div><!-- caption -->
+					</div><!-- caption staff-details -->
 			</div><!-- content-padding -->
-		</div> <!-- end of span4 -->
+		</div> <!-- end of col-md-4 -->
 				<?php if ($count == $columnNum) {
                         echo '</div> <!-- .row -->';
                         $count = 0;

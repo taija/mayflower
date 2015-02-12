@@ -873,6 +873,7 @@ function mayflower_get_settings_page_tabs() {
 /**
  * Add Section Text for the Skin Settings Section
  */
+/*
 function mayflower_get_skin_text() {
 
 	$mayflower_options = mayflower_get_options();
@@ -891,4 +892,5 @@ function mayflower_get_skin_text() {
 //	$text .= '<dl><dt><strong>' . $mayflower_current_skin['title'] . '</strong></dt><dd>' . $mayflower_current_skin['description'] . '</dd></dl>';
 	return $text;
 }
+*/
 ?>
