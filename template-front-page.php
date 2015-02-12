@@ -1,4 +1,4 @@
-<?php
+	<?php
 define('NEWS_WEBSITE_ID', 3);
 define('NEW_CATEGORY_NAME', "BC Homepage");
 ?>
@@ -94,7 +94,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
     	</div><!--.content-padding-->
 	</section><!--#home-events-->
 	<div id="home-sidelinks">
-		<p id="apply" ><a href="//www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success"><strong>Apply for Admissions </strong> Winter 2015 deadline: Dec. 23</a></p>
+		<p id="apply" ><a href="//www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success"><strong>Apply for Admissions </strong>Spring 2015 deadline: Mar. 27</a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
