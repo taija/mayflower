@@ -133,7 +133,7 @@ function mayflower_load_jquery() {
     wp_enqueue_script( 'jquery' );
 }
 
-add_action( 'wp_enqueue_scripts', 'mayflower_load_jquery' ); 
+add_action( 'wp_enqueue_scripts', 'mayflower_load_jquery' );
 
 #######################################
 // adds wordpress theme support
@@ -168,7 +168,7 @@ $header_args = array(
 		//'flex-width'	=> true,
 		'flex-height'	=> true,
     'header-text'	=> false
- 
+
 );
 add_theme_support( 'custom-header', $header_args );
 
@@ -192,18 +192,18 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
 // Remove Comments Feed
 ######################################
 
-remove_action('wp_head', 'feed_links', 2); 
+remove_action('wp_head', 'feed_links', 2);
 add_action('wp_head', 'my_feed_links');
 
 function my_feed_links() {
   if ( !current_theme_supports('automatic-feed-links') ) return;
 
-  // post feed 
+  // post feed
   ?>
-  <link rel="alternate" type="<?php echo feed_content_type(); ?>" 
+  <link rel="alternate" type="<?php echo feed_content_type(); ?>"
         title="<?php printf(__('%1$s %2$s Feed', 'mayflower'), get_bloginfo('name'), ' &raquo; '); ?>"
         href="<?php echo get_feed_link(); ?> " />
-  <?php 
+  <?php
 }
 
 
@@ -428,7 +428,7 @@ add_filter( 'sidebars_widgets', 'control_widget_pages' );
 
 function control_widget_pages( $sidebars_widgets ) {
 
-	if(is_home() || is_single() ) 
+	if(is_home() || is_single() )
 
 		$sidebars_widgets['page-widget-area'] = false;
 
@@ -441,7 +441,7 @@ function control_widget_pages( $sidebars_widgets ) {
 #########################
 
 	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_path = $network_mayflower_settings['globals_path']; 
+	$globals_path = $network_mayflower_settings['globals_path'];
 	if (empty($globals_path)) {
 		$globals_path =  $_SERVER['DOCUMENT_ROOT'] . "/g/2/";
 	}
@@ -510,9 +510,9 @@ function control_widget_pages( $sidebars_widgets ) {
 	function bc_footer_legal() {
 		global $bc_globals_html_filepath;
 		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-		   
+
 		   include_once($bc_footerlegal);
-		 
+
 	}
 	add_action('btheme_footer', 'bc_footer_legal', 50);
 
@@ -539,21 +539,21 @@ function mayflower_nav_active_class($classes, $item){
      if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)){
              $classes[] = 'active ';
      }
-	
+
 	//Apply active class on blog post parent
 	if ( is_singular('post') ) {
 		if( in_array('current_page_parent', $classes)){
              $classes[] = 'active ';
      	}
 	}
-	
-	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent 
+
+	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent
 	if ( is_singular('staff') ) {
 		if( in_array('staff', $classes)){
              $classes[] = 'active ';
      	}
 	}
-		
+
      return $classes;
 }
 
@@ -561,7 +561,7 @@ function mayflower_nav_active_class($classes, $item){
 ################################################################################
 // - Apply mayflower custom CSS  (currently for staff/slider cpt)
 ################################################################################
-	
+
 	function mayflower_dashboard_styles($hook) {
 	    $css_path = get_template_directory_uri() . '/css/dashboard.css';
 		if('edit.php?post_type=staff' !=$hook )
@@ -569,8 +569,8 @@ function mayflower_nav_active_class($classes, $item){
 	        wp_enqueue_style( 'mayflower_dashboard' );
 	}
 	add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
-	
-	
+
+
 
 ############################
 // Custom Widget Styles
@@ -597,17 +597,43 @@ function mayflower_nav_active_class($classes, $item){
 ## Gravity Forms Filters
 ####################################################
 
-// filter the Gravity Forms button type
-add_filter("gform_submit_button", "form_submit_button", 10, 2);
-function form_submit_button($button, $form){
-    return "<button class='btn' id='gform_submit_button_{$form["id"]}'><span>" . $form["button"]["text"] . "</span></button>";
+
+/* From http://www.wawrzyniak.me/converting-gravity-forms-next-previous-submit-inputs-buttons/ */
+add_filter( 'gform_next_button', 'input_to_button', 10, 2 );
+add_filter( 'gform_previous_button', 'input_to_button', 10, 2 );
+add_filter( 'gform_submit_button', 'input_to_button', 10, 2 );
+function input_to_button( $button, $form ) {
+    $dom = new DOMDocument();
+    $dom->loadHTML( $button );
+    $input = $dom->getElementsByTagName( 'input' )->item(0);
+    $new_button = $dom->createElement( 'button' );
+    $button_span = $dom->createElement( 'span', $input->getAttribute( 'value' ) );
+    $new_button->appendChild( $button_span );
+    $input->removeAttribute( 'value' );
+    foreach( $input->attributes as $attribute ) {
+        $new_button->setAttribute( $attribute->name, $attribute->value );
+        $new_button->setAttribute('class','btn btn-primary');
+    }
+    $input->parentNode->replaceChild( $new_button, $input );
+    return $dom->saveHtml();
+}
+add_filter( 'gform_previous_button', 'form_next_button', 10, 2 );
+function form_next_button( $button, $form ) {
+    $dom = new DOMDocument();
+    $dom->loadHTML( $button );
+    $btns = $dom->getElementsByTagName( 'button' );
+    foreach ($btns as $btn) {
+	    $btn->setAttribute('class','btn btn-link');
+    }
+
+    return $dom->saveHtml();
 }
 
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
 add_filter("gform_tabindex", create_function("", "return 9;"));
 
 ####################################################
-## Override Dashicons Styles 
+## Override Dashicons Styles
 ####################################################
 
 
@@ -622,7 +648,7 @@ function override_dashicons() { ?>
 <?php }
 
 ####################################################
-## Add Course Description Shortcode Button & Modal 
+## Add Course Description Shortcode Button & Modal
 ####################################################
 
 add_action('media_buttons', 'add_shortcode_button', 99);
@@ -720,7 +746,7 @@ function add_coursedesc_popup() {
                                 <?php
                                         }
                                 }
-								?>                        
+								?>
                         </select> <br/>
                         <select id="add_course_id">
                             <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
@@ -879,14 +905,14 @@ add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
 				$courseUrl .= "&";
 			}
 			$courseUrl .= "/".$sections["Number"];
-			
+
 			$htmlString .= "<a href='".$courseUrl."''>";
 			$htmlString .= "<span class='course-id'>".$sections["Descriptions"][0]["CourseID"]."</span>";
 			$htmlString .= " <span class='course-title'>".$sections["Title"]."</span>";
 			$htmlString .= "<span class='course-credits'> &#8226; ";
-			
+
 			if($sections["IsVariableCredits"])
-			{					
+			{
 				$htmlString .= "V1-".$sections["Credits"]." <abbr title='variable credit'>Cr.</abbr>";
 			}
 			else
@@ -921,9 +947,9 @@ add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
 
 	// Get Mayflower network setting values
 	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_version = $network_mayflower_settings['globals_version']; 
-	$globals_path = $network_mayflower_settings['globals_path']; 
-	$globals_url = $network_mayflower_settings['globals_url']; 
+	$globals_version = $network_mayflower_settings['globals_version'];
+	$globals_path = $network_mayflower_settings['globals_path'];
+	$globals_url = $network_mayflower_settings['globals_url'];
 	$globals_path_over_http = $globals_url;
     $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
 
@@ -972,12 +998,12 @@ add_action( 'load-post-new.php', 'add_global_section_meta_box' );
 
 
 /* Adds a box to the main column on the Post and Page edit screens */
-function add_global_section_meta_box() { 
-	global $post; 
+function add_global_section_meta_box() {
+	global $post;
 	if ( is_main_site()) {
 		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
 			if ("0" == $post->post_parent){
-			//if (intval($post->post_parent)>0) {			
+			//if (intval($post->post_parent)>0) {
 				$screens = array('page');
 				foreach ($screens as $screen) {
 					add_meta_box(
@@ -1000,45 +1026,45 @@ add_action('add_meta_boxes', 'add_global_section_meta_box');
 // Field Array
 $prefix = '_gnav_';
 $global_section_meta_fields = array(
-    array(  
-        'label'=> 'College navigation menu',  
-        'desc'  => 'This page and all it\'s children will have the above college navigation area selected',  
-        'id'    => $prefix.'college_nav_menu',  
-        'type'  => 'select',  
-        'options' => array (  
-            'nav-home' => array (  
-                'label' => 'Home',  
-                'value' => 'nav-home'  
-            ),  
-            'nav-classes' => array (  
-                'label' => 'Classes',  
-                'value' => 'nav-classes'  
-            ),  
-            'nav-programs' => array (  
-                'label' => 'Programs of Study',  
-                'value' => 'nav-programs'  
-            ),  
-            'nav-enrollment' => array (  
-                'label' => 'Enrollment',  
-                'value' => 'nav-enrollment'  
-            ),  
-            'nav-services' => array (  
-                'label' => 'Services',  
-                'value' => 'nav-services'  
-            ),  
-            'nav-campuslife' => array (  
-                'label' => 'Campus Life',  
-                'value' => 'nav-campuslife'  
-            ),  
-            'nav-about' => array (  
-                'label' => 'About Us',  
-                'value' => 'nav-about'  
-            )      
-        )  
+    array(
+        'label'=> 'College navigation menu',
+        'desc'  => 'This page and all it\'s children will have the above college navigation area selected',
+        'id'    => $prefix.'college_nav_menu',
+        'type'  => 'select',
+        'options' => array (
+            'nav-home' => array (
+                'label' => 'Home',
+                'value' => 'nav-home'
+            ),
+            'nav-classes' => array (
+                'label' => 'Classes',
+                'value' => 'nav-classes'
+            ),
+            'nav-programs' => array (
+                'label' => 'Programs of Study',
+                'value' => 'nav-programs'
+            ),
+            'nav-enrollment' => array (
+                'label' => 'Enrollment',
+                'value' => 'nav-enrollment'
+            ),
+            'nav-services' => array (
+                'label' => 'Services',
+                'value' => 'nav-services'
+            ),
+            'nav-campuslife' => array (
+                'label' => 'Campus Life',
+                'value' => 'nav-campuslife'
+            ),
+            'nav-about' => array (
+                'label' => 'About Us',
+                'value' => 'nav-about'
+            )
+        )
     )
 );
-			
-			
+
+
 // The Callback
 function global_section_meta_box() {
 global $global_section_meta_fields, $post;
@@ -1061,24 +1087,24 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 						echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
 							<br /><span class="description">'.$field['desc'].'</span>';
 					break;
-					
-					case 'checkbox':  
-						echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" ',$meta ? ' checked="checked"' : '','/> 
-							<br /><label for="'.$field['id'].'">'.$field['desc'].'</label>';  
-					break; 
-					
-					case 'textarea':  
-					    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="58" rows="4">'.$meta.'</textarea> 
-					        <br /><span class="description">'.$field['desc'].'</span>';  
-					break;  
-					
-					case 'select':  
-						echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';  
-						foreach ($field['options'] as $option) {  
-							echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';  
-						}  
-						echo '</select><br /><span class="description">'.$field['desc'].'</span>';  
-					break;  
+
+					case 'checkbox':
+						echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" ',$meta ? ' checked="checked"' : '','/>
+							<br /><label for="'.$field['id'].'">'.$field['desc'].'</label>';
+					break;
+
+					case 'textarea':
+					    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="58" rows="4">'.$meta.'</textarea>
+					        <br /><span class="description">'.$field['desc'].'</span>';
+					break;
+
+					case 'select':
+						echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
+						foreach ($field['options'] as $option) {
+							echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';
+						}
+						echo '</select><br /><span class="description">'.$field['desc'].'</span>';
+					break;
 
 
 
@@ -1185,10 +1211,10 @@ add_action('wp_head', 'mayflower_analytics', 30);
 ##############################################################
 // Responsive image class for posts & remove image dimensions
 ##############################################################
- 
+
 function bootstrap_responsive_images( $html ){
   $classes = 'img-responsive'; // separated by spaces, e.g. 'img image-link'
- 
+
   // check if there are already classes assigned to the anchor
   if ( preg_match('/<img.*? class="/', $html) ) {
     $html = preg_replace('/(<img.*? class=".*?)(".*?\/>)/', '$1 ' . $classes . ' $2', $html);
