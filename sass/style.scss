@@ -549,9 +549,9 @@ li.media {
 	margin: 0;
 }
 
-.staff-details h3 {
+/*.staff-details h3 {
 	margin-bottom: 21px;
-}
+}*/
 .staff-details h3 {
 	font-style: normal;
 	color: #000;
@@ -560,10 +560,12 @@ li.media {
 .staff-details ul {
 	margin: 0;
 	padding: 0;
+	margin-bottom: 1em;
 
 }
 .staff-details li {
 	list-style: none;
+	margin-left: 1em;
 }
 
 /* ####################################### */

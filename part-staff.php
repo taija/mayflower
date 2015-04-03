@@ -36,13 +36,13 @@
 
 				
 			    <div class="media">
-			    <a class="pull-left wp-caption" href="<?php the_permalink(); ?>">
+			    <a class="pull-left" href="<?php the_permalink(); ?>">
 				<?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail('thumbnail', array('class' => 'media-object'));
+						the_post_thumbnail('thumbnail', array('class' => 'media-object img-responsive img-thumbnail'));
 					}
 					else {
-						echo '<img src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
+						echo '<img alt="" src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
 					}
 				?>
 
@@ -88,14 +88,11 @@
 									</li>
 								<?php } ?>
 
-								<?php if(empty($post->post_content)) {  } else { ?>
-									<li>
-										<br />
-										<strong>Bio: </strong><br />
-										<?php the_excerpt();  ?>
-									</li>
-								<?php } ?>
 							</ul>
+							<?php if(empty($post->post_content)) {  } else { ?>
+										<h3 class="staff-biography">Biography:</h3>
+										<?php the_excerpt();  ?>
+								<?php } ?>
 						</div><!-- caption -->
 
 				   </div><!-- media-body -->
@@ -132,10 +129,11 @@
 					<div class="caption staff-details">
 						<?php $post_meta_data = get_post_custom($post->ID); ?>
 							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-							<h3>
-								<?php if (isset($post_meta_data['staff_position'][0])) {
-								echo $post_meta_data['staff_position'][0]; } ?>
-							</h3>
+								<?php if (isset($post_meta_data['_staff_position'][0])) { ?>
+								<p>
+									<?php echo $post_meta_data['_staff_position'][0]; ?>
+								</p>													
+							<?php } ?>
 
 					</div><!-- caption staff-details -->
 			</div><!-- content-padding -->
