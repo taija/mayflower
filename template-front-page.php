@@ -16,7 +16,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
             <ul>
                 <li><a href="//www.bellevuecollege.edu/students/">Students</a></li>
                 <li><a href="//www.bellevuecollege.edu/future/">Future Students</a></li>
-                <li><a href="//www.bellevuecollege.edu/isp/">International Students</a></li>
+                <li><a href="//www.bellevuecollege.edu/oiegi/">International Students</a></li>
                 <li><a href="//www.bellevuecollege.edu/employees/">Faculty &amp; Staff</a></li>
                 <li><a href="//www.bellevuecollege.edu/businesses/">Businesses</a></li>
                 <li><a href="//www.bellevuecollege.edu/visitors/">Visitors &amp; Community</a></li>

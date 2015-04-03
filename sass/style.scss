@@ -4,12 +4,12 @@ Theme URI: http://bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.1.1.1
+Version: 2.1.1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
 Text Domain: mayflower
-!*/
+*/
 
 /* Set Browser Support */
 $critical-usage-threshold: 0.1;
@@ -611,7 +611,7 @@ ul.header-social-links li {
 		}
 
 	input[type=radio] {
-		margin-left: 0.1em !important;
+		margin-left: 0.1em !important; /* messy, but needed to stop the right edge from being cut off */
 	}
 }
 

@@ -103,15 +103,13 @@ function add_small_ad_columns($small_ad_columns) {
 		    case 'thumbnail':
 					echo get_the_post_thumbnail( $post->ID, 'sort-screen-thumbnail' );
 					break;
-					    default:
 
 			case 'small_ad_link_to':
 
 				/* Get the post meta. */
 				$small_ad_ext_url = get_post_meta( $post->ID, '_small_ad_url', true );
 					echo $small_ad_ext_url;
-
-			break;
+					break;
 			default:
 
 				} //end switch
@@ -168,7 +166,6 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
                 <td>';
                 switch($field['type']) {
                     // case items will go here
-
 					case 'url':
 					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="http://" />
 					        <br /><span class="description">'.$field['desc'].'</span>';
@@ -212,5 +209,3 @@ function save_small_ad_custom_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_small_ad_custom_meta');
-
-?>

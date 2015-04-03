@@ -256,25 +256,22 @@ function add_slider_columns($slider_columns) {
 	function manage_slider_columns($column, $post_id) {
 	global $post;
 
-	switch( $column ) {
+switch( $column ) {
 
-		    case 'thumbnail':
-					echo get_the_post_thumbnail( $post->ID, 'sort-screen-thumbnail' );
-					break;
-					    default:
-
-			case 'slider_link_to':
-
-				/* Get the post meta. */
-				$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
-					echo $slider_ext_url;
-
+    case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'sort-screen-thumbnail' );
 			break;
-			default:
+	case 'slider_link_to':
 
-				} //end switch
+		/* Get the post meta. */
+		$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
+			echo $slider_ext_url;
+		break;
+	default:
 
-			} //end function
+	} //end switch
+
+} //end function
 
 
 /* Fire our meta box setup function on the post editor screen. */
@@ -344,7 +341,6 @@ function save_slider_custom_meta($post_id) {
 	if ( !isset( $_POST['custom_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['custom_meta_box_nonce'], basename( __FILE__ ) ) )
 		return $post_id;
 
-
 	// check autosave
 	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
 		return $post_id;
@@ -367,4 +363,3 @@ function save_slider_custom_meta($post_id) {
 	} // end foreach
 }
 add_action('save_post', 'save_slider_custom_meta');
-?>

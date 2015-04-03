@@ -112,13 +112,6 @@ if (!current_user_can('edit_pages')) {
 			    require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
 		} // end current_user_can
 
-	// Social Links
-//	if( file_exists(get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php') )
-//	    require( get_template_directory() . '/inc/mayflower-social-links/mayflower_social_links.php');
-
-	//Location
-//	if( file_exists(get_template_directory() . '/inc/mayflower-location/mayflower-location.php') )
-//	    require( get_template_directory() . '/inc/mayflower-location/mayflower-location.php');
 
 		//Service Forms functionality
 if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
@@ -1079,24 +1072,22 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 		echo '<tr>
 				<th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
 				<td>';
-				switch($field['type']) {
-					// case items will go here
-
-					// text
+				switch( $field['type'] ) {
+					
 					case 'input':
 						echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
 							<br /><span class="description">'.$field['desc'].'</span>';
-					break;
+						break;
 
 					case 'checkbox':
 						echo '<input type="checkbox" name="'.$field['id'].'" id="'.$field['id'].'" ',$meta ? ' checked="checked"' : '','/>
 							<br /><label for="'.$field['id'].'">'.$field['desc'].'</label>';
-					break;
+						break;
 
 					case 'textarea':
 					    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="58" rows="4">'.$meta.'</textarea>
 					        <br /><span class="description">'.$field['desc'].'</span>';
-					break;
+						break;
 
 					case 'select':
 						echo '<select name="'.$field['id'].'" id="'.$field['id'].'">';
@@ -1104,16 +1095,14 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 							echo '<option', $meta == $option['value'] ? ' selected="selected"' : '', ' value="'.$option['value'].'">'.$option['label'].'</option>';
 						}
 						echo '</select><br /><span class="description">'.$field['desc'].'</span>';
-					break;
-
-
-
+						break;
+					//No Need for Default Case
+					
 				} //end switch
 		echo '</td></tr>';
 	} // end foreach
 	echo '</table>'; // end table
 }
-
 
 // Save the Data
 function save_global_section_meta($post_id) {
