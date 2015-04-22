@@ -189,8 +189,6 @@ function mayflower_staff_enqueue_scripts() {
 	wp_enqueue_script( 'mayflower-admin-scripts', get_template_directory_uri() . '/js/sorting-v2.js' );
 }
 
-
-
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_staff_custom_meta_box' );
 add_action( 'load-post-new.php', 'add_staff_custom_meta_box' );
@@ -299,6 +297,8 @@ echo '<input type="hidden" name="staff_custom_meta_box_nonce" value="'.wp_create
 						echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="30" />
 							<br /><span class="description">'.$field['desc'].'</span>';
 					break;
+					
+					default:
 
 				} //end switch
 		echo '</td></tr>';
@@ -406,87 +406,75 @@ function my_manage_staff_columns( $column, $post_id ) {
 	switch( $column ) {
 
     case 'thumbnail':
-			echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
-			break;
-			    default:
+		echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
+		break;
+
+	case 'staff_email':
+		/* Get the post meta. */
+		$staff_meta = get_post_meta( $post_id, '_staff_email', true );
+
+		/* If no duration is found, output a default message. */
+		if ( empty( $staff_meta ) )
+			echo  '' ;
+		/* If there is a duration, append 'minutes' to the text string. */
+		else
+			echo $staff_meta;
+		break;
+
+	case 'staff_position':
+		/* Get the post meta. */
+		$staff_meta = get_post_meta( $post_id, '_staff_position', true );
+
+		/* If no duration is found, output a default message. */
+		if ( empty( $staff_meta ) )
+			echo  '' ;
+
+		/* If there is a duration, append 'minutes' to the text string. */
+		else
+			echo $staff_meta;
+		break;
+
+	case 'staff_phone':
+		/* Get the post meta. */
+		$staff_meta = get_post_meta( $post_id, '_staff_phone', true );
+
+		/* If no duration is found, output a default message. */
+		if ( empty( $staff_meta ) )
+			echo '' ;
+
+		/* If there is a duration, append 'minutes' to the text string. */
+		else
+			echo $staff_meta;
+		break;
+
+	case 'staff_hours':
+		/* Get the post meta. */
+		$duration = get_post_meta( $post_id, '_staff_office_hours', true );
+
+		/* If no duration is found, output a default message. */
+		if ( empty( $duration ) )
+			echo  '' ;
+
+		/* If there is a duration, append 'minutes' to the text string. */
+		else
+			echo $duration;
+		break;
 
 
-			case 'staff_email':
-			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, '_staff_email', true );
+	case 'staff_office_location':
+		/* Get the post meta. */
+		$duration = get_post_meta( $post_id, '_staff_office_location', true );
 
-			/* If no duration is found, output a default message. */
-			if ( empty( $staff_meta ) )
-				echo  '' ;
+		/* If no duration is found, output a default message. */
+		if ( empty( $duration ) )
+			echo  '' ;
 
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				echo $staff_meta;
-			break;
-			default:
+		/* If there is a duration, append 'minutes' to the text string. */
+		else
+			echo $duration;
+		break;
+		
+	default:
 
-
-			case 'staff_position':
-			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, '_staff_position', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $staff_meta ) )
-				echo  '' ;
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				echo $staff_meta;
-			break;
-			default:
-
-
-			case 'staff_phone':
-			/* Get the post meta. */
-			$staff_meta = get_post_meta( $post_id, '_staff_phone', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $staff_meta ) )
-				echo '' ;
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				echo $staff_meta;
-			break;
-			default:
-
-
-			case 'staff_hours':
-			/* Get the post meta. */
-			$duration = get_post_meta( $post_id, '_staff_office_hours', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $duration ) )
-				echo  '' ;
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				echo $duration;
-			break;
-			default:
-
-
-			case 'staff_office_location':
-			/* Get the post meta. */
-			$duration = get_post_meta( $post_id, '_staff_office_location', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $duration ) )
-				echo  '' ;
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				echo $duration;
-			break;
-			default:
-
-//works for featured image method			echo the_post_thumbnail('custom-post-list-image', true);
-
-		} // end switch
-	}
-?>
+	} // end switch
+}

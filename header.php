@@ -212,14 +212,26 @@
 		<?php $mayflower_adminonly_options = get_option( 'mayflower_admin_theme_general_options' ); ?>
 	
 		<?php if( empty( $mayflower_adminonly_options['hide_searchform'] ) ) { ?>
-						            <ul id="mobile-nav">
-													<li id="main-nav-link"><a href="#college-navbar" title="Navigation Menu" class="btn btn-default">Menu</a></li>
-							            <li id="college-search-wrap">
-														<?php get_search_form(); ?>	
-													</li>
-												</ul><!-- #mobile-nav -->
-
-		<?php } else {}  ?>
+						            
+													<div class="row">
+														<div id="main-nav-link" class="col-xs-4">
+															<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
+														</div><!-- main-nav-link -->
+														<div class="col-xs-8 col-sm-12">
+															<?php get_search_form(); ?>	
+														</div>
+													</div><!-- row -->
+						            
+		<?php } else { ?>
+													<div class="row">
+														<div id="main-nav-link" class="col-xs-12">
+															<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
+														</div><!-- main-nav-link -->
+													</div><!-- row -->
+		
+			
+			
+		<?php }  ?>
 
 	                        </div> <!--content-padding -->
 						</div><!-- col-md-4 -->
