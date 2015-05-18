@@ -4,7 +4,7 @@
 	<?php //IF SIDEBAR HAS CONTENT ?>
 							<div class="row row-padding">  
 										
-						    <div class="col-xs-9 col-sm-9 col-md-9 <?php
+						    <div class="col-md-9 <?php
 									$mayflower_options = mayflower_get_options();
 									$current_layout = $mayflower_options['default_layout'];
 										if ( $current_layout == 'sidebar-content' ) { 
