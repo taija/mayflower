@@ -588,39 +588,7 @@ function mayflower_nav_active_class($classes, $item){
 
 ####################################################
 ## Gravity Forms Filters
-####################################################
-
-
-/* From http://www.wawrzyniak.me/converting-gravity-forms-next-previous-submit-inputs-buttons/ */
-add_filter( 'gform_next_button', 'input_to_button', 10, 2 );
-add_filter( 'gform_previous_button', 'input_to_button', 10, 2 );
-add_filter( 'gform_submit_button', 'input_to_button', 10, 2 );
-function input_to_button( $button, $form ) {
-    $dom = new DOMDocument();
-    $dom->loadHTML( $button );
-    $input = $dom->getElementsByTagName( 'input' )->item(0);
-    $new_button = $dom->createElement( 'button' );
-    $button_span = $dom->createElement( 'span', $input->getAttribute( 'value' ) );
-    $new_button->appendChild( $button_span );
-    $input->removeAttribute( 'value' );
-    foreach( $input->attributes as $attribute ) {
-        $new_button->setAttribute( $attribute->name, $attribute->value );
-        $new_button->setAttribute('class','btn btn-primary');
-    }
-    $input->parentNode->replaceChild( $new_button, $input );
-    return $dom->saveHtml();
-}
-add_filter( 'gform_previous_button', 'form_next_button', 10, 2 );
-function form_next_button( $button, $form ) {
-    $dom = new DOMDocument();
-    $dom->loadHTML( $button );
-    $btns = $dom->getElementsByTagName( 'button' );
-    foreach ($btns as $btn) {
-	    $btn->setAttribute('class','btn btn-link');
-    }
-
-    return $dom->saveHtml();
-}
+###################################################
 
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
 add_filter("gform_tabindex", create_function("", "return 9;"));
@@ -1073,7 +1041,7 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 				<th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
 				<td>';
 				switch( $field['type'] ) {
-					
+
 					case 'input':
 						echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
 							<br /><span class="description">'.$field['desc'].'</span>';
@@ -1097,7 +1065,7 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 						echo '</select><br /><span class="description">'.$field['desc'].'</span>';
 						break;
 					//No Need for Default Case
-					
+
 				} //end switch
 		echo '</td></tr>';
 	} // end foreach
