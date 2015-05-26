@@ -4,7 +4,7 @@ Theme URI: http://bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.2
+Version: 2.2.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
@@ -598,7 +598,6 @@ ul.header-social-links li {
 	textarea,
 	select {
 		line-height: 1em;
-		background-color: #fff;
 		border: 1px solid #aaa;
 		@include border-radius (4px);
 		@include box-shadow (inset 0 1px 1px rgba(0,0,0,.075));
