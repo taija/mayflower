@@ -27,21 +27,14 @@
 		    if ( is_home() ) {
 		        // If we are loading the Blog home page (home.php)
 		        get_template_part('part-home');
-		    } else if ( is_page_template('page-staff.php') ) {
-		        // If we are loading the staff page template
-		        get_template_part('part-staff');
-		    } else if ( is_singular('staff') ) {
-		        // If we are loading the single-staff 
-		        get_template_part('part-single-staff');
-		    } else if ( is_page_template('page-nav-page.php') ) {
-		        // If we are loading the navigation-page page template
-		        get_template_part('part-nav-page-grid');
-		    } else if ( is_page_template('page-nav-page-list.php') ) {
-		        // If we are loading the navigation-page page template
-		        get_template_part('part-nav-page-list');
-		    } else if ( is_single() ) {
-		        // If we are loading the navigation-page page template
-		        get_template_part('part-single');
+		    } else if ( is_page_template() ) {
+                /* Load template part based on template name. 
+                   Template name 'page-(name).php' loads template part 'part-single-page-(name).php' */
+                $template_name = str_replace('.php', '', get_page_template_slug());
+                get_template_part( 'part-single', $template_name );
+            } else if ( is_single() ) {
+		        // Load single template. If custom post type, load template for that type.
+		        get_template_part('part-single', get_post_type());
 		    } else {
 				
 		        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
@@ -114,22 +107,15 @@ else {
 		if ( is_home() ) {
 			// If we are loading the Blog home page (home.php)
 			get_template_part('part-home');
-		} else if ( is_page_template('page-staff.php') ) {
-			// If we are loading the staff page template
-			get_template_part('part-staff');
-		} else if ( is_singular('staff') ) {
-			// If we are loading the single-staff 
-			get_template_part('part-single-staff');
-    } else if ( is_page_template('page-nav-page.php') ) {
-        // If we are loading the navigation-page page template
-        get_template_part('part-nav-page-grid');
-    } else if ( is_page_template('page-nav-page-list.php') ) {
-        // If we are loading the navigation-page page template
-        get_template_part('part-nav-page-list');
-		} else if ( is_single() ) {
-			// If we are loading the navigation-page page template
-			get_template_part('part-single');
-		} else { 
+		} else if ( is_page_template() ) {
+            /* Load template part based on template name. 
+               Template name 'page-(name).php' loads template part 'part-single-page-(name).php' */
+            $template_name = str_replace('.php', '', get_page_template_slug());
+            get_template_part( 'part-single', $template_name );
+        } else if ( is_single() ) {
+            // Load single template. If custom post type, load template for that type.
+            get_template_part('part-single', get_post_type());
+        } else  { 
 		
 			if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 	?>

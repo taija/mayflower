@@ -20,21 +20,12 @@
 									    if ( is_home() ) {
 									        // If we are loading the Blog home page (home.php)
 									        get_template_part('part-home');
-									    } else if ( is_page_template('page-staff.php') ) {
-									        // If we are loading the staff page template
-									        get_template_part('part-staff');
-									    } else if ( is_singular('staff') ) {
-									        // If we are loading the single-staff 
-									        get_template_part('part-single-staff');
-									    } else if ( is_page_template('page-nav-page.php') ) {
-									        // If we are loading the navigation-page page template
-									        get_template_part('part-nav-page');
 									    } else if ( is_single() ) {
 									        // If we are loading the single post template (single.php)
-									        get_template_part('part-single');
+									        get_template_part('part-single', get_post_type());
 										} else if ( is_archive() ) {
 											// If we are loading the navigation-page page template
-											get_template_part('part-archive');
+											get_template_part('part-archive', get_post_type());
 									    } else {
 											
 									        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
@@ -99,21 +90,12 @@
 									if ( is_home() ) {
 										// If we are loading the Blog home page (home.php)
 										get_template_part('part-home');
-									} else if ( is_page_template('page-staff.php') ) {
-										// If we are loading the staff page template
-										get_template_part('part-staff');
-									} else if ( is_singular('staff') ) {
-										// If we are loading the single-staff 
-										get_template_part('part-single-staff');
-									} else if ( is_page_template('page-nav-page.php') ) {
-										// If we are loading the navigation-page page template
-										get_template_part('part-nav-page');
 									} else if ( is_single() ) {
 										// If we are loading the navigation-page page template
-										get_template_part('part-single');
+										get_template_part('part-single', get_post_type());
 									} else if ( is_archive() ) {
 										// If we are loading the navigation-page page template
-										get_template_part('part-archive');
+										get_template_part('part-archive', get_post_type());
 									} else { 
 									
 										if ( have_posts() ) : while ( have_posts() ) : the_post(); 
