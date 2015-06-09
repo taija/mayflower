@@ -2,9 +2,7 @@
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					<?php 
-						$if_charted = get_post_meta( get_the_ID(), 'charted', true );
-						if($if_charted)
-						{
+						
 					?>
 					
 						<h2 <?php post_class() ?>>
@@ -12,7 +10,7 @@
 						</h2>
 
 						<small>Date posted: <?php echo get_the_date(); ?></small>	
-					<?php } ?>					
+										
 				<?php endwhile;?>
 			</div><!-- content-padding -->
 				<?php wp_reset_postdata(); ?>
