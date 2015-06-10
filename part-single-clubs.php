@@ -5,76 +5,104 @@
 */
 
 if (have_posts()) : while (have_posts()) : the_post();
+    
+    $meeting_location = get_post_meta( get_the_ID(), 'club_meeting_location', true );
+    $meeting_time =  get_post_meta( get_the_ID(), 'club_meeting_time', true );
 
-    //$if_charted = get_post_meta( get_the_ID(), 'charted', true );
-    $club_contact_name = get_post_meta( get_the_ID(), 'club_contact_name', true );
-    $location = get_post_meta( get_the_ID(), 'club_meeting_location', true );
     $url = get_post_meta( get_the_ID(), 'club_url', true );
-    $phone = get_post_meta( get_the_ID(), 'club_advisor_phone', true );
-    $advisor_name = get_post_meta( get_the_ID(), 'club_advisor_name', true );
-    $advisor_email = get_post_meta( get_the_ID(), 'club_advisor_email', true );
-    $club_email = get_post_meta( get_the_ID(), 'club_contact_email', true );
-    $club_meeting_time =  get_post_meta( get_the_ID(), 'club_meeting_time', true );
     $budget_document_link = get_post_meta( get_the_ID(), 'budget_document_link', true );
-    $category = get_post_meta( get_the_ID(), 'charted', true );
-    $content = get_the_content();   
+
+    $advisor_name = get_post_meta( get_the_ID(), 'club_advisor_name', true );
+    $advisor_phone = get_post_meta( get_the_ID(), 'club_advisor_phone', true );
+    $advisor_email = get_post_meta( get_the_ID(), 'club_advisor_email', true );
+
+    $club_contact_name = get_post_meta( get_the_ID(), 'club_contact_name', true );
+    $club_email = get_post_meta( get_the_ID(), 'club_contact_email', true );
+    
+    $club_statuses = wp_get_post_terms($post->ID, 'status', array("fields" => "names"));
+
+    //Chartered Status
+    $is_chartered = false;
+    if (!(in_array('Unchartered', $club_statuses))) {
+        $is_chartered = true;
+    }
 ?>   
 <div class="content-padding">          
 
+    <?php 
+        /* Display 'Unchartered' notice if Unchartered is in array.
+           WIll display as unchartered even if Chartered is *also* selected */
+        if (!($is_chartered)) {
+            ?>
+            <div class="alert alert-danger text-center large">
+                <strong>This Club is Not Currently Chartered</strong>
+            </div>
+            <?php
+        }
+    ?>
+    
     <h1><?php the_title()?></h1>
+    
+    <ul>
    <?php
-        if(!empty($name))
-        {
+        if(!empty($club_contact_name)) {
    ?>
-            <p>Advisor: <?php echo $name; ?>  </p>
+            <li>Club Contact: <?php echo $club_contact_name; ?></li>
     <?php
         }
-       if(!empty($location))
-        {
+
+        if(!empty($club_email)) {
+    ?>    
+            <li>Club Email: <a href="mailto: <?php echo $club_email; ?> "><?php echo $club_email; ?></a></li>         
+           
+ <?php
+        }
+
+       if(!empty($meeting_location)) {
    ?>
-            <p>Office Location: <?php echo $location; ?>  </p>
+            <li>Meeting Location: <?php echo $meeting_location; ?></li>
    
      <?php
         }
-        if(!empty($url))
-        {
+
+        if(!empty($meeting_time)) {
+        ?>
+            <li>Meeting Time: <?php echo $meeting_time; ?></li>
+        <?php
+        }
+        
+        if(!empty($url)) {
    ?>
-            <p>Website: <a href="<?php echo $url; ?>"> <?php echo $url; ?> </a>  </p>
+            <li>Website: <a href="<?php echo $url; ?>"> <?php echo $url; ?> </a></li>
   <?php
         }
-        if(!empty($phone))
-        {
-    ?>
-            <p>Contact Information: <?php echo $phone; ?>  </p>
+        
+        if(!empty($advisor_email)) {
+    ?>      
+            <li>Advisor Email: <a href="mailto: <?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a></li>
+        
        <?php
         }
-        if(!empty($advisor_name))
-        {
-    ?>      
-            <p>Advisor Name: <a href="mailto: <?php echo $advisor_name; ?>"><?php echo $advisor_name; ?></a>  </p>
-    <?php
+
+        if(!empty($advisor_phone)) {
+    ?>
+            <li>Advisor Phone: <?php echo $advisor_phone; ?></li>
+       <?php
         }
-        if(!empty($advisor_email))
-        {
-    ?>      
-            <p>Advisor Email: <a href="mailto: <?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a>  </p>
+
+    ?>
+        </ul>
+    <?php 
+    the_content(); 
+    if(!empty($budget_document_link) && $is_chartered) {
+    ?>
+    <p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>
     <?php
-        }
-        if(!empty($club_email))
-        {
-    ?>    
-            <p>Club Email: <a href="mailto: <?php echo $club_email; ?> "><?php echo $club_email; ?></a>  </p>           
-           
- <?php
-        }   
-        if(!empty($content)){    ?>
-       
-            <br/><p><b> Description: </b> <?php echo $content; ?> </p> 
-    <?php  
-        }                
-    ?> 
-    <p>Club Meeting: <?php echo $club_meeting_time; ?>  </p>
-    <p><a href="<?php echo $budget_document_link ?>">Budget Report </a></p>    
+    }
+    
+    ?>
+    
+ 
 
 </div>     <!--.content-padding-->     
 
