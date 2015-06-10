@@ -35,7 +35,10 @@
             } else if ( is_single() ) {
 		        // Load single template. If custom post type, load template for that type.
 		        get_template_part('part-single', get_post_type());
-		    } else {
+		    } else if ( is_archive() ) {
+                // If we are loading the navigation-page page template
+                get_template_part('part-archive', get_post_type());
+            } else {
 				
 		        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 					?>
@@ -115,7 +118,10 @@ else {
         } else if ( is_single() ) {
             // Load single template. If custom post type, load template for that type.
             get_template_part('part-single', get_post_type());
-        } else  { 
+        } else if ( is_archive() ) {
+            // If we are loading the navigation-page page template
+            get_template_part('part-archive', get_post_type());
+        }else  { 
 		
 			if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 	?>
