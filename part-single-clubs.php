@@ -6,11 +6,12 @@
 
 if (have_posts()) : while (have_posts()) : the_post();
 
-    $if_charted = get_post_meta( get_the_ID(), 'charted', true );
-    $name = get_post_meta( get_the_ID(), 'club_contact_name', true );
+    //$if_charted = get_post_meta( get_the_ID(), 'charted', true );
+    $club_contact_name = get_post_meta( get_the_ID(), 'club_contact_name', true );
     $location = get_post_meta( get_the_ID(), 'club_meeting_location', true );
     $url = get_post_meta( get_the_ID(), 'club_url', true );
     $phone = get_post_meta( get_the_ID(), 'club_advisor_phone', true );
+    $advisor_name = get_post_meta( get_the_ID(), 'club_advisor_name', true );
     $advisor_email = get_post_meta( get_the_ID(), 'club_advisor_email', true );
     $club_email = get_post_meta( get_the_ID(), 'club_contact_email', true );
     $club_meeting_time =  get_post_meta( get_the_ID(), 'club_meeting_time', true );
@@ -46,6 +47,12 @@ if (have_posts()) : while (have_posts()) : the_post();
     ?>
             <p>Contact Information: <?php echo $phone; ?>  </p>
        <?php
+        }
+        if(!empty($advisor_name))
+        {
+    ?>      
+            <p>Advisor Name: <a href="mailto: <?php echo $advisor_name; ?>"><?php echo $advisor_name; ?></a>  </p>
+    <?php
         }
         if(!empty($advisor_email))
         {
