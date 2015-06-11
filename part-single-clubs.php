@@ -26,8 +26,8 @@ if (have_posts()) : while (have_posts()) : the_post();
     if (!(in_array('Unchartered', $club_statuses))) {
         $is_chartered = true;
     }
-?>   
-<div class="content-padding">          
+?>
+<div class="content-padding">
 
     <?php 
         /* Display 'Unchartered' notice if Unchartered is in array.
@@ -40,9 +40,9 @@ if (have_posts()) : while (have_posts()) : the_post();
             <?php
         }
     ?>
-    
+
     <h1><?php the_title()?></h1>
-    
+
     <ul>
    <?php
         if(!empty($club_contact_name)) {
@@ -52,10 +52,25 @@ if (have_posts()) : while (have_posts()) : the_post();
         }
 
         if(!empty($club_email)) {
-    ?>    
-            <li>Club Email: <a href="mailto: <?php echo $club_email; ?> "><?php echo $club_email; ?></a></li>         
-           
+    ?>
+            <li>Club Contact Email: <a href="mailto: <?php echo $club_email; ?> "><?php echo $club_email; ?></a></li>
  <?php
+        }
+         if(!empty($advisor_name)) {
+        ?>
+           <li>Advisor Email: <?php echo $advisor_name; ?></li>
+
+       <?php
+        }
+         if(!empty($advisor_email)) {
+        ?>
+           <li>Advisor Email: <a href="mailto: <?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a></li>
+       <?php
+        }
+        if(!empty($advisor_phone)) {
+    ?>
+            <li>Advisor Phone: <?php echo $advisor_phone; ?></li>
+       <?php
         }
 
        if(!empty($meeting_location)) {
@@ -71,24 +86,12 @@ if (have_posts()) : while (have_posts()) : the_post();
         <?php
         }
         
-        if(!empty($url)) {
-   ?>
-            <li>Website: <a href="<?php echo $url; ?>"> <?php echo $url; ?> </a></li>
-  <?php
-        }
-        
-        if(!empty($advisor_email)) {
-    ?>      
-            <li>Advisor Email: <a href="mailto: <?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a></li>
-        
-       <?php
-        }
 
-        if(!empty($advisor_phone)) {
-    ?>
-            <li>Advisor Phone: <?php echo $advisor_phone; ?></li>
-       <?php
-        }
+         if(!empty($url)) {
+           ?>
+                    <li>Club Website: <strong><a href="<?php echo $url; ?>"> <?php echo $url; ?> </a></strong></li>
+          <?php
+                }
 
     ?>
         </ul>
@@ -99,10 +102,8 @@ if (have_posts()) : while (have_posts()) : the_post();
     <p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>
     <?php
     }
-    
+
     ?>
-    
- 
 
 </div>     <!--.content-padding-->     
 
