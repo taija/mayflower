@@ -53,7 +53,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
         if(!empty($club_email)) {
     ?>
-            <li>Club Contact Email: <a href="mailto: <?php echo $club_email; ?> "><?php echo $club_email; ?></a></li>
+            <li>Club Contact Email: <a href="mailto:<?php echo $club_email; ?>"><?php echo $club_email; ?></a></li>
  <?php
         }
          if(!empty($advisor_name)) {
@@ -64,7 +64,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         }
          if(!empty($advisor_email)) {
         ?>
-           <li>Advisor Email: <a href="mailto: <?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a></li>
+           <li>Advisor Email: <a href="mailto:<?php echo $advisor_email; ?>"><?php echo $advisor_email; ?></a></li>
        <?php
         }
         if(!empty($advisor_phone)) {
