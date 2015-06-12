@@ -8,7 +8,7 @@ if( is_tax() ) {
 
 /* Sort Alphabetically */
 global $query_string;
-query_posts( $query_string . '&orderby=title&order=ASC' );
+query_posts( $query_string . '&orderby=title&order=ASC&posts_per_page=-1' );
 ?>
 <div class="content-padding">
     <h1><?php if( is_tax() ) {
@@ -20,7 +20,7 @@ query_posts( $query_string . '&orderby=title&order=ASC' );
     <?php }
             ?><ul><?php
                     
-					 if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    if (have_posts()) : while (have_posts()) : the_post(); ?>
                         
 						<li <?php post_class() ?>>
 							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
@@ -41,6 +41,5 @@ query_posts( $query_string . '&orderby=title&order=ASC' );
 						</li>
 					</ul>
 					<?php wp_reset_query(); ?>
-					
 					<?php else : ?>
 					<?php endif; ?>
