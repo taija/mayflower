@@ -35,7 +35,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         if (!($is_chartered)) {
             ?>
             <div class="alert alert-danger text-center large">
-                <strong>This Club is Not Currently Chartered</strong>
+                <strong>This Club Has Not Chartered for the Current Academic Year</strong>
             </div>
             <?php
         }
