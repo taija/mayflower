@@ -4,7 +4,7 @@ global $query_string;
 $posts = query_posts($query_string .'&orderby=title&order=asc&posts_per_page=-1'); ?>
 
 <div class="content-padding">
-	<h1> Student Programs </h1>
+	<h1> Programs Supported by Student Programs</h1>
 	<?php if (have_posts()) : ?>
 		<ul>
 			<?php while (have_posts()) : the_post(); ?>
