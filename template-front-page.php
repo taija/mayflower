@@ -26,9 +26,9 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 
 	<section id="homeslider">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		<?php 
+		<?php
 		//display featured slider
-		get_template_part('part-featured-full'); 
+		get_template_part('part-featured-full');
 		?>
     </section><!--#homeslider-->
 </div><!--#content .row-->
@@ -76,7 +76,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
                         'orderby'=> 'date',
                         'order'=> 'ASC',
                     ));
-        
+
                     while ( $the_query->have_posts() ) :
                     $the_query->the_post();
                 ?>
@@ -94,7 +94,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
     	</div><!--.content-padding-->
 	</section><!--#home-events-->
 	<div id="home-sidelinks">
-		<p id="apply" ><a href="//www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success"><strong>Apply for Admissions</strong></a></p>
+		<p id="apply" ><a href="//www.bellevuecollege.edu/admissions/?utm_source=bchomepage&utm_medium=button&utm_campaign=applybtn" class="btn btn-success"><strong>Apply</strong>for admission</a></p>
 		<?php
 			$the_query = new WP_Query(array(
 				'post_type'=>'small_ad',
@@ -105,7 +105,7 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
 
 			while ( $the_query->have_posts() ) :
 			$the_query->the_post();
-		
+
 	        // If url field has content, add the URL to the post thumbnail.
 				$small_ad_ext_url = get_post_meta( $post->ID, '_small_ad_url', true );
 
@@ -114,14 +114,14 @@ define('NEW_CATEGORY_NAME', "BC Homepage");
                         <a href="<?php echo esc_url($small_ad_ext_url);?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('home-small-ad', array('class' => 'box-shadow img-responsive'));?></a>
                     </p>
 			<?php }  //end if ?>
-	
+
 		<?php
 			endwhile;
 				wp_reset_postdata();
 		?>
 	</div><!--#home-sidelinks-->
-</div><!-- .content-row -->	
-	         
+</div><!-- .content-row -->
+
 <?php endwhile; else: ?>
 <p><?php _e('Sorry, these aren\'t the bytes you are looking for.'); ?></p>
 <?php endif; ?>
