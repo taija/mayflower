@@ -10,17 +10,12 @@ if ( $mayflower_brand == 'lite' ) {
 </div><!-- #main-wrap -->
 
 <?php
-global $globals_path, $globals_path_over_http, $mayflower_version, $mayflower_brand;
+
 if ( $mayflower_brand == 'lite' ) {
 	bc_footer_legal();
 } else {
 	bc_footer();
 }
-?>
-
-<script src="<?php echo $globals_path_over_http; ?>j/bootstrap.min.js"></script>
-<script src="<?php echo $globals_path_over_http; ?>j/g.js"></script>
-<?php
 wp_footer();
 ?>
 

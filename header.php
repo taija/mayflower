@@ -41,13 +41,6 @@
     <link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" />
     <!--[if IE]><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" /><![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" href="<?php echo $globals_url; ?>c/g.css?ver=<?php echo $globals_version; ?>">
-    <link rel="stylesheet" media="print" href="<?php echo $globals_url; ?>c/p.css?ver=<?php echo $globals_version; ?>">
-	<!--<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome.css">-->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?ver=<?php echo $mayflower_theme_version->Version; ?>" type="text/css" media="screen" />
-	
-    <script type="text/javascript" src="<?php echo $globals_url; ?>j/ghead.js?ver=<?php echo $globals_version; ?>"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="<?php echo $globals_url; ?>j/respond.js?ver=<?php echo $globals_version; ?>"></script><![endif]-->
 
 	<?php wp_head(); 
 	
