@@ -347,6 +347,14 @@ function mayflower_is_blog () {
 	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
 }
 
+#############################
+// Add is_multisite_home
+#############################
+
+function is_multisite_home () {
+	if (is_main_site() && is_front_page()) return true; else return false;
+}
+
 
 ######################################
 // Wordpress Widget Area Setup
