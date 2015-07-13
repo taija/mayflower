@@ -1,23 +1,17 @@
-<?php 
+<?php
 global $mayflower_brand;
-if( $mayflower_brand == 'lite') {
-	get_template_part('part-flexnav');
-} else {
-}
+if ( $mayflower_brand == 'lite' ) {
+	get_template_part( 'part-flexnav' );
+} else { }
 ?>
 			</div><!-- row -->
 		</div><!-- col-md-12 -->
-
 	</div><!-- #main .container -->
 </div><!-- #main-wrap -->
 
-<?php 
-?>
-
-<?php 
+<?php
 global $globals_path, $globals_path_over_http, $mayflower_version, $mayflower_brand;
-if( $mayflower_brand == 'lite') {
-	//get_template_part('part-flexnav');
+if ( $mayflower_brand == 'lite' ) {
 	bc_footer_legal();
 } else {
 	bc_footer();
@@ -27,9 +21,7 @@ if( $mayflower_brand == 'lite') {
 <script src="<?php echo $globals_path_over_http; ?>j/bootstrap.min.js"></script>
 <script src="<?php echo $globals_path_over_http; ?>j/g.js"></script>
 <?php
-
-
-wp_footer(); 
+wp_footer();
 ?>
 
 <!-- <?php
