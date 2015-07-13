@@ -274,6 +274,35 @@ width: 11.11%;
 	}
 }
 
+// Legal Bar Additions
+#front-page-legal {
+	text-align: center;
+	font-size: .8em;
+	margin: 0 auto;
+	padding: .25em 0;
+	ul {
+		list-style-type: none;
+	}
+	ul li {
+		display: inline;
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		padding: 0 1em;
+		border-left: 1px solid #ddd;
+	}
+
+	ul li:first-child a {
+		border-left: none;
+	}
+
+	background: #fff;
+	@include box-shadow (-2px 2px 2px rgba(160, 160, 160, 0.7), 2px 2px 2px rgba(160, 160, 160, 0.7));
+}
+
+
 @media screen and (min-width: 55em) {
 	#menusfor .content-padding {
 		padding: 0 1em;

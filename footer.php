@@ -13,6 +13,8 @@ if ( $mayflower_brand == 'lite' ) {
 
 if ( $mayflower_brand == 'lite' ) {
 	bc_footer_legal();
+} else if ( is_multisite_home() ){
+	bc_home_footer();
 } else {
 	bc_footer();
 }

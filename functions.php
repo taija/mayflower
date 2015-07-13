@@ -495,6 +495,20 @@ function control_widget_pages( $sidebars_widgets ) {
 	add_action('btheme_footer', 'bc_footer', 50);
 
 ###################
+// homepage specific footer
+###################
+
+	function bc_home_footer() {
+		global $bc_globals_html_filepath;
+		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
+		   include_once($bc_footer);
+			get_template_part( 'front-page-legal' );
+		   include_once($bc_footerlegal);
+	}
+	add_action('btheme_footer', 'bc_home_footer', 50);
+
+###################
 //college legal-links footer
 ###################
 
