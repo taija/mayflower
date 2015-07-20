@@ -32,13 +32,16 @@
                    Template name 'page-(name).php' loads template part 'part-single-page-(name).php' */
                 $template_name = str_replace('.php', '', get_page_template_slug());
                 get_template_part( 'part-single', $template_name );
+            } else if ( is_attachment() ) {
+				// If we are using attachment template
+				get_template_part('part-attachment');
             } else if ( is_single() ) {
 		        // Load single template. If custom post type, load template for that type.
 		        get_template_part('part-single', get_post_type());
 		    } else if ( is_archive() ) {
                 // If we are loading the navigation-page page template
                 get_template_part('part-archive', get_post_type());
-            } else {
+            }  else {
 				
 		        if ( have_posts() ) : while ( have_posts() ) : the_post(); 
 					?>
@@ -115,7 +118,10 @@ else {
                Template name 'page-(name).php' loads template part 'part-single-page-(name).php' */
             $template_name = str_replace('.php', '', get_page_template_slug());
             get_template_part( 'part-single', $template_name );
-        } else if ( is_single() ) {
+        }  else if ( is_attachment() ) {
+				// If we are using attachment template
+				get_template_part('part-attachment');
+        }  else if ( is_single() ) {
             // Load single template. If custom post type, load template for that type.
             get_template_part('part-single', get_post_type());
         } else if ( is_archive() ) {
