@@ -570,15 +570,15 @@ function mayflower_nav_active_class($classes, $item){
 function mayflower_scripts() {
 	global $globals_url, $globals_version;
 
-	wp_enqueue_style( 'gobals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
-	wp_enqueue_style( 'gobals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
+	wp_enqueue_style( 'globals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
+	wp_enqueue_style( 'globals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
 	wp_enqueue_style( 'mayflower', get_stylesheet_uri());
 
 	// These go first- modernizr and respond.js
-	wp_enqueue_script( 'gobals-head', $globals_url . 'j/ghead.js', $globals_version, null, false );
+	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead.js', $globals_version, null, false );
 
 	// Wrap script in IE conditional- from http://stackoverflow.com/a/16221114
-	wp_enqueue_script( 'respond', $globals_url . 'j/respond.js', null, $globals_version, false );
+	wp_enqueue_script( 'globals-respond', $globals_url . 'j/respond.js', null, $globals_version, false );
 	add_filter( 'script_loader_tag', function( $tag, $handle ) {
 		if ( $handle === 'respond' ) {
 			$tag = "<!--[if lt IE 9]>$tag<![endif]-->";
