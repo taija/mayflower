@@ -1,17 +1,12 @@
-<?php get_header(); 
-
-
- //echo do_shortcode('[AllClassInformation course="ECON"]');
- //echo do_shortcode('[OneClassInformation course="ABE" number="042"]');
-
+<?php get_header();
 
 //Which template to use
-if ( is_main_site() && is_front_page() ) {
+if ( is_multisite_home () ) {
 	//Is BC Home page
 	get_template_part('template-front-page');
-} else { 
+} else {
 	// Layout
 	get_template_part('layout');
 }
-		 
+
 get_footer(); ?>

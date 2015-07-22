@@ -119,16 +119,6 @@ if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_fun
 
 
 #######################################
-// Load jQuery the WordPress way
-#######################################
-
-function mayflower_load_jquery() {
-    wp_enqueue_script( 'jquery' );
-}
-
-add_action( 'wp_enqueue_scripts', 'mayflower_load_jquery' );
-
-#######################################
 // adds wordpress theme support
 #######################################
 // enable excerpts on pages
@@ -347,6 +337,14 @@ function mayflower_is_blog () {
 	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
 }
 
+#############################
+// Add is_multisite_home
+#############################
+
+function is_multisite_home () {
+	if (is_main_site() && is_front_page()) return true; else return false;
+}
+
 
 ######################################
 // Wordpress Widget Area Setup
@@ -497,6 +495,20 @@ function control_widget_pages( $sidebars_widgets ) {
 	add_action('btheme_footer', 'bc_footer', 50);
 
 ###################
+// homepage specific footer
+###################
+
+	function bc_home_footer() {
+		global $bc_globals_html_filepath;
+		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
+		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
+		   include_once($bc_footer);
+			get_template_part( 'front-page-legal' );
+		   include_once($bc_footerlegal);
+	}
+	add_action('btheme_footer', 'bc_home_footer', 50);
+
+###################
 //college legal-links footer
 ###################
 
@@ -549,6 +561,39 @@ function mayflower_nav_active_class($classes, $item){
 
      return $classes;
 }
+
+
+#######################################
+// Load Scripts and Styles the WordPress way
+#######################################
+
+function mayflower_scripts() {
+	global $globals_url, $globals_version;
+
+	wp_enqueue_style( 'globals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
+	wp_enqueue_style( 'globals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
+	wp_enqueue_style( 'mayflower', get_stylesheet_uri());
+
+	// These go first- modernizr and respond.js
+	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead.js', $globals_version, null, false );
+
+	// Wrap script in IE conditional- from http://stackoverflow.com/a/16221114
+	wp_enqueue_script( 'globals-respond', $globals_url . 'j/respond.js', null, $globals_version, false );
+	add_filter( 'script_loader_tag', function( $tag, $handle ) {
+		if ( $handle === 'respond' ) {
+			$tag = "<!--[if lt IE 9]>$tag<![endif]-->";
+		}
+		return $tag;
+	}, 10, 2 );
+
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'bootstrap', $globals_url . 'j/bootstrap.min.js', array('jquery'), $globals_version, true );
+	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery'), $globals_version, true );
+}
+
+add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
+
+
 
 
 ################################################################################
