@@ -72,20 +72,6 @@ function mayflower_get_current_tab() {
 }
 
 
-/**
- * Get custom category list
- */
-function mayflower_get_custom_category_list() {
-	$customcatlist ='';
-	$customcats=  get_categories();
-	foreach( $customcats as $customcat ) {
-		$customcathref = get_category_link( $customcat->term_id );
-		$customcatfeedlink = get_category_feed_link( $customcat->term_id );
-		$customcatlist .= '<li><a title="' . esc_attr( sprintf( _x( 'Subscribe to the %s news feed', 'Category Name', 'mayflower' ), $customcat->name ) ) . '" href="' . $customcatfeedlink . '" class="custom-taxonomy-list-feed genericon"><span class="genericon-feed"></span></a><a href="' . $customcathref . '">' . $customcat->name . '</a> (' . $customcat->count . ')</li>';
-	}
-	return apply_filters( 'mayflower_get_custom_category_list', $customcatlist );
-}
-
 
 /**
  * Get custom post format list
