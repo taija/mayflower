@@ -9,7 +9,6 @@
  *  - Define Default Theme Options
  *  - Register/Initialize Theme Options
  *  - Define Admin Settings Page
- *  - Register Contextual Help
  *
  * @package 	Mayflower
  * @copyright	Copyright (c) 2011, Chip Bennett
@@ -69,8 +68,6 @@ function mayflower_add_theme_page() {
 		// Function to define settings page markup
 		'mayflower_admin_options_page'
 	);
-	// Load contextual help
-	add_action( 'load-' . $mayflower_settings_page, 'mayflower_settings_page_contextual_help' );
 }
 // Load the Admin Options page
 add_action( 'admin_menu', 'mayflower_add_theme_page' );
