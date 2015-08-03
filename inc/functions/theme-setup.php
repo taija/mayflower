@@ -49,20 +49,6 @@
  * @uses	mayflower_header_style()			Defined in \functions\theme-setup.php
  */
 function mayflower_setup() {
-
-	/*
-	 * Enable translation
-	 *
-	 * Declare Theme textdomain and define
-	 * location for translation files.
-	 *
-	 * Translations can be added to the /languages
-	 * directory.
-	 *
-	 * @since	Mayflower 2.2
-	 */
-	load_theme_textdomain( 'mayflower', get_template_directory() . '/languages' );
-
 	/*
 	 * Add Theme support for Automatic Feed Links
 	 *
