@@ -235,14 +235,6 @@ function mayflower_locate_template_uri( $template_names, $load = false, $require
 }
 
 
-
-/**
- * Return widget content closing div
- */
-function mayflower_showhide_widget_content_close() {
-	return apply_filters( 'mayflower_showhide_widget_content_close', '</div>' );
-}
-
 /**
  * Display Social Icons
  */
