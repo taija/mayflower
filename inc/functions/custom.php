@@ -31,26 +31,6 @@ function mayflower_body_class_ia( $classes ) {
 add_filter( 'body_class','mayflower_body_class_ia' );
 
 
-
-/**
- * Get current settings page tab
- */
-function mayflower_get_current_tab() {
-	$page = 'mayflower-settings';
-	if ( isset( $_GET['page'] ) && 'mayflower-reference' == $_GET['page'] ) {
-		$page = 'mayflower-reference';
-	}
-	if ( isset( $_GET['tab'] ) ) {
-		$current = $_GET['tab'];
-	} else {
-		$mayflower_options = mayflower_get_options();
-		$current = $mayflower_options['default_options_tab'];
-	}
-	return apply_filters( 'mayflower_get_current_tab', $current );
-}
-
-
-
 /**
  * Determine Header Text Color Setting
  *
