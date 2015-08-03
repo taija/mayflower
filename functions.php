@@ -267,66 +267,55 @@ add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
 
 
 //Add custom styles to tinymce editor
-function my_mce_before_init( $settings ) {
+function mayflower_mce_before_init( $settings ) {
 
-    $style_formats = array(
+	$style_formats = array(
 		array(
-			'title' => 'Alert',
-            'selector' => 'p',
+			'title' => 'Intro (.lead)',
+			'block' => 'p',
+			'classes' => 'lead',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Alert (.alert-warning)',
+			'block' => 'div',
 			'classes' => 'alert alert-warning',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Danger',
-			'selector' => 'p',
-			'classes' => 'alert alert-error alert-danger',
+			'title' => 'Alert-Danger (.alert-danger)',
+			'block' => 'div',
+			'classes' => 'alert alert-danger',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Info',
-			'selector' => 'p',
+			'title' => 'Alert-Info (.alert-info)',
+			'block' => 'div',
 			'classes' => 'alert alert-info',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Success',
-			'selector' => 'p',
+			'title' => 'Alert-Success (.alert-success)',
+			'block' => 'div',
 			'classes' => 'alert alert-success',
-		),
-/*
-		array(
-			'title' => 'Button-Black',
-			'inline' => 'button',
-			'classes' => 'btn btn-inverse',
-			'wrapper' => false,
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Button-Blue',
-			'inline' => 'button',
-			'classes' => 'btn btn-primary',
-			'wrapper' => false,
-		),
-		array(
-			'title' => 'Button-Grey',
-			'inline' => 'button',
-			//'selector' => 'a',
-			'classes' => 'btn',
-			'wrapper' => false,
-		),
-*/
-		array(
-			'title' => 'Well',
-			'selector' => 'p',
+			'title' => 'Well (.well)',
+			'block' => 'div',
 			'classes' => 'well',
-			'wrapper' => false,
+			'wrapper' => true,
 		),
-    );
+	);
 
 
-    $settings['style_formats'] = json_encode( $style_formats );
+	$settings['style_formats'] = json_encode( $style_formats );
 
-    return $settings;
+	return $settings;
 
 }
 
-add_filter( 'tiny_mce_before_init', 'my_mce_before_init' );
+add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 
 
 #############################
