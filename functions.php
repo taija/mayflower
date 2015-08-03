@@ -32,10 +32,8 @@
 			require( get_template_directory() . '/inc/functions/options-customizer.php' );
 			require( get_template_directory() . '/inc/functions/network-options.php');
 			require( get_template_directory() . '/inc/functions/hooks.php' );
-//		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
 			require( get_template_directory() . '/inc/functions/contextual-help.php' );
 			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
-//		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
 		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
 		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
         $gaCode = "";
