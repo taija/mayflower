@@ -235,19 +235,6 @@ function mayflower_locate_template_uri( $template_names, $load = false, $require
 }
 
 
-/**
- * Return widget content opening div
- */
-function mayflower_showhide_widget_content_open() {
-	$options = mayflower_get_options();
-    $showhide = '<span class="showhide">';
-    $showhide .= 'Click to ';
-    $showhide .= '<span style="color:#5588aa;" onclick="d=this.parentElement.nextElementSibling; d.style.display==\'none\' ? d.style.display=\'block\' : d.style.display=\'none\';">view/hide</span>';
-    $showhide .= '<br /></span>';
-    $showhide .= '<div class="widget-inner" style="display:' . $options['widget_display_default_state'] . ';">';
-
-    return apply_filters( 'mayflower_showhide_widget_content_open', $showhide );
-}
 
 /**
  * Return widget content closing div
