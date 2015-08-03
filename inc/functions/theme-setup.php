@@ -87,21 +87,6 @@ function mayflower_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Add Theme support for Custom Editor Style
-	 *
-	 * Apply custom CSS to the WordPress Visual
-	 * editor, so that content in the editor is
-	 * visually consistent with content rendered
-	 * on the site.
-	 *
-	 * Child Themes can remove support for this feature via
-	 * remove_editor_styles(). (Note PLURAL vs. singular.)
-	 *
-	 * @since	WordPress 3.0.0
-	 */
-	add_editor_style();
-
 	/**
 	 * Set default Post Thumbnail size
 	 *
