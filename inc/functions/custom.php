@@ -53,8 +53,6 @@ function mayflower_get_color_scheme() {
 	$colorscheme = $mayflower_current_skin['scheme'];
 	return $colorscheme;
 }
-
-/
 /**
  * Get current settings page tab
  */
