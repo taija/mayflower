@@ -31,68 +31,6 @@ function mayflower_body_class_ia($classes) {
     }
 add_filter('body_class','mayflower_body_class_ia');
 
-/**
- * Image Handling for gallery image metadata
- */
-function mayflower_gallery_image_meta() {
-	global $post;
-	$post = get_post($post);
-	$is_parent = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'orderby' => 'menu_order', 'order' => 'ASC' ) );
-	$attachmentimage = ( $is_parent ? array_shift( $is_parent ) : false );
-	$imagepost = ( $attachmentimage ? $attachmentimage->ID : $post->ID );
-	$m = get_post_meta( $imagepost, '_wp_attachment_metadata' , true );
-	$image = wp_get_attachment_image( $imagepost, 'full' );
-	$url = wp_get_attachment_url( $imagepost );
-	$uploaddir = wp_upload_dir();
-	$imagesize = size_format( filesize( $uploaddir['basedir'] . '/' . $m['file'] ) );
-	$image_meta = array (
-		'image' => $image,
-		'url' => $url,
-		'width' => $m['width'],
-		'height' => $m['height'],
-		'dimensions' => false,
-		'filesize' => $imagesize,
-		'created_timestamp' => $m['image_meta']['created_timestamp'],
-		'copyright' => $m['image_meta']['copyright'],
-		'credit' => $m['image_meta']['credit'],
-		'aperture' => $m['image_meta']['aperture'],
-		'focal_length' => $m['image_meta']['focal_length'],
-		'iso' => $m['image_meta']['iso'],
-		'shutter_speed' => $m['image_meta']['shutter_speed'],
-		'camera' => $m['image_meta']['camera'],
-		'caption' => '(No caption provided.)'
-	);
-	// image dimensions handler
-	if ( $m['width'] && $m['height'] ) {
-		$image_meta['dimensions'] = $m['width'] . '&#215;' . $m['height'] . ' px';
-	}
-	// image created_timestamp handler
-	if ( $m['image_meta']['created_timestamp'] ) {
-		$image_meta['created_timestamp'] = date( 'm M Y', $m['image_meta']['created_timestamp'] );
-	}
-	// image aperture handler
-	if ( $m['image_meta']['aperture'] ) {
-		$image_meta['aperture'] = 'f/' . $m['image_meta']['aperture'];
-	}
-	// shutter speed handler
-	if ( ( $m['image_meta']['shutter_speed'] != '0' ) && ( ( 1 / $m['image_meta']['shutter_speed'] ) > 1 ) ) {
-	$image_meta['shutter_speed'] =  "1/";
-		if (number_format((1 / $m['image_meta']['shutter_speed']), 1) ==  number_format((1 / $m['image_meta']['shutter_speed']), 0)) {
-			$image_meta['shutter_speed'] = $image_meta['shutter_speed'] . number_format((1 / $m['image_meta']['shutter_speed']), 0, '.', '') . ' sec';
-		} else {
-			$image_meta['shutter_speed'] = $image_meta['shutter_speed'] .  number_format((1 / $m['image_meta']['shutter_speed']), 1, '.', '') . ' sec';
-		}
-	} else {
-		$image_meta['shutter_speed'] = $m['image_meta']['shutter_speed'].' sec';
-	}
-	// image caption handler
-	if ( ! empty( $post->post_excerpt ) ) {
-		$image_meta['caption'] = get_the_excerpt(); // this is the "caption"
-	} else if ( is_object( $attachmentimage ) && $attachmentimage->post_excerpt ) {
-		$image_meta['caption'] = $attachmentimage->post_excerpt;
-	}
-	return apply_filters( 'mayflower_gallery_image_meta', $image_meta );
-}
 
 /**
  * Image Handling for gallery previous/next links
