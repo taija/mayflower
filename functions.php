@@ -451,24 +451,6 @@ function control_widget_pages( $sidebars_widgets ) {
 
 	add_action('mayflower_header','bc_tophead_big');
 
-###########################
-//set up college headscripts
-##########################
-
-	function head_scripts() {
-		?>
-		<script type="text/javascript">
-			/*<![CDATA[*/
-			jQuery.noConflict();
-			jQuery(document).ready(function(){
-				jQuery(".nav-news a").addClass("selected");
-			});
-			/*]]>*/
-		</script>
-		<script type="text/javascript" src="/globals/btheme_v0.1/js/searchbox.js"></script>
-		<?php
-	}
-	add_filter('head_scripts','head_scripts');
 
 ###################
 //college big footer
