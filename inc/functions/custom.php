@@ -89,20 +89,6 @@ function mayflower_get_custom_post_format_list() {
 
 
 /**
- * Get custom tag list
- */
-function mayflower_get_custom_tag_list() {
-	$customtaglist ='';
-	$customtags =  get_tags();
-	foreach( $customtags as $customtag ) {
-		$customtaghref = get_tag_link( $customtag->term_id );
-		$customtagfeedlink = get_tag_feed_link( $customtag->term_id );
-		$customtaglist .= '<li><a title="' . esc_attr( sprintf( _x( 'Subscribe to the %s feed', 'Tag Name', 'mayflower' ), $customtag->name ) ) . '" href="' . $customtagfeedlink . '" class="custom-taxonomy-list-feed genericon"><span class="genericon-feed"></span></a><a href="' . $customtaghref . '">' . $customtag->name . '</a> (' . $customtag->count . ')</li>';
-	}
-	return apply_filters( 'mayflower_get_custom_tag_list', $customtaglist );
-}
-
-/**
  * Determine Header Text Color Setting
  *
  * Determine what color value to pass to the
