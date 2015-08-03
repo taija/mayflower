@@ -34,8 +34,8 @@
 			require( get_template_directory() . '/inc/functions/hooks.php' );
 			require( get_template_directory() . '/inc/functions/contextual-help.php' );
 			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
-			define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
-			define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+			define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
+			define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
 			$gaCode = "";
 
 ##################################
