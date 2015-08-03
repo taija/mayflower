@@ -32,38 +32,6 @@ function mayflower_body_class_ia($classes) {
 add_filter('body_class','mayflower_body_class_ia');
 
 
-/**
- * Image Handling for gallery previous/next links
- *
- * function needed because WP gives no easy way to
- * display both image and text in prev/next links.
- */
-function mayflower_gallery_links() {
-	global $post;
-	$post = get_post($post);
-	$attachments = array_values(get_children("post_parent=$post->post_parent&post_type=attachment&post_mime_type=image&orderby=menu_order ASC, ID ASC"));
-
-	$k = 0;
-
-	foreach ( $attachments as $k => $attachment )
-		if ( $attachment->ID == $post->ID )
-			break;
-
-	$links = array( 'prevlink' => '', 'prevthumb' => '', 'nextlink' => '', 'nextthumb' => '' );
-
-	if ( isset($attachments[$k+1]) ) {
-		$links['prevlink'] = get_permalink($attachments[$k+1]->ID);
-		$links['prevthumb'] = wp_get_attachment_link($attachments[$k+1]->ID, 'attachment-nav-thumbnail', true);
-	}
-
-	if ( isset($attachments[$k-1]) ) {
-		$links['nextlink'] = get_permalink($attachments[$k-1]->ID);
-		$links['nextthumb'] = wp_get_attachment_link($attachments[$k-1]->ID, 'attachment-nav-thumbnail', true);
-	}
-
-	return apply_filters( 'mayflower_gallery_links', $links );
-}
-
 
 /**
  * 404 error handling
