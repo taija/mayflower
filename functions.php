@@ -35,23 +35,6 @@
 
 
 ############################
-// Custom Admin Bar Items
-############################
-
-	function mytheme_admin_bar_render() {
-		global $wp_admin_bar;
-	        $wp_admin_bar->add_menu( array(
-	        'parent' => '',
-	        'id' => 'mayflower-settings',
-	        'title' => 'Theme Options',
-	        'href' => admin_url( 'themes.php?page=mayflower-settings')
-	    ) );
-
-	}
-
-	add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
-
-############################
 // show admin bar only for editors and higher
 ############################
 
