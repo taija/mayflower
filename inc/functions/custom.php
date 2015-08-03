@@ -54,37 +54,6 @@ function mayflower_get_header_textcolor() {
 }
 
 
-/**
- * Define Mayflower Admin Page Tab Markup
- *
- * @uses	mayflower_get_current_tab()	defined in \functions\options.php
- * @uses	mayflower_get_settings_page_tabs()	defined in \functions\options.php
- *
- * @link	http://www.onedesigns.com/tutorials/separate-multiple-theme-options-pages-using-tabs	Daniel Tara
- */
-function mayflower_get_page_tab_markup() {
-
-	$page = 'mayflower-settings';
-	$current = mayflower_get_current_tab();
-	$tabs = mayflower_get_settings_page_tabs();
-	$links = array();
-
-	foreach( $tabs as $tab ) {
-		$tabname = $tab['name'];
-		$tabtitle = $tab['title'];
-		if ( $tabname == $current ) {
-			$links[] = "<a class='nav-tab nav-tab-active' href='?page=$page&tab=$tabname'>$tabtitle</a>";
-		} else {
-			$links[] = "<a class='nav-tab' href='?page=$page&tab=$tabname'>$tabtitle</a>";
-		}
-	}
-	echo '<div id="icon-themes" class="icon32"><br /></div>';
-	echo '<h2 class="nav-tab-wrapper">';
-	foreach ( $links as $link )
-		echo $link;
-	echo '</h2>';
-}
-
 
 /**
  * Get WPORG Support Forum Feed
