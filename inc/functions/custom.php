@@ -74,21 +74,6 @@ function mayflower_get_current_tab() {
 
 
 /**
- * Get custom post format list
- */
-function mayflower_get_custom_post_format_list() {
-	$postformatterms = get_terms( 'post_format' );
-	$postformatlist = '';
-	foreach( $postformatterms as $term ) {
-		$termslug = substr( $term->slug, 12 );
-		$termlink = get_post_format_link( $termslug );
-		$postformatlist .= '<li><a title="' . esc_attr( sprintf( _x( 'Subscribe to the %s news feed', 'Post Format', 'mayflower' ), $term->name ) ) . '" href="' . $termlink .'feed/" class="custom-taxonomy-list-feed genericon"><span class="genericon-feed"></span></a><a href="'. $termlink .'">' . $term->name . '</a> (' . $term->count . ')</li>';
-	}
-	return apply_filters( 'mayflower_get_custom_post_format_list', $postformatlist );
-}
-
-
-/**
  * Determine Header Text Color Setting
  *
  * Determine what color value to pass to the
