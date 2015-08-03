@@ -203,26 +203,6 @@ function mayflower_get_support_feed() {
 	return $markup;
 }
 
-/**
- * Define default Widget arguments
- *
- * @uses	mayflower_showhide_widget_content_close()	Defined in functions/custom.php
- * @uses	mayflower_showhide_widget_content_open()		Defined in functions/custom.php
- */
-
-function mayflower_get_widget_args() {
-	$widget_args = array(
-		// Widget container opening tag, with classes
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		// Widget container closing tag
-		'after_widget' => '</div>' . mayflower_showhide_widget_content_close(),
-		// Widget Title container opening tag, with classes
-		'before_title' => '<div class="title widgettitle">',
-		// Widget Title container closing tag
-		'after_title' => '</div>' . mayflower_showhide_widget_content_open()
-	);
-	return $widget_args;
-}
 
 
 /**
