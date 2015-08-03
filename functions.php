@@ -34,9 +34,9 @@
 			require( get_template_directory() . '/inc/functions/hooks.php' );
 			require( get_template_directory() . '/inc/functions/contextual-help.php' );
 			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
-		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
-		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
-        $gaCode = "";
+			define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
+			define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
+			$gaCode = "";
 
 ##################################
 ## Custom Menu Widget Override
@@ -792,51 +792,6 @@ function coursedescription_func($atts)
     return null;
 }
 
-
-	#################################
-	/*
-		This function is a shortcode to get class schedule data returned as json string for a given course name or a course name and number.
-		Fogbugz #2154
-	*/
-	#################################
-/*
-	function AllClassInformationRoutine($args)
-	{
-		$course = trim($args["course"]);
-		if(!empty($course))
-		{
-			$url = CLASSESURL.$course."?format=json";
-			//$json = file_get_contents($url,0,null,null);
-            $json = wp_remote_get($url);
-            if(!empty($json) && !empty($json['body']))
-            {
-                $html = decodejsonClassInfo($json);
-                return $html;
-            }
-		}
-		return null;
-	}
-	function OneClassInformationRoutine($args)
-	{
-		$course = $args["course"];
-		$number = $args["number"];
-		if(!empty($course) && !empty($number))
-		{
-			$url = CLASSESURL.$course."?format=json";
-			//$json = file_get_contents($url,0,null,null);
-            $json = wp_remote_get($url);
-            if(!empty($json) && !empty($json['body']))
-            {
-                $html = decodejsonClassInfo($json,$number);
-                return $html;
-            }
-
-		}
-		return null;
-	}
-add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
-add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
-*/
 
 	function decodejsonClassInfo($jsonString,$number = NULL,$description = NULL)
 	{
