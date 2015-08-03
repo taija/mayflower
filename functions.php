@@ -258,12 +258,12 @@ add_filter('mce_buttons_2','myplugin_tinymce_buttons');
 ######################################
 
 // Add the Style Dropdown Menu to the second row of visual editor buttons
-function my_mce_buttons_2( $buttons ) {
-    array_unshift( $buttons, 'styleselect' );
-    return $buttons;
+function mayflower_mce_buttons_2( $buttons ) {
+	array_unshift( $buttons, 'styleselect' );
+	return $buttons;
 }
 
-add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
+add_filter( 'mce_buttons_2', 'mayflower_mce_buttons_2' );
 
 
 //Add custom styles to tinymce editor
