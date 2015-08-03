@@ -304,6 +304,20 @@ function is_multisite_home () {
 	if (is_main_site() && is_front_page()) return true; else return false;
 }
 
+#############################
+// Assign global_nav_selection to body_class
+#############################
+
+function mayflower_body_class_ia( $classes ) {
+	$mayflower_options = mayflower_get_options();
+
+	// add ia_options to classes
+	$classes[] = $mayflower_options['global_nav_selection'];
+
+	// return the $classes array
+	return $classes;
+}
+add_filter( 'body_class','mayflower_body_class_ia' );
 
 ######################################
 // Wordpress Widget Area Setup
