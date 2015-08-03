@@ -48,23 +48,3 @@ function mayflower_enqueue_content_img_max_width() {
 }
 // Enqueue Skin Stylesheet at wp_print_styles
 add_action( 'wp_print_styles', 'mayflower_enqueue_content_img_max_width', 11 );
-
-/**
- * Enqueue Footer Nav Menu Styles
- *
- * If no menu is assigned to the nav-footer
- * Theme Location, then set the footer to
- * center-align content
- */
-function mayflower_enqueue_footer_nav_menu_style() {
-	if ( has_nav_menu( 'nav-footer' ) ) {
-	?>
-<style type="text/css">
-#footer {
-	text-align: left;
-}
-</style>
-	<?php
-	}
-}
-add_action( 'wp_print_styles', 'mayflower_enqueue_footer_nav_menu_style', 11 );
