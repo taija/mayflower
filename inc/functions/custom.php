@@ -19,17 +19,16 @@
 
 /* Assign global_nav_selection to body_class */
 
-function mayflower_body_class_ia($classes) {
-		$mayflower_options = mayflower_get_options();
+function mayflower_body_class_ia( $classes ) {
+	$mayflower_options = mayflower_get_options();
 
+	// add ia_options to classes
+	$classes[] = $mayflower_options['global_nav_selection'];
 
-        // add ia_options to classes
-        $classes[] = $mayflower_options['global_nav_selection'];
-
-        // return the $classes array
-        return $classes;
-    }
-add_filter('body_class','mayflower_body_class_ia');
+	// return the $classes array
+	return $classes;
+}
+add_filter( 'body_class','mayflower_body_class_ia' );
 
 
 /**
@@ -53,21 +52,22 @@ function mayflower_get_color_scheme() {
 	$colorscheme = $mayflower_current_skin['scheme'];
 	return $colorscheme;
 }
+
+
 /**
  * Get current settings page tab
  */
 function mayflower_get_current_tab() {
-
 	$page = 'mayflower-settings';
 	if ( isset( $_GET['page'] ) && 'mayflower-reference' == $_GET['page'] ) {
 		$page = 'mayflower-reference';
 	}
-    if ( isset( $_GET['tab'] ) ) {
-        $current = $_GET['tab'];
-    } else {
+	if ( isset( $_GET['tab'] ) ) {
+		$current = $_GET['tab'];
+	} else {
 		$mayflower_options = mayflower_get_options();
 		$current = $mayflower_options['default_options_tab'];
-    }
+	}
 	return apply_filters( 'mayflower_get_current_tab', $current );
 }
 
@@ -107,29 +107,24 @@ function mayflower_get_header_textcolor() {
 function mayflower_get_page_tab_markup() {
 
 	$page = 'mayflower-settings';
-
-    $current = mayflower_get_current_tab();
-
+	$current = mayflower_get_current_tab();
 	$tabs = mayflower_get_settings_page_tabs();
+	$links = array();
 
-    $links = array();
-
-    foreach( $tabs as $tab ) {
+	foreach( $tabs as $tab ) {
 		$tabname = $tab['name'];
 		$tabtitle = $tab['title'];
-        if ( $tabname == $current ) {
-            $links[] = "<a class='nav-tab nav-tab-active' href='?page=$page&tab=$tabname'>$tabtitle</a>";
-        } else {
-            $links[] = "<a class='nav-tab' href='?page=$page&tab=$tabname'>$tabtitle</a>";
-        }
-    }
-
-    echo '<div id="icon-themes" class="icon32"><br /></div>';
-    echo '<h2 class="nav-tab-wrapper">';
-    foreach ( $links as $link )
-        echo $link;
-    echo '</h2>';
-
+		if ( $tabname == $current ) {
+			$links[] = "<a class='nav-tab nav-tab-active' href='?page=$page&tab=$tabname'>$tabtitle</a>";
+		} else {
+			$links[] = "<a class='nav-tab' href='?page=$page&tab=$tabname'>$tabtitle</a>";
+		}
+	}
+	echo '<div id="icon-themes" class="icon32"><br /></div>';
+	echo '<h2 class="nav-tab-wrapper">';
+	foreach ( $links as $link )
+		echo $link;
+	echo '</h2>';
 }
 
 
@@ -202,7 +197,6 @@ function mayflower_get_support_feed() {
 	// Return markup
 	return $markup;
 }
-
 
 
 /**
