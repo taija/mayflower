@@ -27,24 +27,3 @@ function mayflower_enqueue_admin_style() {
 }
 // Enqueue Admin Stylesheet at admin_print_styles()
 add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_enqueue_admin_style', 11 );
-
-/**
- * Enqueue #content img max-width
- *
- * Set the max-width CSS property for
- * images inside div#content, based on
- * the $content_width global variable.
- */
-function mayflower_enqueue_content_img_max_width() {
-	global $content_width;
-?>
-<style type="text/css">
-.post-entry img,
-.post-entry .wp-caption {
-	max-width: <?php echo $content_width; ?>px;
-}
-</style>
-<?php
-}
-// Enqueue Skin Stylesheet at wp_print_styles
-add_action( 'wp_print_styles', 'mayflower_enqueue_content_img_max_width', 11 );
