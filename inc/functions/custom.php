@@ -446,34 +446,3 @@ function mayflower_social_icons() {
 	</div>
 	<?php
 }
-
-/**
- * Sort GitHub API Data
- *
- * Callback function for usort() to sort the GitHub
- * API (v3) issues data by issue number or commit date
- *
- * @return	object	object of GitHub API data sorted by issue number or commit date
- */
-function mayflower_sort_github_data( $a, $b ) {
-	$sort = 0;
-	$param_a = '';
-	$param_b = '';
-	if ( isset( $a->number ) ) {
-		$param_a = $a->number;
-		$param_b = $b->number;
-	} else if ( isset( $a->committer ) ) {
-		$commit_a = $a->commit;
-		$commit_b = $b->commit;
-		$committer_a = $commit_a->committer;
-		$committer_b = $commit_b->committer;
-		$param_a = get_date_from_gmt( date( 'Y-m-d H:i:s', strtotime( $committer_a->date ) ), 'U' );
-		$param_b = get_date_from_gmt( date( 'Y-m-d H:i:s', strtotime( $committer_b->date ) ), 'U' );
-	}
-	if (  $param_a ==  $param_b ) {
-		$sort = 0;
-	} else {
-		$sort = ( $param_a < $param_b ? -1 : 1 );
-	}
-	return $sort;
-}
