@@ -25,7 +25,6 @@
 			require( get_template_directory() . '/inc/functions/custom.php' );
 			require( get_template_directory() . '/inc/functions/theme-setup.php' );
 			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-			require( get_template_directory() . '/inc/functions/custom_widgets.php' );
 			require( get_template_directory() . '/inc/functions/options-admin.php');
 			require( get_template_directory() . '/inc/functions/options.php');
 			require( get_template_directory() . '/inc/functions/options-customizer.php' );
@@ -37,14 +36,6 @@
 			define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
 			$gaCode = "";
 
-##################################
-## Custom Menu Widget Override
-##################################
-
-function load_custom_widgets() {
-	unregister_widget("WP_Nav_Menu_Widget");
-	register_widget("My_Nav_Menu_Widget");
-}
 
 ////////////////////////////////////////////////////
 // Remove Unneeded Meta Boxes on Pages
