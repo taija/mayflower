@@ -29,7 +29,6 @@
 			require( get_template_directory() . '/inc/functions/options.php');
 			require( get_template_directory() . '/inc/functions/options-customizer.php' );
 			require( get_template_directory() . '/inc/functions/network-options.php');
-			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
 			define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
 			define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
 			$gaCode = "";
@@ -551,6 +550,20 @@ function mayflower_scripts() {
 add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
 
 
+/**
+ * Enqueue Custom Admin Page Stylesheet
+ */
+function mayflower_enqueue_admin_style() {
+
+	// define admin stylesheet
+	$admin_handle = 'mayflower_admin_stylesheet';
+	$admin_stylesheet = get_template_directory_uri() . '/css/mayflower-admin.css';
+
+	wp_enqueue_style( $admin_handle, $admin_stylesheet, '', false );
+}
+
+// Enqueue Admin Stylesheet at admin_print_styles()
+add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_enqueue_admin_style', 11 );
 
 
 ################################################################################
