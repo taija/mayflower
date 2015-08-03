@@ -113,6 +113,3 @@ function mayflower_register_theme_customizer( $wp_customize ){
 }
 // Settings API options initilization and validation
 add_action( 'customize_register', 'mayflower_register_theme_customizer' );
-
-
-?>
