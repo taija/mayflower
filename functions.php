@@ -22,7 +22,6 @@
 	 * Customizer.
 	 */
 
-			require( get_template_directory() . '/inc/functions/custom.php' );
 			require( get_template_directory() . '/inc/functions/theme-setup.php' );
 			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 			require( get_template_directory() . '/inc/functions/options-admin.php');
