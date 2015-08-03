@@ -61,18 +61,6 @@ function mayflower_setup() {
 	 */
 	add_theme_support( 'automatic-feed-links' );
 
-	/*
-	 * Add Theme support for Post Thumbnails
-	 *
-	 * Allow users to specify "featured" images for Posts.
-	 *
-	 * Child Themes can remove support for this feature via
-	 * remove_theme_support( 'post-thumbnails' ).
-	 *
-	 * @since	WordPress 2.9.0
-	 */
-	add_theme_support( 'post-thumbnails' );
-
 	/**
 	 * Set default Post Thumbnail size
 	 *
