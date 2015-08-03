@@ -98,11 +98,6 @@ if (!current_user_can('edit_pages')) {
 		} // end current_user_can
 
 
-		//Service Forms functionality
-if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
-	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
-
-
 #######################################
 // adds wordpress theme support
 #######################################
