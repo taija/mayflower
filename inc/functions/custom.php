@@ -31,43 +31,6 @@ function mayflower_body_class_ia($classes) {
     }
 add_filter('body_class','mayflower_body_class_ia');
 
-
-/**
- * Display copyright notice customized according to date of first post
- */
-function mayflower_copyright() {
-	// check for cached values for copyright dates
-	$copyright_cache = wp_cache_get( 'copyright_dates', 'mayflower' );
-	// query the database for first/last copyright dates, if no cache exists
-	if ( false === $copyright_cache ) {
-		global $wpdb;
-		$copyright_dates = $wpdb->get_results("
-			SELECT
-			YEAR(min(post_date_gmt)) AS firstdate,
-			YEAR(max(post_date_gmt)) AS lastdate
-			FROM
-			$wpdb->posts
-			WHERE
-			post_status = 'publish'
-		");
-		$copyright_cache = $copyright_dates;
-		// add the first/last copyright dates to the cache
-		wp_cache_set( 'copyright_dates', $copyright_cache, 'mayflower', '604800' );
-	}
-	// Build the copyright notice, based on cached date values
-	$output = '&copy; ';
-	if( $copyright_cache ) {
-		$copyright = $copyright_cache[0]->firstdate;
-		if( $copyright_cache[0]->firstdate != $copyright_cache[0]->lastdate ) {
-			$copyright .= '-' . $copyright_cache[0]->lastdate;
-		}
-		$output .= $copyright;
-	} else {
-		$output .= date( 'Y' );
-	}
-	return $output;
-}
-
 /**
  * Image Handling for gallery image metadata
  */
