@@ -34,16 +34,6 @@
 			$gaCode = "";
 
 
-////////////////////////////////////////////////////
-// Remove Unneeded Meta Boxes on Pages
-/////////////////////////////////////////////////////
-/*
-function mayflower_remove_meta_boxes() {
-  remove_meta_box('postimagediv', 'page', 'side');
-}
-add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
-*/
-
 ############################
 // Custom Admin Bar Items
 ############################
@@ -380,21 +370,7 @@ function widget_empty_title($output='') {
 }
 add_filter('widget_title', 'widget_empty_title');
 
-############################################
-//Customize widget areas for certain pages
-############################################
-/*
-add_filter( 'sidebars_widgets', 'control_widget_pages' );
 
-function control_widget_pages( $sidebars_widgets ) {
-
-	if(is_home() || is_single() )
-
-		$sidebars_widgets['page-widget-area'] = false;
-
-	return $sidebars_widgets;
-}
-*/
 
 #########################
 //set globals path
@@ -749,8 +725,7 @@ function get_course_callback() {
     $subject = $_POST['subject'];
     $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
     $json = wp_remote_get($json_subjects_url);
-    //$json = file_get_contents($json_subjects_url,0,null,null);
-    //$links = json_decode($json, TRUE);
+
     if(!empty($json) && !empty($json['body']))
     {
         echo $json['body'];
@@ -765,8 +740,6 @@ function coursedescription_func($atts)
       $subject = $atts["subject"];
       $course = $atts["courseid"];// Attribute name should always read in lower case.
     $description = $atts["description"];
-    //error_log("Hello". $subject);
-    //error_log("Hello2". $course);
     if(!empty($course) && !empty($subject))
     {
         //error_log("course :".$course);
@@ -775,10 +748,7 @@ function coursedescription_func($atts)
         $course_id = $course_split[1];
         $subject = trim(html_entity_decode  ($subject));
         $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
-        //error_log("url :".$url);
-        //$json = file_get_contents($url,0,null,null);
         $json = wp_remote_get($url);
-		// error_log("json :".$json);
         if(!empty($json) && !empty($json['body']))
         {
 		    $html = decodejsonClassInfo($json['body'],$course_id,$description);
@@ -795,7 +765,6 @@ function coursedescription_func($atts)
 		$htmlString = "";
 		$courses = $decodeJson["Courses"];
 		$htmlString .= "<div class='classDescriptions'>";
-        //error_log("number :".$number);
         if(count($courses)>0)
         {
             foreach($courses as $sections)
@@ -804,7 +773,6 @@ function coursedescription_func($atts)
                 {
                     if($sections["Number"] == $number)
                     {
-                        //error_log("$$$$$$$$$$$$$$$$$$$$$$$");
                         $htmlString .= getHtmlForCourse($sections,$description);
                     }
                 }
@@ -848,7 +816,6 @@ function coursedescription_func($atts)
 			$htmlString .= "</span>";
 			$htmlString .= "</a>";
 			$htmlString .= "</h5>";//classHeading
-        //error_log("description:".$description);
         if($description=="true" && !empty($sections["Descriptions"]))
         {
             //error_log("Not here");
@@ -929,7 +896,6 @@ function add_global_section_meta_box() {
 	if ( is_main_site()) {
 		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
 			if ("0" == $post->post_parent){
-			//if (intval($post->post_parent)>0) {
 				$screens = array('page');
 				foreach ($screens as $screen) {
 					add_meta_box(
@@ -1074,12 +1040,10 @@ add_action('save_post', 'save_global_section_meta');
  */
 function google_analytics_dashboard()
 {
-    //error_log("GOOGLE ANALYTICS");
     if(is_user_logged_in())
     {
         $network_mayflower_settings = get_site_option( 'globals_network_settings' );
         $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-        //error_log("google analytics code :".$globals_google_analytics_code);
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
