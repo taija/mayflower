@@ -182,7 +182,7 @@ function mayflower_get_page_tab_markup() {
  * Mayflower Theme Social Networks
  *
  * Array that holds all of the valid social
- * networks for Mayflower.
+ * networks for Mayflower. REF'd Through mayflower_social_icons()
  *
  * @return	array	$socialnetworks	array of arrays of social network parameters
  */
@@ -356,29 +356,6 @@ function mayflower_get_widget_args() {
 	return $widget_args;
 }
 
-
-/**
- * Add navigation links to infobar
- */
-function mayflower_infobar_navigation() {
-
-	// Start of Pagination
-	if ( ! is_singular() ) {
-		if ( function_exists( 'wp_paginate' ) ) {
-			wp_paginate( 'title=' );
-		} else {
-			echo mayflower_get_paginate_archive_page_links( 'list' );
-		}
-	}
-
-	if ( is_singular( 'post' ) && ! is_attachment() ) {
-		echo '<div class="prevnextpostlinks">';
-		next_post_link( '%link', '&lArr; ' );
-		previous_post_link( '%link', ' &rArr;' );
-		echo '</div>';
-	}
-
-}
 
 /**
  * Locate the directory URI for a template
