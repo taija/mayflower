@@ -31,28 +31,6 @@ function mayflower_body_class_ia( $classes ) {
 add_filter( 'body_class','mayflower_body_class_ia' );
 
 
-/**
- * Determine Theme Color Scheme
- *
- * @uses	mayflower_get_options()				Defined in functions/options.php
- * @uses	mayflower_get_option_parameters()	Defined in functions/options.php
- */
-
-function mayflower_get_color_scheme() {
-	global $mayflower_options;
-	$mayflower_options = mayflower_get_options();
-	$default_options = mayflower_get_option_parameters();
-	$mayflower_skins = $default_options['skin']['valid_options'];
-	$mayflower_current_skin = array();
-	foreach ( $mayflower_skins as $skin ) {
-		if ( $skin['name'] == $mayflower_options['skin'] ) {
-		      $mayflower_current_skin = $skin;
-		}
-	}
-	$colorscheme = $mayflower_current_skin['scheme'];
-	return $colorscheme;
-}
-
 
 /**
  * Get current settings page tab
