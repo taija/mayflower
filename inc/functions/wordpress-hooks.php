@@ -467,22 +467,3 @@ function mayflower_enqueue_responsivemenu_js() {
 add_action( 'wp_enqueue_scripts', 'mayflower_enqueue_responsivemenu_js' );
 */
 
-/**
- * Output custom comments list for pings
- *
- * Callback: wp_list_comments() Pings
- *
- * wp_list_comments() Callback function for
- * Pings (Trackbacks/Pingbacks)
- *
- * @link	http://codex.wordpress.org/Function_Reference/comment_author_link	Codex reference: comment_author_link()
- * @link	http://codex.wordpress.org/Function_Reference/comment_class	Codex reference: comment_class()
- * @link	http://codex.wordpress.org/Function_Reference/comment_ID	Codex reference: comment_ID()
- *
- * @since	Oenology 2.0
- */
-function mayflower_comment_list_pings( $comment ) {
-	$GLOBALS['comment'] = $comment;
-?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>"><?php echo comment_author_link(); ?></li>
-<?php }
