@@ -40,37 +40,47 @@ if (!current_user_can('edit_pages')) {
 	add_filter('show_admin_bar', '__return_false');
 }
 
-#####################################################
-// Load up our plugins
-#####################################################
+/**
+ * Load Mayflower Embedded Plugins
+ *
+ * These files provide plugin-like functionality embedded within Mayflower.
+ *
+ * @since 1.0
+ *
+ */
 
-	// Slider
-	$mayflower_options = mayflower_get_options();
-	if ($mayflower_options['slider_toggle'] == 'true') {
-		if( file_exists(get_template_directory() . '/inc/mayflower-slider/slider.php') )
-		    require( get_template_directory() . '/inc/mayflower-slider/slider.php');
-		}
+$mayflower_options = mayflower_get_options();
 
-	// Staff
-	$mayflower_options = mayflower_get_options();
-	if ($mayflower_options['staff_toggle'] == 'true') {
-		if( file_exists(get_template_directory() . '/inc/mayflower-staff/staff.php') )
-		    require( get_template_directory() . '/inc/mayflower-staff/staff.php');
-		}
+// Slider
+if ($mayflower_options['slider_toggle'] == 'true') {
+	if ( file_exists( get_template_directory() . '/inc/mayflower-slider/slider.php' ) ) {
+		require( get_template_directory() . '/inc/mayflower-slider/slider.php' );
+	}
+}
 
-	// SEO
-			if( file_exists(get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php') )
-			    require( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php');
+// Staff
+if ($mayflower_options['staff_toggle'] == 'true') {
+	if ( file_exists( get_template_directory() . '/inc/mayflower-staff/staff.php' ) ) {
+		require( get_template_directory() . '/inc/mayflower-staff/staff.php' );
+	}
+}
 
-	// Course Description Shortcodes
-			if( file_exists(get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php') )
-			    require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php');
+// SEO
+if ( file_exists( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php' ) ) {
+	require( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php' );
+}
 
-	// Home Page
-		if ( current_user_can('manage_network') ) {
-			if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') )
-			    require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
-		} // end current_user_can
+// Course Description Shortcodes
+if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php') ) {
+	require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' );
+}
+
+// Home Page
+if ( current_user_can('manage_network') ) {
+	if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') ) {
+		require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
+	}
+}
 
 
 #######################################
