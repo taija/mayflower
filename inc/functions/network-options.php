@@ -65,10 +65,10 @@
 	                    </th>
 	                    <td>
 	                       <input size="50" type="text" name="network_globals_settings[globals_path]" value="<?php 	if (empty($globals_path)) {
-		echo $_SERVER['DOCUMENT_ROOT'] . "/g/2/"; } else {
+		echo $_SERVER['DOCUMENT_ROOT'] . "/g/3/"; } else {
 	echo $globals_path; }?>"/><i class="fa fa-question-circle"></i>
-	                       <br /><small><strong>Apache example:</strong> /var/www/g/2/</small>
-	                       <br /><small><strong>Nginx exmample:</strong> /usr/share/nginx/www.bellevuecollege.edu</small>
+	                       <br /><small><strong>Apache example:</strong> /var/www/g/3/</small>
+	                       <br /><small><strong>Nginx example:</strong> /usr/share/nginx/www.bellevuecollege.edu/g/3/</small>
 
 	                    </td>
 	                </tr>
@@ -80,7 +80,7 @@
 	                    </th>
 	                    <td>
 	                       <input size="50" type="text" name="network_globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>
-	                       <br /><small>Ex. //s.bellevuecollege.edu/g/2/ </small>
+	                       <br /><small><strong>Example:</strong> //s.bellevuecollege.edu/g/3/ </small>
 	                    </td>
                     </tr>
 	                <tr valign="top">
@@ -91,6 +91,7 @@
 	                    </th>
 	                    <td>
 	                       <input size="50" type="text" name="network_globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
+							<br /><small>Used to invalidate browser-side caching </small>
 	                    </td>
 	                </tr>
 			 <tr valign="top">
@@ -101,6 +102,7 @@
 	                    </th>
 	                    <td>
 	                       <input size="50" type="text" name="network_globals_settings[globals_google_analytics_code]" value="<?php echo $globals_google_analytics_code; ?>"/>
+							<br /><small>Used across wordpress network </small>
 	                    </td>
 	                </tr>
 
@@ -126,4 +128,3 @@
 
 	} //settings page function 
 
-?>
