@@ -83,49 +83,6 @@ if ( current_user_can('manage_network') ) {
 }
 
 
-#######################################
-// adds wordpress theme support
-#######################################
-// enable excerpts on pages
-add_post_type_support( 'page', 'excerpt' );
-
-
-	add_action( 'after_setup_theme', 'my_theme_setup' );
-	function my_theme_setup() {
-		add_image_size( 'edit-screen-thumbnail', 100, 100, true );
-	}
-
-	// Post Thumbnails
-	if ( function_exists( 'add_theme_support' ) ) {
-		add_theme_support( 'post-thumbnails' );
-			set_post_thumbnail_size( 150, 150 );
-				add_image_size( 'lite_header_logo', 1170, 63, true);
-				add_image_size( 'edit-screen-thumbnail', 100, 100, true );
-				add_image_size( 'sort-screen-thumbnail', 300, 125, true );
-				add_image_size( 'staff-thumbnail', 300, 200, true );
-				add_image_size( 'featured-full', 1170,488,true);
-				add_image_size( 'featured-in-content', 900,375,true);
-				add_image_size( 'home-small-ad', 300,200,true);
-	}
-
-/* custom header support */
-$header_args = array(
-    'default-image'	=> '',
-    'width'			=> 690,
-    'height'		=> 100,
-		//'flex-width'	=> true,
-		'flex-height'	=> true,
-    'header-text'	=> false
-
-);
-add_theme_support( 'custom-header', $header_args );
-
-/* Post format support */
-add_theme_support( 'post-formats', array( 'video' ) );
-
-/* Let Tabs Shortcode plugin use bootstrap styles*/
-add_theme_support( 'tabs', 'twitter-bootstrap' );
-
 ######################################
 // Customize Excerpt Read More
 ######################################
