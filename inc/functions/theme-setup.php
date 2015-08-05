@@ -8,46 +8,22 @@
  * see {@link http://codex.wordpress.org/Plugin_API Plugin API}.
  *
  * @package 	Mayflower
- * @copyright	Copyright (c) 2011, Chip Bennett
+ * @copyright	Copyright (c) 2015 Bellevue College
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
  * @since 		Mayflower 1.0
  */
 
-/**
- * @todo	complete inline documentation
- */
+
 
 /**
  * Define Theme setup
  *
  * Add Theme support for and configure various core WordPress
- * functionality, define the Theme's content width, etc.
+ * functionality.
  *
- * @link	http://codex.wordpress.org/Function_Reference/add_editor_style				add_editor_style()
- * @link	http://codex.wordpress.org/Function_Reference/add_image_size				add_image_size()
- * @link	http://codex.wordpress.org/Function_Reference/add_theme_support				add_theme_support()
- * @link	http://codex.wordpress.org/Function_Reference/apply_filters					apply_filters()
- * @link	http://codex.wordpress.org/Function_Reference/apply_filters					get_header_image()
- * @link	http://codex.wordpress.org/Function_Reference/get_header_textcolor			get_header_textcolor()
- * @link	http://codex.wordpress.org/Function_Reference/get_locale					get_locale()
- * @link	http://codex.wordpress.org/Function_Reference/get_option					get_option()
- * @link	http://codex.wordpress.org/Function_Reference/get_template_directory		get_template_directory()
- * @link	http://codex.wordpress.org/Function_Reference/get_template_directory_uri	get_template_directory_uri()
- * @link	http://codex.wordpress.org/Function_Reference/get_theme_root				get_theme_root()
- * @link	http://codex.wordpress.org/Function_Reference/is_readable					is_readable()
- * @link	http://codex.wordpress.org/Function_Reference/load_theme_textdomain			load_theme_textdomain()
- * @link	http://codex.wordpress.org/Function_Reference/register_default_headers		register_default_headers()
- * @link	http://codex.wordpress.org/Function_Reference/register_nav_menus			register_nav_menus()
- * @link	http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size		set_post_thumbnail_size()
- *
- * @link	http://php.net/manual/en/function.file-exists.php							PHP reference: file_exists()
- *
- * @uses	mayflower_admin_header_style()	Defined in \functions\theme-setup.php
- * @uses	mayflower_get_post_formats()		Defined in \functions\custom.php
- * @uses	mayflower_get_color_scheme()		Defined in \functions\dynamic-css.php
- * @uses	mayflower_header_style()			Defined in \functions\theme-setup.php
  */
+
 function mayflower_setup() {
 	/*
 	 * Add Theme support for Automatic Feed Links
@@ -60,6 +36,16 @@ function mayflower_setup() {
 	 * @since	WordPress 2.9.0
 	 */
 	add_theme_support( 'automatic-feed-links' );
+
+	/*
+	 * Add Theme support for Post Thumbmails
+	 *
+	 * This feature enables Post Thumbnails support for a Theme.
+	 *
+	 *
+	 * @since	WordPress 2.9.0
+	 */
+	add_theme_support( 'post-thumbnails' );
 
 	/**
 	 * Set default Post Thumbnail size
@@ -87,6 +73,7 @@ function mayflower_setup() {
 	 * via add_image_size().
 	 */
 	add_image_size( 'post-title-thumbnail', 55, 55, true );
+
 	/**
 	 * Add 'attachment-nav-thumbnail' Image size
 	 *
@@ -103,16 +90,166 @@ function mayflower_setup() {
 	 */
 	add_image_size( 'attachment-nav-thumbnail', 45, 45, true );
 
-	/*
-	 * Define Nav Menus (since WordPress 3.0)
+	/**
+	 * Add 'edit-screen-thumbnail' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'edit-screen-thumbnail' image is defined
+	 * as having dimensions of 100x100px, and will
+	 * be hard-cropped rather than box-resized.
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
 	 */
+	add_image_size( 'edit-screen-thumbnail', 100, 100, true );
 
-	// This theme uses wp_nav_menu() in one locations: Top Navigation.
+	/**
+	 * Add 'lite_header_logo' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'lite_header_logo' is used as the logo size for
+	 * Mayflower Lite.
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'lite_header_logo', 1170, 63, true);
+
+	/**
+	 * Add 'sort-screen-thumbnail' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'sort-screen-thumbnail' is used on sort screens
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'sort-screen-thumbnail', 300, 125, true );
+
+	/**
+	 * Add 'staff-thumbnail' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'staff-thumbnail' is used for staff page listings.
+	 * This would need to be migrated out of Mayflower if
+	 * the Embedded Staff Plugin was extracted.
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'staff-thumbnail', 300, 200, true );
+
+	/**
+	 * Add 'featured-full' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'feaured-full' size is used for full-width
+	 * display of the featured slider.
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'featured-full', 1170,488,true);
+
+	/**
+	 * Add 'featured-in-content' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'feaured-in-content' size is used for in-content
+	 * display of the featured slider.
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'featured-in-content', 900,375,true);
+
+	/**
+	 * Add 'home-small-ad' Image size
+	 *
+	 * Defines a new image size to the default array,
+	 * which includes 'full', 'large', 'medium', and'
+	 * 'thumbnail'.
+	 *
+	 * The 'home-small-ad' size is used for the
+	 * small add on college homepage
+	 *
+	 * Child Themes can override this setting
+	 * via add_image_size().
+	 */
+	add_image_size( 'home-small-ad', 300,200,true);
+
+	/*
+	 * Register Navigation Menu (Mayflower Lite)
+	 *
+	 * Registers one navigation menu for Top Nav
+	 * in Mayflower Lite
+	 *
+	 * @since Wordpress 3.0
+	 */
 	register_nav_menus( array(
 		'nav-top' => 'Top Navigation',
-	) );
+	));
+
+	/**
+	 * Add support for excerpts on pages
+	 *
+	 * Allows page to define excerpts to be used
+	 * on navigation pages, etc.
+	 *
+	 */
+	add_post_type_support( 'page', 'excerpt' );
+
+	/**
+	 * Add theme support for a custom header image
+	 *
+	 * Allows logo display in Mayflower Lite
+	 *
+	 */
+	add_theme_support( 'custom-header', array(
+		'default-image' => '',
+		'width'         => 690,
+		'height'        => 100,
+		'flex-height'   => true,
+		'header-text'   => false
+	));
+
+	/**
+	 * Add support post formats
+	 *
+	 * Allows for support of the following formats
+	 * * Video
+	 *
+	 */
+	add_theme_support( 'post-formats', array( 'video' ) );
+
+	/**
+	 * Tabs Shortcode plugin Configuration
+	 *
+	 * Configures Tabs Shortcode plugin to use
+	 * Bootstrap styles.
+	 *
+	 */
+	add_theme_support( 'tabs', 'twitter-bootstrap' );
 
 
 }
-// Hook mayflower_setup() into 'after_setup_theme'
+
 add_action( 'after_setup_theme', 'mayflower_setup', 10 );
