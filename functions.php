@@ -1,36 +1,35 @@
 <?php
 
 #####################################################
-// Load up our experimental theme options page and related code.
+// Load  theme options framework
 #####################################################
 
-	/**
-	 * Include the Theme Options Function File
-	 *
-	 * options.php includes the Theme options and Admin Settings page
-	 * - Define default Theme Options
-	 * - Register/Initialize Theme Options
-	 * - Admin Settings Page
-	 * - Contextual Help
-	 */
+/* This legacy code is mainly from the Oenology theme.
+ * TODO: Define new orgizational schema and migrate content of functions.php
+ *
+ * theme-setup.php - sets theme functionality
+ * wordpress-hooks.php - filters and functionality changes
+ * options-admin.php - defines Mayflower Admin Only option page -
+                       consider migrating to customizer
+ * options.php - theme options definition
+ * options-customizer.php - translate options.php to customizer
+ * network-options.php - Network Admin options pane
+ */
 
-	/**
-	 * Include the Theme Options Theme Customizer Function File
-	 *
-	 * options-customizer.php includes the functions required to
-	 * integrate the Theme options into the WordPress Theme
-	 * Customizer.
-	 */
+require( get_template_directory() . '/inc/functions/theme-setup.php' );
+require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
+require( get_template_directory() . '/inc/functions/options-admin.php');
+require( get_template_directory() . '/inc/functions/options.php');
+require( get_template_directory() . '/inc/functions/options-customizer.php' );
+require( get_template_directory() . '/inc/functions/network-options.php');
 
-			require( get_template_directory() . '/inc/functions/theme-setup.php' );
-			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-			require( get_template_directory() . '/inc/functions/options-admin.php');
-			require( get_template_directory() . '/inc/functions/options.php');
-			require( get_template_directory() . '/inc/functions/options-customizer.php' );
-			require( get_template_directory() . '/inc/functions/network-options.php');
-			define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
-			define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
-			$gaCode = "";
+
+#####################################################
+// Configuration for classes shortcode
+#####################################################
+define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
+define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
+$gaCode = "";
 
 
 ############################
@@ -171,7 +170,7 @@ add_filter('the_generator', 'remove_wp_version');
 ######################################
 
 function mayflower_add_editor_styles() {
-    add_editor_style( 'custom-editor-style.css' );
+    add_editor_style( 'css/custom-editor-style.css' );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
 
