@@ -249,6 +249,15 @@ function mayflower_setup() {
 	 */
 	add_theme_support( 'tabs', 'twitter-bootstrap' );
 
+	/**
+	 * Set maximum content width for theme
+	 *
+	 * Maximum width for insterted media.
+	 *
+	 */
+	if ( ! isset( $content_width ) ) {
+		$content_width = 1170;
+	}
 
 }
 
