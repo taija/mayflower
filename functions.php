@@ -1,10 +1,8 @@
 <?php
 
-#####################################################
-// Load  theme options framework
-#####################################################
-
-/* This legacy code is mainly from the Oenology theme.
+/* Load  theme options framework
+ *
+ * This legacy code is mainly from the Oenology theme.
  * TODO: Define new orgizational schema and migrate content of functions.php
  *
  * theme-setup.php - sets theme functionality
@@ -22,6 +20,7 @@ require( get_template_directory() . '/inc/functions/options-admin.php');
 require( get_template_directory() . '/inc/functions/options.php');
 require( get_template_directory() . '/inc/functions/options-customizer.php' );
 require( get_template_directory() . '/inc/functions/network-options.php');
+require( get_template_directory() . '/inc/functions/globals.php');
 
 
 #####################################################
@@ -337,82 +336,6 @@ function widget_empty_title($output='') {
 add_filter('widget_title', 'widget_empty_title');
 
 
-
-#########################
-//set globals path
-#########################
-
-	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_path = $network_mayflower_settings['globals_path'];
-	if (empty($globals_path)) {
-		$globals_path =  $_SERVER['DOCUMENT_ROOT'] . "/g/2/";
-	}
-
-	$bc_globals_html_filepath = $globals_path . "h/";
-
-#######################################
-//add college head - skinny id bar
-#######################################
-
-	function bc_tophead(){
-	   global $bc_globals_html_filepath;
-	   $header_top =  $bc_globals_html_filepath . "lhead.html";
-	   include_once($header_top);
-	}
-	add_action('mayflower_header','bc_tophead');
-
-########################################
-//add college head - big html dropdown
-#########################################
-
-	function bc_tophead_big() {
-		global $bc_globals_html_filepath;
-		$header_top_big = $bc_globals_html_filepath . "bhead.html";
-		include_once($header_top_big);
-	}
-
-	add_action('mayflower_header','bc_tophead_big');
-
-
-###################
-//college big footer
-###################
-
-	function bc_footer() {
-		global $bc_globals_html_filepath;
-		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-		   include_once($bc_footer);
-		   include_once($bc_footerlegal);
-	}
-	add_action('btheme_footer', 'bc_footer', 50);
-
-###################
-// homepage specific footer
-###################
-
-	function bc_home_footer() {
-		global $bc_globals_html_filepath;
-		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-		   include_once($bc_footer);
-			get_template_part( 'front-page-legal' );
-		   include_once($bc_footerlegal);
-	}
-	add_action('btheme_footer', 'bc_home_footer', 50);
-
-###################
-//college legal-links footer
-###################
-
-	function bc_footer_legal() {
-		global $bc_globals_html_filepath;
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-
-		   include_once($bc_footerlegal);
-
-	}
-	add_action('btheme_footer', 'bc_footer_legal', 50);
 
 
 
