@@ -26,7 +26,7 @@ query_posts( $query_string . '&orderby=title&order=ASC&posts_per_page=-1' );
 	<?php endif; ?>
 	<?php if (have_posts()) : ?>
 		<ul>
-			<? while (have_posts()) : the_post(); ?>
+			<?php while (have_posts()) : the_post(); ?>
 				<li <?php post_class() ?>>
 					<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 				</li>
