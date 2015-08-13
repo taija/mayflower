@@ -1,47 +1,27 @@
 <?php
 /**
- * Oenology Theme WordPress Core Hooks
+ * Mayflower Theme WordPress Core Hooks
  *
  * Contains all of the Theme's functions that
  * hook into core action/filter hooks, other
  * than Theme Setup functions, Widget functions,
  * and Settings API functions
  *
- * Action Hooks:
- * - comment_form_before
- * - option_page_capability_{page}
- *
- * Filter Hooks
- * - body_class
- * - get_comments_number
- * - the_title
- * - use_default_gallery_style
- * - wp_list_categories
- * - wp_title
- *
- * Callbacks
- * - wp_list_comments
- *
- *
- * @package 	Oenology
- * @copyright	Copyright (c) 2010, Chip Bennett
- * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
- *
- * @since 		Oenology 2.0
  */
 
 /**
  * Add parent class to wp_nav_menu parent list items
+ *
+ * Allows menu item to be targeted when on child page
+ *
  */
 function mayflower_add_menu_parent_class( $items ) {
-
 	$parents = array();
 	foreach ( $items as $item ) {
 		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
 			$parents[] = $item->menu_item_parent;
 		}
 	}
-
 	foreach ( $items as $item ) {
 		if ( in_array( $item->ID, $parents ) ) {
 			$item->classes[] = 'menu-item-parent';
@@ -52,47 +32,6 @@ function mayflower_add_menu_parent_class( $items ) {
 }
 add_filter( 'wp_nav_menu_objects', 'mayflower_add_menu_parent_class' );
 
-/**
- * Filter Capability for Theme Settings Page
- *
- * Action Hook: option_page_capability_{page}
- *
- * This filter implements a WordPress 3.2 fix for
- * a minor bug, in which add_theme_page() is passed
- * the "edit_theme_options" capability, but the
- * settings page form is passed through options.php,
- * which expects the "manage_options" capability.
- *
- * The "edit_theme_options" capability is part of the
- * EDITOR user role, while "manage_options" is only
- * available to the ADMINISTRATOR role. So, users in
- * the EDITOR user role can access the Theme settings
- * page, but are unable actually to update/save the
- * Theme settings.
- *
- * The function is hooked into a hook, introduced in
- * WordPress 3.2: "option_page_capability_{option_page}",
- * where {option_page} is the name of the options page,
- * as defined in the fourth argument of the call to
- * add_theme_page()
- *
- * The function returns a string consisting of the
- * appropriate capability for saving Theme settings.
- *
- * @since	Oenology 2.2
- */
-function mayflower_get_settings_page_cap() {
-	return 'edit_theme_options';
-}
-// Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_mayflower-settings', 'mayflower_get_settings_page_cap' );
-
-// Same as above for Network Admin
-function mayflower_network_get_settings_page_cap() {
-	return 'edit_theme_options';
-}
-// Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_mayflower-settings', 'mayflower_network_get_settings_page_cap' );
 
 /**
  * Enqueue comment-reply script
