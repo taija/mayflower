@@ -38,7 +38,7 @@ get_header(); ?>
 	// This just echoes the chosen line, we'll position it later
 	$chosen = mayflower_errormsgs(); ?>
 	<div class="jumbotron">
-		<div class="container text-center">
+		<div class="text-center">
 			<p><?php echo $chosen; ?></p>
 		</div>
 	</div>
