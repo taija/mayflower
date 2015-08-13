@@ -259,6 +259,16 @@ function mayflower_setup() {
 		$content_width = 1170;
 	}
 
+	/**
+	 * Set Default Image Link to None
+	 */
+	update_option('image_default_link_type','none');
+
+	/**
+	 * Set Default Image Alignment to Left
+	 */
+	update_option( 'image_default_align', 'left' );
+
 }
 
 add_action( 'after_setup_theme', 'mayflower_setup', 10 );
