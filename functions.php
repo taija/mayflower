@@ -696,38 +696,6 @@ function google_analytics_dashboard()
 }
 add_action('admin_head', 'google_analytics_dashboard');
 
-##########################
-//analytics for lite, branded and single site
-##########################
-
-function mayflower_analytics () {
-    global $bc_globals_html_filepath, $mayflower_brand;
-    $bc_gacode_lite =  $bc_globals_html_filepath . "galite.html";
-    $bc_gacode_branded =  $bc_globals_html_filepath . "gabranded.html";
-    if( $mayflower_brand == 'lite') {
-        include_once($bc_gacode_lite);
-    } else {
-        include_once($bc_gacode_branded);
-    }
-    $mayflower_options = mayflower_get_options();
-
-    if ($mayflower_options['ga_code']) {
-        // Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
-        ?>
-        <script type="text/javascript">
-            /*Site-Specific GA code*/
-            ga('create','<?php echo $mayflower_options['ga_code'] ?>','bellevuecollege.edu',{'name':'singlesite'});  //Multisite Tracking Code
-            ga('singlesite.send','pageview');
-
-
-        </script>
-    <?php
-    } // end if
-
-
-} // end function
-add_action('wp_head', 'mayflower_analytics', 30);
-
 ##############################################################
 // Responsive image class for posts & remove image dimensions
 ##############################################################
