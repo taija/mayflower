@@ -45,9 +45,9 @@ $current_layout = $mayflower_options['default_layout'];
 				 */
 				if ( $mayflower_options['slider_toggle'] == 'true' &&
 					 $mayflower_options['slider_layout'] == 'featured-in-content' ) {
-					get_template_part('part-featured-in-content');
-				} ?>
-				<?php
+					get_template_part('part-featured-in-content'); ?>
+					<div class="content-padding top-spacing30"> </div>
+				<?php }
 				/**
 				 * Check if Blog Home (is_home())
 				 */
