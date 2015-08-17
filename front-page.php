@@ -49,12 +49,12 @@ $current_layout = $mayflower_options['default_layout'];
 					<div class="content-padding top-spacing30"> </div>
 				<?php }
 				/**
-				 * Check if Blog Home (is_home())
+				 * Check if static homepage is set
 				 */
-				if ( is_home() ) {
-					get_template_part( 'content', 'blog-home' );
-				} else {
+				if ( 'page' == get_option( 'show_on_front' ) ) {
 					get_template_part( 'content', 'static-home' );
+				} else {
+					get_template_part( 'content', 'blog-home' );
 				}
 
 				?>
