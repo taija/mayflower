@@ -10,7 +10,7 @@
  */
 
 get_header(); ?>
-
+LOADING INDEX.PHP
 <?php
 /**
  * Load Variables
@@ -19,16 +19,6 @@ get_header(); ?>
 global $mayflower_brand;
 $mayflower_options = mayflower_get_options();
 $current_layout = $mayflower_options['default_layout'];
-
-function has_active_sidebar() {
-	if ( is_active_sidebar( 'top-global-widget-area' ) ||
-			   is_active_sidebar( 'page-widget-area' ) ||
-			   is_active_sidebar( 'global-widget-area' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
 ?>
 
 <div id="content" <?php if ( $mayflower_brand == 'branded' ) {?> class="box-shadow"<?php } ?>>
@@ -52,7 +42,7 @@ function has_active_sidebar() {
 					endwhile;
 				// If no content, include the "No posts found" template.
 				else :
-					get_template_part( 'content', 'none' );
+					get_template_part( 'parts/content', 'none' );
 
 				endif; ?>
 

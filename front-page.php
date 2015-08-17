@@ -52,9 +52,9 @@ $current_layout = $mayflower_options['default_layout'];
 				 * Check if static homepage is set
 				 */
 				if ( 'page' == get_option( 'show_on_front' ) ) {
-					get_template_part( 'content', 'static-home' );
+					get_template_part( 'parts/content', 'static-home' );
 				} else {
-					get_template_part( 'content', 'blog-home' );
+					get_template_part( 'parts/content', 'blog-home' );
 				}
 
 				?>
