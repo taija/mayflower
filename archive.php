@@ -7,7 +7,6 @@
  */
 
 get_header(); ?>
-I AM ARCHIVE.PHP
 <?php
 /**
  * Load Variables
