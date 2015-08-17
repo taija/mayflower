@@ -243,8 +243,32 @@ add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 // Add *_is_blog function
 #############################
 
-function mayflower_is_blog () {
+function mayflower_is_blog() {
 	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
+}
+
+
+#############################
+// Add has_active_sidebar function
+#############################
+function has_active_sidebar() {
+	if ( mayflower_is_blog() ) {
+		if (    is_active_sidebar( 'top-global-widget-area' ) ||
+				is_active_sidebar( 'blog-widget-area' ) ||
+				is_active_sidebar( 'global-widget-area' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		if (    is_active_sidebar( 'top-global-widget-area' ) ||
+				is_active_sidebar( 'page-widget-area' ) ||
+				is_active_sidebar( 'global-widget-area' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 #############################
