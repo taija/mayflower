@@ -1,11 +1,6 @@
 <?php
 /**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * e.g., it puts together the home page when no home.php file exists.
+ * Page Template File
  *
  */
 
@@ -30,15 +25,11 @@ $current_layout = $mayflower_options['default_layout'];
 				<?php if ( have_posts() ) : ?>
 					<?php
 					// Start the loop.
-					while ( have_posts() ) : the_post(); ?>
-						<div class="content-padding">
-							<h1><?php the_title(); ?></h1>
-						</div>
-						<div class="content-padding">
-							<?php the_content(); ?>
-						</div>
+					while ( have_posts() ) : the_post();
 
-					<?php endwhile;
+						get_template_part( 'parts/page' );
+
+					endwhile;
 				// If no content, include the "No posts found" template.
 				else :
 					get_template_part( 'parts/content', 'none' );
