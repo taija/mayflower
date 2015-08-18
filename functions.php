@@ -540,32 +540,6 @@ add_action( 'load-post-new.php', 'add_global_section_meta_box' );
 /////////////////////////
 
 
-
-/* Adds a box to the main column on the Post and Page edit screens */
-function add_global_section_meta_box() {
-	global $post;
-	if ( is_main_site()) {
-		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
-			if ("0" == $post->post_parent){
-				$screens = array('page');
-				foreach ($screens as $screen) {
-					add_meta_box(
-						'global_section_meta_box',
-						'College Navigation Area',
-						'global_section_meta_box',
-						$screen,
-						'normal',
-						'low'
-					);
-				}
-			}
-		}
-	}
-}
-
-add_action('add_meta_boxes', 'add_global_section_meta_box');
-
-
 // Field Array
 $prefix = '_gnav_';
 $global_section_meta_fields = array(
