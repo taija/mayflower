@@ -46,50 +46,10 @@
 	<![endif]-->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 
-	<?php wp_head(); 
-
-	$post_top_parent_id = 0; //if needed, this ID is set to the top parent of this post
-	$is_main_site = FALSE;  //assume the site is not the root site, unless otherwhise specified
-
-	//set $post_top_parent_id and $is_main_site for later use (ignore error404 page)
-	if ( is_main_site() && !(is_404())) {
-		$is_main_site = TRUE;  //this is the root site
-		if ($post->post_parent!="0"){
-			//this page has a parent
-			if(intval($post->post_parent)>0)
-			{
-				while(intval($post->post_parent)>0)
-					$post = get_post($post->post_parent);
-			}
-			$post_top_parent_id = $post->ID;  //now we now the top parent
-		}
-	}
-	echo '<!-- parentid= '. $post_top_parent_id . '-->';
-
-	?>
+	<?php wp_head(); ?>
 </head>
 
-<body <?php
-	//if this is the root site, set main college nav menu to highlight.
-	if ( $is_main_site == TRUE ){
-		if ( $post_top_parent_id == 0 ){
-			if (isset($post_meta_data['_gnav_college_nav_menu'][0])) {
-				body_class( $post_meta_data['_gnav_college_nav_menu'][0] );
-			} else {
-				body_class();
-			}
-		} else {
-			$meta_values = get_post_meta( $post_top_parent_id, '_gnav_college_nav_menu', true );
-			if ( isset( $meta_values ) ) {
-				body_class( $meta_values );
-			} else {
-				body_class();
-			}
-		}
-	} else {
-		body_class();
-	}
-?>>
+<body <?php body_class(); ?>>
 
 	<?php
 	##############################################
@@ -104,10 +64,7 @@
 		bc_tophead_big();
 
 		//display site title on branded version
-		if ( is_main_site() && is_front_page() ) { ?>
-			<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?> bchome">
-				<div id="main" class="container no-padding">
-		<?php } else if ( is_404() ) { ?>
+		if ( is_404() ) { ?>
 			<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
 				<div id="main" class="container no-padding">
 		<?php } else { ?>
@@ -115,17 +72,7 @@
 				<div id="main" class="container no-padding">
 					<div class="content-padding">
 						<div id="site-header">
-							<h1 class="site-title">
-								<?php if ( $is_main_site == TRUE ) {
-									if($post_top_parent_id == 0){
-										the_title();
-									} else {
-										echo '<a href="'.get_permalink($post_top_parent_id).'">'.get_the_title($post_top_parent_id).'</a>';
-									}
-								} else {
-									bloginfo( 'name' );
-								} ?>
-							</h1>
+							<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 						</div><!-- container header -->
 					</div><!-- content-padding -->
 		<?php }
