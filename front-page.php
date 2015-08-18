@@ -28,7 +28,7 @@ $current_layout = $mayflower_options['default_layout'];
 	 */
 	if ( $mayflower_options['slider_layout'] == 'featured-full' &&
 		 $mayflower_options['slider_toggle'] == 'true') {
-		get_template_part('part-featured-full');
+		get_template_part('parts/featured-full');
 	} ?>
 
 
@@ -45,7 +45,7 @@ $current_layout = $mayflower_options['default_layout'];
 				 */
 				if ( $mayflower_options['slider_toggle'] == 'true' &&
 					 $mayflower_options['slider_layout'] == 'featured-in-content' ) {
-					get_template_part('part-featured-in-content'); ?>
+					get_template_part( 'parts/featured-in-content' );?>
 					<div class="content-padding top-spacing30"> </div>
 				<?php }
 				/**
