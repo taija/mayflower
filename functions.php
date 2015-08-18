@@ -531,10 +531,6 @@ function mayflower_cpt_update_post_order() {
 	die( '1' );
 }
 
-/* Fire our meta box setup function on the post editor screen. */
-add_action( 'load-post.php', 'add_global_section_meta_box' );
-add_action( 'load-post-new.php', 'add_global_section_meta_box' );
-
 /////////////////////////
 // Custom Meta Boxes
 /////////////////////////
