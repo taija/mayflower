@@ -72,7 +72,11 @@
 				<div id="main" class="container no-padding">
 					<div class="content-padding">
 						<div id="site-header">
-							<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+							<h1 class="site-title">
+								<a title="Return to <?php bloginfo( 'name' ); ?> Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+									<?php bloginfo( 'name' ); ?>
+								</a>
+							</h1>
 						</div><!-- container header -->
 					</div><!-- content-padding -->
 		<?php }
