@@ -15,7 +15,7 @@ query_posts( $query_string . '&orderby=title&order=ASC&posts_per_page=-1' );
 <div class="content-padding">
 	<h1>
 		<?php if( is_tax() ) {
-			echo $title.'&nbsp;'; 
+			echo $title.'&nbsp;';
 		} ?>
 		 Student Clubs
 	</h1>

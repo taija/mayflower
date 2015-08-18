@@ -4,7 +4,7 @@
     https://github.com/BellevueCollege/student-club
 */
 
-if (have_posts()) : 
+if (have_posts()) :
 	while (have_posts()) : the_post();
 		$meeting_location = get_post_meta( get_the_ID(), 'club_meeting_location', true );
 		$meeting_time =  get_post_meta( get_the_ID(), 'club_meeting_time', true );
@@ -28,7 +28,7 @@ if (have_posts()) :
 		} ?>
 		<div class="content-padding">
 
-			<?php 
+			<?php
 			/* Display 'Unchartered' notice if Unchartered is in array.
 			WIll display as unchartered even if Chartered is *also* selected */
 
@@ -73,12 +73,12 @@ if (have_posts()) :
 					<li>Club Website: <strong><a href="<?php echo $url; ?>"> <?php echo $url; ?> </a></strong></li>
 				<?php endif; ?>
 			</ul>
-			
+
 			<?php the_content(); ?>
 			<?php if( !empty( $budget_document_link ) && $is_chartered ) : ?>
 				<p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>
 			<?php endif; ?>
-		</div><!--.content-padding-->     
+		</div><!--.content-padding-->
 
 	<?php endwhile;
 	wp_reset_query();
