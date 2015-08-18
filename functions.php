@@ -74,13 +74,6 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 	require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' );
 }
 
-// Home Page
-if ( current_user_can('manage_network') ) {
-	if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') ) {
-		require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
-	}
-}
-
 
 ######################################
 // Customize Excerpt Read More
