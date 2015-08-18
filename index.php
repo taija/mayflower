@@ -10,7 +10,6 @@
  */
 
 get_header(); ?>
-LOADING INDEX.PHP
 <?php
 /**
  * Load Variables
