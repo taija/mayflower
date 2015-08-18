@@ -1,7 +1,7 @@
 <?php
 global $mayflower_brand;
 if ( $mayflower_brand == 'lite' ) {
-	get_template_part( 'part-flexnav' );
+	get_template_part( 'parts/flexnav' );
 } else { }
 ?>
 			</div><!-- row -->
