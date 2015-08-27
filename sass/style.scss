@@ -630,6 +630,18 @@ ul.header-social-links li {
 	margin: 1.333em 1.3333em .3333em 0;
 }
 
+/* Center images on small screens. Not mobile first... */
+@media screen and (max-width: 769px) {
+    .single-featured-thumb {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        img.img-responsive {
+            display: inline;
+        }
+    }
+}
+
 /* ####################################### */
 /* ----- Gravity Forms Display Over-Rides ------- */
 /* ####################################### */
