@@ -4,7 +4,7 @@ Theme URI: http://bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.4
+Version: 2.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
@@ -47,46 +47,62 @@ video {
 }
 
 .aligncenter,
-div.aligncenter {
+div.aligncenter,
+.alignright,
+div.alignright,
+.alignleft,
+div.alignleft,{
     display: block;
-    margin: 5px auto 5px auto;
+    margin: 5px auto;
 }
-
-.alignright {
-    float:right;
-    margin: 20px 0 5px 20px;
-}
-
-.alignleft {
-    float: left;
-    margin: 20px 20px 5px 0;
-}
-
-.aligncenter {
-    display: block;
-    margin: 5px auto 5px auto;
-}
-
-a img.alignright {
-    float: right;
-    margin: 20px 0 5px 20px;
-}
-
-a img.alignnone {
-    margin: 20px 20px 5px 0;
-}
-
-a img.alignleft {
-    float: left;
-    margin: 20px 20px 5px 0;
-}
-
-a img.aligncenter {
+a img.aligncenter,
+a img.alignright,
+a img.alignleft{
     display: block;
     margin-left: auto;
     margin-right: auto
 }
+@media screen and (min-width: 768px) {
 
+    .alignright {
+        float:right;
+        margin: 20px 0 5px 20px;
+    }
+
+    .alignleft {
+        float: left;
+        margin: 20px 20px 5px 0;
+    }
+
+    .aligncenter {
+        display: block;
+        margin: 5px auto 5px auto;
+    }
+
+    a img.alignright {
+        float: right;
+        margin: 20px 0 5px 20px;
+    }
+
+    a img.alignnone {
+        margin: 20px 20px 5px 0;
+    }
+
+    a img.alignleft {
+        float: left;
+        margin: 20px 20px 5px 0;
+    }
+
+    .wp-caption.alignleft {
+        margin: 20px 20px 5px 0;
+    }
+
+    .wp-caption.alignright {
+        margin: 20px 0 5px 20px;
+    }
+
+
+}
 .wp-caption  {
 	color: #595959;
 	font-size: .9em;
@@ -103,13 +119,6 @@ a img.aligncenter {
     margin: 20px 20px 5px 0;
 }
 
-.wp-caption.alignleft {
-    margin: 20px 20px 5px 0;
-}
-
-.wp-caption.alignright {
-    margin: 20px 0 5px 20px;
-}
 
 // Fix issue introduced by putting a border around media object— no margin between border and text.
 
@@ -619,6 +628,18 @@ ul.header-social-links li {
 
 .single-featured-thumb {
 	margin: 1.333em 1.3333em .3333em 0;
+}
+
+/* Center images on small screens. Not mobile first... */
+@media screen and (max-width: 769px) {
+    .single-featured-thumb {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        img.img-responsive {
+            display: inline;
+        }
+    }
 }
 
 /* ####################################### */

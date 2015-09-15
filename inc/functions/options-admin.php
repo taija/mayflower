@@ -168,8 +168,3 @@ function mayflower_admin_toggle_searchform_callback($args) {
 	echo $html;
 
 } // end mayflower_admin_toggle_searchform_callback
-
-
-
-
-?>

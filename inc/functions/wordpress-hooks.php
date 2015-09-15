@@ -1,47 +1,27 @@
 <?php
 /**
- * Oenology Theme WordPress Core Hooks
+ * Mayflower Theme WordPress Core Hooks
  *
  * Contains all of the Theme's functions that
  * hook into core action/filter hooks, other
  * than Theme Setup functions, Widget functions,
  * and Settings API functions
  *
- * Action Hooks:
- * - comment_form_before
- * - option_page_capability_{page}
- *
- * Filter Hooks
- * - body_class
- * - get_comments_number
- * - the_title
- * - use_default_gallery_style
- * - wp_list_categories
- * - wp_title
- *
- * Callbacks
- * - wp_list_comments
- *
- *
- * @package 	Oenology
- * @copyright	Copyright (c) 2010, Chip Bennett
- * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
- *
- * @since 		Oenology 2.0
  */
 
 /**
  * Add parent class to wp_nav_menu parent list items
+ *
+ * Allows menu item to be targeted when on child page
+ *
  */
 function mayflower_add_menu_parent_class( $items ) {
-
 	$parents = array();
 	foreach ( $items as $item ) {
 		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
 			$parents[] = $item->menu_item_parent;
 		}
 	}
-
 	foreach ( $items as $item ) {
 		if ( in_array( $item->ID, $parents ) ) {
 			$item->classes[] = 'menu-item-parent';
@@ -52,47 +32,6 @@ function mayflower_add_menu_parent_class( $items ) {
 }
 add_filter( 'wp_nav_menu_objects', 'mayflower_add_menu_parent_class' );
 
-/**
- * Filter Capability for Theme Settings Page
- *
- * Action Hook: option_page_capability_{page}
- *
- * This filter implements a WordPress 3.2 fix for
- * a minor bug, in which add_theme_page() is passed
- * the "edit_theme_options" capability, but the
- * settings page form is passed through options.php,
- * which expects the "manage_options" capability.
- *
- * The "edit_theme_options" capability is part of the
- * EDITOR user role, while "manage_options" is only
- * available to the ADMINISTRATOR role. So, users in
- * the EDITOR user role can access the Theme settings
- * page, but are unable actually to update/save the
- * Theme settings.
- *
- * The function is hooked into a hook, introduced in
- * WordPress 3.2: "option_page_capability_{option_page}",
- * where {option_page} is the name of the options page,
- * as defined in the fourth argument of the call to
- * add_theme_page()
- *
- * The function returns a string consisting of the
- * appropriate capability for saving Theme settings.
- *
- * @since	Oenology 2.2
- */
-function mayflower_get_settings_page_cap() {
-	return 'edit_theme_options';
-}
-// Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_mayflower-settings', 'mayflower_get_settings_page_cap' );
-
-// Same as above for Network Admin
-function mayflower_network_get_settings_page_cap() {
-	return 'edit_theme_options';
-}
-// Hook into option_page_capability_{option_page}
-add_action( 'option_page_capability_mayflower-settings', 'mayflower_network_get_settings_page_cap' );
 
 /**
  * Enqueue comment-reply script
@@ -143,29 +82,6 @@ function mayflower_enqueue_comment_reply() {
 // Hook into comment_form_before
 add_action( 'comment_form_before', 'mayflower_enqueue_comment_reply' );
 
-
-/**
- * Add layout CSS classes to the HTML body tag
- *
- * Filter Hook: body_class
- *
- * Filter 'body_class' to include
- * classes for page layout.
- *
- * @uses	mayflower_get_current_page_layout()	Defined in \functions\custom.php
- *
- * @since	Oenology 2.0
- */
-/*
-function mayflower_filter_body_class( $classes ) {
-	$layout = 'layout-';
-	$layout .= mayflower_get_current_page_layout();
-	$classes[] = $layout;
-	return $classes;
-}
-// Hook custom classes into 'body_class'
-add_filter( 'body_class', 'mayflower_filter_body_class' );
-*/
 
 
 /**
@@ -357,132 +273,3 @@ function mayflower_filter_wp_title( $title, $separator ) { // taken from TwentyT
 }
 // Hook into 'wp_title'
 add_filter( 'wp_title', 'mayflower_filter_wp_title', 10, 2 );
-
-/**
- * Enqueue respond.js script
- *
- * Action Hook: wp_enqueue_scripts
- *
- * Enqueues the respond.js script.
- *
- * The Respond.js script is copyright 2011, Scott Jehl; www.scottjehl.com, and is licensed
- * under MIT/GPLv2.
- *
- * @link	https://github.com/scottjehl/Respond							Respond.js script repository
- *
- * @link	http://codex.wordpress.org/Function_Reference/is_admin			Codex Reference: is_admin()
- * @link	http://codex.wordpress.org/Function_Reference/wp_enqueue_script	Codex Reference: wp_enqueue_script()
- *
- * @since	Oenology 3.1
- */
-/*
-function mayflower_enqueue_respond_js() {
-	// Only enqueue script on the front end
-	if (
-		// Boolean conditional tag that returns
-		// TRUE if the current context is the
-		// WP-Admin, and FALSE if the current
-		// context is the site front end
-		! is_admin()
-	) {
-		// enqueue the javascript that performs
-		//in-link comment reply fanciness
-		wp_enqueue_script( 'oenology-respond', get_template_directory_uri() . '/js/respond.js/respond.min.js', array('jquery'), '1.2.0', true );
-	}
-}
-// Hook into comment_form_before
-add_action( 'wp_enqueue_scripts', 'mayflower_enqueue_respond_js' );
-*/
-/**
- * Enqueue fitvids.js script
- *
- * Action Hook: wp_enqueue_scripts
- *
- * Enqueues the fitvids.js script.
- *
- * The fitvids.js script is copyright 2011, Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com,
- * and is licensed under the WTFPL license - http://sam.zoy.org/wtfpl/.
- *
- * @link	https://github.com/davatron5000/FitVids.js						FitVids.js script repository
- *
- * @link	http://codex.wordpress.org/Function_Reference/is_admin			Codex Reference: is_admin()
- * @link	http://codex.wordpress.org/Function_Reference/wp_enqueue_script	Codex Reference: wp_enqueue_script()
- *
- * @since	Oenology 3.1
- */
- /*
-function mayflower_enqueue_fitvids_js() {
-	// Only enqueue script on the front end
-	if (
-		// Boolean conditional tag that returns
-		// TRUE if the current context is the
-		// WP-Admin, and FALSE if the current
-		// context is the site front end
-		! is_admin()
-	) {
-		// enqueue the fitvids library
-		wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js/jquery.fitvids.min.js', array('jquery'), '1.0.1', true );
-
-		// enqueue the script that instantiates fitvids
-		wp_enqueue_script( 'oenology-fitvids', get_template_directory_uri() . '/js/oenology.fitvids.js', array( 'jquery', 'fitvids' ), '', true );
-	}
-}
-// Hook into comment_form_before
-add_action( 'wp_enqueue_scripts', 'mayflower_enqueue_fitvids_js' );
-*/
-/**
- * Enqueue responsive menu script
- *
- * Action Hook: wp_enqueue_scripts
- *
- * Enqueues the responsive menu script.
- *
- * The responsive menu script makes the default dropdown hover menu function as
- * a click menu for mobile devices that can't hover
- *
- * @link	http://webdesign.tutsplus.com/tutorials/site-elements/big-menus-small-screens-responsive-multi-level-navigation/	TutsPlus tutorial
- *
- * @link	http://codex.wordpress.org/Function_Reference/is_admin			Codex Reference: is_admin()
- * @link	http://codex.wordpress.org/Function_Reference/wp_enqueue_script	Codex Reference: wp_enqueue_script()
- *
- * @since	Oenology 3.1
- */
-/*
-function mayflower_enqueue_responsivemenu_js() {
-	// Only enqueue script on the front end
-	if (
-		// Boolean conditional tag that returns
-		// TRUE if the current context is the
-		// WP-Admin, and FALSE if the current
-		// context is the site front end
-		! is_admin()
-	) {
-		// enqueue the responsive menu script
-		wp_enqueue_script( 'tinynav-library', get_template_directory_uri() . '/js/tinynav.js/tinynav.min.js', array('jquery'), '', true );
-		wp_enqueue_script( 'oenology-tinynav', get_template_directory_uri() . '/js/oenology.tinynav.js', array('tinynav-library'), '', true );
-	}
-}
-
-// Hook into comment_form_before
-add_action( 'wp_enqueue_scripts', 'mayflower_enqueue_responsivemenu_js' );
-*/
-
-/**
- * Output custom comments list for pings
- *
- * Callback: wp_list_comments() Pings
- *
- * wp_list_comments() Callback function for
- * Pings (Trackbacks/Pingbacks)
- *
- * @link	http://codex.wordpress.org/Function_Reference/comment_author_link	Codex reference: comment_author_link()
- * @link	http://codex.wordpress.org/Function_Reference/comment_class	Codex reference: comment_class()
- * @link	http://codex.wordpress.org/Function_Reference/comment_ID	Codex reference: comment_ID()
- *
- * @since	Oenology 2.0
- */
-function mayflower_comment_list_pings( $comment ) {
-	$GLOBALS['comment'] = $comment;
-?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>"><?php echo comment_author_link(); ?></li>
-<?php }

@@ -1,80 +1,35 @@
 <?php
 
+/* Load  theme options framework
+ *
+ * This legacy code is mainly from the Oenology theme.
+ * TODO: Define new orgizational schema and migrate content of functions.php
+ *
+ * theme-setup.php - sets theme functionality
+ * wordpress-hooks.php - filters and functionality changes
+ * options-admin.php - defines Mayflower Admin Only option page -
+                       consider migrating to customizer
+ * options.php - theme options definition
+ * options-customizer.php - translate options.php to customizer
+ * network-options.php - Network Admin options pane
+ */
+
+require( get_template_directory() . '/inc/functions/theme-setup.php' );
+require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
+require( get_template_directory() . '/inc/functions/options-admin.php');
+require( get_template_directory() . '/inc/functions/options.php');
+require( get_template_directory() . '/inc/functions/options-customizer.php' );
+require( get_template_directory() . '/inc/functions/network-options.php');
+require( get_template_directory() . '/inc/functions/globals.php');
+
+
 #####################################################
-// Load up our experimental theme options page and related code.
+// Configuration for classes shortcode
 #####################################################
+define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
+define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
+$gaCode = "";
 
-	/**
-	 * Include the Theme Options Function File
-	 *
-	 * options.php includes the Theme options and Admin Settings page
-	 * - Define default Theme Options
-	 * - Register/Initialize Theme Options
-	 * - Admin Settings Page
-	 * - Contextual Help
-	 */
-
-	/**
-	 * Include the Theme Options Theme Customizer Function File
-	 *
-	 * options-customizer.php includes the functions required to
-	 * integrate the Theme options into the WordPress Theme
-	 * Customizer.
-	 */
-
-			require( get_template_directory() . '/inc/functions/custom.php' );
-			require( get_template_directory() . '/inc/functions/theme-setup.php' );
-			require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-			require( get_template_directory() . '/inc/functions/widgets.php' );
-			require( get_template_directory() . '/inc/functions/custom_widgets.php' );
-			require( get_template_directory() . '/inc/functions/options-admin.php');
-			require( get_template_directory() . '/inc/functions/options.php');
-			require( get_template_directory() . '/inc/functions/options-customizer.php' );
-			require( get_template_directory() . '/inc/functions/network-options.php');
-			require( get_template_directory() . '/inc/functions/hooks.php' );
-//		require( get_template_directory() . '/inc/functions/post-custom-meta.php' );
-			require( get_template_directory() . '/inc/functions/contextual-help.php' );
-			require( get_template_directory() . '/inc/functions/dynamic-css.php' );
-//		require( get_template_directory() . '/inc/functions/helperfunctions.php' );
-		define("CLASSESURL","http://bellevuecollege.edu/classes/All/");
-		define("PREREQUISITEURL","http://bellevuecollege.edu/enrollment/transfer/prerequisites/");
-        $gaCode = "";
-
-##################################
-## Custom Menu Widget Override
-##################################
-
-function load_custom_widgets() {
-	unregister_widget("WP_Nav_Menu_Widget");
-	register_widget("My_Nav_Menu_Widget");
-}
-
-////////////////////////////////////////////////////
-// Remove Unneeded Meta Boxes on Pages
-/////////////////////////////////////////////////////
-/*
-function mayflower_remove_meta_boxes() {
-  remove_meta_box('postimagediv', 'page', 'side');
-}
-add_action( 'do_meta_boxes', 'mayflower_remove_meta_boxes' );
-*/
-
-############################
-// Custom Admin Bar Items
-############################
-
-	function mytheme_admin_bar_render() {
-		global $wp_admin_bar;
-	        $wp_admin_bar->add_menu( array(
-	        'parent' => '',
-	        'id' => 'mayflower-settings',
-	        'title' => 'Theme Options',
-	        'href' => admin_url( 'themes.php?page=mayflower-settings')
-	    ) );
-
-	}
-
-	add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
 ############################
 // show admin bar only for editors and higher
@@ -84,82 +39,48 @@ if (!current_user_can('edit_pages')) {
 	add_filter('show_admin_bar', '__return_false');
 }
 
-#####################################################
-// Load up our plugins
-#####################################################
+/**
+ * Load Mayflower Embedded Plugins
+ *
+ * These files provide plugin-like functionality embedded within Mayflower.
+ *
+ * @since 1.0
+ *
+ */
 
-	// Slider
-	$mayflower_options = mayflower_get_options();
-	if ($mayflower_options['slider_toggle'] == 'true') {
-		if( file_exists(get_template_directory() . '/inc/mayflower-slider/slider.php') )
-		    require( get_template_directory() . '/inc/mayflower-slider/slider.php');
-		}
+$mayflower_options = mayflower_get_options();
 
-	// Staff
-	$mayflower_options = mayflower_get_options();
-	if ($mayflower_options['staff_toggle'] == 'true') {
-		if( file_exists(get_template_directory() . '/inc/mayflower-staff/staff.php') )
-		    require( get_template_directory() . '/inc/mayflower-staff/staff.php');
-		}
-
-	// SEO
-			if( file_exists(get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php') )
-			    require( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php');
-
-	// Home Page
-		if ( current_user_can('manage_network') ) {
-			if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') )
-			    require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
-		} // end current_user_can
-
-
-		//Service Forms functionality
-if( file_exists(get_template_directory() . '/inc/service-forms/service_forms_functions.php') )
-	    require( get_template_directory() . '/inc/service-forms/service_forms_functions.php');
-
-
-#######################################
-// adds wordpress theme support
-#######################################
-// enable excerpts on pages
-add_post_type_support( 'page', 'excerpt' );
-
-
-	add_action( 'after_setup_theme', 'my_theme_setup' );
-	function my_theme_setup() {
-		add_image_size( 'edit-screen-thumbnail', 100, 100, true );
+// Slider
+if ($mayflower_options['slider_toggle'] == 'true') {
+	if ( file_exists( get_template_directory() . '/inc/mayflower-slider/slider.php' ) ) {
+		require( get_template_directory() . '/inc/mayflower-slider/slider.php' );
 	}
+}
 
-	// Post Thumbnails
-	if ( function_exists( 'add_theme_support' ) ) {
-		add_theme_support( 'post-thumbnails' );
-			set_post_thumbnail_size( 150, 150 );
-				add_image_size( 'lite_header_logo', 1170, 63, true);
-				add_image_size( 'edit-screen-thumbnail', 100, 100, true );
-				add_image_size( 'sort-screen-thumbnail', 300, 125, true );
-				add_image_size( 'staff-thumbnail', 300, 200, true );
-				add_image_size( 'featured-full', 1170,488,true);
-				add_image_size( 'featured-in-content', 900,375,true);
-				add_image_size( 'home-small-ad', 300,200,true);
+// Staff
+if ($mayflower_options['staff_toggle'] == 'true') {
+	if ( file_exists( get_template_directory() . '/inc/mayflower-staff/staff.php' ) ) {
+		require( get_template_directory() . '/inc/mayflower-staff/staff.php' );
 	}
+}
 
-/* custom header support */
-$header_args = array(
-    'default-image'	=> '',
-    'width'			=> 690,
-    'height'		=> 100,
-		//'flex-width'	=> true,
-		'flex-height'	=> true,
-    'header-text'	=> false
+// SEO
+if ( file_exists( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php' ) ) {
+	require( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.php' );
+}
 
-);
-add_theme_support( 'custom-header', $header_args );
+// Course Description Shortcodes
+if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php') ) {
+	require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' );
+}
 
-/* Post format support */
-add_theme_support( 'post-formats', array( 'video' ) );
+// Home Page
+if ( current_user_can('manage_network') ) {
+	if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') ) {
+		require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
+	}
+}
 
-/* Let Tabs Shortcode plugin use bootstrap styles*/
-add_theme_support( 'tabs', 'twitter-bootstrap' );
 
 ######################################
 // Customize Excerpt Read More
@@ -219,7 +140,7 @@ add_filter('the_generator', 'remove_wp_version');
 ######################################
 
 function mayflower_add_editor_styles() {
-    add_editor_style( 'custom-editor-style.css' );
+    add_editor_style( 'css/custom-editor-style.css' );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
 
@@ -258,75 +179,64 @@ add_filter('mce_buttons_2','myplugin_tinymce_buttons');
 ######################################
 
 // Add the Style Dropdown Menu to the second row of visual editor buttons
-function my_mce_buttons_2( $buttons ) {
-    array_unshift( $buttons, 'styleselect' );
-    return $buttons;
+function mayflower_mce_buttons_2( $buttons ) {
+	array_unshift( $buttons, 'styleselect' );
+	return $buttons;
 }
 
-add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
+add_filter( 'mce_buttons_2', 'mayflower_mce_buttons_2' );
 
 
 //Add custom styles to tinymce editor
-function my_mce_before_init( $settings ) {
+function mayflower_mce_before_init( $settings ) {
 
-    $style_formats = array(
+	$style_formats = array(
 		array(
-			'title' => 'Alert',
-            'selector' => 'p',
+			'title' => 'Intro (.lead)',
+			'block' => 'p',
+			'classes' => 'lead',
+			'wrapper' => false,
+		),
+		array(
+			'title' => 'Alert (.alert-warning)',
+			'block' => 'div',
 			'classes' => 'alert alert-warning',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Danger',
-			'selector' => 'p',
-			'classes' => 'alert alert-error alert-danger',
+			'title' => 'Alert-Danger (.alert-danger)',
+			'block' => 'div',
+			'classes' => 'alert alert-danger',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Info',
-			'selector' => 'p',
+			'title' => 'Alert-Info (.alert-info)',
+			'block' => 'div',
 			'classes' => 'alert alert-info',
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Alert-Success',
-			'selector' => 'p',
+			'title' => 'Alert-Success (.alert-success)',
+			'block' => 'div',
 			'classes' => 'alert alert-success',
-		),
-/*
-		array(
-			'title' => 'Button-Black',
-			'inline' => 'button',
-			'classes' => 'btn btn-inverse',
-			'wrapper' => false,
+			'wrapper' => true,
 		),
 		array(
-			'title' => 'Button-Blue',
-			'inline' => 'button',
-			'classes' => 'btn btn-primary',
-			'wrapper' => false,
-		),
-		array(
-			'title' => 'Button-Grey',
-			'inline' => 'button',
-			//'selector' => 'a',
-			'classes' => 'btn',
-			'wrapper' => false,
-		),
-*/
-		array(
-			'title' => 'Well',
-			'selector' => 'p',
+			'title' => 'Well (.well)',
+			'block' => 'div',
 			'classes' => 'well',
-			'wrapper' => false,
+			'wrapper' => true,
 		),
-    );
+	);
 
 
-    $settings['style_formats'] = json_encode( $style_formats );
+	$settings['style_formats'] = json_encode( $style_formats );
 
-    return $settings;
+	return $settings;
 
 }
 
-add_filter( 'tiny_mce_before_init', 'my_mce_before_init' );
+add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 
 
 #############################
@@ -345,6 +255,20 @@ function is_multisite_home () {
 	if (is_main_site() && is_front_page()) return true; else return false;
 }
 
+#############################
+// Assign global_nav_selection to body_class
+#############################
+
+function mayflower_body_class_ia( $classes ) {
+	$mayflower_options = mayflower_get_options();
+
+	// add ia_options to classes
+	$classes[] = $mayflower_options['global_nav_selection'];
+
+	// return the $classes array
+	return $classes;
+}
+add_filter( 'body_class','mayflower_body_class_ia' );
 
 ######################################
 // Wordpress Widget Area Setup
@@ -411,115 +335,7 @@ function widget_empty_title($output='') {
 }
 add_filter('widget_title', 'widget_empty_title');
 
-############################################
-//Customize widget areas for certain pages
-############################################
-/*
-add_filter( 'sidebars_widgets', 'control_widget_pages' );
 
-function control_widget_pages( $sidebars_widgets ) {
-
-	if(is_home() || is_single() )
-
-		$sidebars_widgets['page-widget-area'] = false;
-
-	return $sidebars_widgets;
-}
-*/
-
-#########################
-//set globals path
-#########################
-
-	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_path = $network_mayflower_settings['globals_path'];
-	if (empty($globals_path)) {
-		$globals_path =  $_SERVER['DOCUMENT_ROOT'] . "/g/2/";
-	}
-
-	$bc_globals_html_filepath = $globals_path . "h/";
-
-#######################################
-//add college head - skinny id bar
-#######################################
-
-	function bc_tophead(){
-	   global $bc_globals_html_filepath;
-	   $header_top =  $bc_globals_html_filepath . "lhead.html";
-	   include_once($header_top);
-	}
-	add_action('mayflower_header','bc_tophead');
-
-########################################
-//add college head - big html dropdown
-#########################################
-
-	function bc_tophead_big() {
-		global $bc_globals_html_filepath;
-		$header_top_big = $bc_globals_html_filepath . "bhead.html";
-		include_once($header_top_big);
-	}
-
-	add_action('mayflower_header','bc_tophead_big');
-
-###########################
-//set up college headscripts
-##########################
-
-	function head_scripts() {
-		?>
-		<script type="text/javascript">
-			/*<![CDATA[*/
-			jQuery.noConflict();
-			jQuery(document).ready(function(){
-				jQuery(".nav-news a").addClass("selected");
-			});
-			/*]]>*/
-		</script>
-		<script type="text/javascript" src="/globals/btheme_v0.1/js/searchbox.js"></script>
-		<?php
-	}
-	add_filter('head_scripts','head_scripts');
-
-###################
-//college big footer
-###################
-
-	function bc_footer() {
-		global $bc_globals_html_filepath;
-		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-		   include_once($bc_footer);
-		   include_once($bc_footerlegal);
-	}
-	add_action('btheme_footer', 'bc_footer', 50);
-
-###################
-// homepage specific footer
-###################
-
-	function bc_home_footer() {
-		global $bc_globals_html_filepath;
-		   $bc_footer =  $bc_globals_html_filepath . "bfoot.html";
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-		   include_once($bc_footer);
-			get_template_part( 'front-page-legal' );
-		   include_once($bc_footerlegal);
-	}
-	add_action('btheme_footer', 'bc_home_footer', 50);
-
-###################
-//college legal-links footer
-###################
-
-	function bc_footer_legal() {
-		global $bc_globals_html_filepath;
-		   $bc_footerlegal =  $bc_globals_html_filepath . "legal.html";
-
-		   include_once($bc_footerlegal);
-
-	}
-	add_action('btheme_footer', 'bc_footer_legal', 50);
 
 
 
@@ -594,6 +410,20 @@ function mayflower_scripts() {
 add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
 
 
+/**
+ * Enqueue Custom Admin Page Stylesheet
+ */
+function mayflower_enqueue_admin_style() {
+
+	// define admin stylesheet
+	$admin_handle = 'mayflower_admin_stylesheet';
+	$admin_stylesheet = get_template_directory_uri() . '/css/mayflower-admin.css';
+
+	wp_enqueue_style( $admin_handle, $admin_stylesheet, '', false );
+}
+
+// Enqueue Admin Stylesheet at admin_print_styles()
+add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_enqueue_admin_style', 11 );
 
 
 ################################################################################
@@ -653,315 +483,6 @@ function override_dashicons() { ?>
   </style>
 <?php }
 
-####################################################
-## Add Course Description Shortcode Button & Modal
-####################################################
-
-add_action('media_buttons', 'add_shortcode_button', 99);
-
-function add_shortcode_button() {
-            echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="dashicons dashicons-welcome-learn-more"></span> ' . __("Add Course", "mayflower") . '</a>';
-        }
-function add_coursedesc_popup() {
-
-        ?>
-        <script>
-            function InsertCourse(){
-                var subject = jQuery("#add_subject").val();
-                if(subject == ""){
-                    alert("<?php _e("Please select a subject", "mayflower") ?>");
-                    return;
-                }
-                var courseID = jQuery("#add_course_id").val();
-                if(courseID == ""){
-                    alert("<?php _e("Please select a course", "mayflower") ?>");
-                    return;
-                }
-
-                var subject_select = jQuery("#add_subject option[value='" + subject + "']").text().replace(/[\[\]]/g, '');
-                var display_course_description = jQuery("#display_course_description").is(":checked");
-                var description_qs = !display_course_description ? " description=\"false\"" : " description=\"true\"";
-
-                window.send_to_editor("[coursedescription subject=\"" + subject + "\" courseid=\"" + courseID + "\"" + description_qs + "]");
-            }
-            jQuery(document.body).on('change','#add_subject',function(){
-                //alert('Change Happened');
-                var selectedSubject = jQuery('#add_subject :selected').text();
-                var selectedSubject = jQuery.trim(selectedSubject);
-                var data = {
-                                action: 'get_course',
-                                subject: selectedSubject
-                           };
-                jQuery.post(ajaxurl,data,function(response){
-                    //alert('Got this from the server: ' + response);
-                    if(response)
-                    {
-                        try{
-                            var json = JSON.parse(response);
-                           // alert(json.Courses);
-                            var courses = json.Courses;
-                            var el = jQuery("#add_course_id");
-                            if(courses.length>0)
-                            {
-                                el.empty();
-                                jQuery("#add_course_id").append("<option value=''>Select Course</option>");
-                            }
-
-                            for(var i=0;i < courses.length;i++)
-                            {
-                                //alert(courses[i].CourseID);
-                                jQuery("#add_course_id").append("<option value='"+courses[i].CourseID+"'>"+courses[i].CourseID+"</option>")
-                            }
-                        }catch(e){
-                            alert("Error:",e);
-                        }
-                    }
-
-                });
-            });
-		</script>
-
-        <div id="select_form" style="display:none;">
-            <div class="wrap">
-                <div>
-                    <div style="padding:15px 15px 0 15px;">
-                        <h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e("Insert a course", "mayflower"); ?></h3>
-                        <span>
-                            <?php _e("Select a subject to add it to your post or page.", "mayflower"); ?>
-                        </span>
-                    </div>
-                    <div style="padding:15px 15px 0 15px;">
-
-                        <select id="add_subject">
-                            <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
-								<?php
-								$json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
-								//$json = file_get_contents($json_subjects_url,0,null,null);
-                                $json = wp_remote_get($json_subjects_url);
-                                if(!empty($json) && !empty($json['body']))
-                                {
-                                    $links = json_decode($json['body'], TRUE);
-                                    ?>
-                                    <?php
-                                    //error_log("links :". $links);
-                                        foreach($links as $key=>$val){
-                                    ?>
-                                        <option>
-                                            <?php echo trim($val['Slug']); ?>
-                                        </option>
-                                <?php
-                                        }
-                                }
-								?>
-                        </select> <br/>
-                        <select id="add_course_id">
-                            <option value="">  <?php _e("Select Course", "mayflower"); ?>  </option>
-                        </select>
-                    </div>
-                    <div style="padding:15px 15px 0 15px;">
-                        <input type="checkbox" id="display_course_description"  /> <label for="display_course_description"><?php _e("Display course description", "mayflower"); ?></label>
-                    </div>
-                    <div style="padding:15px;">
-                        <input type="button" class="button-primary" value="<?php _e("Insert course", "mayflower"); ?>" onclick="InsertCourse();"/>&nbsp;&nbsp;&nbsp;
-                    <a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php _e("Cancel", "mayflower"); ?></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <?php
-    }
-
-
-add_action('admin_footer',  'add_coursedesc_popup');
-
-/*
- * Ajax call to get courses
- * */
-add_action('wp_ajax_get_course','get_course_callback');
-
-function get_course_callback() {
-    $subject = $_POST['subject'];
-    $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
-    $json = wp_remote_get($json_subjects_url);
-    //$json = file_get_contents($json_subjects_url,0,null,null);
-    //$links = json_decode($json, TRUE);
-    if(!empty($json) && !empty($json['body']))
-    {
-        echo $json['body'];
-    }
-    die();
-}
-
-add_shortcode('coursedescription', 'coursedescription_func' );
-
-function coursedescription_func($atts)
-{
-      $subject = $atts["subject"];
-      $course = $atts["courseid"];// Attribute name should always read in lower case.
-    $description = $atts["description"];
-    //error_log("Hello". $subject);
-    //error_log("Hello2". $course);
-    if(!empty($course) && !empty($subject))
-    {
-        //error_log("course :".$course);
-        $course_split = explode(" ",$course);
-        $course_letter = $course_split[0];
-        $course_id = $course_split[1];
-        $subject = trim(html_entity_decode  ($subject));
-        $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
-        //error_log("url :".$url);
-        //$json = file_get_contents($url,0,null,null);
-        $json = wp_remote_get($url);
-		// error_log("json :".$json);
-        if(!empty($json) && !empty($json['body']))
-        {
-		    $html = decodejsonClassInfo($json['body'],$course_id,$description);
-            return $html;
-        }
-    }
-    return null;
-}
-
-
-	#################################
-	/*
-		This function is a shortcode to get class schedule data returned as json string for a given course name or a course name and number.
-		Fogbugz #2154
-	*/
-	#################################
-/*
-	function AllClassInformationRoutine($args)
-	{
-		$course = trim($args["course"]);
-		if(!empty($course))
-		{
-			$url = CLASSESURL.$course."?format=json";
-			//$json = file_get_contents($url,0,null,null);
-            $json = wp_remote_get($url);
-            if(!empty($json) && !empty($json['body']))
-            {
-                $html = decodejsonClassInfo($json);
-                return $html;
-            }
-		}
-		return null;
-	}
-	function OneClassInformationRoutine($args)
-	{
-		$course = $args["course"];
-		$number = $args["number"];
-		if(!empty($course) && !empty($number))
-		{
-			$url = CLASSESURL.$course."?format=json";
-			//$json = file_get_contents($url,0,null,null);
-            $json = wp_remote_get($url);
-            if(!empty($json) && !empty($json['body']))
-            {
-                $html = decodejsonClassInfo($json,$number);
-                return $html;
-            }
-
-		}
-		return null;
-	}
-add_shortcode('AllClassInformation', 'AllClassInformationRoutine');
-add_shortcode('OneClassInformation', 'OneClassInformationRoutine');
-*/
-
-	function decodejsonClassInfo($jsonString,$number = NULL,$description = NULL)
-	{
-		$decodeJson = json_decode($jsonString,true);
-		$htmlString = "";
-		$courses = $decodeJson["Courses"];
-		$htmlString .= "<div class='classDescriptions'>";
-        //error_log("number :".$number);
-        if(count($courses)>0)
-        {
-            foreach($courses as $sections)
-            {
-                if($number!=null)
-                {
-                    if($sections["Number"] == $number)
-                    {
-                        //error_log("$$$$$$$$$$$$$$$$$$$$$$$");
-                        $htmlString .= getHtmlForCourse($sections,$description);
-                    }
-                }
-                else
-                {
-                    $htmlString .= getHtmlForCourse($sections,$description);
-                }
-            }
-        }
-		$htmlString .= "</div>"; //classDescriptions
-
-		return $htmlString;
-	}
-
-
-	function getHtmlForCourse($sections,$description = NULL)
-	{
-		$htmlString = "";
-		$htmlString .= "<div class='class-info'>";
-		$htmlString .= "<h5 class='class-heading'>";
-			$courseUrl = CLASSESURL.$sections["Subject"];
-			if($sections["IsCommonCourse"])
-			{
-				$courseUrl .= "&";
-			}
-			$courseUrl .= "/".$sections["Number"];
-
-			$htmlString .= "<a href='".$courseUrl."''>";
-			$htmlString .= "<span class='course-id'>".$sections["Descriptions"][0]["CourseID"]."</span>";
-			$htmlString .= " <span class='course-title'>".$sections["Title"]."</span>";
-			$htmlString .= "<span class='course-credits'> &#8226; ";
-
-			if($sections["IsVariableCredits"])
-			{
-				$htmlString .= "V1-".$sections["Credits"]." <abbr title='variable credit'>Cr.</abbr>";
-			}
-			else
-			{
-				$htmlString .= $sections["Credits"]." <abbr title='credit(s)'>Cr.</abbr>";
-			}
-			$htmlString .= "</span>";
-			$htmlString .= "</a>";
-			$htmlString .= "</h5>";//classHeading
-        //error_log("description:".$description);
-        if($description=="true" && !empty($sections["Descriptions"]))
-        {
-            //error_log("Not here");
-			$htmlString .= "<p class='class-description'>" . $sections["Descriptions"][0]["Description"] . "</p>";
-			$htmlString .= "<p class='class-details-link'>";
-			$htmlString .= "<a href='".$courseUrl."'>View details for ".$sections["Descriptions"][0]["CourseID"]."</a>";
-			$htmlString .= "</p>";
-        }
-			$htmlString .= "</div>"; //classInfo
-			return $htmlString;
-	}
-
-
-
-	$mayflower_brand = $mayflower_options['mayflower_brand'];
-	$mayflower_brand_css = "";
-	if( $mayflower_brand == 'lite' ) {
-		$mayflower_brand_css = "globals-lite";
-	} else {
-		$mayflower_brand_css = "globals-branded";
-	}
-
-	// Get Mayflower network setting values
-	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_version = $network_mayflower_settings['globals_version'];
-	$globals_path = $network_mayflower_settings['globals_path'];
-	$globals_url = $network_mayflower_settings['globals_url'];
-	$globals_path_over_http = $globals_url;
-    $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-
-	if (empty($globals_url)) {
-		$globals_url = "/g/2/";
-	}
 
 ///////////////////////////////////////
 // - CPT Re-ordering
@@ -1009,7 +530,6 @@ function add_global_section_meta_box() {
 	if ( is_main_site()) {
 		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
 			if ("0" == $post->post_parent){
-			//if (intval($post->post_parent)>0) {
 				$screens = array('page');
 				foreach ($screens as $screen) {
 					add_meta_box(
@@ -1154,12 +674,10 @@ add_action('save_post', 'save_global_section_meta');
  */
 function google_analytics_dashboard()
 {
-    //error_log("GOOGLE ANALYTICS");
     if(is_user_logged_in())
     {
         $network_mayflower_settings = get_site_option( 'globals_network_settings' );
         $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-        //error_log("google analytics code :".$globals_google_analytics_code);
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
@@ -1177,38 +695,6 @@ function google_analytics_dashboard()
     }
 }
 add_action('admin_head', 'google_analytics_dashboard');
-
-##########################
-//analytics for lite, branded and single site
-##########################
-
-function mayflower_analytics () {
-    global $bc_globals_html_filepath, $mayflower_brand;
-    $bc_gacode_lite =  $bc_globals_html_filepath . "galite.html";
-    $bc_gacode_branded =  $bc_globals_html_filepath . "gabranded.html";
-    if( $mayflower_brand == 'lite') {
-        include_once($bc_gacode_lite);
-    } else {
-        include_once($bc_gacode_branded);
-    }
-    $mayflower_options = mayflower_get_options();
-
-    if ($mayflower_options['ga_code']) {
-        // Format reference https://developers.google.com/analytics/devguides/collection/gajs/?hl=nl&csw=1#MultipleCommands
-        ?>
-        <script type="text/javascript">
-            /*Site-Specific GA code*/
-            ga('create','<?php echo $mayflower_options['ga_code'] ?>','bellevuecollege.edu',{'name':'singlesite'});  //Multisite Tracking Code
-            ga('singlesite.send','pageview');
-
-
-        </script>
-    <?php
-    } // end if
-
-
-} // end function
-add_action('wp_head', 'mayflower_analytics', 30);
 
 ##############################################################
 // Responsive image class for posts & remove image dimensions
@@ -1239,5 +725,3 @@ add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
 function my_embed_oembed_html($html, $url, $attr, $post_id) {
   return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
-
-?>

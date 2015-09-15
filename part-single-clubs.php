@@ -75,7 +75,7 @@ if (have_posts()) :
 			</ul>
 			
 			<?php the_content(); ?>
-			<? if( !empty( $budget_document_link ) && $is_chartered ) : ?>
+			<?php if( !empty( $budget_document_link ) && $is_chartered ) : ?>
 				<p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>
 			<?php endif; ?>
 		</div><!--.content-padding-->     

@@ -9,7 +9,6 @@
  *  - Define Default Theme Options
  *  - Register/Initialize Theme Options
  *  - Define Admin Settings Page
- *  - Register Contextual Help
  *
  * @package 	Mayflower
  * @copyright	Copyright (c) 2011, Chip Bennett
@@ -24,91 +23,6 @@
  * @global	array	$mayflower_options	holds Theme options
  */
 global $mayflower_options;
-
-/**
- * Mayflower Theme Settings API Implementation
- *
- * Implement the WordPress Settings API for the
- * Mayflower Theme Settings.
- *
- * @link	http://codex.wordpress.org/Settings_API	Codex Reference: Settings API
- * @link	http://ottopress.com/2009/wordpress-settings-api-tutorial/	Otto
- * @link	http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/	Ozh
- */
-function mayflower_register_options(){
-	require( get_template_directory() . '/inc/functions/options-register.php' );
-}
-// Settings API options initilization and validation
-add_action( 'admin_init', 'mayflower_register_options' );
-
-/**
- * Setup the Theme Admin Settings Page
- *
- * Add "Mayflower Options" link to the "Appearance" menu
- *
- * @uses	mayflower_get_settings_page_cap()	defined in \functions\wordpress-hooks.php
- */
-function mayflower_add_theme_page() {
-	// Globalize Theme options page
-	global $mayflower_settings_page;
-	// Add Theme options page
-	$mayflower_settings_page = add_theme_page(
-		// $page_title
-		// Name displayed in HTML title tag
-		__( 'Theme Options', 'mayflower' ),
-		// $menu_title
-		// Name displayed in the Admin Menu
-		__( 'Theme Options', 'mayflower' ),
-		// $capability
-		// User capability required to access page
-		mayflower_get_settings_page_cap(),
-		// $menu_slug
-		// String to append to URL after "themes.php"
-		'mayflower-settings',
-		// $callback
-		// Function to define settings page markup
-		'mayflower_admin_options_page'
-	);
-	// Load contextual help
-	add_action( 'load-' . $mayflower_settings_page, 'mayflower_settings_page_contextual_help' );
-}
-// Load the Admin Options page
-add_action( 'admin_menu', 'mayflower_add_theme_page' );
-
-/**
- * Mayflower Theme Settings Page Markup
- *
- * @uses	mayflower_get_current_tab()	defined in \functions\custom.php
- * @uses	mayflower_get_page_tab_markup()	defined in \functions\custom.php
- */
-function mayflower_admin_options_page() {
-	// Determine the current page tab
-	$currenttab = mayflower_get_current_tab();
-	// Define the page section accordingly
-	$settings_section = 'mayflower_' . $currenttab . '_tab';
-	?>
-
-	<div class="wrap">
-		<?php mayflower_get_page_tab_markup(); ?>
-		<?php if ( isset( $_GET['settings-updated'] ) ) {
-			echo '<div class="updated"><p>';
-				echo __( 'Theme settings updated successfully.', 'mayflower' );
-				echo '</p></div>';
-		} ?>
-		<form action="options.php" method="post">
-		<?php
-			// Implement settings field security, nonces, etc.
-			settings_fields('theme_mayflower_options');
-			// Output each settings section, and each
-			// Settings field in each section
-			do_settings_sections( $settings_section );
-		?>
-			<?php submit_button( __( 'Save Settings', 'mayflower' ), 'primary', 'theme_mayflower_options[submit-' . $currenttab . ']', false ); ?>
-			<?php submit_button( __( 'Reset Defaults', 'mayflower' ), 'secondary', 'theme_mayflower_options[reset-' . $currenttab . ']', false ); ?>
-		</form>
-	</div>
-<?php
-}
 
 /**
  * Mayflower Theme Option Defaults
@@ -142,14 +56,6 @@ function mayflower_get_option_defaults() {
 	return apply_filters( 'mayflower_option_defaults', $option_defaults );
 }
 
-/**
- * Define default options tab
- */
-function mayflower_define_default_options_tab( $options ) {
-	$options['default_options_tab'] = 'general';
-	return $options;
-}
-add_filter( 'mayflower_option_defaults', 'mayflower_define_default_options_tab' );
 
 /**
  * Mayflower Theme Option Parameters
@@ -412,107 +318,6 @@ function mayflower_get_option_parameters() {
 			'default' => true
 		),
 
-/*		'show_on_front' => array (
-			'name' => 'show_on_front',
-			'title' => '',
-			'type' => 'custom',
-			'description' => mayflower_show_on_front(),
-			'section' => 'front_page_displays',
-			'tab' => 'home',
-			'since' => '1.0',
-			'default' => '',
-		),
-*/
-		/*
-        'header_nav_menu_position' => array(
-			'name' => 'header_nav_menu_position',
-			'title' => __( 'Header Nav Menu Position', 'mayflower' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'above' => array(
-					'name' => 'above',
-					'title' => __( 'Above', 'mayflower' )
-				),
-				'below' => array(
-					'name' => 'below',
-					'title' => __( 'Below', 'mayflower' )
-				),
-				'none' => array(
-					'name' => 'none',
-					'title' => __( 'Do Not Display', 'mayflower' )
-				)
-			),
-			'description' => __( 'Display header navigation menu above or below the site title/description?', 'mayflower' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '1.1',
-			'default' => 'above'
-		),
-		'header_nav_menu_depth' => array(
-			'name' => 'header_nav_menu_depth',
-			'title' => __( 'Header Nav Menu Depth', 'mayflower' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'1' => array(
-					'name' => 1,
-					'title' => __( 'One', 'mayflower' )
-				),
-				'2' => array(
-					'name' => 2,
-					'title' => __( 'Two', 'mayflower' )
-				),
-				'3' => array(
-					'name' => 3,
-					'title' => __( 'Three', 'mayflower' )
-				)
-			),
-			'description' => __( 'How many levels of Page hierarchy should the Header Navigation Menu display?', 'mayflower' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '1.1',
-			'default' => 1
-		),
-        'header_nav_menu_item_width' => array(
-			'name' => 'header_nav_menu_item_width',
-			'title' => __( 'Header Nav Menu Item Width', 'mayflower' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'fixed' => array(
-					'name' => 'fixed',
-					'title' => __( 'Fixed', 'mayflower' )
-				),
-				'fluid' => array(
-					'name' => 'fluid',
-					'title' => __( 'Fluid', 'mayflower' )
-				)
-			),
-			'description' => __( 'Should Header Nav Menu items have a fixed or fluid width?', 'mayflower' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '2.1',
-			'default' => 'fluid'
-		),
-        'display_footer_credit' => array(
-			'name' => 'display_footer_credit',
-			'title' => __( 'Display Footer Credit', 'mayflower' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'false' => array(
-					'name' => 'false',
-					'title' => __( 'Do Not Display', 'mayflower' )
-				),
-				'true' => array(
-					'name' => 'true',
-					'title' => __( 'Display', 'mayflower' )
-				)
-			),
-			'description' => __( 'Display a credit link in the footer? This option is disabled by default, and you are under no obligation whatsoever to enable it.', 'mayflower' ),
-			'section' => 'footer',
-			'tab' => 'general',
-			'since' => '1.1',
-			'default' => false
-		),
-*/
 		'default_layout' => array(
 			'name' => 'default_layout',
 			'title' => __( 'Default Site Layout', 'mayflower' ),
@@ -528,13 +333,6 @@ function mayflower_get_option_parameters() {
 				  'title' => __( 'Sidebar Right, Content Left', 'mayflower' ),
 				  'description' => __( '', 'mayflower' ),
 				  ),
-				/*
-				'content' => array(
-				  'name' => 'content',
-				  'title' => __( 'One column, no sidebar', 'mayflower' ),
-				  'description' => __( '', 'mayflower' ),
-				  ),
-				*/
 			),
 			'description' => '',
 			'section' => 'site_defaults',
@@ -542,38 +340,6 @@ function mayflower_get_option_parameters() {
 			'since' => '1.3.3',
 			'default' => 'sidebar-content'
 		),
-/*
-		'skin' => array(
-			'name' => 'skin',
-			'title' => __( 'Color Scheme', 'mayflower' ),
-			'type' => 'custom',
-			'valid_options' => array(
-				'default-color-scheme' => array(
-				  'name' => 'default-color-scheme',
-				  'title' => __( 'Default', 'mayflower' ),
-				  'description' => __( 'Default color scheme.', 'mayflower' ),
-				 'scheme' => 'light'
-				  ),
-				'aqua' => array(
-				  'name' => 'aqua',
-				  'title' => __( 'Aqua', 'mayflower' ),
-				  'description' => __( 'Aqua is a shade of blue.', 'mayflower' ),
-				 'scheme' => 'light'
-				  ),
-				'red' => array(
-				  'name' => 'red',
-				  'title' => __( 'Red', 'mayflower' ),
-				  'description' => __( 'Red is a hot color.', 'mayflower' ),
-				  'scheme' => 'light'
-				  ),
-			),
-			'description' => '',
-			'section' => 'site_defaults',
-			'tab' => 'general',
-			'since' => '1.0',
-			'default' => 'default-color-scheme'
-		),
-*/
 		'blog_homepage_toggle' => array(
 			'name' => 'blog_homepage_toggle',
 			'title' => __( 'Enable blog posts on home page?', 'mayflower' ),
@@ -724,49 +490,7 @@ function mayflower_get_options() {
 	return $mayflower_options;
 }
 
-/**
- * Separate settings by tab
- *
- * Returns an array of tabs, each of
- * which is an indexed array of settings
- * included with the specified tab.
- *
- * @uses	mayflower_get_option_parameters()	defined in \functions\options.php
- * @uses	mayflower_get_settings_page_tabs()	defined in \functions\options.php
- *
- * @return	array	$settingsbytab	array of arrays of settings by tab
- */
-function mayflower_get_settings_by_tab() {
-	// Get the list of settings page tabs
-	$tabs = mayflower_get_settings_page_tabs();
-	// Initialize an array to hold
-	// an indexed array of tabnames
-	$settingsbytab = array();
-	// Loop through the array of tabs
-	foreach ( $tabs as $tab ) {
-		$tabname = $tab['name'];
-		// Add an indexed array key
-		// to the settings-by-tab
-		// array for each tab name
-		$settingsbytab[] = $tabname;
-	}
-	// Get the array of option parameters
-	$option_parameters = mayflower_get_option_parameters();
-	// Loop through the option parameters
-	// array
-	foreach ( $option_parameters as $option_parameter ) {
-		$optiontab = $option_parameter['tab'];
-		$optionname = $option_parameter['name'];
-		// Add an indexed array key to the
-		// settings-by-tab array for each
-		// setting associated with each tab
-		$settingsbytab[$optiontab][] = $optionname;
-		$settingsbytab['all'][] = $optionname;
-	}
-	// Return the settings-by-tab
-	// array
-	return $settingsbytab;
-}
+
 
 /**
  * Mayflower Theme Admin Settings Page Tabs
@@ -793,13 +517,6 @@ function mayflower_get_settings_page_tabs() {
 					'title' => __( 'Mayflower Branding', 'mayflower' ),
 					'description' => __( 'Which branding of Mayflower Theme should be used for this site?', 'mayflower' )
 				),
-				/*
-				'global_nav' => array(
-					'name' => 'global_nav',
-					'title' => __( 'Global Nav Selection', 'mayflower' ),
-					'description' => __( 'Which global nav item should be associated with this site?', 'mayflower' )
-				),
-				*/
 				'analytics' => array(
 					'name' => 'analytics',
 					'title' => __( 'Site Specific Google Analytics', 'mayflower' ),
@@ -815,13 +532,6 @@ function mayflower_get_settings_page_tabs() {
 					'title' => __( 'Site Defaults', 'mayflower' ),
 					'description' => __( 'Manage default layout options for this web site. <br /><br /><em>*Note that if sidebar widget area are empty there will be no sidebar and the page content will fill the whole content area.</em> ', 'mayflower' )
 				),
-				/*
-				'skin' => array(
-					'name' => 'skin',
-					'title' => __( 'Color Scheme', 'mayflower' ),
-					'description' => mayflower_get_skin_text()
-				),
-				*/
 
 			)
 		),
@@ -829,11 +539,6 @@ function mayflower_get_settings_page_tabs() {
 			'name' => 'home',
 			'title' => __( 'Home Page', 'mayflower' ),
 			'sections' => array(
-//				'default_homepage' => array(
-//					'name' => 'default_homepage',
-//					'title' => __( 'Default Home Page Layout', 'mayflower' ),
-//					'description' => mayflower_get_homepage_text()
-//				),
 				'homepage_options' => array(
 					'name' => 'homepage_options',
 					'title' => __( 'Home Page Options', 'mayflower' ),
@@ -844,13 +549,6 @@ function mayflower_get_settings_page_tabs() {
 					'title' => __( 'Slider Options', 'mayflower' ),
 					'description' => __( 'Manage home page slider options', 'mayflower' )
 				),
-				/*
-				'front_page_displays' => array(
-					'name' => 'front_page_displays',
-					'title' => __( 'Front Page Displays:', 'mayflower' ),
-					'description' => __( '', 'mayflower' )
-				),
-				*/
 			)
 		),
 
@@ -869,28 +567,3 @@ function mayflower_get_settings_page_tabs() {
     );
 	return apply_filters( 'mayflower_get_settings_page_tabs', $tabs );
 }
-
-/**
- * Add Section Text for the Skin Settings Section
- */
-/*
-function mayflower_get_skin_text() {
-
-	$mayflower_options = mayflower_get_options();
-	$option_parameters = mayflower_get_option_parameters();
-	$mayflower_skins = $option_parameters['skin']['valid_options'];
-	foreach ( $mayflower_skins as $skin ) {
-		if ( $skin['name'] == $mayflower_options['skin'] ) {
-		      $mayflower_current_skin = $skin;
-		}
-	}
-	$skin_thumbnail_url = mayflower_locate_template_uri( array( 'skins/' . $mayflower_options['skin'] . '.png' ), false, false );
-	$text = '';
-//	$text .= '<p>"Skin" refers to wine made from exclusively or predominantly one variety of grape. Each skin has unique flavor and aromatic characteristics. Refer to the contextual help screen for descriptions and help regarding each theme option.</p>';
-//	$text .= '<img class="mayflower-skin-thumb" src="' . $skin_thumbnail_url . '" width="150px" height="110px" alt="' . $mayflower_options['skin'] . '" />';
-//	$text .= '<h4>Current Skin</h4>';
-//	$text .= '<dl><dt><strong>' . $mayflower_current_skin['title'] . '</strong></dt><dd>' . $mayflower_current_skin['description'] . '</dd></dl>';
-	return $text;
-}
-*/
-?>

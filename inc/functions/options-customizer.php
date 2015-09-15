@@ -22,6 +22,13 @@
  *
  * @link	http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/	Otto
  */
+
+
+/**
+ * Note: 2015-08-3 — this area leverages BC depricated code from a 'theme options' page.
+ * This area would be improved by implimenting options within the customizer directly,
+ * instead of translating into customizer code. This would allow us to use more advanced options.
+ */
 function mayflower_register_theme_customizer( $wp_customize ){
 
 	// Failsafe is safe
@@ -37,11 +44,18 @@ function mayflower_register_theme_customizer( $wp_customize ){
 	// Get list of tabs
 	$tabs = mayflower_get_settings_page_tabs();
 
+	$wp_customize->add_panel( 'mayflower', array(
+		'title' => __( 'Mayflower Theme' ),
+		'description' => "<p>These settings center around the Bellevue College 'Mayflower' theme.</p>", // Include html tags such as <p>.
+		'priority' => 160, // Mixed with top-level-section hierarchy.
+	) );
+
 	// Add Sections
 	foreach ( $tabs as $tab ) {
 		// Add $tab section
 		$wp_customize->add_section( 'mayflower_' . $tab['name'], array(
-			'title'		=> 'Mayflower ' . $tab['title'] . ' Settings',
+			'title'		=> $tab['title'] . ' Settings',
+			'panel'     => 'mayflower',
 		) );
 	}
 
@@ -113,6 +127,3 @@ function mayflower_register_theme_customizer( $wp_customize ){
 }
 // Settings API options initilization and validation
 add_action( 'customize_register', 'mayflower_register_theme_customizer' );
-
-
-?>
