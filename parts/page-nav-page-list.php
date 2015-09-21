@@ -57,6 +57,7 @@
 
 								<div class="media-content content-padding">
 									<?php the_excerpt(); ?>
+									<?php edit_post_link( 'edit', '<small>', '</small>' ); ?>
 								</div><!-- media-content -->
 
 								<?php
