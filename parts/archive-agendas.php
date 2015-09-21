@@ -1,6 +1,6 @@
 <div class="content-padding">
 	<?php foreach(posts_by_year() as $year => $posts) : ?>
-		<h2><?php echo $year; ?></h2>
+		<h1><?php echo $year; ?></h1>
 		<ul>
 			<?php foreach($posts as $post) : setup_postdata($post); ?>
 				<li>

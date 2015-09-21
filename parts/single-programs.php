@@ -15,19 +15,19 @@ if (have_posts()) :
 		$office_hours = get_post_meta( get_the_ID(), 'office_hours', true );
 		$program_url = get_post_meta( get_the_ID(), 'program_url', true );
 		$budget_document_link = get_post_meta( get_the_ID(), 'budget_document_link', true );
-		
+
 
 		?>
 
-		
+
 		<div class="content-padding">
 
-			
+
 
 			<h1><?php the_title()?></h1>
 
 			<ul>
-				
+
 				<?php  if( !empty( $program_contact_name ) ) : ?>
 					<li>Program Contact Name: <strong><?php echo $program_contact_name; ?></strong></li>
 				<?php endif; ?>
@@ -51,9 +51,9 @@ if (have_posts()) :
 				<?php if( !empty( $program_url ) ) : ?>
 					<li>Program Website: <strong><a href="<?php echo $program_url; ?>"> <?php echo $program_url; ?> </a></strong></li>
 				<?php endif; ?>
-				
+
 			</ul>
-			
+
 			<?php the_content(); ?>
 			<?php if( !empty( $budget_document_link ) ) : ?>
 				<p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>

@@ -1,22 +1,14 @@
 <?php while ( have_posts() ) : the_post(); ?>
 
 	<div class="content-padding">
-    <?php 
-	if ( is_main_site()) {
-		if(intval($post->post_parent)>0){
-			?><h1><?php the_title(); ?></h1><?php
-		}
-	} else {
-		?><h1><?php the_title(); ?></h1><?php
-	}
-	?>
-	
+	<h1><?php the_title(); ?></h1>
+
 	<?php if($post->post_content=="") : ?>
 	<!-- Don't display empty the_content or surround divs -->
 
 	<?php else : ?>
 	<!-- Do stuff when the_content has content -->
-		
+
 				<?php the_content(); ?>
 	<?php endif; ?>
 		<?php
@@ -26,7 +18,7 @@
 	</div><!-- content-padding -->
 
 	<div class="content-padding nav-page nav-page-list">
-	
+
 		<?php
 			$args = array(
 				'post_type' => 'page',
@@ -37,9 +29,9 @@
 				'post_parent' => $post->ID
 			);
 			$loop = new WP_Query( $args );
-			
-			while ( $loop->have_posts() ) : $loop->the_post(); 
-		?>     
+
+			while ( $loop->have_posts() ) : $loop->the_post();
+		?>
 
 						<h2 <?php post_class() ?>>
 							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
@@ -49,7 +41,7 @@
 							<?php
 								if ( has_post_thumbnail() ) {
 									?>
-				
+
 									 <div class="pull-left wp-caption">
 										<a href="<?php the_permalink(); ?>">
 											<?php
@@ -67,26 +59,26 @@
 									<?php the_excerpt(); ?>
 								</div><!-- media-content -->
 
-							    <?php
+								<?php
 								if (is_single($post)){
 								?>
 
-						        <?php
+								<?php
 								} else {
 								?>
-						           <p>
+								   <p>
 										<!--<a class="btn btn-default btn-sm primary-read-more" href="<?php the_permalink(); ?>">
 									Read More <i class="icon-chevron-right"></i>
-							            </a>-->
-						            </p>
-						        <?php
+										</a>-->
+									</p>
+								<?php
 
 								}
 								?>
-						    </div><!-- media-body -->
+							</div><!-- media-body -->
 						</div><!-- media -->
 
 				<?php endwhile;?>
 				<?php wp_reset_postdata(); ?>
-		
+
 	</div><!-- content-padding .nav-page -->

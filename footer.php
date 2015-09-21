@@ -1,7 +1,7 @@
 <?php
 global $mayflower_brand;
 if ( $mayflower_brand == 'lite' ) {
-	get_template_part( 'part-flexnav' );
+	get_template_part( 'parts/flexnav' );
 } else { }
 ?>
 			</div><!-- row -->
@@ -13,8 +13,6 @@ if ( $mayflower_brand == 'lite' ) {
 
 if ( $mayflower_brand == 'lite' ) {
 	bc_footer_legal();
-} else if ( is_multisite_home() ){
-	bc_home_footer();
 } else {
 	bc_footer();
 }
