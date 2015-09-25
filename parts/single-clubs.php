@@ -1,6 +1,6 @@
 <?php
 
-/*  Template for displaying post type for the student-club plugin. .
+/*  Template for displaying post type for the student-club plugin.
     https://github.com/BellevueCollege/student-club
 */
 
@@ -33,7 +33,7 @@ if (have_posts()) :
 			WIll display as unchartered even if Chartered is *also* selected */
 
 			if ( !( $is_chartered ) ) { ?>
-				<div class="alert alert-danger text-center large">
+				<div class="alert alert-info text-center large">
 					<strong>This Club Has Not Chartered for the Current Academic Year</strong>
 				</div>
 			<?php } ?>
