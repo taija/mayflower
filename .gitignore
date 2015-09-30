@@ -22,3 +22,5 @@ $RECYCLE.BIN/
 # SASS Config
 config.rb
 .sass-cache
+
+.idea/
