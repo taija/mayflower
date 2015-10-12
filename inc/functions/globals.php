@@ -65,22 +65,6 @@ function bc_footer() {
 add_action('mayflower_footer', 'bc_footer', 50);
 
 /**
- * Add Homepage Specific Footer
- */
-function bc_home_footer() {
-	global $bc_globals_html_filepath,
-		$bc_globals_bfoot_filename,
-		$bc_globals_legal_filename;
-
-	$bc_footer =  $bc_globals_html_filepath . $bc_globals_bfoot_filename;
-	$bc_footerlegal =  $bc_globals_html_filepath . $bc_globals_legal_filename;
-	include_once($bc_footer);
-	get_template_part( 'front-page-legal' );
-	include_once($bc_footerlegal);
-}
-add_action('mayflower_footer', 'bc_home_footer', 50);
-
-/**
  * Add Legal Footer
  */
 function bc_footer_legal() {

@@ -74,13 +74,6 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 	require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' );
 }
 
-// Home Page
-if ( current_user_can('manage_network') ) {
-	if( file_exists(get_template_directory() . '/inc/mayflower-bc-home/bc-home.php') ) {
-		require( get_template_directory() . '/inc/mayflower-bc-home/bc-home.php');
-	}
-}
-
 
 ######################################
 // Customize Excerpt Read More
@@ -243,8 +236,32 @@ add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 // Add *_is_blog function
 #############################
 
-function mayflower_is_blog () {
+function mayflower_is_blog() {
 	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
+}
+
+
+#############################
+// Add has_active_sidebar function
+#############################
+function has_active_sidebar() {
+	if ( mayflower_is_blog() ) {
+		if (    is_active_sidebar( 'top-global-widget-area' ) ||
+				is_active_sidebar( 'blog-widget-area' ) ||
+				is_active_sidebar( 'global-widget-area' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		if (    is_active_sidebar( 'top-global-widget-area' ) ||
+				is_active_sidebar( 'page-widget-area' ) ||
+				is_active_sidebar( 'global-widget-area' ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 #############################
@@ -514,39 +531,9 @@ function mayflower_cpt_update_post_order() {
 	die( '1' );
 }
 
-/* Fire our meta box setup function on the post editor screen. */
-add_action( 'load-post.php', 'add_global_section_meta_box' );
-add_action( 'load-post-new.php', 'add_global_section_meta_box' );
-
 /////////////////////////
 // Custom Meta Boxes
 /////////////////////////
-
-
-
-/* Adds a box to the main column on the Post and Page edit screens */
-function add_global_section_meta_box() {
-	global $post;
-	if ( is_main_site()) {
-		if ( ! empty($post) && is_a($post, 'WP_Post') ) {
-			if ("0" == $post->post_parent){
-				$screens = array('page');
-				foreach ($screens as $screen) {
-					add_meta_box(
-						'global_section_meta_box',
-						'College Navigation Area',
-						'global_section_meta_box',
-						$screen,
-						'normal',
-						'low'
-					);
-				}
-			}
-		}
-	}
-}
-
-add_action('add_meta_boxes', 'add_global_section_meta_box');
 
 
 // Field Array

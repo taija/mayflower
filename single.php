@@ -1,9 +1,12 @@
 <?php
 /**
- * Template Name: Navigation Page (Grid)
+ * The Single Post Template File
+ *
+ * This displays all single posts
+ *
  */
-?>
-<?php get_header(); ?>
+
+get_header(); ?>
 <?php
 /**
  * Load Variables
@@ -20,15 +23,22 @@ $current_layout = $mayflower_options['default_layout'];
 
 		<?php if ( has_active_sidebar() ) : ?>
 			<div class="col-md-9 <?php  if ( $current_layout == 'sidebar-content' ) { ?>col-md-push-3<?php } ?>">
-		<?php endif;
+		<?php endif; ?>
 
-				get_template_part( 'parts/page-nav-page' );
+				<?php
+				/**
+				 * Get Single Template Part
+				 *
+				 * Check for post type. Look within 'parts/' directory.
+				 */
+				get_template_part( 'parts/single', get_post_type() ); ?>
 
-		if ( has_active_sidebar() ) : ?>
+		<?php if ( has_active_sidebar() ) : ?>
 			</div>
 			<?php get_sidebar();
 		endif; ?>
 	</div>
 
 </div><!-- #content-->
+
 <?php get_footer(); ?>
