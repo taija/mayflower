@@ -23,9 +23,11 @@ $current_layout = $mayflower_options['default_layout'];
 	/**
 	 * Load Featured Slideshow Full Width
 	 *
+	 * Load if selected, or if there is no sidebar.
 	 */
-	if ( $mayflower_options['slider_layout'] == 'featured-full' &&
-		 $mayflower_options['slider_toggle'] == 'true') {
+	if ( !( has_active_sidebar() ) ||
+		 ( $mayflower_options['slider_layout'] == 'featured-full' &&
+		 $mayflower_options['slider_toggle'] == 'true' ) ) {
 		get_template_part('parts/featured-full');
 	} ?>
 	<div class="row row-padding">
@@ -37,7 +39,8 @@ $current_layout = $mayflower_options['default_layout'];
 				 * Load Featured Slideshow in Content
 				 *
 				 */
-				if ( $mayflower_options['slider_toggle'] == 'true' &&
+				if ( has_active_sidebar() &&
+					 $mayflower_options['slider_toggle'] == 'true' &&
 					 $mayflower_options['slider_layout'] == 'featured-in-content' ) {
 					get_template_part( 'parts/featured-in-content' );?>
 					<div class="content-padding top-spacing30"> </div>
