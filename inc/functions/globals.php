@@ -51,16 +51,20 @@ add_action('mayflower_header','bc_tophead_big');
 
 /**
  * Add Globals 'branded' Footer
+ *
+ * Function is pluggable for easy changes in child themes
  */
-function bc_footer() {
-	global $bc_globals_html_filepath,
-		$bc_globals_bfoot_filename,
-		$bc_globals_legal_filename;
+if ( ! function_exists ( 'bc_footer' ) ) {
+	function bc_footer() {
+		global $bc_globals_html_filepath,
+			$bc_globals_bfoot_filename,
+			$bc_globals_legal_filename;
 
-	$bc_footer =  $bc_globals_html_filepath . $bc_globals_bfoot_filename;
-	$bc_footerlegal =  $bc_globals_html_filepath . $bc_globals_legal_filename;
-	include_once($bc_footer);
-	include_once($bc_footerlegal);
+		$bc_footer =  $bc_globals_html_filepath . $bc_globals_bfoot_filename;
+		$bc_footerlegal =  $bc_globals_html_filepath . $bc_globals_legal_filename;
+		include_once($bc_footer);
+		include_once($bc_footerlegal);
+	}
 }
 add_action('mayflower_footer', 'bc_footer', 50);
 
