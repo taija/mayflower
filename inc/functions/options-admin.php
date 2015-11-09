@@ -20,25 +20,25 @@ function mayflower_admin_only_register( $wp_customize ) {
 
 	$wp_customize->add_section( 'mayflower_admin_options' , array(
 		'title'      => __( 'Mayflower Admin Only ', 'mayflower_admin_only' ),
-		'panel' => 'mayflower',
+		'panel'      => 'mayflower',
 		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
 		'priority'   => 150,
 	) );
 	$wp_customize->add_setting( 'hide_searchform' , array(
-		'default'     => false,
-		'transport'   => 'refresh',
-		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
+		'default'           => false,
+		'transport'         => 'refresh',
+		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_checkbox',
 	) );
 	$wp_customize->add_setting( 'limit_searchform_scope' , array(
-		'default'     => false,
-		'transport'   => 'refresh',
-		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
+		'default'           => false,
+		'transport'         => 'refresh',
+		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_checkbox',
 	) );
 	$wp_customize->add_setting( 'custom_searchform_scope' , array(
-		'transport'   => 'refresh',
-		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
+		'transport'         => 'refresh',
+		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'hide_searchform', array(
