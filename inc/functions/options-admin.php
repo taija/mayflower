@@ -1,14 +1,22 @@
 <?
 /**
- * Theme Settings area
+ * Administrator Only Settings
  *
- * Configuration for Mayflower Homepage settings area
- * in the customizer
+ * Configuration for the Mayflower Admin Only
+ * settings section in the customizer
  */
 function mayflower_admin_only_register( $wp_customize ) {
 	
 	/**
+	 * Data Validation Functions
+	 *
+	 * These functions are refrenced via callbacks, and used
+	 * to sanitize setting inputs.
+	 */
+	/**
 	 * Validate checkbox input
+	 *
+	 * Return false if input is not true or 1
 	 */
 	function sanitize_checkbox( $input ) {
 		if ( $input == true || $input == 1 ) {
@@ -18,12 +26,25 @@ function mayflower_admin_only_register( $wp_customize ) {
 		}
 	}
 
+	/**
+	 * Add options using Customizer API
+	 */
+
+	/**
+	 * Create new section
+	 *
+	 * New section within Mayflower panel called Administrator Only
+	 */
 	$wp_customize->add_section( 'mayflower_admin_options' , array(
-		'title'      => __( 'Mayflower Admin Only ', 'mayflower_admin_only' ),
+		'title'      => __( 'Administrator Only ', 'mayflower_admin_only' ),
 		'panel'      => 'mayflower',
 		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
-		'priority'   => 150,
+		'priority'   => 300,
 	) );
+
+	/**
+	 * Add settings
+	 */
 	$wp_customize->add_setting( 'hide_searchform' , array(
 		'default'           => false,
 		'transport'         => 'refresh',
@@ -41,6 +62,10 @@ function mayflower_admin_only_register( $wp_customize ) {
 		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
+
+	/**
+	 * Add controls to collect information
+	 */
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'hide_searchform', array(
 		'label'        => __( 'Hide Search Form', 'hide_searchform' ),
 		'description'  => __( 'Hide Search in Mayflower Lite' ),
