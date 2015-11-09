@@ -36,7 +36,7 @@ function mayflower_admin_only_register( $wp_customize ) {
 	 * New section within Mayflower panel called Administrator Only
 	 */
 	$wp_customize->add_section( 'mayflower_admin_options' , array(
-		'title'      => __( 'Administrator Only ', 'mayflower_admin_only' ),
+		'title'      => __( 'Administrator Only ', 'mayflower' ),
 		'panel'      => 'mayflower',
 		'capability' => 'unfiltered_html', //Limit this section to Super-Admin only
 		'priority'   => 300,
@@ -67,22 +67,22 @@ function mayflower_admin_only_register( $wp_customize ) {
 	 * Add controls to collect information
 	 */
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'hide_searchform', array(
-		'label'        => __( 'Hide Search Form', 'hide_searchform' ),
-		'description'  => __( 'Hide Search in Mayflower Lite' ),
+		'label'        => __( 'Hide Search Form', 'mayflower' ),
+		'description'  => __( 'Hide Search in Mayflower Lite', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'hide_searchform',
 		'type'         => 'checkbox',
 	) ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'limit_searchform_scope', array(
-		'label'        => __( 'Limit Search Form Scope', 'limit_searchform_scope' ),
-		'description'  => __( 'Search within the subsite instead of within the master BC scope' ),
+		'label'        => __( 'Limit Search Form Scope', 'mayflower' ),
+		'description'  => __( 'Search within the subsite instead of within the master BC scope', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'limit_searchform_scope',
 		'type'         => 'checkbox',
 	) ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_searchform_scope', array(
-		'label'        => __( 'Custom Search Form Scope', 'custom_searchform_scope' ),
-		'description'  => __( 'Allows definition of custom scope. If none is defined, local site URL will be used. ' ),
+		'label'        => __( 'Custom Search Form Scope', 'mayflower' ),
+		'description'  => __( 'Allows definition of custom scope. If none is defined, local site URL will be used. ', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'custom_searchform_scope',
 		'type'         => 'text',
