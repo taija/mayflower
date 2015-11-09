@@ -4,7 +4,7 @@ Theme URI: http://bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.6.2.2
+Version: 2.6.2.3
 GitHub Theme URI: bellevuecollege/mayflower
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -47,22 +47,6 @@ video {
     margin: 20px 20px 5px 0;
 }
 
-.aligncenter,
-div.aligncenter,
-.alignright,
-div.alignright,
-.alignleft,
-div.alignleft,{
-    display: block;
-    margin: 5px auto;
-}
-a img.aligncenter,
-a img.alignright,
-a img.alignleft{
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
 @media screen and (min-width: 768px) {
 
     .alignright {
@@ -104,51 +88,17 @@ a img.alignleft{
 
 
 }
-.wp-caption  {
-	color: #595959;
-	font-size: .9em;
-	line-height: 1.666667em;
-    border: 1px solid #f0f0f0;
-    @include border-radius(5px);
-    max-width: 96%; /* Image does not overflow the content area */
-    padding: 3px;
-    padding-top: 6px;
-    text-align: center;
-}
 
 .wp-caption.alignnone {
     margin: 20px 20px 5px 0;
 }
 
-
-// Fix issue introduced by putting a border around media object— no margin between border and text.
-
-.wp-caption.pull-left {
-	padding-right: 0px;
-	margin-right: 10px;
-}
-
-.wp-caption.pull-right {
-	padding-left: 0px;
-	margin-left: 10px;
-}
-
-.wp-caption img,
-.gallery img {
-    border: 0 none;
-    height: auto;
-    margin: 0;
-    max-width: 98.5%;
-    padding: 0;
-    width: auto;
-}
 .wp-caption .wp-caption-text,
 .gallery-caption,
 .entry-caption {
     font-size: 11px;
     line-height: 16px;
-    margin: 0;
-    padding: 0 4px 5px;
+    margin: 5px 2px;
 }
 .wp-caption-dd  {
 	margin: 0;
