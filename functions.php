@@ -714,3 +714,14 @@ add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
 function my_embed_oembed_html($html, $url, $attr, $post_id) {
   return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
+
+/**
+ *  Add classes to image gallery container
+ */
+function mayflower_gallery_styles( $styles ) {
+	$search = "'>";
+	$replace = " clearfix row'>";
+	$styles = str_replace( $search, $replace, $styles );
+	return $styles;
+}
+add_action( 'gallery_style', 'mayflower_gallery_styles' );

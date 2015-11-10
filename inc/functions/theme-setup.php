@@ -196,6 +196,13 @@ function mayflower_setup() {
 	 */
 	add_image_size( 'home-small-ad', 300,200,true);
 
+	/**
+	 * Add theme support for HTML 5 Galleries
+	 *
+	 * Adds HTML5 style gallery markup
+	 */
+	add_theme_support( 'html5', array( 'gallery', 'caption' ) );
+
 	/*
 	 * Register Navigation Menu (Mayflower Lite)
 	 *
