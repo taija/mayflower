@@ -111,15 +111,39 @@ video {
 
 /* Mixins to automate column options */
 @mixin gallery-styles() {
+	// Legacy Flexbox
+	display: -webkit-box;
+	display: -moz-box;
+	-webkit-box-lines: multiple;
+	-moz-box-lines: multiple;
+	-webkit-box-orient: inline-axis;
+	-moz-box-orient: inline-axis;
+
+	// IE 10 / Transitional Flexbox
+	display: flexbox;
+	display: -ms-flexbox;
+	flex-direction: row;
+	-ms-flex-direction: row;
+	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+
+	// Modern Flexbox
 	@include display-flex(flex);
 	@include flex-flow(row wrap);
-	display: -ms-flexbox;
-	-ms-flex-direction: row;
-	-ms-flex-wrap: wrap;
+
 }
 @mixin gallery-styles-item( $columns, $gutter: 30px, $padding: .5em, $min-size:0px ) {
-	@include flex(auto);
+	// Legacy Flexbox
+	-webkit-box-flex: 0;
+	-moz-box-flex: 0;
+
+	// IE 10 / Transitional Flexbox
+	flex:auto;
 	-ms-flex:auto;
+
+	// Modern Flexbox
+	@include flex(auto);
+
 	width: (100%/$columns);
 	min-width: $min-size;
 	padding: $padding $gutter/2;

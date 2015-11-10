@@ -60,227 +60,227 @@ test embed, iframe, object, video { max-width: 100%; }
 /* ###################################### */
 /* Mixins to automate column options */
 /*Universal Styles for Gallery */
-/* line 129, sass/style.scss */
+/* line 153, sass/style.scss */
 .gallery-caption { text-align: center; }
 
-/* line 132, sass/style.scss */
+/* line 156, sass/style.scss */
 .gallery-item img { display: block; max-width: 100%; height: auto; margin-left: auto; margin-right: auto; }
 
-/* line 143, sass/style.scss */
-.gallery.gallery-columns-0 .gallery-item, .gallery.gallery-columns-1 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 100%; min-width: 0; padding: 2em 15px; }
+/* line 167, sass/style.scss */
+.gallery.gallery-columns-0 .gallery-item, .gallery.gallery-columns-1 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 100%; min-width: 0; padding: 2em 15px; }
 
-/* line 148, sass/style.scss */
-.gallery.gallery-columns-2 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 151, sass/style.scss */
-.gallery.gallery-columns-2 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 50%; min-width: 200px; padding: 2em 15px; }
-
-/* line 157, sass/style.scss */
-.gallery.gallery-columns-3 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 160, sass/style.scss */
-.gallery.gallery-columns-3 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 33.33333%; min-width: 200px; padding: 1em 15px; }
-
-/* line 166, sass/style.scss */
-.gallery.gallery-columns-4 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 169, sass/style.scss */
-.gallery.gallery-columns-4 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 25%; min-width: 200px; padding: 1em 15px; }
-
+/* line 172, sass/style.scss */
+.gallery.gallery-columns-2 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 /* line 175, sass/style.scss */
-.gallery.gallery-columns-5 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 178, sass/style.scss */
-.gallery.gallery-columns-5 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 20%; min-width: 150px; padding: 0.5em 15px; }
+.gallery.gallery-columns-2 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 50%; min-width: 200px; padding: 2em 15px; }
 
+/* line 181, sass/style.scss */
+.gallery.gallery-columns-3 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 /* line 184, sass/style.scss */
-.gallery.gallery-columns-6 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 187, sass/style.scss */
-.gallery.gallery-columns-6 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 16.66667%; min-width: 100px; padding: 0.5em 15px; }
+.gallery.gallery-columns-3 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 33.33333%; min-width: 200px; padding: 1em 15px; }
 
+/* line 190, sass/style.scss */
+.gallery.gallery-columns-4 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 /* line 193, sass/style.scss */
-.gallery.gallery-columns-7 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 196, sass/style.scss */
-.gallery.gallery-columns-7 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 14.28571%; min-width: 80px; padding: 0.5em 15px; }
+.gallery.gallery-columns-4 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 25%; min-width: 200px; padding: 1em 15px; }
 
+/* line 199, sass/style.scss */
+.gallery.gallery-columns-5 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 /* line 202, sass/style.scss */
-.gallery.gallery-columns-8 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 205, sass/style.scss */
-.gallery.gallery-columns-8 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 12.5%; min-width: 75px; padding: 0.5em 15px; }
+.gallery.gallery-columns-5 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 20%; min-width: 150px; padding: 0.5em 15px; }
 
+/* line 208, sass/style.scss */
+.gallery.gallery-columns-6 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 /* line 211, sass/style.scss */
-.gallery.gallery-columns-9 { display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; display: -ms-flexbox; -ms-flex-direction: row; -ms-flex-wrap: wrap; }
-/* line 214, sass/style.scss */
-.gallery.gallery-columns-9 .gallery-item { -webkit-flex: auto; flex: auto; -ms-flex: auto; width: 11.11111%; min-width: 50px; padding: 0.5em 15px; }
+.gallery.gallery-columns-6 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 16.66667%; min-width: 100px; padding: 0.5em 15px; }
+
+/* line 217, sass/style.scss */
+.gallery.gallery-columns-7 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
+/* line 220, sass/style.scss */
+.gallery.gallery-columns-7 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 14.28571%; min-width: 80px; padding: 0.5em 15px; }
+
+/* line 226, sass/style.scss */
+.gallery.gallery-columns-8 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
+/* line 229, sass/style.scss */
+.gallery.gallery-columns-8 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 12.5%; min-width: 75px; padding: 0.5em 15px; }
+
+/* line 235, sass/style.scss */
+.gallery.gallery-columns-9 { display: -webkit-box; display: -moz-box; -webkit-box-lines: multiple; -moz-box-lines: multiple; -webkit-box-orient: inline-axis; -moz-box-orient: inline-axis; display: flexbox; display: -ms-flexbox; flex-direction: row; -ms-flex-direction: row; flex-wrap: wrap; -ms-flex-wrap: wrap; display: -webkit-flex; display: flex; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
+/* line 238, sass/style.scss */
+.gallery.gallery-columns-9 .gallery-item { -webkit-box-flex: 0; -moz-box-flex: 0; flex: auto; -ms-flex: auto; -webkit-flex: auto; flex: auto; width: 11.11111%; min-width: 50px; padding: 0.5em 15px; }
 
 /* ####################################### */
 /* ----- Post template overrides ----- */
 /* ###################################### */
-/* line 221, sass/style.scss */
+/* line 245, sass/style.scss */
 .entry-date { font-size: .85em; margin-top: 0em; }
 
 /* ####################################### */
 /* ----- Page template overrides ----- */
 /* ###################################### */
-/* line 231, sass/style.scss */
+/* line 255, sass/style.scss */
 .nav-page h2 { margin-top: 0; }
 
-/* line 235, sass/style.scss */
+/* line 259, sass/style.scss */
 .nav-page-list h2 { margin-top: 2rem; }
 
-/* line 239, sass/style.scss */
+/* line 263, sass/style.scss */
 .nav-page img { margin-top: 0; display: inline; }
 
-/* line 244, sass/style.scss */
+/* line 268, sass/style.scss */
 div.nav-page { margin-bottom: 1em; }
 
-/* line 248, sass/style.scss */
+/* line 272, sass/style.scss */
 li.media { margin-left: 0; }
 
 /* ####################################### */
 /* ----- Staff CPT styles - to move  ----- */
 /* ###################################### */
-/* line 255, sass/style.scss */
+/* line 279, sass/style.scss */
 .staff-details h1, .staff-details h2, .staff-details h3 { padding: 0; margin: 0; }
 
 /*.staff-details h3 {
 	margin-bottom: 21px;
 }*/
-/* line 265, sass/style.scss */
+/* line 289, sass/style.scss */
 .staff-details h3 { font-style: normal; color: #000; }
 
-/* line 270, sass/style.scss */
+/* line 294, sass/style.scss */
 .staff-details ul { margin: 0; padding: 0; margin-bottom: 1em; }
 
-/* line 276, sass/style.scss */
+/* line 300, sass/style.scss */
 .staff-details li { list-style: none; margin-left: 1em; }
 
 /* ####################################### */
 /* ----- Header -------------------------- */
 /* ####################################### */
-/* line 285, sass/style.scss */
+/* line 309, sass/style.scss */
 img.header-image { max-width: 100%; height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */ max-height: 100px; }
 
-/* line 290, sass/style.scss */
+/* line 314, sass/style.scss */
 ul.header-social-links li { display: inline; }
 
 /* ####################################### */
 /* ----- Post & Page Content areas ------- */
 /* ####################################### */
-/* line 298, sass/style.scss */
+/* line 322, sass/style.scss */
 .single-featured-thumb { margin: 1.333em 1.3333em .3333em 0; }
 
 /* Center images on small screens. Not mobile first... */
-@media screen and (max-width: 769px) { /* line 304, sass/style.scss */
+@media screen and (max-width: 769px) { /* line 328, sass/style.scss */
   .single-featured-thumb { margin-left: auto; margin-right: auto; width: 100%; }
-  /* line 308, sass/style.scss */
+  /* line 332, sass/style.scss */
   .single-featured-thumb img.img-responsive { display: inline; } }
 /* ####################################### */
 /* ----- Gravity Forms Display Over-Rides ------- */
 /* ####################################### */
-/* line 319, sass/style.scss */
+/* line 343, sass/style.scss */
 .gform_wrapper input, .gform_wrapper textarea, .gform_wrapper select { line-height: 1em; border: 1px solid #aaa; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-/* line 328, sass/style.scss */
+/* line 352, sass/style.scss */
 .gform_wrapper input:focus, .gform_wrapper textarea:focus, .gform_wrapper select:focus { border-color: #66afe9; outline: 0; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
-/* line 336, sass/style.scss */
+/* line 360, sass/style.scss */
 .gform_wrapper input[type=radio] { margin-left: 0.1em !important; /* messy, but needed to stop the right edge from being cut off */ }
 
 /* ####################################### */
 /* ----- Navigation/widget areas styles ----- */
 /* ###################################### */
-/* line 348, sass/style.scss */
-.sidebar h2.widget-title { color: white; font-size: 1em; background-color: #003d79; line-height: 1.66667em; }
-/* line 354, sass/style.scss */
-.sidebar div.textwidget, .sidebar div.tagcloud { padding-left: 2em; margin-top: 0.333333em; }
-/* line 358, sass/style.scss */
-.sidebar .wp-widget { margin-bottom: 2em; }
-/* line 361, sass/style.scss */
-.sidebar .wp-widget > ul, .sidebar .wp-widget > ol { margin: 0; padding: 0; }
-/* line 366, sass/style.scss */
-.sidebar ul.menu, .sidebar ul { border-top: 1px solid #F0F4F7; border-bottom: 1px solid #F0F4F7; }
 /* line 372, sass/style.scss */
-.sidebar ul.menu ul, .sidebar ul ul { margin: 0; padding: 0; }
-/* line 377, sass/style.scss */
-.sidebar .menu li, .sidebar li { list-style-type: none; padding: 0; margin: 0; line-height: 1.33333em; }
-/* line 384, sass/style.scss */
-.sidebar .menu a, .sidebar li a { padding: 0.3333em 1em; display: block; }
-/* line 389, sass/style.scss */
-.sidebar .menu a { border-top: 1px solid #F0F4F7; }
-/* line 392, sass/style.scss */
-.sidebar h2 + div ul.menu { border-top: none; }
+.sidebar h2.widget-title { color: white; font-size: 1em; background-color: #003d79; line-height: 1.66667em; }
+/* line 378, sass/style.scss */
+.sidebar div.textwidget, .sidebar div.tagcloud { padding-left: 2em; margin-top: 0.333333em; }
+/* line 382, sass/style.scss */
+.sidebar .wp-widget { margin-bottom: 2em; }
+/* line 385, sass/style.scss */
+.sidebar .wp-widget > ul, .sidebar .wp-widget > ol { margin: 0; padding: 0; }
+/* line 390, sass/style.scss */
+.sidebar ul.menu, .sidebar ul { border-top: 1px solid #F0F4F7; border-bottom: 1px solid #F0F4F7; }
 /* line 396, sass/style.scss */
+.sidebar ul.menu ul, .sidebar ul ul { margin: 0; padding: 0; }
+/* line 401, sass/style.scss */
+.sidebar .menu li, .sidebar li { list-style-type: none; padding: 0; margin: 0; line-height: 1.33333em; }
+/* line 408, sass/style.scss */
+.sidebar .menu a, .sidebar li a { padding: 0.3333em 1em; display: block; }
+/* line 413, sass/style.scss */
+.sidebar .menu a { border-top: 1px solid #F0F4F7; }
+/* line 416, sass/style.scss */
+.sidebar h2 + div ul.menu { border-top: none; }
+/* line 420, sass/style.scss */
 .sidebar .sub-menu li a { padding-left: 2.33333em; border-top: 1px dotted #F0F4F7; }
-/* line 400, sass/style.scss */
+/* line 424, sass/style.scss */
 .sidebar .sub-menu li a .sub-menu .sub-menu li a { padding-left: 3.66666em; }
-/* line 404, sass/style.scss */
+/* line 428, sass/style.scss */
 .sidebar .menu .current_page_item > a, .sidebar .current_page_item > a, .sidebar .current-cat > a { text-decoration: none; color: #555; }
-/* line 410, sass/style.scss */
+/* line 434, sass/style.scss */
 .sidebar .wp-widget select { margin: .5em 2em; }
 
-/* line 415, sass/style.scss */
+/* line 439, sass/style.scss */
 .sidebarleft .menu, .sidebarleft ul { border-right: 1px solid #E6E6E6; }
 
-/* line 419, sass/style.scss */
+/* line 443, sass/style.scss */
 .sidebarright .menu, .sidebarright ul { border-left: 1px solid #E6E6E6; }
 
-/* line 424, sass/style.scss */
+/* line 448, sass/style.scss */
 .sidebar .menu > li:first-child > a, .sidebar > li:first-child > a { border-top: none; }
 
-@media screen and (min-width: 55em) { /* line 431, sass/style.scss */
+@media screen and (min-width: 55em) { /* line 455, sass/style.scss */
   .sidebar .menu a, .sidebar li a { padding-left: 2em; padding-right: 2em; }
-  /* line 436, sass/style.scss */
+  /* line 460, sass/style.scss */
   .sidebar .sub-menu li a { padding-left: 3.33333em; }
-  /* line 439, sass/style.scss */
+  /* line 463, sass/style.scss */
   .sidebar .sub-menu li a .sub-menu li a { padding-left: 4.66666em; } }
-@media screen and (min-width: 37em) { /* line 448, sass/style.scss */
+@media screen and (min-width: 37em) { /* line 472, sass/style.scss */
   .sidebar .wp-widget { font-size: 0.9em; } }
-@media screen and (min-width: 55em) { /* line 454, sass/style.scss */
+@media screen and (min-width: 55em) { /* line 478, sass/style.scss */
   .sidebar .wp-widget { font-size: 1em; } }
 /* Categories Widget */
-/* line 461, sass/style.scss */
+/* line 485, sass/style.scss */
 .widget_categories li a { display: inline; line-height: 1.666667em; padding: 0 0 0 2em; }
 
 /* RSS Widget */
-/* line 467, sass/style.scss */
+/* line 491, sass/style.scss */
 .sidebar .wp-widget h2 a.rsswidget { color: #fff; }
 
-/* line 470, sass/style.scss */
+/* line 494, sass/style.scss */
 .sidebar .wp-widget div.rssSummary, .sidebar .wp-widget span.rss-date { padding: 0em 2em; }
 
-/* line 473, sass/style.scss */
+/* line 497, sass/style.scss */
 .sidebar .wp-widget span.rss-date { line-height: 1.666666em; color: #AAAAAA; font-size: 0.75em; margin-left: 0.7em; }
 
 /* List Category Posts Widget */
-/* line 480, sass/style.scss */
+/* line 504, sass/style.scss */
 .widget_listcategorypostswidget h5 { margin-top: .5em; }
 
-/* line 483, sass/style.scss */
+/* line 507, sass/style.scss */
 .widget_listcategorypostswidget ul img, ul.lcp_catlist .lcp_thumbnail img { background: #fff; color: #888; font-size: .9em; line-height: 1.666667em; border: 1px solid #f0f0f0; max-width: 96%; /* Image does not overflow the content area */ padding: 3px; text-align: center; }
 
-/* line 493, sass/style.scss */
+/* line 517, sass/style.scss */
 .widget_listcategorypostswidget a, .widget_listcategorypostswidget li { padding: 0 2em; }
 
-/* line 496, sass/style.scss */
+/* line 520, sass/style.scss */
 .widget_listcategorypostswidget li a { padding: 0; }
 
-/* line 499, sass/style.scss */
+/* line 523, sass/style.scss */
 .widget_listcategorypostswidget hr { display: none; }
 
-/* line 502, sass/style.scss */
+/* line 526, sass/style.scss */
 .lcp_catlist li { clear: both; }
 
-/* line 507, sass/style.scss */
+/* line 531, sass/style.scss */
 ul.lcp_catlist { list-style-type: none; border: none; }
 
-/* line 511, sass/style.scss */
+/* line 535, sass/style.scss */
 ul.lcp_catlist li { margin-top: .5em; margin-left: 0; }
 
 /* Really Simple Twitter Widget */
-/* line 516, sass/style.scss */
+/* line 540, sass/style.scss */
 ul.really_simple_twitter_widget li { line-height: 1.4em; padding: 1em; }
 
-/* line 521, sass/style.scss */
+/* line 545, sass/style.scss */
 ul.really_simple_twitter_widget li a { display: inline; border: none; padding: 0em; }
 
 /* Gravity Forms Widget */
-/* line 528, sass/style.scss */
+/* line 552, sass/style.scss */
 .gform_widget .gform_wrapper { padding: 0 2em; }
 
-/* line 531, sass/style.scss */
+/* line 555, sass/style.scss */
 .gform_widget ul.gform_fields { border: none; }
