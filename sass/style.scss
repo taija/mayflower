@@ -80,6 +80,13 @@ video {
 
 }
 
+.wp-post-image.alignright,
+.wp-post-image.alignleft,
+.wp-caption.alignright,
+.wp-caption.alignleft{
+	max-width: 100%;
+}
+
 .wp-caption.alignnone {
     margin: 20px 20px 5px 0;
 }

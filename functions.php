@@ -725,3 +725,50 @@ function mayflower_gallery_styles( $styles ) {
 	return $styles;
 }
 add_action( 'gallery_style', 'mayflower_gallery_styles' );
+
+/**
+ * Filter Image Caption Shortcode to remove width
+ *
+ * Unfortionatly this whole functionality set had to be duplicated from core,
+ * as I was unable to get the img_caption_shortcode_width filter to function.
+ */
+add_filter('img_caption_shortcode','fix_img_caption_shortcode_inline_style',10,3);
+
+function fix_img_caption_shortcode_inline_style( $output,$attr,$content ) {
+	$atts = shortcode_atts( array(
+		'id'      => '',
+		'align'   => 'alignnone',
+		'width'   => '',
+		'caption' => '',
+		'class'   => '',
+	), $attr, 'caption' );
+
+	$atts['width'] = (int) $atts['width'];
+	if ( $atts['width'] < 1 || empty( $atts['caption'] ) )
+		return $content;
+
+	if ( ! empty( $atts['id'] ) )
+		$atts['id'] = 'id="' . esc_attr( sanitize_html_class( $atts['id'] ) ) . '" ';
+
+	$class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
+
+	$html5 = current_theme_supports( 'html5', 'caption' );
+	// HTML5 captions never added the extra 10px to the image width
+	$width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
+
+	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
+		$style = '';
+		if ( $caption_width )
+			$style = ''; // This is the only change from WP Core! This has been removed
+
+			$html = '';
+			if ( $html5 ) {
+				$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+					. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+			} else {
+				$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+					. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
+			}
+
+	return $html;
+}
