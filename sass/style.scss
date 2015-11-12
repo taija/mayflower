@@ -112,18 +112,17 @@ video {
 /* Mixins to automate column options */
 @mixin gallery-styles-item( $columns, $gutter: 30px, $padding: .5em, $min-size:0px ) {
 	// Legacy Flexbox
-	-webkit-box-flex: 0;
-	-moz-box-flex: 0;
+	-webkit-box-flex: 1 1 $min-size;
+	-moz-box-flex: 1 1 $min-size;
 
 	// IE 10 / Transitional Flexbox
-	flex:auto;
-	-ms-flex:auto;
+	flex: 1 1 $min-size;
+	-ms-flex: 1 1 $min-size;
 
 	// Modern Flexbox
-	@include flex(auto);
+	@include flex(1 1 $min-size);
 
 	width: (100%/$columns);
-	min-width: $min-size;
 	padding: $padding $gutter/2;
 }
 
@@ -221,6 +220,11 @@ video {
 	.gallery-item {
 		@include gallery-styles-item(9, 30px, .5em, 50px);
 	}
+}
+
+// Add wrap support for old browsers
+.no-flexwrap .gallery-item {
+	display: inline-block;
 }
 /* ####################################### */
 /* ----- Post template overrides ----- */

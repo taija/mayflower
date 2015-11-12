@@ -116,7 +116,7 @@ video {
 /* ###################################### */
 /* Mixins to automate column options */
 /*Universal Styles for Gallery */
-/* line 131, sass/style.scss */
+/* line 130, sass/style.scss */
 .gallery {
   display: -webkit-box;
   display: -moz-box;
@@ -136,12 +136,12 @@ video {
   flex-flow: row wrap;
 }
 
-/* line 152, sass/style.scss */
+/* line 151, sass/style.scss */
 .gallery-caption {
   text-align: center;
 }
 
-/* line 155, sass/style.scss */
+/* line 154, sass/style.scss */
 .gallery-item img {
   display: block;
   max-width: 100%;
@@ -150,128 +150,124 @@ video {
   margin-right: auto;
 }
 
-/* line 166, sass/style.scss */
+/* line 165, sass/style.scss */
 .gallery.gallery-columns-0 .gallery-item,
 .gallery.gallery-columns-1 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 0;
+  -moz-box-flex: 1 1 0;
+  flex: 1 1 0;
+  -ms-flex: 1 1 0;
+  -webkit-flex: 1 1 0;
+  flex: 1 1 0;
   width: 100%;
-  min-width: 0;
   padding: 2em 15px;
 }
 
-/* line 172, sass/style.scss */
+/* line 171, sass/style.scss */
 .gallery.gallery-columns-2 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 200px;
+  -moz-box-flex: 1 1 200px;
+  flex: 1 1 200px;
+  -ms-flex: 1 1 200px;
+  -webkit-flex: 1 1 200px;
+  flex: 1 1 200px;
   width: 50%;
-  min-width: 200px;
   padding: 2em 15px;
 }
 
-/* line 179, sass/style.scss */
+/* line 178, sass/style.scss */
 .gallery.gallery-columns-3 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 200px;
+  -moz-box-flex: 1 1 200px;
+  flex: 1 1 200px;
+  -ms-flex: 1 1 200px;
+  -webkit-flex: 1 1 200px;
+  flex: 1 1 200px;
   width: 33.33333%;
-  min-width: 200px;
   padding: 1em 15px;
 }
 
-/* line 186, sass/style.scss */
+/* line 185, sass/style.scss */
 .gallery.gallery-columns-4 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 200px;
+  -moz-box-flex: 1 1 200px;
+  flex: 1 1 200px;
+  -ms-flex: 1 1 200px;
+  -webkit-flex: 1 1 200px;
+  flex: 1 1 200px;
   width: 25%;
-  min-width: 200px;
   padding: 1em 15px;
 }
 
-/* line 193, sass/style.scss */
+/* line 192, sass/style.scss */
 .gallery.gallery-columns-5 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 150px;
+  -moz-box-flex: 1 1 150px;
+  flex: 1 1 150px;
+  -ms-flex: 1 1 150px;
+  -webkit-flex: 1 1 150px;
+  flex: 1 1 150px;
   width: 20%;
-  min-width: 150px;
   padding: 0.5em 15px;
 }
 
-/* line 200, sass/style.scss */
+/* line 199, sass/style.scss */
 .gallery.gallery-columns-6 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 100px;
+  -moz-box-flex: 1 1 100px;
+  flex: 1 1 100px;
+  -ms-flex: 1 1 100px;
+  -webkit-flex: 1 1 100px;
+  flex: 1 1 100px;
   width: 16.66667%;
-  min-width: 100px;
   padding: 0.5em 15px;
 }
 
-/* line 207, sass/style.scss */
+/* line 206, sass/style.scss */
 .gallery.gallery-columns-7 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 80px;
+  -moz-box-flex: 1 1 80px;
+  flex: 1 1 80px;
+  -ms-flex: 1 1 80px;
+  -webkit-flex: 1 1 80px;
+  flex: 1 1 80px;
   width: 14.28571%;
-  min-width: 80px;
   padding: 0.5em 15px;
 }
 
-/* line 214, sass/style.scss */
+/* line 213, sass/style.scss */
 .gallery.gallery-columns-8 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 75px;
+  -moz-box-flex: 1 1 75px;
+  flex: 1 1 75px;
+  -ms-flex: 1 1 75px;
+  -webkit-flex: 1 1 75px;
+  flex: 1 1 75px;
   width: 12.5%;
-  min-width: 75px;
   padding: 0.5em 15px;
 }
 
-/* line 221, sass/style.scss */
+/* line 220, sass/style.scss */
 .gallery.gallery-columns-9 .gallery-item {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  flex: auto;
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
+  -webkit-box-flex: 1 1 50px;
+  -moz-box-flex: 1 1 50px;
+  flex: 1 1 50px;
+  -ms-flex: 1 1 50px;
+  -webkit-flex: 1 1 50px;
+  flex: 1 1 50px;
   width: 11.11111%;
-  min-width: 50px;
   padding: 0.5em 15px;
+}
+
+/* line 226, sass/style.scss */
+.no-flexwrap .gallery-item {
+  display: inline-block;
 }
 
 /* ####################################### */
 /* ----- Post template overrides ----- */
 /* ###################################### */
-/* line 228, sass/style.scss */
+/* line 232, sass/style.scss */
 .entry-date {
   font-size: .85em;
   margin-top: 0em;
@@ -280,28 +276,28 @@ video {
 /* ####################################### */
 /* ----- Page template overrides ----- */
 /* ###################################### */
-/* line 238, sass/style.scss */
+/* line 242, sass/style.scss */
 .nav-page h2 {
   margin-top: 0;
 }
 
-/* line 242, sass/style.scss */
+/* line 246, sass/style.scss */
 .nav-page-list h2 {
   margin-top: 2rem;
 }
 
-/* line 246, sass/style.scss */
+/* line 250, sass/style.scss */
 .nav-page img {
   margin-top: 0;
   display: inline;
 }
 
-/* line 251, sass/style.scss */
+/* line 255, sass/style.scss */
 div.nav-page {
   margin-bottom: 1em;
 }
 
-/* line 255, sass/style.scss */
+/* line 259, sass/style.scss */
 li.media {
   margin-left: 0;
 }
@@ -309,7 +305,7 @@ li.media {
 /* ####################################### */
 /* ----- Staff CPT styles - to move  ----- */
 /* ###################################### */
-/* line 262, sass/style.scss */
+/* line 266, sass/style.scss */
 .staff-details h1,
 .staff-details h2,
 .staff-details h3 {
@@ -320,20 +316,20 @@ li.media {
 /*.staff-details h3 {
 	margin-bottom: 21px;
 }*/
-/* line 272, sass/style.scss */
+/* line 276, sass/style.scss */
 .staff-details h3 {
   font-style: normal;
   color: #000;
 }
 
-/* line 277, sass/style.scss */
+/* line 281, sass/style.scss */
 .staff-details ul {
   margin: 0;
   padding: 0;
   margin-bottom: 1em;
 }
 
-/* line 283, sass/style.scss */
+/* line 287, sass/style.scss */
 .staff-details li {
   list-style: none;
   margin-left: 1em;
@@ -342,7 +338,7 @@ li.media {
 /* ####################################### */
 /* ----- Header -------------------------- */
 /* ####################################### */
-/* line 292, sass/style.scss */
+/* line 296, sass/style.scss */
 img.header-image {
   max-width: 100%;
   height: auto;
@@ -350,7 +346,7 @@ img.header-image {
   max-height: 100px;
 }
 
-/* line 297, sass/style.scss */
+/* line 301, sass/style.scss */
 ul.header-social-links li {
   display: inline;
 }
@@ -358,20 +354,20 @@ ul.header-social-links li {
 /* ####################################### */
 /* ----- Post & Page Content areas ------- */
 /* ####################################### */
-/* line 305, sass/style.scss */
+/* line 309, sass/style.scss */
 .single-featured-thumb {
   margin: 1.333em 1.3333em .3333em 0;
 }
 
 /* Center images on small screens. Not mobile first... */
 @media screen and (max-width: 769px) {
-  /* line 311, sass/style.scss */
+  /* line 315, sass/style.scss */
   .single-featured-thumb {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
-  /* line 315, sass/style.scss */
+  /* line 319, sass/style.scss */
   .single-featured-thumb img.img-responsive {
     display: inline;
   }
@@ -379,7 +375,7 @@ ul.header-social-links li {
 /* ####################################### */
 /* ----- Gravity Forms Display Over-Rides ------- */
 /* ####################################### */
-/* line 326, sass/style.scss */
+/* line 330, sass/style.scss */
 .gform_wrapper input,
 .gform_wrapper textarea,
 .gform_wrapper select {
@@ -390,7 +386,7 @@ ul.header-social-links li {
   -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-/* line 335, sass/style.scss */
+/* line 339, sass/style.scss */
 .gform_wrapper input:focus,
 .gform_wrapper textarea:focus,
 .gform_wrapper select:focus {
@@ -398,7 +394,7 @@ ul.header-social-links li {
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-/* line 343, sass/style.scss */
+/* line 347, sass/style.scss */
 .gform_wrapper input[type=radio] {
   margin-left: 0.1em !important;
   /* messy, but needed to stop the right edge from being cut off */
@@ -407,41 +403,41 @@ ul.header-social-links li {
 /* ####################################### */
 /* ----- Navigation/widget areas styles ----- */
 /* ###################################### */
-/* line 355, sass/style.scss */
+/* line 359, sass/style.scss */
 .sidebar h2.widget-title {
   color: white;
   font-size: 1em;
   background-color: #003d79;
   line-height: 1.66667em;
 }
-/* line 361, sass/style.scss */
+/* line 365, sass/style.scss */
 .sidebar div.textwidget, .sidebar div.tagcloud {
   padding-left: 2em;
   margin-top: 0.333333em;
 }
-/* line 365, sass/style.scss */
+/* line 369, sass/style.scss */
 .sidebar .wp-widget {
   margin-bottom: 2em;
 }
-/* line 368, sass/style.scss */
+/* line 372, sass/style.scss */
 .sidebar .wp-widget > ul,
 .sidebar .wp-widget > ol {
   margin: 0;
   padding: 0;
 }
-/* line 373, sass/style.scss */
+/* line 377, sass/style.scss */
 .sidebar ul.menu,
 .sidebar ul {
   border-top: 1px solid #F0F4F7;
   border-bottom: 1px solid #F0F4F7;
 }
-/* line 379, sass/style.scss */
+/* line 383, sass/style.scss */
 .sidebar ul.menu ul,
 .sidebar ul ul {
   margin: 0;
   padding: 0;
 }
-/* line 384, sass/style.scss */
+/* line 388, sass/style.scss */
 .sidebar .menu li,
 .sidebar li {
   list-style-type: none;
@@ -449,89 +445,89 @@ ul.header-social-links li {
   margin: 0;
   line-height: 1.33333em;
 }
-/* line 391, sass/style.scss */
+/* line 395, sass/style.scss */
 .sidebar .menu a,
 .sidebar li a {
   padding: 0.3333em 1em;
   display: block;
 }
-/* line 396, sass/style.scss */
+/* line 400, sass/style.scss */
 .sidebar .menu a {
   border-top: 1px solid #F0F4F7;
 }
-/* line 399, sass/style.scss */
+/* line 403, sass/style.scss */
 .sidebar h2 + div ul.menu {
   border-top: none;
 }
-/* line 403, sass/style.scss */
+/* line 407, sass/style.scss */
 .sidebar .sub-menu li a {
   padding-left: 2.33333em;
   border-top: 1px dotted #F0F4F7;
 }
-/* line 407, sass/style.scss */
+/* line 411, sass/style.scss */
 .sidebar .sub-menu li a .sub-menu .sub-menu li a {
   padding-left: 3.66666em;
 }
-/* line 411, sass/style.scss */
+/* line 415, sass/style.scss */
 .sidebar .menu .current_page_item > a,
 .sidebar .current_page_item > a,
 .sidebar .current-cat > a {
   text-decoration: none;
   color: #555;
 }
-/* line 417, sass/style.scss */
+/* line 421, sass/style.scss */
 .sidebar .wp-widget select {
   margin: .5em 2em;
 }
 
-/* line 422, sass/style.scss */
+/* line 426, sass/style.scss */
 .sidebarleft .menu,
 .sidebarleft ul {
   border-right: 1px solid #E6E6E6;
 }
 
-/* line 426, sass/style.scss */
+/* line 430, sass/style.scss */
 .sidebarright .menu,
 .sidebarright ul {
   border-left: 1px solid #E6E6E6;
 }
 
-/* line 431, sass/style.scss */
+/* line 435, sass/style.scss */
 .sidebar .menu > li:first-child > a,
 .sidebar > li:first-child > a {
   border-top: none;
 }
 
 @media screen and (min-width: 55em) {
-  /* line 438, sass/style.scss */
+  /* line 442, sass/style.scss */
   .sidebar .menu a,
   .sidebar li a {
     padding-left: 2em;
     padding-right: 2em;
   }
-  /* line 443, sass/style.scss */
+  /* line 447, sass/style.scss */
   .sidebar .sub-menu li a {
     padding-left: 3.33333em;
   }
-  /* line 446, sass/style.scss */
+  /* line 450, sass/style.scss */
   .sidebar .sub-menu li a .sub-menu li a {
     padding-left: 4.66666em;
   }
 }
 @media screen and (min-width: 37em) {
-  /* line 455, sass/style.scss */
+  /* line 459, sass/style.scss */
   .sidebar .wp-widget {
     font-size: 0.9em;
   }
 }
 @media screen and (min-width: 55em) {
-  /* line 461, sass/style.scss */
+  /* line 465, sass/style.scss */
   .sidebar .wp-widget {
     font-size: 1em;
   }
 }
 /* Categories Widget */
-/* line 468, sass/style.scss */
+/* line 472, sass/style.scss */
 .widget_categories li a {
   display: inline;
   line-height: 1.666667em;
@@ -539,17 +535,17 @@ ul.header-social-links li {
 }
 
 /* RSS Widget */
-/* line 474, sass/style.scss */
+/* line 478, sass/style.scss */
 .sidebar .wp-widget h2 a.rsswidget {
   color: #fff;
 }
 
-/* line 477, sass/style.scss */
+/* line 481, sass/style.scss */
 .sidebar .wp-widget div.rssSummary, .sidebar .wp-widget span.rss-date {
   padding: 0em 2em;
 }
 
-/* line 480, sass/style.scss */
+/* line 484, sass/style.scss */
 .sidebar .wp-widget span.rss-date {
   line-height: 1.666666em;
   color: #AAAAAA;
@@ -558,12 +554,12 @@ ul.header-social-links li {
 }
 
 /* List Category Posts Widget */
-/* line 487, sass/style.scss */
+/* line 491, sass/style.scss */
 .widget_listcategorypostswidget h5 {
   margin-top: .5em;
 }
 
-/* line 490, sass/style.scss */
+/* line 494, sass/style.scss */
 .widget_listcategorypostswidget ul img, ul.lcp_catlist .lcp_thumbnail img {
   background: #fff;
   color: #888;
@@ -576,46 +572,46 @@ ul.header-social-links li {
   text-align: center;
 }
 
-/* line 500, sass/style.scss */
+/* line 504, sass/style.scss */
 .widget_listcategorypostswidget a, .widget_listcategorypostswidget li {
   padding: 0 2em;
 }
 
-/* line 503, sass/style.scss */
+/* line 507, sass/style.scss */
 .widget_listcategorypostswidget li a {
   padding: 0;
 }
 
-/* line 506, sass/style.scss */
+/* line 510, sass/style.scss */
 .widget_listcategorypostswidget hr {
   display: none;
 }
 
-/* line 509, sass/style.scss */
+/* line 513, sass/style.scss */
 .lcp_catlist li {
   clear: both;
 }
 
-/* line 514, sass/style.scss */
+/* line 518, sass/style.scss */
 ul.lcp_catlist {
   list-style-type: none;
   border: none;
 }
 
-/* line 518, sass/style.scss */
+/* line 522, sass/style.scss */
 ul.lcp_catlist li {
   margin-top: .5em;
   margin-left: 0;
 }
 
 /* Really Simple Twitter Widget */
-/* line 523, sass/style.scss */
+/* line 527, sass/style.scss */
 ul.really_simple_twitter_widget li {
   line-height: 1.4em;
   padding: 1em;
 }
 
-/* line 528, sass/style.scss */
+/* line 532, sass/style.scss */
 ul.really_simple_twitter_widget li a {
   display: inline;
   border: none;
@@ -623,12 +619,12 @@ ul.really_simple_twitter_widget li a {
 }
 
 /* Gravity Forms Widget */
-/* line 535, sass/style.scss */
+/* line 539, sass/style.scss */
 .gform_widget .gform_wrapper {
   padding: 0 2em;
 }
 
-/* line 538, sass/style.scss */
+/* line 542, sass/style.scss */
 .gform_widget ul.gform_fields {
   border: none;
 }
