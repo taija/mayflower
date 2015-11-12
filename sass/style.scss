@@ -119,18 +119,19 @@ video {
 /* Mixins to automate column options */
 @mixin gallery-styles-item( $columns, $gutter: 30px, $padding: .5em, $min-size:0px ) {
 	// Legacy Flexbox
-	-webkit-box-flex: 1 1 $min-size;
-	-moz-box-flex: 1 1 $min-size;
+	-webkit-box-flex: 0 0 auto;
+	-moz-box-flex: 0 0 auto;
 
 	// IE 10 / Transitional Flexbox
-	flex: 1 1 $min-size;
-	-ms-flex: 1 1 $min-size;
+	flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
 
 	// Modern Flexbox
-	@include flex(1 1 $min-size);
+	@include flex(0 0 auto);
 
 	width: (100%/$columns);
 	padding: $padding $gutter/2;
+	min-width: $min-size;
 }
 
 /*Universal Styles for Gallery */
