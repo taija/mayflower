@@ -110,28 +110,6 @@ video {
 /* ###################################### */
 
 /* Mixins to automate column options */
-@mixin gallery-styles() {
-	// Legacy Flexbox
-	display: -webkit-box;
-	display: -moz-box;
-	-webkit-box-lines: multiple;
-	-moz-box-lines: multiple;
-	-webkit-box-orient: inline-axis;
-	-moz-box-orient: inline-axis;
-
-	// IE 10 / Transitional Flexbox
-	display: flexbox;
-	display: -ms-flexbox;
-	flex-direction: row;
-	-ms-flex-direction: row;
-	flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-
-	// Modern Flexbox
-	@include display-flex(flex);
-	@include flex-flow(row wrap);
-
-}
 @mixin gallery-styles-item( $columns, $gutter: 30px, $padding: .5em, $min-size:0px ) {
 	// Legacy Flexbox
 	-webkit-box-flex: 0;
@@ -150,6 +128,27 @@ video {
 }
 
 /*Universal Styles for Gallery */
+.gallery {
+	// Legacy Flexbox
+	display: -webkit-box;
+	display: -moz-box;
+	-webkit-box-lines: multiple;
+	-moz-box-lines: multiple;
+	-webkit-box-orient: horizontal;
+	-moz-box-orient: horizontal;
+
+	// IE 10 / Transitional Flexbox
+	display: flexbox;
+	display: -ms-flexbox;
+	flex-direction: row;
+	-ms-flex-direction: row;
+	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+
+	// Modern Flexbox
+	@include display-flex(flex);
+	@include flex-flow(row wrap);
+}
 .gallery-caption {
 	text-align: center;
 }
@@ -170,8 +169,6 @@ video {
 }
 // Two Column
 .gallery.gallery-columns-2 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(2, 30px, 2em, 200px);
 	}
@@ -179,8 +176,6 @@ video {
 
 // Three Column
 .gallery.gallery-columns-3 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(3, 30px, 1em, 200px);
 	}
@@ -188,8 +183,6 @@ video {
 
 // Four Columns
 .gallery.gallery-columns-4 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(4, 30px, 1em, 200px);
 	}
@@ -197,8 +190,6 @@ video {
 
 // Five Columns
 .gallery.gallery-columns-5 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(5, 30px, .5em, 150px);
 	}
@@ -206,8 +197,6 @@ video {
 
 // Six Columns
 .gallery.gallery-columns-6 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(6, 30px, .5em, 100px);
 	}
@@ -215,8 +204,6 @@ video {
 
 // Seven Columns
 .gallery.gallery-columns-7 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(7, 30px, .5em, 80px);
 	}
@@ -224,8 +211,6 @@ video {
 
 // Eight Columns
 .gallery.gallery-columns-8 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(8, 30px, .5em, 75px);
 	}
@@ -233,8 +218,6 @@ video {
 
 // Nine Columns
 .gallery.gallery-columns-9 {
-	@include gallery-styles();
-
 	.gallery-item {
 		@include gallery-styles-item(9, 30px, .5em, 50px);
 	}
