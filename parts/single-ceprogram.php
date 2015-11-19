@@ -14,11 +14,11 @@ if (have_posts()) :
 
 					<?php the_content(); ?>
 					
-					<h2>Current <?php the_title(); ?> Classes</h3>
-					
-					<?php $category_ID = get_post_meta( get_the_ID(), '_ct_text_562fe946ccfcd', true );?>
+					<h2>Current <?php the_title(); ?> Classes</h3>				
 
-					<?php if ( is_plugin_active('ce-custom-functions/ce-custom-functions.php') ) { 
+					<?php if ( is_plugin_active('ce-custom-functions/ce-custom-functionality.php') ) { 
+                                                $field_id = CE_Plugin_Settings::get_ce_field_id();
+                                                $category_ID = get_post_meta( get_the_ID(), $field_id , true );
 						$courses = CE_Custom_Functions::cecf_get_courses_by_category_id($category_ID);
 						$parent_ID = '';
 					}?>
