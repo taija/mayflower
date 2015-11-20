@@ -73,6 +73,24 @@ $mayflower_theme_option_defaults = array(
 function mayflower_register_theme_customizer( $wp_customize ) {
 	global $mayflower_theme_option_defaults;
 	/**
+	 * Custom Sanitization Functions
+	 *
+	 */
+	function sanitize_boolean( $input ) {
+		if ( $input ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function sanitize_ext_url( $input ) {
+		return esc_url_raw( $input, array(
+			'http',
+			'https',
+		) );
+	}
+
+	/**
 	 * Create panels and sections
 	 *
 	 */
@@ -109,27 +127,33 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 		'type'              => 'option',
 		'capability'        => 'unfiltered_html', //Targeted for super admins only
 		'default'           => $mayflower_theme_option_defaults['mayflower_brand'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[global_nav_selection]' , array(
 		'type'              => 'option',
 		'capability'        => 'unfiltered_html', //Targeted for super admins only
 		'default'           => $mayflower_theme_option_defaults['global_nav_selection'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[ga_code]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['ga_code'],
+		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[default_layout]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['default_layout'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[staff_toggle]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['staff_toggle'],
+		'sanitize_callback' => 'sanitize_boolean',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[staff_layout]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['staff_layout'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_control(
 		new WP_Customize_Control(
@@ -175,11 +199,11 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 			$wp_customize,
 			'ga_code',
 			array(
-				'label'          => __( 'Google Analytics Tracking ID', 'mayflower' ),
-				'description'    => __( 'Should start with UA-[...]', 'mayflower' ),
-				'section'        => 'mayflower_general',
-				'settings'       => 'theme_mayflower_options[ga_code]',
-				'type'           => 'text',
+				'label'             => __( 'Google Analytics Tracking ID', 'mayflower' ),
+				'description'       => __( 'Should start with UA-[...]', 'mayflower' ),
+				'section'           => 'mayflower_general',
+				'settings'          => 'theme_mayflower_options[ga_code]',
+				'type'              => 'text',
 			)
 		)
 	);
@@ -258,34 +282,42 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_toggle]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_toggle'],
+		//Needs Sanitization
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_layout]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_layout'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_number_slides]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_number_slides'],
+		'sanitize_callback' => 'intval',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_title]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_title'],
+		'sanitize_callback' => 'sanitize_boolean',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_excerpt]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_excerpt'],
+		'sanitize_callback' => 'sanitize_boolean',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_order]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_order'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[blog_homepage_toggle]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['blog_homepage_toggle'],
+		'sanitize_callback' => 'sanitize_boolean',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[blog_number_posts]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['blog_number_posts'],
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_control(
 		new Mayflower_Customize_Misc_Control(
@@ -472,22 +504,27 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'theme_mayflower_options[facebook]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['facebook'],
+		'sanitize_callback' => 'sanitize_ext_url',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[twitter]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['twitter'],
+		'sanitize_callback' => 'sanitize_ext_url',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[flickr]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['flickr'],
+		'sanitize_callback' => 'sanitize_ext_url',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[linkedin]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['linkedin'],
+		'sanitize_callback' => 'sanitize_ext_url',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[youtube]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['youtube'],
+		'sanitize_callback' => 'sanitize_ext_url',
 	) );
 	$wp_customize->add_control(
 		new WP_Customize_Control(
