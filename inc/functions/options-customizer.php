@@ -295,6 +295,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'section'      => 'mayflower_home',
 				'label'        => __( 'Home Page Slider', 'mayflower' ),
 				'type'         => 'heading',
+				'active_callback' => 'is_front_page'
 			)
 		)
 	);
@@ -307,6 +308,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[slider_toggle]',
 				'type'           => 'checkbox',
+				'active_callback' => 'is_front_page'
 			)
 		)
 	);
@@ -318,6 +320,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'label'          => __( 'Slider Layout', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[slider_layout]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'radio',
 				'choices'        => array(
 					'featured-full'       => __( '100% width, featured above content', 'mayflower' ),
@@ -334,6 +337,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'label'          => __( 'How many slides should we show?', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[slider_number_slides]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'select',
 				'choices'        => array(
 					'1'       => __( '1', 'mayflower' ),
@@ -361,6 +365,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'label'          => __( 'Show slider title?', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[slider_title]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'checkbox',
 			)
 		)
@@ -373,6 +378,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'label'          => __( 'Show slider excerpt?', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[slider_excerpt]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'checkbox',
 			)
 		)
@@ -403,6 +409,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 			array(
 				'section'      => 'mayflower_home',
 				'type'         => 'line',
+				'active_callback' => 'is_front_page',
 			)
 		)
 	);
@@ -413,6 +420,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 			array(
 				'section'      => 'mayflower_home',
 				'label'        => __( 'Blog Posts on Home Page', 'mayflower' ),
+				'active_callback' => 'is_front_page',
 				'type'         => 'heading',
 			)
 		)
@@ -426,6 +434,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'description'    => __( 'Show recent blog posts below home page content. Only applies if homepage it set to a static page.', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[blog_homepage_toggle]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'checkbox',
 			)
 		)
@@ -439,6 +448,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'description'    => __( 'How many blog posts should display below page content?', 'mayflower' ),
 				'section'        => 'mayflower_home',
 				'settings'       => 'theme_mayflower_options[blog_number_posts]',
+				'active_callback' => 'is_front_page',
 				'type'           => 'select',
 				'choices'        => array(
 					'1'       => __( '1', 'mayflower' ),
