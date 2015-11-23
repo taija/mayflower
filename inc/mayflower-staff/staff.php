@@ -131,7 +131,7 @@ function staff_order_page() {
 			<tbody data-post-type="staff">
 			<?php while( $slides->have_posts() ) : $slides->the_post(); ?>
 				<tr id="post-<?php the_ID(); ?>">
-					<td class="column-order"><img src="<?php echo get_stylesheet_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
+					<td class="column-order"><img src="<?php echo get_template_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
 					<td class="column-thumbnail"><?php the_post_thumbnail( 'edit-screen-thumbnail' ); ?></td>
 					<td class="column-title"><strong><?php the_title(); ?></strong></td>
 					<td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td>
@@ -382,7 +382,7 @@ add_filter('manage_edit-staff_columns', 'add_new_staff_columns');
 function add_new_staff_columns($staff_columns) {
 		$staff_columns = array (
 			'cb' => '<input type="checkbox" />',
-			'thumbnail' =>  'Photo',
+			'staff-thumbnail' =>  'Photo',
 			'title' => 'Name',
 			'staff_email' => 'Email',
 			'staff_position' => 'Position',
@@ -405,7 +405,7 @@ function my_manage_staff_columns( $column, $post_id ) {
 
 	switch( $column ) {
 
-    case 'thumbnail':
+    case 'staff-thumbnail':
 		echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
 		break;
 
