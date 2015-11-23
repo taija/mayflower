@@ -104,8 +104,8 @@ function slider_order_page() {
 				<tr>
 					<th class="column-order">Re-Order</th>
 					<th class="column-thumbnail">Thumbnail</th>
-					<!-- <th class="column-title">Title</th>
-					<th class="column-title">Details</th> -->
+					<th class="column-title">Title</th>
+					<!-- <th class="column-title">Details</th> -->
 				</tr>
 			</thead>
 			<tbody data-post-type="slider">
@@ -122,8 +122,8 @@ function slider_order_page() {
 							</div><!-- img-wrapper -->
 						</div><!-- item active -->
 					</td>
-					<!-- <td class="column-title"><strong><?php the_title(); ?></strong></td>
-					<td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td> -->
+					<td class="column-title"><strong><?php the_title(); ?></strong></td>
+					<!-- <td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td> -->
 				</tr>
 			<?php endwhile; ?>
 			</tbody>
@@ -131,8 +131,8 @@ function slider_order_page() {
 				<tr>
 					<th class="column-order">Order</th>
 					<th class="column-thumbnail">Thumbnail</th>
-					<!-- <th class="column-title">Title</th>
-					<th class="column-title">Details</th> -->
+					<th class="column-title">Title</th>
+					<!-- <th class="column-title">Details</th> -->
 				</tr>
 			</tfoot>
 
