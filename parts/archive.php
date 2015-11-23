@@ -27,14 +27,8 @@
 <?php endwhile;?>
 <?php wp_reset_postdata(); ?>
 
-<ul class="pager content-padding">
-	<li>
-		<?php previous_posts_link('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous Page'); ?>
-	</li>
-	<li>
-		<?php next_posts_link('Next Page <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>'); ?>
-	</li>
-</ul>
+<?php mayflower_pagination(); ?>
+
 <?php wp_reset_query(); ?>
 
 <?php else :
