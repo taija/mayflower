@@ -1,19 +1,23 @@
 <div class="content-padding">
-	<?php if (is_category()) { ?>
-		<h1 class="archive_title"><?php single_cat_title(); ?></h1>
-	<?php } elseif (is_tag()) { ?>
-		<h1 class="archive_title"><?php single_tag_title(); ?></h1>
-	<?php } elseif (is_author()) { ?>
-		<h1 class="archive_title"><?php get_the_author_meta('display_name'); ?></h1>
-	<?php } elseif (is_day()) { ?>
-		<h1 class="archive_title"><?php the_time('l, F j, Y'); ?></h1>
-	<?php } elseif (is_month()) { ?>
-		<h1 class="archive_title"><?php the_time('F Y'); ?></h1>
-	<?php } elseif (is_year()) { ?>
-		<h1 class="archive_title"><?php the_time('Y'); ?></h1>
-	<?php } else { ?>
-		<h1>Archive</h1><!-- No Page Title Available -->
-	<?php } ?>
+	<h1 class="archive_title">
+		<?php if ( is_category() ) { ?>
+			<?php single_cat_title(); ?>
+		<?php } elseif ( is_tag() ) { ?>
+			<?php single_tag_title(); ?>
+		<?php } elseif ( is_author() ) { ?>
+			<?php $author = get_userdata( get_query_var( 'author' ) );
+				_e( 'Posts by ', 'mayflower' );
+				echo $author->display_name; ?>
+		<?php } elseif ( is_day() ) { ?>
+			<?php the_time('l, F j, Y'); ?>
+		<?php } elseif ( is_month() ) { ?>
+			<?php the_time('F Y'); ?>
+		<?php } elseif ( is_year() ) { ?>
+			<?php the_time('Y'); ?>
+		<?php } else { ?>
+			Archive<!-- No Page Title Available -->
+		<?php } ?>
+	</h1>
 </div>
 <div class="top-spacing30"></div>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>

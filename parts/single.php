@@ -1,7 +1,24 @@
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php
+// Load Mayflower options into array
+$mayflower_options = mayflower_get_options();
+
+if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	<div class="content-padding">
 		<h1><?php the_title();?></h1>
-		<p class="entry-date">Date posted: <?php the_date(); ?></p>
+		<?php // Check if post date or author should be displayed
+		if ( $mayflower_options['display_post_author'] || $mayflower_options['display_post_date'] ) : ?>
+			<p class="entry-date">
+				<?php //Check if post date should be displayed
+				if ( $mayflower_options['display_post_date'] ) : ?>
+					<?php _e( 'Date posted: ', 'mayflower');
+					the_date(); ?>
+				<?php endif;
+				// Check if post author should be displayed
+				if ( $mayflower_options['display_post_author'] ) : ?>
+					&nbsp;<span class="pull-right"><?php _e( 'Author: ', 'mayflower' ) ?><?php the_author_posts_link(); ?></span>
+				<?php endif; ?>
+			</p>
+		<?php endif; ?>
 
 		<?php if ( has_post_thumbnail() && get_post_format() != 'video' ) :
 
