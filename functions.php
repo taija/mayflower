@@ -275,16 +275,18 @@ function is_multisite_home () {
 #############################
 // Assign global_nav_selection to body_class
 #############################
+if ( ! function_exists ( 'mayflower_body_class_ia' ) ) {
+	function mayflower_body_class_ia( $classes ) {
+		$mayflower_options = mayflower_get_options();
 
-function mayflower_body_class_ia( $classes ) {
-	$mayflower_options = mayflower_get_options();
+		// add ia_options to classes
+		$classes[] = $mayflower_options['global_nav_selection'];
 
-	// add ia_options to classes
-	$classes[] = $mayflower_options['global_nav_selection'];
-
-	// return the $classes array
-	return $classes;
+		// return the $classes array
+		return $classes;
+	}
 }
+
 add_filter( 'body_class','mayflower_body_class_ia' );
 
 ######################################
