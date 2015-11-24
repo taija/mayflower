@@ -31,7 +31,12 @@ $current_layout = $mayflower_options['default_layout'];
 				 *
 				 * Check for post type. Look within 'parts/' directory.
 				 */
-				get_template_part( 'parts/single', get_post_type() ); ?>
+				$format = get_post_format();
+				if ( $format ) {
+					get_template_part( 'parts/single', $format );
+				} else {
+					get_template_part( 'parts/single', get_post_type() );
+				} ?>
 
 		<?php if ( has_active_sidebar() ) : ?>
 			</div>
