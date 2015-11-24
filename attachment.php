@@ -36,14 +36,14 @@ $caption           = $post->post_excerpt;
 						if ( wp_attachment_is_image( $post->id ) ) : ?>
 							<h1><?php the_title();?></h1>
 							&nbsp;
-							<div class="wp-caption">
+							<figure class="wp-caption aligncenter">
 								<a href="<?php echo wp_get_attachment_url( $post->id ); ?>" title="<?php the_title(); ?>" rel="attachment">
-									<?php echo wp_get_attachment_image( $post->id, 'large', false, array( 'class' => 'attachment-large img-responsive aligncenter' ) ); ?>
+									<?php echo wp_get_attachment_image( $post->id, 'large', false, array( 'class' => 'attachment-large img-responsive' ) ); ?>
 								</a>
 								<?php if ( !empty( $caption ) ) { ?>
-										<p class="wp-caption-text"><?php echo $caption; ?></p>
+										<figcaption class="wp-caption-text"><?php echo $caption; ?></figcaption>
 								<?php } ?>
-							</div>
+							</figure>
 							<?php if ( !empty( $description ) ) { ?>
 								<p><?php echo $description; ?></p>
 							<?php } ?>
@@ -72,7 +72,6 @@ $caption           = $post->post_excerpt;
 				<?php endwhile; ?>
 
 				<?php wp_reset_query(); endif; ?>
-
 
 		<?php if ( has_active_sidebar() ) : ?>
 			</div>
