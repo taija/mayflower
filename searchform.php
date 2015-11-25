@@ -1,13 +1,22 @@
 <?php
-	$search_url              = '//www.bellevuecollege.edu/search/';
-	$site_url                = get_site_url();
-	$limit_searchform_scope  = get_theme_mod( 'limit_searchform_scope' );
-	$custom_searchform_scope = get_theme_mod( 'custom_searchform_scope' );
-	
-	/* Set Scope to Site URL if not otherwise defined */
-	if ( empty( $custom_searchform_scope ) ) {
-		$custom_searchform_scope = "[site:$site_url]";
-	}
+// Globalize $mayflower_options
+global $mayflower_options;
+
+// Load options if they are not already present
+if ( !( is_array( $mayflower_options ) ) ) {
+	$mayflower_options = mayflower_get_options();
+}
+
+// Set variables for ease of use
+$limit_searchform_scope  = $mayflower_options['limit_searchform_scope'];
+$custom_searchform_scope = $mayflower_options['custom_searchform_scope'];
+$search_url              = '//www.bellevuecollege.edu/search/';
+$site_url                = get_site_url();
+
+/* Set Scope to Site URL if not otherwise defined */
+if ( empty( $custom_searchform_scope ) ) {
+	$custom_searchform_scope = "[site:$site_url]";
+}
 ?>
 <form action="<?php echo $search_url; ?>" method="get" class="form-search" id="bc-search">
 	<div class="input-group pull-right" role="search">

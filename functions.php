@@ -16,7 +16,6 @@
 
 require( get_template_directory() . '/inc/functions/theme-setup.php' );
 require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-require( get_template_directory() . '/inc/functions/options-admin.php');
 require( get_template_directory() . '/inc/functions/options-customizer.php' );
 require( get_template_directory() . '/inc/functions/network-options.php');
 require( get_template_directory() . '/inc/functions/globals.php');
