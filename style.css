@@ -148,132 +148,138 @@ li.media { margin-left: 0; }
 /* ----- Header -------------------------- */
 /* ####################################### */
 /* line 304, sass/style.scss */
+.header-image a { display: inline-block; }
+
+/* line 307, sass/style.scss */
+.header-image a:focus { outline: none; }
+
+/* line 311, sass/style.scss */
 img.header-image { max-width: 100%; height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */ max-height: 100px; }
 
-/* line 309, sass/style.scss */
+/* line 316, sass/style.scss */
 ul.header-social-links li { display: inline; }
 
 /* ####################################### */
 /* ----- Post & Page Content areas ------- */
 /* ####################################### */
-/* line 317, sass/style.scss */
+/* line 324, sass/style.scss */
 .single-featured-thumb { margin: 1.333em 1.3333em .3333em 0; }
 
 /* Center images on small screens. Not mobile first... */
-@media screen and (max-width: 769px) { /* line 323, sass/style.scss */
+@media screen and (max-width: 769px) { /* line 330, sass/style.scss */
   .single-featured-thumb { margin-left: auto; margin-right: auto; width: 100%; }
-  /* line 327, sass/style.scss */
+  /* line 334, sass/style.scss */
   .single-featured-thumb img.img-responsive { display: inline; } }
 /* ####################################### */
 /* ----- Gravity Forms Display Over-Rides ------- */
 /* ####################################### */
-/* line 338, sass/style.scss */
+/* line 345, sass/style.scss */
 .gform_wrapper input, .gform_wrapper textarea, .gform_wrapper select { line-height: 1em; border: 1px solid #aaa; border-radius: 4px; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-/* line 347, sass/style.scss */
+/* line 354, sass/style.scss */
 .gform_wrapper input:focus, .gform_wrapper textarea:focus, .gform_wrapper select:focus { border-color: #66afe9; outline: 0; box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
-/* line 355, sass/style.scss */
+/* line 362, sass/style.scss */
 .gform_wrapper input[type=radio] { margin-left: 0.1em !important; /* messy, but needed to stop the right edge from being cut off */ }
 
 /* ####################################### */
 /* ----- Navigation/widget areas styles ----- */
 /* ###################################### */
-/* line 367, sass/style.scss */
+/* line 374, sass/style.scss */
 .sidebar h2.widget-title { color: white; font-size: 1em; background-color: #003d79; line-height: 1.66667em; }
-/* line 373, sass/style.scss */
-.sidebar div.textwidget, .sidebar div.tagcloud { padding-left: 2em; margin-top: 0.333333em; }
-/* line 377, sass/style.scss */
-.sidebar .wp-widget { margin-bottom: 2em; }
 /* line 380, sass/style.scss */
+.sidebar div.textwidget, .sidebar div.tagcloud { padding-left: 2em; margin-top: 0.333333em; }
+/* line 384, sass/style.scss */
+.sidebar .wp-widget { margin-bottom: 2em; }
+/* line 387, sass/style.scss */
 .sidebar .wp-widget > ul, .sidebar .wp-widget > ol { margin: 0; padding: 0; }
-/* line 385, sass/style.scss */
+/* line 392, sass/style.scss */
 .sidebar ul.menu, .sidebar ul { border-top: 1px solid #F0F4F7; border-bottom: 1px solid #F0F4F7; }
-/* line 391, sass/style.scss */
+/* line 398, sass/style.scss */
 .sidebar ul.menu ul, .sidebar ul ul { margin: 0; padding: 0; }
-/* line 396, sass/style.scss */
-.sidebar .menu li, .sidebar li { list-style-type: none; padding: 0; margin: 0; line-height: 1.33333em; }
 /* line 403, sass/style.scss */
+.sidebar .menu li, .sidebar li { list-style-type: none; padding: 0; margin: 0; line-height: 1.33333em; }
+/* line 410, sass/style.scss */
 .sidebar .menu a, .sidebar li a { padding: 0.3333em 1em; display: block; }
-/* line 408, sass/style.scss */
-.sidebar .menu a { border-top: 1px solid #F0F4F7; }
-/* line 411, sass/style.scss */
-.sidebar h2 + div ul.menu { border-top: none; }
 /* line 415, sass/style.scss */
+.sidebar .menu a { border-top: 1px solid #F0F4F7; }
+/* line 418, sass/style.scss */
+.sidebar h2 + div ul.menu { border-top: none; }
+/* line 422, sass/style.scss */
 .sidebar .sub-menu li a { padding-left: 2.33333em; border-top: 1px dotted #F0F4F7; }
-/* line 419, sass/style.scss */
+/* line 426, sass/style.scss */
 .sidebar .sub-menu li a .sub-menu .sub-menu li a { padding-left: 3.66666em; }
-/* line 423, sass/style.scss */
+/* line 430, sass/style.scss */
 .sidebar .menu .current_page_item > a, .sidebar .current_page_item > a, .sidebar .current-cat > a { text-decoration: none; color: #555; }
-/* line 429, sass/style.scss */
+/* line 436, sass/style.scss */
 .sidebar .wp-widget select { margin: .5em 2em; }
 
-/* line 434, sass/style.scss */
+/* line 441, sass/style.scss */
 .sidebarleft .menu, .sidebarleft ul { border-right: 1px solid #E6E6E6; }
 
-/* line 438, sass/style.scss */
+/* line 445, sass/style.scss */
 .sidebarright .menu, .sidebarright ul { border-left: 1px solid #E6E6E6; }
 
-/* line 443, sass/style.scss */
+/* line 450, sass/style.scss */
 .sidebar .menu > li:first-child > a, .sidebar > li:first-child > a { border-top: none; }
 
-@media screen and (min-width: 55em) { /* line 450, sass/style.scss */
+@media screen and (min-width: 55em) { /* line 457, sass/style.scss */
   .sidebar .menu a, .sidebar li a { padding-left: 2em; padding-right: 2em; }
-  /* line 455, sass/style.scss */
+  /* line 462, sass/style.scss */
   .sidebar .sub-menu li a { padding-left: 3.33333em; }
-  /* line 458, sass/style.scss */
+  /* line 465, sass/style.scss */
   .sidebar .sub-menu li a .sub-menu li a { padding-left: 4.66666em; } }
-@media screen and (min-width: 37em) { /* line 467, sass/style.scss */
+@media screen and (min-width: 37em) { /* line 474, sass/style.scss */
   .sidebar .wp-widget { font-size: 0.9em; } }
-@media screen and (min-width: 55em) { /* line 473, sass/style.scss */
+@media screen and (min-width: 55em) { /* line 480, sass/style.scss */
   .sidebar .wp-widget { font-size: 1em; } }
 /* Categories Widget */
-/* line 480, sass/style.scss */
+/* line 487, sass/style.scss */
 .widget_categories li a { display: inline; line-height: 1.666667em; padding: 0 0 0 2em; }
 
 /* RSS Widget */
-/* line 486, sass/style.scss */
+/* line 493, sass/style.scss */
 .sidebar .wp-widget h2 a.rsswidget { color: #fff; }
 
-/* line 489, sass/style.scss */
+/* line 496, sass/style.scss */
 .sidebar .wp-widget div.rssSummary, .sidebar .wp-widget span.rss-date { padding: 0em 2em; }
 
-/* line 492, sass/style.scss */
+/* line 499, sass/style.scss */
 .sidebar .wp-widget span.rss-date { line-height: 1.666666em; color: #AAAAAA; font-size: 0.75em; margin-left: 0.7em; }
 
 /* List Category Posts Widget */
-/* line 499, sass/style.scss */
+/* line 506, sass/style.scss */
 .widget_listcategorypostswidget h5 { margin-top: .5em; }
 
-/* line 502, sass/style.scss */
+/* line 509, sass/style.scss */
 .widget_listcategorypostswidget ul img, ul.lcp_catlist .lcp_thumbnail img { background: #fff; color: #888; font-size: .9em; line-height: 1.666667em; border: 1px solid #f0f0f0; max-width: 96%; /* Image does not overflow the content area */ padding: 3px; text-align: center; }
 
-/* line 512, sass/style.scss */
+/* line 519, sass/style.scss */
 .widget_listcategorypostswidget a, .widget_listcategorypostswidget li { padding: 0 2em; }
 
-/* line 515, sass/style.scss */
+/* line 522, sass/style.scss */
 .widget_listcategorypostswidget li a { padding: 0; }
 
-/* line 518, sass/style.scss */
+/* line 525, sass/style.scss */
 .widget_listcategorypostswidget hr { display: none; }
 
-/* line 521, sass/style.scss */
+/* line 528, sass/style.scss */
 .lcp_catlist li { clear: both; }
 
-/* line 526, sass/style.scss */
+/* line 533, sass/style.scss */
 ul.lcp_catlist { list-style-type: none; border: none; }
 
-/* line 530, sass/style.scss */
+/* line 537, sass/style.scss */
 ul.lcp_catlist li { margin-top: .5em; margin-left: 0; }
 
 /* Really Simple Twitter Widget */
-/* line 535, sass/style.scss */
+/* line 542, sass/style.scss */
 ul.really_simple_twitter_widget li { line-height: 1.4em; padding: 1em; }
 
-/* line 540, sass/style.scss */
+/* line 547, sass/style.scss */
 ul.really_simple_twitter_widget li a { display: inline; border: none; padding: 0em; }
 
 /* Gravity Forms Widget */
-/* line 547, sass/style.scss */
+/* line 554, sass/style.scss */
 .gform_widget .gform_wrapper { padding: 0 2em; }
 
-/* line 550, sass/style.scss */
+/* line 557, sass/style.scss */
 .gform_widget ul.gform_fields { border: none; }

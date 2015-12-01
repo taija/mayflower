@@ -301,6 +301,13 @@ li.media {
 /* ----- Header -------------------------- */
 /* ####################################### */
 
+.header-image a {
+	display: inline-block;
+}
+.header-image a:focus {
+	outline: none; // Remove Boostrap outline, as we are adding our own in Globals
+}
+
 img.header-image {
 	max-width: 100%;
 	height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
