@@ -82,6 +82,43 @@ function new_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
+######################################
+// Custom Pagination Function
+######################################
+function mayflower_pagination() {
+	$big = 999999999; // need an unlikely integer
+
+	$paginated_links = paginate_links( array(
+		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' => '?paged=%#%',
+		'current' => max( 1, get_query_var('paged') ),
+		'type' => 'array',
+		'prev_text' => '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Previous',
+		'next_text' => 'Next <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>',
+		'before_page_number' => '<span class="sr-only">Page</span>',
+	) );
+	// Output Pagination
+	if ( $GLOBALS['wp_query']->max_num_pages > 1 ) { ?>
+		<nav class="text-center content-padding">
+			<ul class="pagination">
+				<?php foreach( $paginated_links as $link ) {
+					// Check if 'Current' class appears in string
+					$is_current = strpos( $link, 'current' );
+					if ( $is_current === false ) {
+						echo '<li>';
+						echo $link;
+						echo '</li>';
+					} else {
+						echo '<li class="active">';
+						echo $link;
+						echo '</li>';
+					}
+				} ?>
+			</ul>
+		</nav> <?
+	}
+}
+
 
 ######################################
 // Remove Comments Feed

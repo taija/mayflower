@@ -49,6 +49,8 @@ $mayflower_theme_option_defaults = array(
 	'default_layout'          => 'sidebar-content',
 	'staff_toggle'            => false,
 	'staff_layout'            => 'list-view',
+	'display_post_date'       => true,
+	'display_post_author'     => false,
 	'slider_toggle'           => false,
 	'slider_layout'           => 'featured-in-content',
 	'slider_number_slides'    => '5',
@@ -163,6 +165,16 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['staff_layout'],
 		'sanitize_callback' => 'sanitize_key',
+	) );
+	$wp_customize->add_setting( 'theme_mayflower_options[display_post_date]' , array(
+		'type'              => 'option',
+		'default'           => $mayflower_theme_option_defaults['display_post_date'],
+		'sanitize_callback' => 'sanitize_boolean',
+	) );
+	$wp_customize->add_setting( 'theme_mayflower_options[display_post_author]' , array(
+		'type'              => 'option',
+		'default'           => $mayflower_theme_option_defaults['display_post_author'],
+		'sanitize_callback' => 'sanitize_boolean',
 	) );
 	$wp_customize->add_control(
 		new WP_Customize_Control(
@@ -282,7 +294,41 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 			)
 		)
 	);
-
+	$wp_customize->add_control(
+		new Mayflower_Customize_Misc_Control(
+		$wp_customize,
+			'mayflower_post-heading',
+			array(
+				'section'      => 'mayflower_general',
+				'label'        => __( 'Post Display Settings', 'mayflower' ),
+				'type'         => 'heading',
+			)
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'display_post_date',
+			array(
+				'label'          => __( 'Display Date on Posts', 'mayflower' ),
+				'section'        => 'mayflower_general',
+				'settings'       => 'theme_mayflower_options[display_post_date]',
+				'type'           => 'checkbox',
+			)
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Control(
+			$wp_customize,
+			'display_post_author',
+			array(
+				'label'          => __( 'Display Author on Posts', 'mayflower' ),
+				'section'        => 'mayflower_general',
+				'settings'       => 'theme_mayflower_options[display_post_author]',
+				'type'           => 'checkbox',
+			)
+		)
+	);
 
 
 	/*
