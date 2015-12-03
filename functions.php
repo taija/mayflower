@@ -522,6 +522,58 @@ add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
 add_filter("gform_tabindex", create_function("", "return 9;"));
 
+
+/**
+ * Filter GravityForms buttons
+ *
+ * Function from https://github.com/pbc-web/gravityforms-add-button-class/
+ * This function accepts an extra 'new classes' perameter, and should not be
+ * used with a filter directly.
+ */
+function mayflower_gf_add_class_to_button( $button, $form, $new_classes ) {
+
+	preg_match( "/class='[\.a-zA-Z_ -]+'/", $button, $classes );
+	$classes[0] = substr( $classes[0], 0, -1 );
+	$classes[0] .= ' ';
+	$classes[0] .= esc_attr( $new_classes );
+	$classes[0] .= "'";
+	$button_pieces = preg_split(
+		"/class='[\.a-zA-Z_ -]+'/",
+		$button,
+		-1,
+		PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+	);
+	return $button_pieces[0] . $classes[0] . $button_pieces[1];
+}
+
+/**
+ * Filter GravityForms submit button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_submit_button( $button, $form ) {
+	$new_classes = 'btn btn-primary pull-right';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_submit_button', 'mayflower_gf_add_class_to_submit_button', 10, 2);
+
+/**
+ * Filter GravityForms next button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_next_button( $button, $form ) {
+	$new_classes = 'btn btn-primary pull-right';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_next_button', 'mayflower_gf_add_class_to_next_button', 10, 2);
+
+/**
+ * Filter GravityForms previous button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_previous_button( $button, $form ) {
+	$new_classes = 'btn btn-default pull-left';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_previous_button', 'mayflower_gf_add_class_to_previous_button', 10, 2);
+
+
 ####################################################
 ## Override Dashicons Styles
 ####################################################
