@@ -370,6 +370,7 @@ ul.header-social-links li {
 /* ###################################### */
 
 .sidebar {
+	margin-top: 2em;
 
 	h2.widget-title {
 		color: white;
@@ -482,6 +483,11 @@ ul.header-social-links li {
 	}
 }
 
+@media screen and (min-width: 992px) { // Bootstrap Medium Breakpoint
+	.sidebar {
+		margin-top: 0px;
+	}
+	}
 /* Categories Widget */
 
 .widget_categories li a {
