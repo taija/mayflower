@@ -1,23 +1,26 @@
 <?php while ( have_posts() ) : the_post(); ?>
-
-	<div class="content-padding">
-	<h1><?php the_title(); ?></h1>
-
+<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<div class="content-padding post-heading">
+		<h1><?php the_title(); ?></h1>
+	</div>
+	<?php if ( function_exists( 'post_and_page_asides_return_title' ) ) :
+		get_template_part( 'parts/aside' );
+	endif; ?>
 	<?php if($post->post_content=="") : ?>
 	<!-- Don't display empty the_content or surround divs -->
 
 	<?php else : ?>
 	<!-- Do stuff when the_content has content -->
-
-				<?php the_content(); ?>
+		<article class="content-padding">
+			<?php the_content(); ?>
+		</article>
 	<?php endif; ?>
 		<?php
 			endwhile;
 			wp_reset_postdata();
 		?>
-	</div><!-- content-padding -->
-
-	<div class="content-padding nav-page nav-page-list">
+	<div class="clearfix"></div>
+	<section class="content-padding nav-page nav-page-list">
 
 		<?php
 			$args = array(
@@ -32,6 +35,7 @@
 
 			while ( $loop->have_posts() ) : $loop->the_post();
 		?>
+					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<h2 <?php post_class() ?>>
 							<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
@@ -78,8 +82,9 @@
 								?>
 							</div><!-- media-body -->
 						</div><!-- media -->
-
+					</article>
 				<?php endwhile;?>
 				<?php wp_reset_postdata(); ?>
 
-	</div><!-- content-padding .nav-page -->
+	</section><!-- content-padding .nav-page -->
+</section>

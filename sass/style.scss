@@ -596,6 +596,13 @@ section.page {
 		flex-order: 3;
 		@include order(3);
 	}
+	section {
+		margin-top: 2em;
+		-moz-flex-order: 10;
+		-ms-flex-order: 10;
+		flex-order: 10;
+		@include order(10);
+	}
 }
 @media screen and (min-width: 768px) {
 	section.post,

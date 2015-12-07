@@ -711,14 +711,24 @@ section.page article {
   -webkit-order: 3;
   order: 3;
 }
+/* line 599, sass/style.scss */
+section.post section,
+section.page section {
+  margin-top: 2em;
+  -moz-flex-order: 10;
+  -ms-flex-order: 10;
+  flex-order: 10;
+  -webkit-order: 10;
+  order: 10;
+}
 
 @media screen and (min-width: 768px) {
-  /* line 601, sass/style.scss */
+  /* line 608, sass/style.scss */
   section.post,
   section.page {
     display: block;
   }
-  /* line 605, sass/style.scss */
+  /* line 612, sass/style.scss */
   section.post aside#ppa-aside,
   section.page aside#ppa-aside {
     margin-top: 0;
