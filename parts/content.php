@@ -1,3 +1,4 @@
+<!-- A Template Was Missing! Using parts/content to output content. -->
 <div class="content-padding">
 	<h1><?php the_title();?></h1>
 	<div>
