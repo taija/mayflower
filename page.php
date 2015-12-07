@@ -21,6 +21,8 @@ $current_layout = $mayflower_options['default_layout'];
 
 		<?php if ( has_active_sidebar() ) : ?>
 			<div class="col-md-9 <?php  if ( $current_layout == 'sidebar-content' ) { ?>col-md-push-3<?php } ?>">
+		<?php else : // Full Width Container ?>
+			<div class="col-md-12">
 		<?php endif; ?>
 				<?php if ( have_posts() ) : ?>
 					<?php
@@ -35,9 +37,8 @@ $current_layout = $mayflower_options['default_layout'];
 					get_template_part( 'parts/content', 'none' );
 
 				endif; ?>
-
-		<?php if ( has_active_sidebar() ) : ?>
 			</div>
+		<?php if ( has_active_sidebar() ) : ?>
 			<?php get_sidebar();
 		endif; ?>
 	</div>

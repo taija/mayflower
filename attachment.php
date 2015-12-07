@@ -25,6 +25,8 @@ $caption           = $post->post_excerpt;
 
 		<?php if ( has_active_sidebar() ) : ?>
 			<div class="col-md-9 <?php  if ( $current_layout == 'sidebar-content' ) { ?>col-md-push-3<?php } ?>">
+		<?php else : // Full Width Container ?>
+			<div class="col-md-12">
 		<?php endif; ?>
 
 				<?php if (have_posts()) : while (have_posts()) : the_post(); /* Template format for images */ ?>
@@ -72,9 +74,8 @@ $caption           = $post->post_excerpt;
 				<?php endwhile; ?>
 
 				<?php wp_reset_query(); endif; ?>
-
-		<?php if ( has_active_sidebar() ) : ?>
 			</div>
+		<?php if ( has_active_sidebar() ) : ?>
 			<?php get_sidebar();
 		endif; ?>
 	</div>
