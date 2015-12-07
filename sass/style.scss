@@ -563,3 +563,47 @@ ul.really_simple_twitter_widget li a{
 .gform_widget ul.gform_fields {
 	border: none;
 }
+
+/* Asides */
+section.post,
+section.page {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	@include display-flex();
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-ms-flex-direction: column;
+	@include display-flex();
+	@include flex-direction(column);
+
+	div.post-title {
+		-moz-flex-order: 1;
+		-ms-flex-order: 1;
+		flex-order: 1;
+		@include order(1);
+	}
+	aside#ppa-aside {
+		margin-top: 2em;
+		-moz-flex-order: 4;
+		-ms-flex-order: 4;
+		flex-order: 4;
+		@include order(4);
+	}
+	article {
+		-moz-flex-order: 3;
+		-ms-flex-order: 3;
+		flex-order: 3;
+		@include order(3);
+	}
+}
+@media screen and (min-width: 768px) {
+	section.post,
+	section.page {
+		display: block;
+
+		aside#ppa-aside {
+			margin-top: 0;
+		}
+	}
+}
