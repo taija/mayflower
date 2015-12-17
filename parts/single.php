@@ -45,7 +45,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<?php endif; ?>
 
 			<?php the_content(); ?>
-
+			<p id="modified-date" class="text-right"><small><?php _e('Last Updated ', 'mayflower'); the_modified_date(); ?></small></p>
 		</article><!-- content-padding -->
 	</section>
 	<?php endwhile; ?>

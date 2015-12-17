@@ -6,4 +6,5 @@
 endif; ?>
 <article class="content-padding">
 	<?php the_content(); ?>
+	<p id="modified-date" class="text-right"><small><?php _e('Last Updated ', 'mayflower'); the_modified_date(); ?></small></p>
 </article>

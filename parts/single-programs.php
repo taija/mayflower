@@ -58,6 +58,7 @@ if (have_posts()) :
 			<?php if( !empty( $budget_document_link ) ) : ?>
 				<p><a href="<?php echo $budget_document_link; ?>" target="_blank">View Current Budget Information (opens in new window)</a></p>
 			<?php endif; ?>
+			<p id="modified-date" class="text-right"><small><?php _e('Last Updated ', 'mayflower'); the_modified_date(); ?></small></p>
 		</div><!--.content-padding-->
 
 	<?php endwhile;
