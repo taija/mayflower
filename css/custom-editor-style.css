@@ -1,2 +1,7 @@
 @import url( ' //s.bellevuecollege.edu/g/3/c/g.css');
 @import url( 'style.css' );
+
+.wpa-image-missing-alt {
+	border: 2px solid red;
+	box-shadow: 0 0 2px 2px #ffa;
+}

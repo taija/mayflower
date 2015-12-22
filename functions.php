@@ -859,3 +859,63 @@ function fix_img_caption_shortcode_inline_style( $output,$attr,$content ) {
 
 	return $html;
 }
+
+/*
+ * Alt Text Verification
+ *
+ * Taken from WP Accessibility Plugin https://wordpress.org/plugins/wp-accessibility/ Version 1.4.6
+ */
+
+
+// Add Checkbox to mark image as decorative
+add_filter( 'attachment_fields_to_edit', 'wpa_insert_alt_verification', 10, 2 );
+function wpa_insert_alt_verification( $form_fields, $post ) {
+	$mime = get_post_mime_type( $post->ID );
+	if ( $mime == 'image/jpeg' || $mime == 'image/png' || $mime == 'image/gif' ) {
+		$no_alt = get_post_meta( $post->ID, '_no_alt', true );
+		$alt = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+		$checked = checked( $no_alt, 1, false );
+		$form_fields['no_alt'] = array( 
+			'label' => __( 'Decorative', 'mayflower' ),
+			'input' => 'html',
+			'value' => 1,
+			'html'  => "<input name='attachments[$post->ID][no_alt]' id='attachments-$post->ID-no_alt' value='1' type='checkbox' aria-describedby='wpa_help' $checked /> <em class='help' id='wpa_help'>" . __( '<strong>Image is purely decorative.</strong> This will strip alt text from the image, and should not be used if image contributes to page content.', 'mayflower' ) . "</em>"
+		);
+	}
+	return $form_fields;
+}
+
+add_filter( 'attachment_fields_to_save', 'wpa_save_alt_verification', 10, 2 );
+function wpa_save_alt_verification( $post, $attachment ) {
+	if ( isset( $attachment['no_alt'] ) ) {
+		update_post_meta( $post['ID'], '_no_alt', 1 );
+	} else {
+		delete_post_meta( $post['ID'], '_no_alt' );
+	}
+	return $post;
+}
+
+add_filter( 'image_send_to_editor', 'wpa_alt_attribute', 10, 8 );
+function wpa_alt_attribute( $html, $id, $caption, $title, $align, $url, $size, $alt ) {
+	/* Get data for the image attachment. */
+	$noalt = get_post_meta( $id, '_no_alt', true );
+	/* Get the original title to compare to alt */
+	$title = get_the_title( $id );
+	$warning = false;
+	if ( $noalt == 1 ) {
+		$html = str_replace( 'alt="'.$alt.'"', 'alt=""', $html );
+	}
+	if ( ( $alt == '' || $alt == $title ) && $noalt != 1 ) {
+		if ( $alt == $title ) {
+			$warning = __( 'The alt text for this image is the same as the title. Please review your alternate text to ensure it describes the image.', 'mayflower' );
+			$image = 'alt-same.png';
+		} else {
+			$warning = __( 'This image requires alt text, but the alt text is currently blank. Either add alt text or mark the image as decorative.', 'mayflower' );
+			$image = 'alt-missing.png';
+		}
+	}
+	if ( $warning ) {
+		return $html . "<img class='wpa-image-missing-alt size-" . esc_attr( $size ) . ' ' . esc_attr( $align ) . "' src='" . get_template_directory_uri() . "/img/$image" . "' alt='" . esc_attr( $warning ) . "' />";
+	}
+	return $html;
+}
