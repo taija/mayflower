@@ -78,7 +78,7 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 ######################################
 
 function new_excerpt_more( $more ) {
-	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'your-text-domain') . get_the_title() . '</a>';
+	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'mayflower') . get_the_title() . '</a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 
