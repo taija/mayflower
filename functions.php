@@ -814,10 +814,12 @@ function mayflower_gallery_styles( $styles ) {
 add_action( 'gallery_style', 'mayflower_gallery_styles' );
 
 /**
- * Filter Image Caption Shortcode to remove width
+ * Filter Image Caption Shortcode to change inline width
  *
  * Unfortionatly this whole functionality set had to be duplicated from core,
  * as I was unable to get the img_caption_shortcode_width filter to function.
+ *
+ * Changes 'width' style to 'max-width' to keep size correct in responsive layouts.
  */
 add_filter('img_caption_shortcode','fix_img_caption_shortcode_inline_style',10,3);
 
@@ -846,7 +848,7 @@ function fix_img_caption_shortcode_inline_style( $output,$attr,$content ) {
 	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
 		$style = '';
 		if ( $caption_width )
-			$style = ''; // This is the only change from WP Core! This has been removed
+			$style = 'style="max-width: ' . (int) $caption_width . 'px" '; // This is the only change from WP Core! This has been modified to max-width
 
 			$html = '';
 			if ( $html5 ) {
