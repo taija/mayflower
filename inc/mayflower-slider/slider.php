@@ -104,14 +104,14 @@ function slider_order_page() {
 				<tr>
 					<th class="column-order">Re-Order</th>
 					<th class="column-thumbnail">Thumbnail</th>
-					<!-- <th class="column-title">Title</th>
-					<th class="column-title">Details</th> -->
+					<th class="column-title">Title</th>
+					<!-- <th class="column-title">Details</th> -->
 				</tr>
 			</thead>
 			<tbody data-post-type="slider">
 			<?php while( $slides->have_posts() ) : $slides->the_post(); ?>
 				<tr id="post-<?php the_ID(); ?>">
-					<td class="column-order"><img src="<?php echo get_stylesheet_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Move Icon" width="16" height="16" class="" /></td>
+					<td class="column-order"><img src="<?php echo get_template_directory_uri() . '/img/row-move.png'; ?>" title="" alt="Change Order" width="16" height="16" class="" aria-dropeffect="move" /></td>
 					<td class="thumbnail column-thumbnail">
 						<div class="item active">
 							<div class="img-wrapper">
@@ -122,8 +122,8 @@ function slider_order_page() {
 							</div><!-- img-wrapper -->
 						</div><!-- item active -->
 					</td>
-					<!-- <td class="column-title"><strong><?php the_title(); ?></strong></td>
-					<td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td> -->
+					<td class="column-title"><strong><?php the_title(); ?></strong></td>
+					<!-- <td class="column-details"><div class="excerpt"><?php the_excerpt(); ?></div></td> -->
 				</tr>
 			<?php endwhile; ?>
 			</tbody>
@@ -131,8 +131,8 @@ function slider_order_page() {
 				<tr>
 					<th class="column-order">Order</th>
 					<th class="column-thumbnail">Thumbnail</th>
-					<!-- <th class="column-title">Title</th>
-					<th class="column-title">Details</th> -->
+					<th class="column-title">Title</th>
+					<!-- <th class="column-title">Details</th> -->
 				</tr>
 			</tfoot>
 
@@ -237,42 +237,50 @@ add_filter( 'enter_title_here', 'mayflower_slider_title_text' );
 add_filter('manage_edit-slider_columns', 'add_slider_columns');
 
 function add_slider_columns($slider_columns) {
-		$slider_columns = array (
+	$slider_columns = array (
 		'cb' => '<input type="checkbox" />',
-		'thumbnail' => 'Featured Image',
+		'slider-thumbnail' => 'Featured Image',
 		'title' => 'Title',
 		'slider_link_to' => 'External URL',
 	);
-//remove unwanted default columns
-		unset($slider_columns['author']);
-		unset($slider_columns['comments']);
+	//remove unwanted default columns
+	unset($slider_columns['author']);
+	unset($slider_columns['comments']);
 
-		return $slider_columns;
-	}
+	return $slider_columns;
+}
 
 // Add to admin_init function
-	add_action('manage_slider_posts_custom_column', 'manage_slider_columns', 10, 2);
+add_action('manage_slider_posts_custom_column', 'manage_slider_columns', 10, 2);
 
-	function manage_slider_columns($column, $post_id) {
+function manage_slider_columns($column, $post_id) {
 	global $post;
 
-switch( $column ) {
+	switch( $column ) {
 
-    case 'thumbnail':
+		case 'slider-thumbnail':
 			echo get_the_post_thumbnail( $post->ID, 'sort-screen-thumbnail' );
 			break;
-	case 'slider_link_to':
-
-		/* Get the post meta. */
-		$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
+		case 'slider_link_to':
+			/* Get the post meta. */
+			$slider_ext_url = get_post_meta( $post->ID, '_slider_url', true );
 			echo $slider_ext_url;
-		break;
-	default:
+			break;
+		default:
 
 	} //end switch
 
 } //end function
 
+add_action('admin_head', 'mayflower_slider_custom_styles');
+function mayflower_slider_custom_styles() {
+	$output_css = '<style type="text/css">
+		.column-slider-thumbnail {
+			width: 300px;
+		}
+	</style>';
+	echo $output_css;
+}
 
 /* Fire our meta box setup function on the post editor screen. */
 add_action( 'load-post.php', 'add_slider_ext_url_mb' );

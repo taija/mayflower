@@ -140,9 +140,7 @@
 									</ul>
 								</div><!-- social-media -->
 
-								<?php $mayflower_adminonly_options = get_option( 'mayflower_admin_theme_general_options' ); ?>
-
-								<?php if( empty( $mayflower_adminonly_options['hide_searchform'] ) ) { ?>
+								<?php if ( !( $mayflower_options['hide_searchform'] ) ) { ?>
 									<div class="row">
 										<div id="main-nav-link" class="col-xs-4">
 											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>

@@ -16,8 +16,6 @@
 
 require( get_template_directory() . '/inc/functions/theme-setup.php' );
 require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
-require( get_template_directory() . '/inc/functions/options-admin.php');
-require( get_template_directory() . '/inc/functions/options.php');
 require( get_template_directory() . '/inc/functions/options-customizer.php' );
 require( get_template_directory() . '/inc/functions/network-options.php');
 require( get_template_directory() . '/inc/functions/globals.php');
@@ -80,9 +78,46 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 ######################################
 
 function new_excerpt_more( $more ) {
-	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'your-text-domain') . get_the_title() . '</a>';
+	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'mayflower') . get_the_title() . '</a>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
+
+######################################
+// Custom Pagination Function
+######################################
+function mayflower_pagination() {
+	$big = 999999999; // need an unlikely integer
+
+	$paginated_links = paginate_links( array(
+		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' => '?paged=%#%',
+		'current' => max( 1, get_query_var('paged') ),
+		'type' => 'array',
+		'prev_text' => '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Previous',
+		'next_text' => 'Next <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>',
+		'before_page_number' => '<span class="sr-only">Page</span>',
+	) );
+	// Output Pagination
+	if ( $GLOBALS['wp_query']->max_num_pages > 1 ) { ?>
+		<nav class="text-center content-padding">
+			<ul class="pagination">
+				<?php foreach( $paginated_links as $link ) {
+					// Check if 'Current' class appears in string
+					$is_current = strpos( $link, 'current' );
+					if ( $is_current === false ) {
+						echo '<li>';
+						echo $link;
+						echo '</li>';
+					} else {
+						echo '<li class="active">';
+						echo $link;
+						echo '</li>';
+					}
+				} ?>
+			</ul>
+		</nav> <?
+	}
+}
 
 
 ######################################
@@ -487,6 +522,58 @@ add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
 add_filter("gform_tabindex", create_function("", "return 9;"));
 
+
+/**
+ * Filter GravityForms buttons
+ *
+ * Function from https://github.com/pbc-web/gravityforms-add-button-class/
+ * This function accepts an extra 'new classes' perameter, and should not be
+ * used with a filter directly.
+ */
+function mayflower_gf_add_class_to_button( $button, $form, $new_classes ) {
+
+	preg_match( "/class='[\.a-zA-Z_ -]+'/", $button, $classes );
+	$classes[0] = substr( $classes[0], 0, -1 );
+	$classes[0] .= ' ';
+	$classes[0] .= esc_attr( $new_classes );
+	$classes[0] .= "'";
+	$button_pieces = preg_split(
+		"/class='[\.a-zA-Z_ -]+'/",
+		$button,
+		-1,
+		PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+	);
+	return $button_pieces[0] . $classes[0] . $button_pieces[1];
+}
+
+/**
+ * Filter GravityForms submit button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_submit_button( $button, $form ) {
+	$new_classes = 'btn btn-primary pull-right';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_submit_button', 'mayflower_gf_add_class_to_submit_button', 10, 2);
+
+/**
+ * Filter GravityForms next button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_next_button( $button, $form ) {
+	$new_classes = 'btn btn-primary pull-right';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_next_button', 'mayflower_gf_add_class_to_next_button', 10, 2);
+
+/**
+ * Filter GravityForms previous button to add Bootstrap classes
+ */
+function mayflower_gf_add_class_to_previous_button( $button, $form ) {
+	$new_classes = 'btn btn-default pull-left';
+	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
+}
+add_filter( 'gform_previous_button', 'mayflower_gf_add_class_to_previous_button', 10, 2);
+
+
 ####################################################
 ## Override Dashicons Styles
 ####################################################
@@ -713,4 +800,124 @@ add_filter( 'post_thumbnail_html', 'bootstrap_responsive_images', 10 );
 add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
 function my_embed_oembed_html($html, $url, $attr, $post_id) {
   return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
+}
+
+/**
+ *  Add classes to image gallery container
+ */
+function mayflower_gallery_styles( $styles ) {
+	$search = "'>";
+	$replace = " clearfix row'>";
+	$styles = str_replace( $search, $replace, $styles );
+	return $styles;
+}
+add_action( 'gallery_style', 'mayflower_gallery_styles' );
+
+/**
+ * Filter Image Caption Shortcode to change inline width
+ *
+ * Unfortionatly this whole functionality set had to be duplicated from core,
+ * as I was unable to get the img_caption_shortcode_width filter to function.
+ *
+ * Changes 'width' style to 'max-width' to keep size correct in responsive layouts.
+ */
+add_filter('img_caption_shortcode','fix_img_caption_shortcode_inline_style',10,3);
+
+function fix_img_caption_shortcode_inline_style( $output,$attr,$content ) {
+	$atts = shortcode_atts( array(
+		'id'      => '',
+		'align'   => 'alignnone',
+		'width'   => '',
+		'caption' => '',
+		'class'   => '',
+	), $attr, 'caption' );
+
+	$atts['width'] = (int) $atts['width'];
+	if ( $atts['width'] < 1 || empty( $atts['caption'] ) )
+		return $content;
+
+	if ( ! empty( $atts['id'] ) )
+		$atts['id'] = 'id="' . esc_attr( sanitize_html_class( $atts['id'] ) ) . '" ';
+
+	$class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
+
+	$html5 = current_theme_supports( 'html5', 'caption' );
+	// HTML5 captions never added the extra 10px to the image width
+	$width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
+
+	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
+		$style = '';
+		if ( $caption_width )
+			$style = 'style="max-width: ' . (int) $caption_width . 'px" '; // This is the only change from WP Core! This has been modified to max-width
+
+			$html = '';
+			if ( $html5 ) {
+				$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+					. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+			} else {
+				$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
+					. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
+			}
+
+	return $html;
+}
+
+/*
+ * Alt Text Verification
+ *
+ * Taken from WP Accessibility Plugin https://wordpress.org/plugins/wp-accessibility/ Version 1.4.6
+ */
+
+
+// Add Checkbox to mark image as decorative
+add_filter( 'attachment_fields_to_edit', 'wpa_insert_alt_verification', 10, 2 );
+function wpa_insert_alt_verification( $form_fields, $post ) {
+	$mime = get_post_mime_type( $post->ID );
+	if ( $mime == 'image/jpeg' || $mime == 'image/png' || $mime == 'image/gif' ) {
+		$no_alt = get_post_meta( $post->ID, '_no_alt', true );
+		$alt = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
+		$checked = checked( $no_alt, 1, false );
+		$form_fields['no_alt'] = array( 
+			'label' => __( 'Decorative', 'mayflower' ),
+			'input' => 'html',
+			'value' => 1,
+			'html'  => "<input name='attachments[$post->ID][no_alt]' id='attachments-$post->ID-no_alt' value='1' type='checkbox' aria-describedby='wpa_help' $checked /> <em class='help' id='wpa_help'>" . __( '<strong>Image is purely decorative.</strong> This will strip alt text from the image, and should not be used if image contributes to page content.', 'mayflower' ) . "</em>"
+		);
+	}
+	return $form_fields;
+}
+
+add_filter( 'attachment_fields_to_save', 'wpa_save_alt_verification', 10, 2 );
+function wpa_save_alt_verification( $post, $attachment ) {
+	if ( isset( $attachment['no_alt'] ) ) {
+		update_post_meta( $post['ID'], '_no_alt', 1 );
+	} else {
+		delete_post_meta( $post['ID'], '_no_alt' );
+	}
+	return $post;
+}
+
+add_filter( 'image_send_to_editor', 'wpa_alt_attribute', 10, 8 );
+function wpa_alt_attribute( $html, $id, $caption, $title, $align, $url, $size, $alt ) {
+	/* Get data for the image attachment. */
+	$noalt = get_post_meta( $id, '_no_alt', true );
+	/* Get the original title to compare to alt */
+	$title = get_the_title( $id );
+	$warning = false;
+	if ( $noalt == 1 ) {
+		$html = str_replace( 'alt="'.$alt.'"', 'alt=""', $html );
+	}
+	if ( ( $alt == '' || $alt == $title ) && $noalt != 1 ) {
+		if ( $alt == $title ) {
+			$warning = __( 'The alt text for this image is the same as the title. Please review your alternate text to ensure it describes the image.', 'mayflower' );
+			$image = 'alt-same.png';
+		} else {
+			$warning = __( 'This image requires alt text, but the alt text is currently blank. Either add alt text or mark the image as decorative.', 'mayflower' );
+			$image = 'alt-missing.png';
+		}
+	}
+	if ( $warning ) {
+		return $html . "<img class='wpa-image-missing-alt size-" . esc_attr( $size ) . ' ' . esc_attr( $align ) . "' src='" . get_template_directory_uri() . "/img/$image" . "' alt='" . esc_attr( $warning ) . "' />";
+	}
+	return $html;
 }

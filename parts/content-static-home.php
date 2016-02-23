@@ -5,8 +5,9 @@
 
 $mayflower_options = mayflower_get_options();
 
-if ( have_posts() ) : while ( have_posts() ) : the_post();
-
+if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<h1 class="sr-only"><?php the_title(); ?></h1>
+	<?php
 	/**
 	* Prevent Empty Container from loading if there is no content
 	*/
