@@ -456,7 +456,7 @@ echo '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 
 add_filter('nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2);
 function mayflower_nav_active_class($classes, $item){
-     if( in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)){
+     if ( in_array('current-menu-item', $classes) || preg_grep( '/^current-.*-ancestor$/i', $classes )){
              $classes[] = 'active ';
      }
 
