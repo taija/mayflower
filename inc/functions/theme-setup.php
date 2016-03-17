@@ -256,6 +256,15 @@ function mayflower_setup() {
 	 */
 	add_theme_support( 'tabs', 'twitter-bootstrap' );
 
+
+	/**
+	 * Enable Simple Page Sidebar support in CPT
+	 *
+	 * Enable Custom Page sidebars for custom post types
+	 *
+	 */
+	add_post_type_support( 'ceprograms', 'simple-page-sidebars' );
+
 	/**
 	 * Set maximum content width for theme
 	 *
