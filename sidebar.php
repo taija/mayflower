@@ -11,6 +11,9 @@
 			<?php dynamic_sidebar( 'top-global-widget-area' ); ?>
 		<?php endif; ?>
 
+		<?php // Hook to allow display of more widget areas
+		mayflower_display_sidebar(); ?>
+
 		<?php if ( is_active_sidebar( 'page-widget-area' ) ) : ?>
 			<?php if( mayflower_is_blog() ) { } else 
 			 dynamic_sidebar( 'page-widget-area' ); ?>

@@ -310,6 +310,14 @@ function has_active_sidebar() {
 	return $sidebar_is_active;
 }
 
+
+/**
+ * Hook to allow display of additional sidebars
+ *
+ * Hooks in above Static in sidebar.php
+ */
+function mayflower_display_sidebar() {
+	do_action( 'mayflower_display_sidebar' );
 }
 
 #############################
