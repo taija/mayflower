@@ -349,56 +349,80 @@ add_filter( 'body_class','mayflower_body_class_ia' );
 // Wordpress Widget Area Setup
 ######################################
 
-	function mayflower_widgets_init() {
+/**
+ * Register Sidebar Hook
+ *
+ * Allow plugins and themes to register additional
+ * sidebars via the mayflower_register_sidebar hook
+ */
+function mayflower_register_sidebar() {
+	do_action( 'mayflower_register_sidebar' );
+}
+// Register all sidebars
+add_action( 'widgets_init', 'mayflower_register_sidebar' );
 
-		// Top Global Widget Area - located just below the sidebar nav.
-		register_sidebar( array(
-			'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
-			'id' => 'top-global-widget-area',
-			'description' => __( 'This is the top global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="widget-title content-padding">',
-			'after_title' => '</h2>',
-		) );
 
-		// Static Page Widget Area - located just below the global nav on static pages.
-		register_sidebar( array(
-			'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
-			'id' => 'page-widget-area',
-			'description' => __( 'This is the static page widget area. Items will appear on all static pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-static %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="widget-title content-padding">',
-			'after_title' => '</h2>',
-		) );
+/**
+ * Register Mayflower Sidebars
+ *
+ * Use hook to register mayflower sidebars
+ */
 
-		// Blog Widget Area - located just below the global nav on blog pages.
-		register_sidebar( array(
-			'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
-			'id' => 'blog-widget-area',
-			'description' => __( 'This is the blog widget area. Items will appear on all blog related pages.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-blog %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="widget-title content-padding">',
-			'after_title' => '</h2>',
-		) );
+// Top Global Widget Area - located just below the sidebar nav.
+function mayflower_register_top_global_sidebar() {
+	register_sidebar( array(
+		'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
+		'id' => 'top-global-widget-area',
+		'description' => __( 'This is the top global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
+		'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widget-title content-padding">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'mayflower_register_sidebar', 'mayflower_register_top_global_sidebar', 2 );
 
-		// Bottom Global Widget Area - located just below the sidebar nav.
-		register_sidebar( array(
-			'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
-			'id' => 'global-widget-area',
-			'description' => __( 'This is the bottom global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
-			'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="widget-title content-padding">',
-			'after_title' => '</h2>',
-		) );
+// Static Page Widget Area - located just below the global nav on static pages.
+function mayflower_register_static_sidebar() {
+	register_sidebar( array(
+		'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
+		'id' => 'page-widget-area',
+		'description' => __( 'This is the static page widget area. Items will appear on all static pages.', 'mayflower' ),
+		'before_widget' => '<div class="wp-widget wp-widget-static %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widget-title content-padding">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'mayflower_register_sidebar', 'mayflower_register_static_sidebar', 4 );
 
-	}
+// Blog Widget Area - located just below the global nav on blog pages.
+function mayflower_register_blog_sidebar() {
+	register_sidebar( array(
+		'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
+		'id' => 'blog-widget-area',
+		'description' => __( 'This is the blog widget area. Items will appear on all blog related pages.', 'mayflower' ),
+		'before_widget' => '<div class="wp-widget wp-widget-blog %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widget-title content-padding">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'mayflower_register_sidebar', 'mayflower_register_blog_sidebar', 6 );
 
-	/** Register sidebars by running mayflower_widgets_init() on the widgets_init hook. */
-	add_action( 'widgets_init', 'mayflower_widgets_init' );
+// Bottom Global Widget Area - located just below the sidebar nav.
+function mayflower_register_bottom_global_sidebar() {
+	register_sidebar( array(
+		'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
+		'id' => 'global-widget-area',
+		'description' => __( 'This is the bottom global widget area. Items will appear on all pages throughout the web site.', 'mayflower' ),
+		'before_widget' => '<div class="wp-widget wp-widget-global %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widget-title content-padding">',
+		'after_title' => '</h2>',
+	) );
+}
+add_action( 'mayflower_register_sidebar', 'mayflower_register_bottom_global_sidebar', 8 );
 
 
 function widget_empty_title($output='') {
