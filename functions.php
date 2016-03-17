@@ -280,23 +280,36 @@ function mayflower_is_blog() {
 // Add has_active_sidebar function
 #############################
 function has_active_sidebar() {
+	$sidebar_is_active;
+	//Default functionality
 	if ( mayflower_is_blog() ) {
 		if (    is_active_sidebar( 'top-global-widget-area' ) ||
 				is_active_sidebar( 'blog-widget-area' ) ||
 				is_active_sidebar( 'global-widget-area' ) ) {
-			return true;
+			$sidebar_is_active = true;
 		} else {
-			return false;
+			$sidebar_is_active = false;
 		}
 	} else {
 		if (    is_active_sidebar( 'top-global-widget-area' ) ||
 				is_active_sidebar( 'page-widget-area' ) ||
 				is_active_sidebar( 'global-widget-area' ) ) {
-			return true;
+			$sidebar_is_active = true;
 		} else {
-			return false;
+			$sidebar_is_active = false;
 		}
 	}
+	/**
+	 * Add mayflower_active_sidebar filter
+	 *
+	 * Allows plugins and themes to override
+	 * active sidebar state
+	 */
+	$sidebar_is_active = apply_filters( 'mayflower_active_sidebar', $sidebar_is_active );
+	
+	return $sidebar_is_active;
+}
+
 }
 
 #############################
