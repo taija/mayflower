@@ -20,6 +20,7 @@ if ( empty( $custom_searchform_scope ) ) {
 ?>
 <form action="<?php echo $search_url; ?>" method="get" class="form-search" id="bc-search">
 	<div class="input-group pull-right" role="search">
+		<label class="sr-only" for="college-search-field">Search</label>
 		<input type="text" value="" name="txtQuery" class="form-control" id="college-search-field" maxlength="255">
 		<div class="input-group-btn">
 			<button type="submit" class="btn btn-default" id="college-search-submit">Search</button>
