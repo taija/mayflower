@@ -12,7 +12,7 @@ $mayflower_options = mayflower_get_options();
 			<?php //Check if post date should be displayed
 			if ( $mayflower_options['display_post_date'] ) : ?>
 				<?php _e( 'Date posted: ', 'mayflower');
-				the_date(); ?>
+				echo get_the_date(); ?>
 			<?php endif;
 			// Check if post author should be displayed
 			if ( $mayflower_options['display_post_author'] ) : ?>
