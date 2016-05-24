@@ -2,6 +2,7 @@
 /*  Template for displaying post type for the continuing education plugin.
     https://github.com/BellevueCollege/ce-custom-functionality
 */
+
 if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 	<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="content-padding post-heading">
@@ -30,12 +31,12 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 								<?php if ( empty( $class->CourseID ) == FALSE) {
 									//Load title and desc in to variables, and force tags to be balanced
 									$class_title = balanceTags( $class->Title, true );
-									$class_desc  = balanceTags( substr( $class->WebDescr, 0, 140 ), true );
+									$class_desc  = balanceTags( wp_trim_words( $class->WebDescr, 40, '...' ), true );
 									?>
 									<?php $campusce_url = $campusce_base_url . $class->CourseID . '&mc=' . $class->CategoryID . '&pc=' . $parent_ID; ?>
 									<li class="list-group-item">
 										<h3><a href="<?php echo $campusce_url ?>"><?php echo $class_title ?></a></h3>
-										<p><?php echo $class_desc ?> ... <a class="btn btn-default btn-xs" href="<?php echo $campusce_url ?>">More <span class="sr-only"> about <?php echo $class_title ?></span> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></p>
+										<p><?php echo $class_desc ?> <a class="btn btn-default btn-xs" href="<?php echo $campusce_url ?>">More <span class="sr-only"> about <?php echo $class_title ?></span> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></p>
 									</li>
 								<?php } ?>
 							<?php } ?>
