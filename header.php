@@ -100,9 +100,9 @@
 										</a>
 									</div><!-- header-image -->
 								<?php else : ?>
-									<h1 class="site-title">
+									<div class="site-title">
 										<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-									</h1>
+									</div>
 									<p class="site-description"><?php bloginfo('description'); ?></p>
 								<?php endif; ?>
 							</div><!-- .content-padding -->
