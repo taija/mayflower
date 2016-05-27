@@ -142,7 +142,7 @@
 
 								<?php if ( !( $mayflower_options['hide_searchform'] ) ) { ?>
 									<div class="row">
-										<div id="main-nav-link" class="col-xs-4">
+										<div id="main-nav-link" class="col-xs-4 col-sm-12">
 											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
 										</div><!-- main-nav-link -->
 										<div class="col-xs-8 col-sm-12">
