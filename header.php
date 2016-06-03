@@ -72,11 +72,11 @@
 				<div id="main" class="container no-padding">
 					<div class="content-padding">
 						<div id="site-header">
-							<h1 class="site-title">
-								<a title="Return to <?php bloginfo( 'name' ); ?> Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<p class="site-title">
+								<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 									<?php bloginfo( 'name' ); ?>
 								</a>
-							</h1>
+							</p>
 						</div><!-- container header -->
 					</div><!-- content-padding -->
 		<?php }
@@ -95,14 +95,14 @@
 								<?php $header_image = get_header_image();
 								if ( ! empty( $header_image ) ) : ?>
 									<div class="header-image">
-										<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo('description'); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
+										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo('description'); ?>" />
 										</a>
 									</div><!-- header-image -->
 								<?php else : ?>
-									<div class="site-title">
-										<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-									</div>
+									<p class="site-title">
+										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+									</p>
 									<p class="site-description"><?php bloginfo('description'); ?></p>
 								<?php endif; ?>
 							</div><!-- .content-padding -->
