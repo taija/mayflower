@@ -72,11 +72,11 @@
 				<div id="main" class="container no-padding">
 					<div class="content-padding">
 						<div id="site-header">
-							<h1 class="site-title">
-								<a title="Return to <?php bloginfo( 'name' ); ?> Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<p class="site-title">
+								<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 									<?php bloginfo( 'name' ); ?>
 								</a>
-							</h1>
+							</p>
 						</div><!-- container header -->
 					</div><!-- content-padding -->
 		<?php }
@@ -95,14 +95,14 @@
 								<?php $header_image = get_header_image();
 								if ( ! empty( $header_image ) ) : ?>
 									<div class="header-image">
-										<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo('description'); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
+										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo('description'); ?>" />
 										</a>
 									</div><!-- header-image -->
 								<?php else : ?>
-									<h1 class="site-title">
-										<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-									</h1>
+									<p class="site-title">
+										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+									</p>
 									<p class="site-description"><?php bloginfo('description'); ?></p>
 								<?php endif; ?>
 							</div><!-- .content-padding -->
@@ -142,7 +142,7 @@
 
 								<?php if ( !( $mayflower_options['hide_searchform'] ) ) { ?>
 									<div class="row">
-										<div id="main-nav-link" class="col-xs-4">
+										<div id="main-nav-link" class="col-xs-4 col-sm-12">
 											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
 										</div><!-- main-nav-link -->
 										<div class="col-xs-8 col-sm-12">
