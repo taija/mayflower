@@ -115,7 +115,7 @@ function mayflower_pagination() {
 					}
 				} ?>
 			</ul>
-		</nav> <?
+		</nav> <?php
 	}
 }
 
