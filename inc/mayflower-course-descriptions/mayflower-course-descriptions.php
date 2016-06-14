@@ -232,25 +232,4 @@ function coursedescription_func($atts)
 			$htmlString .= "</div>"; //classInfo
 			return $htmlString;
 	}
-
-
-
-	$mayflower_brand = $mayflower_options['mayflower_brand'];
-	$mayflower_brand_css = "";
-	if( $mayflower_brand == 'lite' ) {
-		$mayflower_brand_css = "globals-lite";
-	} else {
-		$mayflower_brand_css = "globals-branded";
-	}
-
-	// Get Mayflower network setting values
-	$network_mayflower_settings = get_site_option( 'globals_network_settings' );
-	$globals_version = $network_mayflower_settings['globals_version'];
-	$globals_path = $network_mayflower_settings['globals_path'];
-	$globals_url = $network_mayflower_settings['globals_url'];
-	$globals_path_over_http = $globals_url;
-    $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
-
-	if (empty($globals_url)) {
-		$globals_url = "/g/2/";
-	}
+    
