@@ -80,6 +80,12 @@ function globals_settings() {
                     update_option( 'globals_network_settings', $globals_settings );
                 }
 
+                //reset values so will be updated values will be shown in form after submission
+                $globals_path                  = $globals_settings['globals_path'];
+		        $globals_url                   = $globals_settings['globals_url'];
+		        $globals_version               = $globals_settings['globals_version'];
+		        $globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
+                
 				//just assume it all went according to plan
 				echo '<div id="message" class="updated fade"><p><strong>Globals settings updated!</strong></p></div>';
 
