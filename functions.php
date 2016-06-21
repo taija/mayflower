@@ -168,7 +168,12 @@ add_filter('the_generator', 'remove_wp_version');
 ######################################
 
 function mayflower_add_editor_styles() {
-    add_editor_style( 'css/custom-editor-style.css' );
+	global $globals_url, $globals_version;
+	add_editor_style( array(
+		$globals_url . 'c/g.css?=' . $globals_version,
+		'style.css',
+		'css/custom-editor-style.css'
+	) );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
 
