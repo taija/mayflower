@@ -9,22 +9,22 @@
 /**
  * Set Up Globals Paths
  */
-$mayflower_settings = get_option( 'globals_network_settings' ); 
+$mayflower_globals_settings = get_option( 'globals_network_settings' ); 
 if ( is_multisite() ) {
-	$mayflower_settings = get_site_option( 'globals_network_settings' );
+	$mayflower_globals_settings = get_site_option( 'globals_network_settings' );
 }
-$globals_path = $mayflower_settings['globals_path'];
+$globals_path = $mayflower_globals_settings['globals_path'];
 if ( empty( $globals_path ) ) {
 	$globals_path =  $_SERVER['DOCUMENT_ROOT'] . "/g/3/";
 }
-$globals_url = $mayflower_settings['globals_url'];
+$globals_url = $mayflower_globals_settings['globals_url'];
 if ( empty( $globals_url) ) {
 	$globals_url = "/g/3";
 }
-$globals_version = $mayflower_settings['globals_version'];
-$globals_path = $mayflower_settings['globals_path'];
+$globals_version = $mayflower_globals_settings['globals_version'];
+$globals_path = $mayflower_globals_settings['globals_path'];
 $globals_path_over_http = $globals_url;
-$globals_google_analytics_code = $mayflower_settings['globals_google_analytics_code'];
+$globals_google_analytics_code = $mayflower_globals_settings['globals_google_analytics_code'];
 
 $bc_globals_html_filepath      = $globals_path . "h/";
 $bc_globals_lhead_filename     = 'lhead.html';
