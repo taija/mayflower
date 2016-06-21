@@ -476,6 +476,15 @@ function mayflower_nav_active_class($classes, $item){
 // Load Scripts and Styles the WordPress way
 #######################################
 
+//set CSS type
+$mayflower_brand = mayflower_get_option('mayflower_brand');
+$mayflower_brand_css = "";
+if( $mayflower_brand == 'lite' ) {
+	$mayflower_brand_css = "globals-lite";
+ } else {
+	$mayflower_brand_css = "globals-branded";
+}
+
 function mayflower_scripts() {
 	global $globals_url, $globals_version;
 	wp_enqueue_style( 'globals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
