@@ -1,7 +1,42 @@
-@import url( ' //s.bellevuecollege.edu/g/3/c/g.css');
-@import url( 'style.css' );
+/* Custom Editor Styles
+ * Loaded in the TinyMCE Visual Editor
+ */
 
+/* From WordPress Accessibility Plugin */
 .wpa-image-missing-alt {
 	border: 2px solid red;
 	box-shadow: 0 0 2px 2px #ffa;
+}
+
+/* General styling and max-width */
+body#tinymce.wp-editor {
+	background: #fff;
+	margin: 1em 2em;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 95%;
+	max-width:1170px;
+}
+
+/* Structure View */
+div, section, form, span {
+	border: 2px dotted #ffcfcf;
+}
+.row {
+	border: 1px dashed #dfdfdf;
+}
+[class*="col-"] {
+	border: 1px dashed #cfcfcf;
+}
+table {
+	border: 2px solid #ffaaaa !important;
+}
+
+/* Messages */
+table::before {
+	background: #ffaaaa;
+	display: block;
+	padding: .1em;
+	font-weight:bold;
+	content: "Warning: Tables can cause accessibility issues!";
 }
