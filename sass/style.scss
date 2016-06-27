@@ -522,7 +522,71 @@ ul.header-social-links li {
 	
 }
 
+/* Styles for Simple Twitter Tweets plugin
+ * https://wordpress.org/plugins/simple-twitter-tweets/
+ */
+.sidebar .tweets {
+	list-style: none;
+	li {
+		margin: 0em 1em .5em 1em;
+		padding: .25em 1em;
+		background: $bg-color;
+		@include border-radius( 5px );
+		display: block;
+		@include box-shadow ( 0 1px 3px rgba(0,0,0,0.15) );
+		border: #ddd 1px solid;
+		.stt-em {
+			display: block;
+			text-align: right;
+			font-size: .8em;
+		}
+		.stt-em a {
+			color: #666;
+			text-decoration: underline;
+			color: #000;
+		}
+	}
+	li:first-child {
+		margin-top: .5em;
+	}
+	li.avatar img {
+		margin: .5em .5em .1em 0;
+	}
+	.intent-meta {
+		text-align: center;
+		a {
+			white-space: nowrap;
+			color: #000;
+			text-decoration: none;
+			font-size: .8em;
+		}
+		a:hover, a:focus, a:active {
+			text-decoration: underline;
+		}
+	}
+}
 
+.sidebar .twitter-follow-container {
+	margin-left: 1em;
+}
+
+@media screen and (min-width: $breakpoint-bs-md) {
+	.sidebar.sidebarleft .twitter-follow-container {
+		text-align: right;
+		margin-right: 0;
+	}
+	.sidebar.sidebarright .twitter-follow-container {
+		margin-left: 0;
+	}
+	
+	.sidebar.sidebarleft .tweets li {
+		margin-right: 0;
+	}
+	.sidebar.sidebarright .tweets li {
+		margin-left: 0;
+		margin-right: .5em;
+	}
+}
 
 /* List Category Posts Widget */
 .widget_listcategorypostswidget h5 {
