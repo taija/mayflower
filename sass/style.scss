@@ -416,15 +416,35 @@ ul.header-social-links li {
 	.wp-widget {
 		margin-bottom: 1em;
 		
+		
 		ul {
 			margin-top: 0;
+
 		}
+		li {
+			margin-left: 2em;
+			padding-left: 0;
+			margin-right: .5em;
+		}
+	}
+	/* Menu Widget */
+	.wp-widget.widget_nav_menu {
+		@include box-shadow( 0px 2px 2px darken($bg-color, 10%));
 	}
 	.widget-title {
 		font-size: 1rem;
 		line-height: 1.75rem;
-		background: $brand-primary;
+		@include background-image(linear-gradient(lighten(#004785, 5%), #004785));
+		font-family: $font-body;
 		color: white;
+		
+		a,
+		a:hover,
+		a:visited,
+		a:active,
+		a:focus {
+			color: #fff;
+		}
 	}
 	
 	ul.menu,
@@ -441,27 +461,36 @@ ul.header-social-links li {
 		display: block;
 		
 		a {
-			border: 1px solid $bg-color;
-			border-top: 0;
+			border-bottom: 1px solid darken( $bg-color, 5% );
 			padding: .125em 0 .125em 2em;
 			width: 100%;
 			display: block;
 		}
-		a:hover {
-			background: $bg-color;
+		a:hover,
+		a:focus,
+		a:active {
+			background: darken($bg-color, 5%);
+			@include box-shadow( inset 0px 2px 2px darken( $bg-color, 25% ) );
 		}
 	}
 	li.menu-item.current_page_item > a,
 	li.menu-item.current-menu-item > a {
 		color: #000;
 		text-decoration: none;
+		background: $bg-color;
 	}
 	
 	ul.sub-menu li.menu-item {
 		a {
-			padding-left: 4em;
+			padding-left: 2.5em;
+		}
+		a:before {
+			content: "\2013"; //emdash
+			display: inline-block;
+			margin-right: .5em
 		}
 	}
+	
 }
 
 /* JavaScript Specific Sidebars */
