@@ -14,7 +14,9 @@ Text Domain: mayflower
 
 /* Variable Setup */
 
-/* Default colors (should match Globals) */
+/* Defaults (should match Globals) */
+
+/* Colors */
 $brand-primary:         #003D79; // BC Brand Primary Blue
 $brand-success:         #3a873a; // Darkened to meet a11y AA requirements
 $brand-info:            #afd7ff; // Lightened BC Brand Blue to meet a11y requirements
@@ -26,6 +28,19 @@ $btn-warning-color:     #000;
 $btn-warning-border:    #E36F1E; //BC Brand Orange
 
 $bg-color: #F5F5F5;
+
+/* Typography */
+$font-body: Helvetica, Arial, sans-serif;
+$font-heading: Georgia, "Times New Roman", Times, serif;
+$font-monospace: Monaco, Menlo, Consolas, "Courier New", monospace;
+$std-line-height: 1.66666667em;
+$std-margin: 1em;
+$sm-margin: $std-margin/3;
+
+// Bootstrap Breakpoints
+$breakpoint-bs-sm: 48em;
+$breakpoint-bs-md: 62em;
+$breakpoint-bs-lg: 75em;
 
 /* Set Browser Support */
 $critical-usage-threshold: 0.1;
