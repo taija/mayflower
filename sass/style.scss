@@ -507,12 +507,17 @@ ul.header-social-links li {
 		padding-right: 1.4em;
 	}
 	
-	a.menu-expand-button {
+	a.menu-expand-button,
+	a.menu-expand-button:focus,
+	a.menu-expand-button:active,
+	a.menu-expand-button:hover {
 		display: inline;
 		float: right;
 		width: auto;
 		padding: .2em .2em 0 0;
 		border: 0 none transparent;
+		background: transparent;
+		@include box-shadow(none);
 	}
 	
 }
