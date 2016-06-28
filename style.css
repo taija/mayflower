@@ -223,77 +223,83 @@ ul.header-social-links li { display: inline; }
 .sidebar ul.sub-menu li.menu-item a { padding-left: 2.5em; }
 /* line 493, sass/style.scss */
 .sidebar ul.sub-menu li.menu-item a:before { content: "\2013"; display: inline-block; margin-right: 0.5em; }
+/* line 498, sass/style.scss */
+.sidebar ul.sub-menu li.menu-item a.menu-expand-button:before { content: none; margin: 0; }
 /* line 503, sass/style.scss */
+.sidebar ul.sub-menu li.menu-item li.menu-item a { padding-left: 5em; }
+/* line 510, sass/style.scss */
 .sidebar .wp-widget.widget_recent_entries, .sidebar .wp-widget.widget_archive, .sidebar .wp-widget.widget_categories, .sidebar .wp-widget.widget_rss, .sidebar .wp-widget.widget_tag_cloud, .sidebar .wp-widget.widget_bc_contact_widget, .sidebar .wp-widget.widget_bc_location_widget, .sidebar .wp-widget.widget_listcategorypostswidget { box-shadow: 0px 2px 2px gainsboro; }
-/* line 513, sass/style.scss */
+/* line 520, sass/style.scss */
 .sidebar .wp-widget.widget_archive select, .sidebar .wp-widget.widget_categories select { margin-left: 1.5em; width: -moz-calc(100% - 2.5em); width: -webkit-calc(100% - 2.5em); width: -o-calc(100% - 2.5em); width: calc(100% - 2.5em); display: inline-block; max-width: 100%; height: 34px; padding: 6px 12px; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 0; border-radius: 0px; }
-/* line 534, sass/style.scss */
+/* line 541, sass/style.scss */
 .sidebar .rss-date { font-size: .8em; line-height: 1.5em; display: block; }
-/* line 539, sass/style.scss */
-.sidebar .widget_rss cite { text-align: right; display: block; }
-/* line 543, sass/style.scss */
-.sidebar .widget_rss cite:before { content: "\2014"; }
 /* line 546, sass/style.scss */
-.sidebar div.tagcloud { margin-left: 2em; padding-top: 1em; margin-right: .5em; padding-bottom: 1em; }
+.sidebar .widget_rss cite { text-align: right; display: block; }
+/* line 550, sass/style.scss */
+.sidebar .widget_rss cite:before { content: "\2014"; }
 /* line 553, sass/style.scss */
+.sidebar div.tagcloud { margin-left: 2em; padding-top: 1em; margin-right: .5em; padding-bottom: 1em; }
+/* line 560, sass/style.scss */
 .sidebar .textwidget { margin-left: 2em; margin-right: .5em; }
+/* line 564, sass/style.scss */
+.sidebar .textwidget li { margin-left: 1em; }
 
 /* JavaScript Specific Sidebars */
-/* line 561, sass/style.scss */
+/* line 572, sass/style.scss */
 .js .sidebar ul.sub-menu { display: none; }
-/* line 564, sass/style.scss */
+/* line 575, sass/style.scss */
 .js .sidebar .active > ul.sub-menu, .js .sidebar .active > ul.sub-menu { display: block; }
-/* line 569, sass/style.scss */
+/* line 580, sass/style.scss */
 .js .sidebar .menu-item-has-children > a { padding-right: 1.4em; }
-/* line 573, sass/style.scss */
+/* line 584, sass/style.scss */
 .js .sidebar a.menu-expand-button, .js .sidebar a.menu-expand-button:focus, .js .sidebar a.menu-expand-button:active, .js .sidebar a.menu-expand-button:hover { display: inline; float: right; width: auto; padding: .2em .2em 0 0; border: 0 none transparent; background: transparent; box-shadow: none; }
 
 /* Styles for Simple Twitter Tweets plugin https://wordpress.org/plugins/simple-twitter-tweets/ */
-/* line 591, sass/style.scss */
+/* line 602, sass/style.scss */
 .sidebar .tweets { list-style: none; }
-/* line 593, sass/style.scss */
+/* line 604, sass/style.scss */
 .sidebar .tweets li { margin: 0em 1em .5em 1em; padding: .25em 1em; background: #F5F5F5; border-radius: 5px; display: block; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); border: #ddd 1px solid; }
-/* line 601, sass/style.scss */
-.sidebar .tweets li .stt-em { display: block; text-align: right; font-size: .8em; }
-/* line 606, sass/style.scss */
-.sidebar .tweets li .stt-em a { color: #666; text-decoration: underline; color: #000; }
 /* line 612, sass/style.scss */
+.sidebar .tweets li .stt-em { display: block; text-align: right; font-size: .8em; }
+/* line 617, sass/style.scss */
+.sidebar .tweets li .stt-em a { color: #666; text-decoration: underline; color: #000; }
+/* line 623, sass/style.scss */
 .sidebar .tweets li:first-child { margin-top: .5em; }
-/* line 615, sass/style.scss */
-.sidebar .tweets li.avatar img { margin: .5em .5em .1em 0; }
-/* line 618, sass/style.scss */
-.sidebar .tweets .intent-meta { text-align: center; }
-/* line 620, sass/style.scss */
-.sidebar .tweets .intent-meta a { white-space: nowrap; color: #000; text-decoration: none; font-size: .8em; }
 /* line 626, sass/style.scss */
+.sidebar .tweets li.avatar img { margin: .5em .5em .1em 0; }
+/* line 629, sass/style.scss */
+.sidebar .tweets .intent-meta { text-align: center; }
+/* line 631, sass/style.scss */
+.sidebar .tweets .intent-meta a { white-space: nowrap; color: #000; text-decoration: none; font-size: .8em; }
+/* line 637, sass/style.scss */
 .sidebar .tweets .intent-meta a:hover, .sidebar .tweets .intent-meta a:focus, .sidebar .tweets .intent-meta a:active { text-decoration: underline; }
 
-/* line 632, sass/style.scss */
+/* line 643, sass/style.scss */
 .sidebar .twitter-follow-container { margin-left: 1em; }
 
-@media screen and (min-width: 62em) { /* line 637, sass/style.scss */
+@media screen and (min-width: 62em) { /* line 648, sass/style.scss */
   .sidebar.sidebarleft .twitter-follow-container { text-align: right; margin-right: 0; }
-  /* line 641, sass/style.scss */
+  /* line 652, sass/style.scss */
   .sidebar.sidebarright .twitter-follow-container { margin-left: 0; }
-  /* line 645, sass/style.scss */
+  /* line 656, sass/style.scss */
   .sidebar.sidebarleft .tweets li { margin-right: 0; }
-  /* line 648, sass/style.scss */
+  /* line 659, sass/style.scss */
   .sidebar.sidebarright .tweets li { margin-left: 0; margin-right: .5em; } }
 /* List Category Posts Widget */
-/* line 655, sass/style.scss */
+/* line 666, sass/style.scss */
 .sidebar .widget_listcategorypostswidget > div, .sidebar .widget_listcategorypostswidget > a { padding: 0 .5em 0 2em; }
 
-/* line 661, sass/style.scss */
+/* line 672, sass/style.scss */
 .sidebar .widget_listcategorypostswidget h5 { margin: .5rem .5rem 0 2rem; }
-/* line 664, sass/style.scss */
+/* line 675, sass/style.scss */
 .sidebar .widget_listcategorypostswidget img { border: 1px solid #f0f0f0; max-width: 96%; /* Image does not overflow the content area */ padding: .25em; text-align: center; }
-/* line 670, sass/style.scss */
+/* line 681, sass/style.scss */
 .sidebar .widget_listcategorypostswidget li a { padding: 0; }
-/* line 673, sass/style.scss */
+/* line 684, sass/style.scss */
 .sidebar .widget_listcategorypostswidget hr { display: none; }
-/* line 676, sass/style.scss */
+/* line 687, sass/style.scss */
 .sidebar .widget_listcategorypostswidget .lcp_date, .sidebar .widget_listcategorypostswidget .lcp_title { display: inline; }
-/* line 679, sass/style.scss */
+/* line 690, sass/style.scss */
 .sidebar .widget_listcategorypostswidget .lcp_author { font-size: small; }
 
 /* ul.lcp_catlist .lcp_thumbnail img {
@@ -323,32 +329,32 @@ ul.lcp_catlist li {
 }
 */
 /* Really Simple Twitter Widget */
-/* line 714, sass/style.scss */
+/* line 725, sass/style.scss */
 ul.really_simple_twitter_widget li { line-height: 1.4em; padding: 1em; }
 
-/* line 719, sass/style.scss */
+/* line 730, sass/style.scss */
 ul.really_simple_twitter_widget li a { display: inline; border: none; padding: 0em; }
 
 /* Gravity Forms Widget */
-/* line 726, sass/style.scss */
+/* line 737, sass/style.scss */
 .gform_widget .gform_wrapper { padding: 0 2em; }
 
-/* line 729, sass/style.scss */
+/* line 740, sass/style.scss */
 .gform_widget ul.gform_fields { border: none; }
 
 /* Asides */
-/* line 734, sass/style.scss */
+/* line 745, sass/style.scss */
 section.post, section.page { display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -moz-box-orient: vertical; -ms-flex-direction: column; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; }
-/* line 746, sass/style.scss */
+/* line 757, sass/style.scss */
 section.post div.post-title, section.page div.post-title { -moz-flex-order: 1; -ms-flex-order: 1; flex-order: 1; -webkit-order: 1; order: 1; }
-/* line 752, sass/style.scss */
+/* line 763, sass/style.scss */
 section.post aside#ppa-aside, section.page aside#ppa-aside { margin-top: 2em; -moz-flex-order: 4; -ms-flex-order: 4; flex-order: 4; -webkit-order: 4; order: 4; }
-/* line 759, sass/style.scss */
+/* line 770, sass/style.scss */
 section.post article, section.page article { -moz-flex-order: 3; -ms-flex-order: 3; flex-order: 3; -webkit-order: 3; order: 3; }
-/* line 765, sass/style.scss */
+/* line 776, sass/style.scss */
 section.post section, section.page section { margin-top: 2em; -moz-flex-order: 10; -ms-flex-order: 10; flex-order: 10; -webkit-order: 10; order: 10; }
 
-@media screen and (min-width: 768px) { /* line 774, sass/style.scss */
+@media screen and (min-width: 768px) { /* line 785, sass/style.scss */
   section.post, section.page { display: block; }
-  /* line 778, sass/style.scss */
+  /* line 789, sass/style.scss */
   section.post aside#ppa-aside, section.page aside#ppa-aside { margin-top: 0; } }

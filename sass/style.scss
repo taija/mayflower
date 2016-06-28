@@ -495,6 +495,13 @@ ul.header-social-links li {
 			display: inline-block;
 			margin-right: .5em
 		}
+		a.menu-expand-button:before {
+			content: none;
+			margin: 0;
+		}
+	}
+	ul.sub-menu li.menu-item li.menu-item a {
+		padding-left: 5em;
 	}
 	
 	/* Page Widgets
@@ -553,6 +560,10 @@ ul.header-social-links li {
 	.textwidget {
 		margin-left: 2em;
 		margin-right: .5em;
+
+		li {
+			margin-left: 1em;
+		}
 	}
 }
 
