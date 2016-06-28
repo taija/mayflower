@@ -652,31 +652,52 @@ ul.header-social-links li {
 }
 
 /* List Category Posts Widget */
-.widget_listcategorypostswidget h5 {
-	margin-top: .5em;
+.sidebar .widget_listcategorypostswidget > div,
+.sidebar .widget_listcategorypostswidget > a {
+	padding: 0 .5em 0 2em;
 }
-.widget_listcategorypostswidget ul img, ul.lcp_catlist .lcp_thumbnail img  {
-    background: #fff;
+.sidebar .widget_listcategorypostswidget {
+	//Headings (category name)
+	h5 {
+		margin: .5rem .5rem 0 2rem;
+	}
+	img {
+		border: 1px solid #f0f0f0;
+		max-width: 96%; /* Image does not overflow the content area */
+		padding: .25em;
+		text-align: center;
+	}
+	li a {
+		padding: 0;
+	}
+	hr {
+		display: none;
+	}
+	.lcp_date, .lcp_title {
+		display: inline;
+	}
+	.lcp_author {
+		font-size: small;
+	}
+}
+
+
+//Thumbnail
+/* ul.lcp_catlist .lcp_thumbnail img {
+	background: #fff;
 	color: #888;
 	font-size: .9em;
 	line-height: 1.666667em;
-    border: 1px solid #f0f0f0;
-    max-width: 96%; /* Image does not overflow the content area */
-    padding: 3px;
-    text-align: center;
-}
-.widget_listcategorypostswidget a, .widget_listcategorypostswidget li {
-	padding: 0 2em;
-}
-.widget_listcategorypostswidget li a {
-	padding: 0;
-}
-.widget_listcategorypostswidget hr {
-	display: none;
-}
+	border: 1px solid #f0f0f0;
+	max-width: 96%;
+	padding: 3px;
+	text-align: center;
+} 
+
 .lcp_catlist li {
 	clear: both;
 }
+
 .lcp_date, .lcp_author {
 }
 ul.lcp_catlist {
@@ -687,6 +708,8 @@ ul.lcp_catlist li {
 	margin-top: .5em;
 	margin-left: 0;
 }
+*/
+
 /* Really Simple Twitter Widget */
 ul.really_simple_twitter_widget li{
     line-height: 1.4em;
