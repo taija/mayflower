@@ -375,7 +375,7 @@ function get_course_html($course, $description = null)
     $html .= " <span class='course-title'>".$course["title"]."</span>";
     $html .= "<span class='course-credits'> &#8226; ";
 
-    if($course["isVariableCredit"])
+    if($course["isVariableCredits"])
     {
         $html .= "V1-".$course["credits"]." <abbr title='variable credit'>Cr.</abbr>";
     }
