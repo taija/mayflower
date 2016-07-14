@@ -12,13 +12,13 @@ define("API_MULTICOURSE_URL", "http://www.bellevuecollege.edu/apis/classes/v1/co
 // Add shortcode media buttons for course-related shortcode creation
 function add_shortcode_buttons() {
     echo '<a href="#TB_inline?width=480&inlineId=select_form" class="thickbox button" id="add_course" title="' . __("Add Course", 'mayflower') . '"><span class="dashicons dashicons-welcome-learn-more"></span> ' . __("Add Course", "mayflower") . '</a>';
-    echo '<a href="#TB_inline?width=400&height=500&inlineId=multicourse_select_form" class="thickbox button" id="add_multi_course" title="' . __("Add Multiple Courses", 'mayflower') . '"><span class="dashicons dashicons-plus" style="vertical-align: middle;"></span> ' . __("Add Multiple Courses", "mayflower") . '</a>';
+    //echo '<a href="#TB_inline?width=400&height=500&inlineId=multicourse_select_form" class="thickbox button" id="add_multi_course" title="' . __("Add Multiple Courses", 'mayflower') . '"><span class="dashicons dashicons-plus" style="vertical-align: middle;"></span> ' . __("Add Multiple Courses", "mayflower") . '</a>'; //UNCOMMENT TO ENABLE MULTICOURSE
 }
 
 //Return form HTML
 function add_coursedesc_code() {
     add_coursedesc_popup();
-    add_multicourse_popup();
+    //add_multicourse_popup(); //UNCOMMENT TO ENABLE MULTICOURSE
 }
 
 add_action('media_buttons', 'add_shortcode_buttons', 99);
