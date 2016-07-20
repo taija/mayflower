@@ -17,7 +17,7 @@
 require( get_template_directory() . '/inc/functions/theme-setup.php' );
 require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 require( get_template_directory() . '/inc/functions/options-customizer.php' );
-require( get_template_directory() . '/inc/functions/network-options.php');
+require( get_template_directory() . '/inc/functions/globals-options.php');
 require( get_template_directory() . '/inc/functions/globals.php');
 
 
@@ -115,7 +115,7 @@ function mayflower_pagination() {
 					}
 				} ?>
 			</ul>
-		</nav> <?
+		</nav> <?php
 	}
 }
 
@@ -168,7 +168,12 @@ add_filter('the_generator', 'remove_wp_version');
 ######################################
 
 function mayflower_add_editor_styles() {
-    add_editor_style( 'css/custom-editor-style.css' );
+	global $globals_url, $globals_version;
+	add_editor_style( array(
+		$globals_url . 'c/g.css?=' . $globals_version,
+		'style.css',
+		'css/custom-editor-style.css'
+	) );
 }
 add_action( 'init', 'mayflower_add_editor_styles' );
 
@@ -434,11 +439,6 @@ function widget_empty_title($output='') {
 }
 add_filter('widget_title', 'widget_empty_title');
 
-
-
-
-
-
 ############################
 // Force IE Edge in WP Admin
 ############################
@@ -477,14 +477,21 @@ function mayflower_nav_active_class($classes, $item){
      return $classes;
 }
 
-
 #######################################
 // Load Scripts and Styles the WordPress way
 #######################################
 
+//set CSS type
+$mayflower_brand = mayflower_get_option('mayflower_brand');
+$mayflower_brand_css = "";
+if( $mayflower_brand == 'lite' ) {
+	$mayflower_brand_css = "globals-lite";
+ } else {
+	$mayflower_brand_css = "globals-branded";
+}
+
 function mayflower_scripts() {
 	global $globals_url, $globals_version;
-
 	wp_enqueue_style( 'globals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
 	wp_enqueue_style( 'globals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
 	wp_enqueue_style( 'mayflower', get_stylesheet_uri());
@@ -504,6 +511,7 @@ function mayflower_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', $globals_url . 'j/bootstrap.min.js', array('jquery'), $globals_version, true );
 	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery'), $globals_version, true );
+	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js', array('jquery'), null , true );
 }
 
 add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
@@ -566,7 +574,6 @@ add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_
 
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
 add_filter("gform_tabindex", create_function("", "return 9;"));
-
 
 /**
  * Filter GravityForms buttons
@@ -634,13 +641,11 @@ function override_dashicons() { ?>
   </style>
 <?php }
 
-
 ///////////////////////////////////////
 // - CPT Re-ordering
 // - Register and write the ajax callback function to actually update the posts.
 // * Set action in sorting-v2.js to the function name below
 ///////////////////////////////////////
-
 
 add_action( 'wp_ajax_mayflower_cpt_update_post_order', 'mayflower_cpt_update_post_order' );
 
@@ -668,7 +673,6 @@ function mayflower_cpt_update_post_order() {
 /////////////////////////
 // Custom Meta Boxes
 /////////////////////////
-
 
 // Field Array
 $prefix = '_gnav_';
@@ -797,8 +801,11 @@ function google_analytics_dashboard()
 {
     if(is_user_logged_in())
     {
-        $network_mayflower_settings = get_site_option( 'globals_network_settings' );
-        $globals_google_analytics_code = $network_mayflower_settings['globals_google_analytics_code'];
+		$mayflower_globals_settings = get_option( 'globals_network_settings' );
+		if ( is_multisite() ) {
+        	$mayflower_globals_settings = get_site_option( 'globals_network_settings' );
+		}
+        $globals_google_analytics_code = $mayflower_globals_settings['globals_google_analytics_code'];
         global  $gaCode;
         $gaCode = "'" . $globals_google_analytics_code . "'";
         ?>
@@ -836,7 +843,6 @@ function bootstrap_responsive_images( $html ){
 }
 add_filter( 'the_content','bootstrap_responsive_images',10 );
 add_filter( 'post_thumbnail_html', 'bootstrap_responsive_images', 10 );
-
 
 ###############################################################
 // Responsive video - add wrapper div with appropriate classes
