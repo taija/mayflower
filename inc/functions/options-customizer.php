@@ -66,7 +66,6 @@ $mayflower_theme_option_defaults = array(
 	'youtube'                 => '',
 	'hide_searchform'         => false,
 	'limit_searchform_scope'  => false,
-	'custom_searchform_query' => 'f',
 	'custom_searchform_scope' => '',
 );
 
@@ -659,13 +658,6 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_boolean',
 	) );
-	$wp_customize->add_setting( 'theme_mayflower_options[custom_searchform_query]' , array(
-		'type'              => 'option',
-		'default'           => $mayflower_theme_option_defaults['custom_searchform_query'],
-		'transport'         => 'refresh',
-		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[custom_searchform_scope]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['custom_searchform_scope'],
@@ -686,13 +678,6 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'theme_mayflower_options[limit_searchform_scope]',
 		'type'         => 'checkbox',
-	) ) );
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_searchform_query', array(
-		'label'        => __( 'Custom Search Form Query', 'mayflower' ),
-		'description'  => __( 'Allows definition of Query Perameter for custom scope. Default is "f". ', 'mayflower' ),
-		'section'      => 'mayflower_admin_options',
-		'settings'     => 'theme_mayflower_options[custom_searchform_query]',
-		'type'         => 'text',
 	) ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_searchform_scope', array(
 		'label'        => __( 'Custom Search Form Scope', 'mayflower' ),
