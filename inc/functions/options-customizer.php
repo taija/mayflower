@@ -696,7 +696,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 	) ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_searchform_scope', array(
 		'label'        => __( 'Custom Search Form Scope', 'mayflower' ),
-		'description'  => __( 'Allows definition of custom scope. If none is defined, local site URL will be used. Accepts comma-seperated list of full or partial URLs.', 'mayflower' ),
+		'description'  => __( 'Allows definition of custom scope. If none is defined, local site URL will be used. ', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'theme_mayflower_options[custom_searchform_scope]',
 		'type'         => 'text',
