@@ -44,7 +44,7 @@ endif;
 
 $mayflower_theme_option_defaults = array(
 	'mayflower_brand'         => 'lite',
-	'global_nav_selection'    => 'nav-none',
+	'global_nav_selection'    => 'nav-home',
 	'ga_code'                 => '',
 	'default_layout'          => 'sidebar-content',
 	'staff_toggle'            => false,
@@ -205,13 +205,13 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'type'           => 'select',
 				'choices'        => array(
 					'nav-none'           => __( 'none', 'mayflower' ),
-					'nav-home'           => __( 'Home', 'mayflower' ),
-					'nav-classes'        => __( 'Classes', 'mayflower' ),
-					'nav-programs'       => __( 'Programs of Study', 'mayflower' ),
-					'nav-studentcentral' => __( 'Student Central', 'mayflower' ),
-					'nav-services'       => __( 'Services', 'mayflower' ),
-					'nav-campuslife'     => __( 'Campus Life', 'mayflower' ),
-					'nav-about'          => __( 'About Us', 'mayflower' ),
+					'nav-home'       => __( 'Home', 'mayflower' ),
+					'nav-classes'    => __( 'Classes', 'mayflower' ),
+					'nav-programs'   => __( 'Programs of Study', 'mayflower' ),
+					'nav-enrollment' => __( 'Enrollment', 'mayflower' ),
+					'nav-services'   => __( 'Services', 'mayflower' ),
+					'nav-campuslife' => __( 'Campus Life', 'mayflower' ),
+					'nav-about'      => __( 'About Us', 'mayflower' ),
 				)
 			)
 		)
