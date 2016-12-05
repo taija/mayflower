@@ -97,12 +97,12 @@ function globals_settings() {
 					<table class="form-table">
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_path">
+								<label for="globals_settings[globals_path]">
 									Globals path
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_path]"
+								<input size="50" type="text" name="globals_settings[globals_path]" id="globals_settings[globals_path]"
 									value="<?php
 									if (empty($globals_path)) {
 										echo $_SERVER['DOCUMENT_ROOT'] . "/g/3/";
@@ -116,29 +116,29 @@ function globals_settings() {
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_path">
+								<label for="globals_settings[globals_url]">
 									Globals URL
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>
+								<input size="50" type="text" name="globals_settings[globals_url]" id="globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>
 								<br /><small><strong>Example:</strong> //s.bellevuecollege.edu/g/3/ </small>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_version">
+								<label for="globals_settings[globals_version]">
 									Globals version
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
+								<input size="50" type="text" name="globals_settings[globals_version]" id="globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
 								<br /><small>Used to invalidate browser-side caching</small>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_google_analytics_code">
+								<label for="globals_settings[globals_google_analytics_code]">
 									Google Analytics code
 								</label>
 							</th>
@@ -146,6 +146,7 @@ function globals_settings() {
 								<input size="50"
 									   type="text"
 									   name="globals_settings[globals_google_analytics_code]"
+									   id="globals_settings[globals_google_analytics_code]"
 									   value="<?php echo $globals_google_analytics_code; ?>"/>
 								<br /><small>Used across WordPress site</small>
 							</td>
