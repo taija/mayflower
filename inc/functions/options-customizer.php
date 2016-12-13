@@ -204,6 +204,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 				'settings'       => 'theme_mayflower_options[global_nav_selection]',
 				'type'           => 'select',
 				'choices'        => array(
+					'nav-none'           => __( 'none', 'mayflower' ),
 					'nav-home'       => __( 'Home', 'mayflower' ),
 					'nav-classes'    => __( 'Classes', 'mayflower' ),
 					'nav-programs'   => __( 'Programs of Study', 'mayflower' ),

@@ -12,26 +12,19 @@ global $query_string;
 query_posts( $query_string . '&orderby=title&order=ASC' );
 ?>
 
-	<div class="content-padding top-spacing15">
-	<h1>
-		<?php if( is_tax() ) {
-			echo $title.'&nbsp;';
-		} ?>
-		
-	</h1>
-	<?php if( is_tax() && !empty($description)) : ?>
-		<p class="lead">
-			<?php echo $description; ?>
-		</p>
+	<div class="content-padding">
+	<h1><?php if ( is_tax() ) { echo $title; } ?></h1>
+	<?php if ( is_tax() && !empty( $description ) ) : ?>
+		<p class="lead"><?php echo $description; ?></p>
 	<?php endif; ?>
-	
-	<?php if (have_posts()) : ?>		
-		<?php while (have_posts()) : the_post(); ?>	
+
+	<?php if ( have_posts()) : ?>
+		<?php while (have_posts()) : the_post(); ?>
 			<div class="media">
-			    <a class="pull-left" href="<?php the_permalink(); ?>">
+				<a class="pull-left" href="<?php the_permalink(); ?>">
 				<?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail('thumbnail', array('class' => 'media-object img-responsive img-thumbnail'));
+						the_post_thumbnail( 'thumbnail', array( 'class' => 'media-object img-responsive img-thumbnail' ) );
 					}
 					else {
 						echo '<img alt="" src="' . get_stylesheet_directory_uri() . '/img/thumbnail-default.png" />';
@@ -57,6 +50,4 @@ query_posts( $query_string . '&orderby=title&order=ASC' );
 	</div><!-- content-padding -->
 	<?php mayflower_pagination(); ?>
 	<?php wp_reset_query(); ?>
-	<?php endif; ?>
-	
-	
+<?php endif;
