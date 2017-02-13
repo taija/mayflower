@@ -41,9 +41,9 @@ function globals_network_menu_settings(){
 * Calls the correct action to include the settings page based on type of install
 **/
 if ( is_multisite() ) {
-    add_action( 'network_admin_menu', 'globals_network_menu_settings');
+	add_action( 'network_admin_menu', 'globals_network_menu_settings');
 } else {
-    add_action( 'admin_menu', 'globals_admin_menu_settings');
+	add_action( 'admin_menu', 'globals_admin_menu_settings');
 }
 
 /**
@@ -52,9 +52,9 @@ if ( is_multisite() ) {
 function globals_settings() {
 	if ( (!is_multisite() && current_user_can('manage_options')) || (is_multisite() && current_user_can('manage_network')) ) {
 		$globals_settings              = get_option( 'globals_network_settings' );
-        if ( is_multisite() ) {
-            $globals_settings          = get_site_option( 'globals_network_settings' );
-        }
+		if ( is_multisite() ) {
+			$globals_settings          = get_site_option( 'globals_network_settings' );
+		}
 		$globals_path                  = $globals_settings['globals_path'];
 		$append_path                   = $globals_settings['append_path'];
 		$globals_url                   = $globals_settings['globals_url'];
@@ -75,19 +75,19 @@ function globals_settings() {
 				$globals_settings = array_map( 'sanitize_text_field', $globals_settings );
 
 				//save option values
-                if ( is_multisite() ) {
-				    update_site_option( 'globals_network_settings', $globals_settings );
-                } else {
-                    update_option( 'globals_network_settings', $globals_settings );
-                }
+				if ( is_multisite() ) {
+					update_site_option( 'globals_network_settings', $globals_settings );
+				} else {
+					update_option( 'globals_network_settings', $globals_settings );
+				}
 
-                //reset values so will be updated values will be shown in form after submission
-                $globals_path                  = $globals_settings['globals_path'];
+				//reset values so will be updated values will be shown in form after submission
+				$globals_path                  = $globals_settings['globals_path'];
 				$append_path                   = $globals_settings['append_path'];
-		        $globals_url                   = $globals_settings['globals_url'];
-		        $globals_version               = $globals_settings['globals_version'];
-		        $globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
-                
+				$globals_url                   = $globals_settings['globals_url'];
+				$globals_version               = $globals_settings['globals_version'];
+				$globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
+
 				//just assume it all went according to plan
 				echo '<div id="message" class="updated fade"><p><strong>Globals settings updated!</strong></p></div>';
 
@@ -164,5 +164,5 @@ function globals_settings() {
 			</form>
 		</div>
 
-	<?php } 
+	<?php }
 }
