@@ -114,9 +114,12 @@ function globals_settings() {
 								<i class="fa fa-question-circle"></i>
 								<br /><small><strong>Apache example:</strong> /var/www/g/3/</small>
 								<br /><small><strong>Nginx example:</strong> /usr/share/nginx/www.bellevuecollege.edu/g/3/</small>
+								<br /><small><strong>With Append Path:</strong> /g/3/</small>
 								<br />
-								<br /><input type="checkbox" name= "globals_settings[append_path]" id= "globals_settings[append_path]" value="1" <?php checked( '1', $append_path ); ?>>
-								<label for="globals_settings[append_path]">Append Path to Document Root (<?php echo $_SERVER['DOCUMENT_ROOT']; ?>)</label>
+								<br />
+								<input name="globals_settings[append_path]" value="0" type="hidden">
+								<input type="checkbox" name= "globals_settings[append_path]" id= "globals_settings[append_path]" value="1" <?php checked( '1', $append_path ); ?>>
+								<label for="globals_settings[append_path]">Append Path to Document Root ( <?php echo $_SERVER['DOCUMENT_ROOT']; ?> )</label>
 							</td>
 						</tr>
 						<tr valign="top">
