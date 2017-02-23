@@ -972,3 +972,45 @@ function wpa_alt_attribute( $html, $id, $caption, $title, $align, $url, $size, $
 	}
 	return $html;
 }
+
+/**
+ * Pantheon Advanced Cache config
+ *
+ * These filters and actions improve cache clearing when using
+ * the Pantheon Advanced Page Cache plugin
+ * https://github.com/pantheon-systems/pantheon-advanced-page-cache
+ **/
+
+add_filter( 'pantheon_wp_main_query_surrogate_keys', function( $keys ) {
+	global $post;
+
+	// Top Global Sidebar Widget Area
+	if ( is_active_sidebar('top-global-widget-area') or
+		 is_active_sidebar('global-widget-area')     or
+		 is_active_sidebar('page-widget-area')       or
+		 is_active_sidebar('blog-widget-area') ) {
+		// Add general sidebar key
+		$keys[] = 'sidebar';
+	}
+
+	// If page has children, and has page template applied, add post ids to parent
+
+	// Load child pages
+	$children = get_pages( array( 'child_of' => $post->ID ) );
+
+	// Check if page has children, and has template applied
+	if ( ( count( $children ) > 0 ) && is_page_template() ) {
+		// Add keys to current page
+		foreach ( $children as $child ) {
+			$keys[] = 'post-' . $child->ID;
+		}
+	}
+
+	// Return all keys
+	return $keys;
+});
+
+// Clear pages with sidebars when sidebars are updated
+add_action( 'update_option_sidebars_widgets', function() {
+	pantheon_wp_clear_edge_keys( array( 'sidebar' ) );
+});
