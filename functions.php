@@ -994,15 +994,16 @@ add_filter( 'pantheon_wp_main_query_surrogate_keys', function( $keys ) {
 	}
 
 	// If page has children, and has page template applied, add post ids to parent
+	if ( is_page( ) ) {
+		// Load child pages
+		$children = get_pages( array( 'child_of' => $post->ID ) );
 
-	// Load child pages
-	$children = get_pages( array( 'child_of' => $post->ID ) );
-
-	// Check if page has children, and has template applied
-	if ( ( count( $children ) > 0 ) && is_page_template() ) {
-		// Add keys to current page
-		foreach ( $children as $child ) {
-			$keys[] = 'post-' . $child->ID;
+		// Check if page has children, and has template applied
+		if ( ( count( $children ) > 0 ) && is_page_template() ) {
+			// Add keys to current page
+			foreach ( $children as $child ) {
+				$keys[] = 'post-' . $child->ID;
+			}
 		}
 	}
 
