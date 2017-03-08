@@ -1,4 +1,4 @@
-# Generally Igore
+# Generally Ignore
 .htaccess
 *.log
 
@@ -23,3 +23,17 @@ $RECYCLE.BIN/
 .sass-cache
 
 .idea/
+.vscode
+
+# Gulp/NPM stuff
+node_modules
+build
+*.node
+components
+coverage
+*.orig
+.idea
+sandbox
+test/out-fixtures/*
+test/watch-*.txt
+gulp.1
