@@ -404,6 +404,15 @@ ul.header-social-links li {
 	input[type=radio] {
 		margin-left: 0.1em !important; /* messy, but needed to stop the right edge from being cut off */
 	}
+	legend {
+		font-size: inherit;
+		font-weight: 700;
+		margin-bottom: 0;
+		border: none;
+	}
+	label {
+		font-weight: normal;
+	}
 }
 
 
@@ -419,13 +428,8 @@ ul.header-social-links li {
 		
 		ul {
 			margin-top: 0;
-
 		}
-		li {
-			margin-left: 2em;
-			padding-left: 0;
-			margin-right: .5em;
-		}
+		
 		li:last-child {
 			padding-bottom: .5em;
 		}
@@ -441,6 +445,7 @@ ul.header-social-links li {
 		@include background-image(linear-gradient(lighten(#004785, 5%), #004785));
 		font-family: $font-body;
 		color: white;
+		margin: 0;
 		
 		a,
 		a:hover,
@@ -601,6 +606,7 @@ ul.header-social-links li {
  */
 .sidebar .tweets {
 	list-style: none;
+	margin: 0;
 	li {
 		margin: 0em 1em .5em 1em;
 		padding: .25em 1em;
