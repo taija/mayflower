@@ -18,12 +18,12 @@ Text Domain: mayflower
 
 /* Colors */
 $brand-primary:         #003D79; // BC Brand Primary Blue
-$brand-success:         #3a873a; // Darkened to meet a11y AA requirements
+$brand-success:         #317131; // Darkened to meet a11y AA requirements
 $brand-info:            #afd7ff; // Lightened BC Brand Blue to meet a11y requirements
 $brand-warning:         #F2C01E; // BC Brand Yellow
 $brand-danger:          #C4122F; // BC Brand Red
 
-$btn-info-color:     #162F57;
+$btn-info-color:        #162F57;
 $btn-warning-color:     #000;
 $btn-warning-border:    #E36F1E; //BC Brand Orange
 
@@ -90,14 +90,6 @@ video {
         display: block;
         margin: .5em auto .5em auto;
     }
-
-	.wp-post-image.alignright,
-	.wp-post-image.alignleft,
-	.wp-caption.alignright,
-	.wp-caption.alignleft{
-		margin-top: 1.5em;
-	}
-
 }
 
 .wp-post-image.alignright,
