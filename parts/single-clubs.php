@@ -26,7 +26,7 @@ if (have_posts()) :
 		if (!(in_array('Unchartered', $club_statuses))) {
 			$is_chartered = true;
 		} ?>
-		<div class="content-padding">
+		<div class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
 
 			<?php
 			/* Display 'Unchartered' notice if Unchartered is in array.

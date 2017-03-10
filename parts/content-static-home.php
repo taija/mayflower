@@ -12,7 +12,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	* Prevent Empty Container from loading if there is no content
 	*/
 	if ( $post->post_content != "" ) : ?>
-		<div class="content-padding">
+		<div class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
 			<?php the_content(); ?>
 		</div><!--.content-padding-->
 	<?php endif; ?>
