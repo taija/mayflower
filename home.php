@@ -16,7 +16,7 @@ global $mayflower_brand;
 $mayflower_options = mayflower_get_options();
 $current_layout = $mayflower_options['default_layout'];
 ?>
-<div id="content" <?php if ( $mayflower_brand == 'branded' ) {?> class="box-shadow"<?php } ?>>
+<div id="content" data-swiftype-index='true' <?php if ( $mayflower_brand == 'branded' ) {?> class="box-shadow"<?php } ?>>
 
 	<div class="row row-padding">
 

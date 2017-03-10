@@ -16,7 +16,9 @@
 			<?php } ?>
 		</div>
 	<?php endif; ?>
-	<?php the_content(); ?>
+	<div data-swiftype-name="body" data-swiftype-type="text">
+		<?php the_content(); ?>
+	</div>
 
 	<?php // comments_template(); ?>
 

@@ -41,6 +41,25 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" />
+
+	<!-- SwiftType meta tags -->
+	<?php 
+	$blog_id = get_current_blog_id();
+	$blog_details = get_blog_details( $blog_id );
+
+	$st_post_popularity = 1;
+	if ( is_front_page( $post->ID ) ) {
+		$st_post_popularity = 10;
+	} ?>
+	
+	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo $st_post_popularity ?>' />
+	<meta class="swiftype" name="published_at" data-type="date" content="<?php echo get_the_modified_date( 'Y-m-d', $post->ID ) ?>" />
+	<meta class="swiftype" name="wp_site_slug" data-type="string" content="<?php echo substr( $blog_details->path, 1, -1) ?>" />
+
+	<?php if ( is_archive( $post->ID  ) ) { ?>
+		<meta name="robots" content="noindex, follow">
+	<?php } ?>
+
 	<!--[if IE]>
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" />
 	<![endif]-->

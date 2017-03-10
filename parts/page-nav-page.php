@@ -8,7 +8,7 @@
 		endif; ?>
 		<?php if ( $post-> post_content=="" ) : /* Don't display empty the_content or surround divs */
 		else : /* Do stuff when the_content has content */ ?>
-			<article class="content-padding">
+			<article class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
 				<?php the_content(); ?>
 			</article>
 		<?php endif; ?>

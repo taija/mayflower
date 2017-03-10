@@ -25,7 +25,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<?php if ( function_exists( 'post_and_page_asides_return_title' ) ) :
 			get_template_part( 'parts/aside' );
 		endif; ?>
-		<article class="content-padding">
+		<article class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
 
 			<?php if ( has_post_thumbnail() && get_post_format() != 'video' ) :
 
