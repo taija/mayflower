@@ -11,7 +11,7 @@
 
 	<?php else : ?>
 	<!-- Do stuff when the_content has content -->
-		<article class="content-padding">
+		<article class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
 			<?php the_content(); ?>
 		</article>
 	<?php endif; ?>

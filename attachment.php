@@ -19,7 +19,7 @@ $description       = $post->post_content;
 $caption           = $post->post_excerpt;
 ?>
 
-<div id="content" <?php if ( $mayflower_brand == 'branded' ) {?> class="box-shadow"<?php } ?>>
+<div id="content" data-swiftype-index='true' <?php if ( $mayflower_brand == 'branded' ) {?> class="box-shadow"<?php } ?>>
 
 	<div class="row row-padding">
 
