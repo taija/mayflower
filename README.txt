@@ -18,6 +18,9 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.14 =
+* Fetch CE Course information via AJAX
+
 = 2.13 =
 * Add 'none' option when selecting navigation in Mayflower branded
 * Convert README.md to WordPress-spec README.txt
@@ -219,5 +222,8 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.14 =
+Use AJAX to fetch CE course information from CampusCE
+
 = 2.13 =
 Adds a 'none' option when selecting top navigation in Mayflower Branded
