@@ -10,10 +10,8 @@ Mayflower is a WordPress theme created by Bellevue College as a unified theme fo
 
 = Special Features =
 Mayflower has the following dependencies:
-
-1. [WordPress Multisite](http://codex.wordpress.org/Create_A_Network)
-2. Globals Style Library (must be available on the same server)
-3. [Compass](http://compass-style.org/) installed on development systems
+1. Globals Style Library (must be available on the same server)
+2. [NPM](https://nodejs.org/en/) and [Gulp](http://gulpjs.com/) installed on development systems
 
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
