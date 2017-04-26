@@ -972,5 +972,7 @@ add_filter( 'pantheon_wp_main_query_surrogate_keys', function( $keys ) {
 
 // Clear pages with sidebars when sidebars are updated
 add_action( 'update_option_sidebars_widgets', function() {
-	pantheon_wp_clear_edge_keys( array( 'sidebar' ) );
+	if ( function_exists( 'pantheon_wp_clear_edge_keys' ) ) {
+		pantheon_wp_clear_edge_keys( array( 'sidebar' ) );
+	}
 });
