@@ -510,7 +510,7 @@ function mayflower_scripts() {
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', $globals_url . 'j/bootstrap.min.js', array('jquery'), $globals_version, true );
-	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery'), $globals_version, true );
+	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery', 'bootstrap'), $globals_version, true );
 	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js', array('jquery'), null , true );
 }
 
