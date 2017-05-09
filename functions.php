@@ -510,7 +510,7 @@ function mayflower_scripts() {
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', $globals_url . 'j/bootstrap.min.js', array('jquery'), $globals_version, true );
-	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery'), $globals_version, true );
+	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery', 'bootstrap'), $globals_version, true );
 	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js', array('jquery'), null , true );
 }
 
@@ -865,53 +865,12 @@ function mayflower_gallery_styles( $styles ) {
 add_action( 'gallery_style', 'mayflower_gallery_styles' );
 
 /**
- * Filter Image Caption Shortcode to change inline width
+ * Filter Image Caption Shortcode to remove inline width
  *
- * Unfortionatly this whole functionality set had to be duplicated from core,
- * as I was unable to get the img_caption_shortcode_width filter to function.
- *
- * Changes 'width' style to 'max-width' to keep size correct in responsive layouts.
+ * Sets inline width to 0 to prevent output. 
  */
-add_filter('img_caption_shortcode','fix_img_caption_shortcode_inline_style',10,3);
 
-function fix_img_caption_shortcode_inline_style( $output,$attr,$content ) {
-	$atts = shortcode_atts( array(
-		'id'      => '',
-		'align'   => 'alignnone',
-		'width'   => '',
-		'caption' => '',
-		'class'   => '',
-	), $attr, 'caption' );
-
-	$atts['width'] = (int) $atts['width'];
-	if ( $atts['width'] < 1 || empty( $atts['caption'] ) )
-		return $content;
-
-	if ( ! empty( $atts['id'] ) )
-		$atts['id'] = 'id="' . esc_attr( sanitize_html_class( $atts['id'] ) ) . '" ';
-
-	$class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
-
-	$html5 = current_theme_supports( 'html5', 'caption' );
-	// HTML5 captions never added the extra 10px to the image width
-	$width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
-
-	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
-		$style = '';
-		if ( $caption_width )
-			$style = 'style="max-width: ' . (int) $caption_width . 'px" '; // This is the only change from WP Core! This has been modified to max-width
-
-			$html = '';
-			if ( $html5 ) {
-				$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-					. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
-			} else {
-				$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-					. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
-			}
-
-	return $html;
-}
+add_filter('img_caption_shortcode_width', '__return_false');
 
 /*
  * Alt Text Verification
@@ -972,3 +931,48 @@ function wpa_alt_attribute( $html, $id, $caption, $title, $align, $url, $size, $
 	}
 	return $html;
 }
+
+/**
+ * Pantheon Advanced Cache config
+ *
+ * These filters and actions improve cache clearing when using
+ * the Pantheon Advanced Page Cache plugin
+ * https://github.com/pantheon-systems/pantheon-advanced-page-cache
+ **/
+
+add_filter( 'pantheon_wp_main_query_surrogate_keys', function( $keys ) {
+	global $post;
+
+	// Top Global Sidebar Widget Area
+	if ( is_active_sidebar('top-global-widget-area') or
+		 is_active_sidebar('global-widget-area')     or
+		 is_active_sidebar('page-widget-area')       or
+		 is_active_sidebar('blog-widget-area') ) {
+		// Add general sidebar key
+		$keys[] = 'sidebar';
+	}
+
+	// If page has children, and has page template applied, add post ids to parent
+	if ( is_page( ) ) {
+		// Load child pages
+		$children = get_pages( array( 'child_of' => $post->ID ) );
+
+		// Check if page has children, and has template applied
+		if ( ( count( $children ) > 0 ) && is_page_template() ) {
+			// Add keys to current page
+			foreach ( $children as $child ) {
+				$keys[] = 'post-' . $child->ID;
+			}
+		}
+	}
+
+	// Return all keys
+	return $keys;
+});
+
+// Clear pages with sidebars when sidebars are updated
+add_action( 'update_option_sidebars_widgets', function() {
+	if ( function_exists( 'pantheon_wp_clear_edge_keys' ) ) {
+		pantheon_wp_clear_edge_keys( array( 'sidebar' ) );
+	}
+});

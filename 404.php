@@ -13,20 +13,10 @@ get_header(); ?>
 	<?php function mayflower_errormsgs() {
 		/** These are the error messages that are randomly displayed */
 
-		$errmsgs = "It's not you, it's me.
-		I wasn't expecting this either.
-		I hate to tell you this, but...
-		I'm feeling lost too.
-		Oops, something is broken
-		The page went where?
-		It's been a tough day on the Web.
-		You weren't supposed to see this.
-		Errors happen to the best of people.
-		Don't tell my supervisor :)
-		Errors make me blush.
-		We call this a Web Transfer Failure.
-		Which way is north?
-		You found an error. W00t!";
+		$errmsgs = "It was here, we promise!
+		We've lead you astray...
+		Oh no!
+		You've found a broken link!";
 
 		// Here we split it into lines
 		$errmsgs = explode( "\n", $errmsgs );

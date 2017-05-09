@@ -41,9 +41,9 @@ function globals_network_menu_settings(){
 * Calls the correct action to include the settings page based on type of install
 **/
 if ( is_multisite() ) {
-    add_action( 'network_admin_menu', 'globals_network_menu_settings');
+	add_action( 'network_admin_menu', 'globals_network_menu_settings');
 } else {
-    add_action( 'admin_menu', 'globals_admin_menu_settings');
+	add_action( 'admin_menu', 'globals_admin_menu_settings');
 }
 
 /**
@@ -52,10 +52,11 @@ if ( is_multisite() ) {
 function globals_settings() {
 	if ( (!is_multisite() && current_user_can('manage_options')) || (is_multisite() && current_user_can('manage_network')) ) {
 		$globals_settings              = get_option( 'globals_network_settings' );
-        if ( is_multisite() ) {
-            $globals_settings          = get_site_option( 'globals_network_settings' );
-        }
+		if ( is_multisite() ) {
+			$globals_settings          = get_site_option( 'globals_network_settings' );
+		}
 		$globals_path                  = $globals_settings['globals_path'];
+		$append_path                   = $globals_settings['append_path'];
 		$globals_url                   = $globals_settings['globals_url'];
 		$globals_version               = $globals_settings['globals_version'];
 		$globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
@@ -74,18 +75,19 @@ function globals_settings() {
 				$globals_settings = array_map( 'sanitize_text_field', $globals_settings );
 
 				//save option values
-                if ( is_multisite() ) {
-				    update_site_option( 'globals_network_settings', $globals_settings );
-                } else {
-                    update_option( 'globals_network_settings', $globals_settings );
-                }
+				if ( is_multisite() ) {
+					update_site_option( 'globals_network_settings', $globals_settings );
+				} else {
+					update_option( 'globals_network_settings', $globals_settings );
+				}
 
-                //reset values so will be updated values will be shown in form after submission
-                $globals_path                  = $globals_settings['globals_path'];
-		        $globals_url                   = $globals_settings['globals_url'];
-		        $globals_version               = $globals_settings['globals_version'];
-		        $globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
-                
+				//reset values so will be updated values will be shown in form after submission
+				$globals_path                  = $globals_settings['globals_path'];
+				$append_path                   = $globals_settings['append_path'];
+				$globals_url                   = $globals_settings['globals_url'];
+				$globals_version               = $globals_settings['globals_version'];
+				$globals_google_analytics_code = $globals_settings['globals_google_analytics_code'];
+
 				//just assume it all went according to plan
 				echo '<div id="message" class="updated fade"><p><strong>Globals settings updated!</strong></p></div>';
 
@@ -97,12 +99,12 @@ function globals_settings() {
 					<table class="form-table">
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_path">
+								<label for="globals_settings[globals_path]">
 									Globals path
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_path]"
+								<input size="50" type="text" name="globals_settings[globals_path]" id="globals_settings[globals_path]"
 									value="<?php
 									if (empty($globals_path)) {
 										echo $_SERVER['DOCUMENT_ROOT'] . "/g/3/";
@@ -112,33 +114,39 @@ function globals_settings() {
 								<i class="fa fa-question-circle"></i>
 								<br /><small><strong>Apache example:</strong> /var/www/g/3/</small>
 								<br /><small><strong>Nginx example:</strong> /usr/share/nginx/www.bellevuecollege.edu/g/3/</small>
+								<br /><small><strong>With Append Path:</strong> /g/3/</small>
+								<br />
+								<br />
+								<input name="globals_settings[append_path]" value="0" type="hidden">
+								<input type="checkbox" name= "globals_settings[append_path]" id= "globals_settings[append_path]" value="1" <?php checked( '1', $append_path ); ?>>
+								<label for="globals_settings[append_path]">Append Path to Document Root ( <?php echo $_SERVER['DOCUMENT_ROOT']; ?> )</label>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_path">
+								<label for="globals_settings[globals_url]">
 									Globals URL
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>
+								<input size="50" type="text" name="globals_settings[globals_url]" id="globals_settings[globals_url]" value="<?php echo $globals_url; ?>"/>
 								<br /><small><strong>Example:</strong> //s.bellevuecollege.edu/g/3/ </small>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_version">
+								<label for="globals_settings[globals_version]">
 									Globals version
 								</label>
 							</th>
 							<td>
-								<input size="50" type="text" name="globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
+								<input size="50" type="text" name="globals_settings[globals_version]" id="globals_settings[globals_version]" value="<?php echo $globals_version; ?>"/>
 								<br /><small>Used to invalidate browser-side caching</small>
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">
-								<label for="globals_google_analytics_code">
+								<label for="globals_settings[globals_google_analytics_code]">
 									Google Analytics code
 								</label>
 							</th>
@@ -146,6 +154,7 @@ function globals_settings() {
 								<input size="50"
 									   type="text"
 									   name="globals_settings[globals_google_analytics_code]"
+									   id="globals_settings[globals_google_analytics_code]"
 									   value="<?php echo $globals_google_analytics_code; ?>"/>
 								<br /><small>Used across WordPress site</small>
 							</td>
@@ -158,5 +167,5 @@ function globals_settings() {
 			</form>
 		</div>
 
-	<?php } 
+	<?php }
 }
