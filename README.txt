@@ -2,7 +2,7 @@
 Contributors: Bellevue College Integration Team
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
 Requires at least: 4.4
-Tested up to: 4.6.1
+Tested up to: 4.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,16 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.15 =
+* Make enqueue of g.js dependant on bootstrap.min.js to prevent future issues
+* Improve list of 404 messages
+* Prevent fatal error on single site installs by changing method of getting blog slug
+* Prevent error when activating theme by checking of pantheon functions exist before running
+* Prevent full size images from expanding outside of page
+* Fix datepicker colors in Gravity Forms to prevent 'disabled' Appearance
+* Fix issues caused by Globals reset removal
+* Transition from Compass to Gulp/NPM
+
 = 2.14 =
 * Fetch CE Course information via AJAX
 
@@ -223,6 +233,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15 =
+Fix several fatal errors and major CSS issues
+
 = 2.14 =
 Use AJAX to fetch CE course information from CampusCE
 
