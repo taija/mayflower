@@ -16,6 +16,9 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.15.2 =
+* Bug fix: large/full size images now stay within page when centered
+
 = 2.15.1 =
 * Bug fix: Prevent long image captions from overflowing bounds
 
@@ -236,6 +239,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15.2 =
+Fix issue large centered images
+
 = 2.15.1 =
 Fix issue with long image captions
 
