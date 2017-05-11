@@ -1,5 +1,5 @@
 <?php
-
+$mayflower_style_version = '2.15.2';
 /* Load  theme options framework
  *
  * This legacy code is mainly from the Oenology theme.
@@ -491,10 +491,10 @@ if( $mayflower_brand == 'lite' ) {
 }
 
 function mayflower_scripts() {
-	global $globals_url, $globals_version;
+	global $globals_url, $globals_version, $mayflower_style_version;
 	wp_enqueue_style( 'globals', $globals_url . 'c/g.css', null, $globals_version, 'screen' );
 	wp_enqueue_style( 'globals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
-	wp_enqueue_style( 'mayflower', get_stylesheet_uri());
+	wp_enqueue_style( 'mayflower', get_stylesheet_uri(), null, $mayflower_style_version );
 
 	// These go first- modernizr and respond.js
 	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead.js', $globals_version, null, false );
