@@ -16,6 +16,9 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.15.1 =
+* Bug fix: Prevent long image captions from overflowing bounds
+
 = 2.15 =
 * Make enqueue of g.js dependant on bootstrap.min.js to prevent future issues
 * Improve list of 404 messages
@@ -233,6 +236,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15.1 =
+Fix issue with long image captions
+
 = 2.15 =
 Fix several fatal errors and major CSS issues
 
