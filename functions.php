@@ -864,20 +864,12 @@ function mayflower_gallery_styles( $styles ) {
 }
 add_action( 'gallery_style', 'mayflower_gallery_styles' );
 
-/**
- * Filter Image Caption Shortcode to remove inline width
- *
- * Sets inline width to 0 to prevent output. 
- */
-
-add_filter('img_caption_shortcode_width', '__return_false');
 
 /*
  * Alt Text Verification
  *
  * Taken from WP Accessibility Plugin https://wordpress.org/plugins/wp-accessibility/ Version 1.4.6
  */
-
 
 // Add Checkbox to mark image as decorative
 add_filter( 'attachment_fields_to_edit', 'wpa_insert_alt_verification', 10, 2 );
