@@ -22,19 +22,6 @@ $mayflower_theme_version = wp_get_theme(); ?>
 <html <?php language_attributes(); ?> class="no-js">
 <!--<![endif]-->
 <head>
-	<title>
-		<?php $post_meta_data = get_post_custom( $post->ID );
-		if ( isset( $post_meta_data['_seo_custom_page_title'][0] ) ) {
-			echo esc_html( $post_meta_data['_seo_custom_page_title'][0] );
-		} else {
-			if ( is_front_page() ) { bloginfo( 'name' );
-				?> @ Bellevue College<?php
-			} else {
-				wp_title( ' :: ', true, 'right' );
-			}
-		}
-	?></title>
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<?php if ( isset( $post_meta_data['_seo_meta_description'][0] ) ) { ?>
 		<meta name="description" content="<?php echo esc_html( $post_meta_data['_seo_meta_description'][0] ); ?>" />

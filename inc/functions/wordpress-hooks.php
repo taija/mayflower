@@ -210,57 +210,19 @@ add_filter( 'wp_list_categories', 'mayflower_show_current_cat_on_single' );
 /**
  * Output optimized document titles
  *
- * Filter Hook: wp_title
+ * Uses WordPress 4.1+ title framework
  *
- * Filter 'wp_title' to output contextual content
- *
- * @link	http://codex.wordpress.org/Function_Reference/get_bloginfo	Codex reference: get_bloginfo()
- * @link	http://codex.wordpress.org/Function_Reference/get_search_query	Codex reference: get_search_query()
- * @link	http://codex.wordpress.org/Function_Reference/is_feed	Codex reference: is_feed()
- * @link	http://codex.wordpress.org/Function_Reference/is_home	Codex reference: is_home()
- * @link	http://codex.wordpress.org/Function_Reference/is_front_page	Codex reference: is_front_page()
- * @link	http://codex.wordpress.org/Function_Reference/is_search	Codex reference: is_search()
- * @link	http://php.net/manual/en/function.max.php	PHP reference: max()
- * @link	http://php.net/manual/en/function.sprintf.php	PHP reference: sprintf()
- *
- * @since	Oenology 2.0
  */
-function mayflower_filter_wp_title( $title, $separator ) { // taken from TwentyTen 1.0
-	// Don't affect wp_title() calls in feeds.
-	if ( is_feed() )
-		return $title;
-
-	// The $paged global variable contains the page number of a listing of posts.
-	// The $page global variable contains the page number of a single post that is paged.
-	// We'll display whichever one applies, if we're not looking at the first page.
-	global $paged, $page;
-
-	if ( is_search() ) {
-		// If we're a search, let's start over:
-		$title = sprintf( 'Search results for %s', '"' . get_search_query() . '"' );
-		// Add a page number if we're on page 2 or more:
-		if ( $paged >= 2 )
-			$title .= " $separator " . sprintf( 'Page %s', $paged );
-		// Add the site name to the end:
-		$title .= " $separator " . get_bloginfo( 'name', 'display' );
-		// We're done. Let's send the new title back to wp_title():
-		return $title;
+function mayflower_document_title_parts( $title_parts ) {
+	if ( is_front_page() ) {
+		$title_parts['tagline'] = '';
+		$title_parts['site']    = __( 'Bellevue College' );
 	}
-
-	// Otherwise, let's start by adding the site name to the end:
-	$title .= get_bloginfo( 'name', 'display' );
-
-	// If we have a site description and we're on the home/front page, add the description:
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title .= " $separator " . $site_description;
-
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		$title .= " $separator " . sprintf( 'Page %s', max( $paged, $page ) );
-
-	// Return the new title to wp_title():
-	return $title;
+	return $title_parts;
 }
-// Hook into 'wp_title'
-add_filter( 'wp_title', 'mayflower_filter_wp_title', 10, 2 );
+add_filter( 'document_title_parts', 'mayflower_document_title_parts', 10, 1 );
+
+function mayflower_document_title_separator( $mayflower_document_title_separator ) {
+	return is_front_page() ? '@' : '::';
+}
+add_filter( 'document_title_separator', 'mayflower_document_title_separator', 10, 1 );
