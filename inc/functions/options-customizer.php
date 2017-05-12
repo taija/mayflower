@@ -66,7 +66,8 @@ $mayflower_theme_option_defaults = array(
 	'youtube'                 => '',
 	'hide_searchform'         => false,
 	'limit_searchform_scope'  => false,
-	'custom_searchform_scope' => '',
+	'custom_search_url'       => '',
+	'custom_search_api_key'   => '',
 );
 
 /**
@@ -658,9 +659,16 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_boolean',
 	) );
-	$wp_customize->add_setting( 'theme_mayflower_options[custom_searchform_scope]' , array(
+	$wp_customize->add_setting( 'theme_mayflower_options[custom_search_url]' , array(
 		'type'              => 'option',
-		'default'           => $mayflower_theme_option_defaults['custom_searchform_scope'],
+		'default'           => $mayflower_theme_option_defaults['custom_search_url'],
+		'transport'         => 'refresh',
+		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
+		'sanitize_callback' => 'esc_url',
+	) );
+	$wp_customize->add_setting( 'theme_mayflower_options[custom_search_api_key]' , array(
+		'type'              => 'option',
+		'default'           => $mayflower_theme_option_defaults['custom_search_api_key'],
 		'transport'         => 'refresh',
 		'capability'        => 'unfiltered_html', //Limit this section to Super-Admin only
 		'sanitize_callback' => 'sanitize_text_field',
@@ -674,16 +682,23 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 	) ) );
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'limit_searchform_scope', array(
 		'label'        => __( 'Limit Search Form Scope', 'mayflower' ),
-		'description'  => __( 'Search within the subsite instead of within the master BC scope', 'mayflower' ),
+		'description'  => __( 'Limit search results to pages within the subsite', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
 		'settings'     => 'theme_mayflower_options[limit_searchform_scope]',
 		'type'         => 'checkbox',
 	) ) );
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_searchform_scope', array(
-		'label'        => __( 'Custom Search Form Scope', 'mayflower' ),
-		'description'  => __( 'Allows definition of custom scope. If none is defined, local site URL will be used. ', 'mayflower' ),
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_search_url', array(
+		'label'        => __( 'Custom Search URL', 'mayflower' ),
+		'description'  => __( 'Allows definition of a custom URL for search (instead of passing a filter)', 'mayflower' ),
 		'section'      => 'mayflower_admin_options',
-		'settings'     => 'theme_mayflower_options[custom_searchform_scope]',
+		'settings'     => 'theme_mayflower_options[custom_search_url]',
+		'type'         => 'url',
+	) ) );
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'custom_search_api_key', array(
+		'label'        => __( 'Custom Search API Key', 'mayflower' ),
+		'description'  => __( 'Allows definition of a custom public API key for autofill. Required if custom URL is defined. ', 'mayflower' ),
+		'section'      => 'mayflower_admin_options',
+		'settings'     => 'theme_mayflower_options[custom_search_api_key]',
 		'type'         => 'text',
 	) ) );
 }
