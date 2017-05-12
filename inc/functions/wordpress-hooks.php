@@ -129,24 +129,16 @@ add_filter( 'widget_title', 'mayflower_filter_widget_title' );
 function mayflower_comment_count( $count ) {
 	// Only filter the comments number
 	// in the front-end display
-	if (
-	// WordPress conditional that returns true if
-	// the current page is in the WP-Admin back-end
-	! is_admin()
-	) {
+	if ( ! is_admin() ) {
 		global $id;
 		$comments_by_type = &separate_comments( get_comments( 'status=approve&post_id=' . $id ) );
 		return count( $comments_by_type['comment'] );
-	}
-	// Otherwise, when in the WP-Admin
-	// back end, don't filter comments
-	// number
-	else {
+	} else {
 		return $count;
 	}
 }
 // Hook custom comment number into 'get_comments_number'
-add_filter('get_comments_number', 'mayflower_comment_count', 0);
+add_filter( 'get_comments_number', 'mayflower_comment_count', 0 );
 
 /**
  * Output default Post Title if none is provided
@@ -194,27 +186,26 @@ add_filter( 'use_default_gallery_style', '__return_false' );
  *
  * @since	Oenology 2.0
  */
-function mayflower_show_current_cat_on_single($output) {
+function mayflower_show_current_cat_on_single( $output ) {
 
 	global $post;
 
-	if( is_singular( 'post' ) ) {
+	if ( is_singular( 'post' ) ) {
 
 		$categories = wp_get_post_categories( $post->ID );
 
-		foreach( $categories as $catid ) {
-			$cat = get_category($catid);
+		foreach ( $categories as $catid ) {
+			$cat = get_category( $catid );
 			// Find cat-item-ID in the string
-			if( preg_match( '#cat-item-' . $cat->cat_ID . '#', $output ) ) {
+			if ( preg_match( '#cat-item-' . $cat->cat_ID . '#', $output ) ) {
 				$output = str_replace( 'cat-item-' . $cat->cat_ID, 'cat-item-' . $cat->cat_ID . ' current-cat', $output );
 			}
 		}
-
 	}
 	return $output;
 }
 // Hook current_cat function into 'wp_list_categories'
-add_filter('wp_list_categories', 'mayflower_show_current_cat_on_single');
+add_filter( 'wp_list_categories', 'mayflower_show_current_cat_on_single' );
 
 /**
  * Output optimized document titles
