@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <?php
-	global $mayflower_options;
+global $mayflower_options,
+	   $globals_version,
+	   $globals_url,
+	   $globals_path,
+	   $mayflower_brand,
+	   $mayflower_brand_css,
+	   $mayflower_theme_version;
+
+if ( ! ( is_array( $mayflower_options ) ) ) {
 	$mayflower_options = mayflower_get_options();
-	global $globals_version;
-	global $globals_url;
-	global $globals_path;
-	global $mayflower_brand;
-	global $mayflower_brand_css;
-	global $mayflower_theme_version;
-	$mayflower_theme_version = wp_get_theme();
-?>
+}
+
+$mayflower_theme_version = wp_get_theme(); ?>
+
 <!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="ie8"> <![endif]-->
@@ -18,48 +22,27 @@
 <html <?php language_attributes(); ?> class="no-js">
 <!--<![endif]-->
 <head>
-	<title><?php
-		$post_meta_data = get_post_custom($post->ID);
-		if ( isset( $post_meta_data['_seo_custom_page_title'][0] ) ) {
-			echo $post_meta_data['_seo_custom_page_title'][0];
-		} else {
-			if ( is_front_page() ) { bloginfo('name');
-				?> @ Bellevue College<?php 
-			} else {
-				wp_title( " :: ", true, 'right' );
-			}
-		}
-	?></title>
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<?php if ( isset ( $post_meta_data['_seo_meta_description'][0] ) ) { ?>
-		<meta name="description" content="<?php echo $post_meta_data['_seo_meta_description'][0]; ?>" />
+	<?php if ( isset( $post_meta_data['_seo_meta_description'][0] ) ) { ?>
+		<meta name="description" content="<?php echo esc_html( $post_meta_data['_seo_meta_description'][0] ); ?>" />
 	<?php } ?>
-	<?php if (isset($post_meta_data['_seo_meta_description'][0])) { ?>
-		<meta name="keywords" content="<?php echo $post_meta_data['_seo_meta_keywords'][0]; ?>" />
+	<?php if ( isset( $post_meta_data['_seo_meta_description'][0] ) ) { ?>
+		<meta name="keywords" content="<?php echo esc_html( $post_meta_data['_seo_meta_keywords'][0] ); ?>" />
 	<?php } ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" />
+	<link rel="icon" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/img/bellevue.ico" />
 
-	<!-- SwiftType meta tags -->
-	<?php
-	$st_post_popularity = 1;
-	if ( is_front_page( $post->ID ) ) {
-		$st_post_popularity = 10;
-	} ?>
-	
-	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo $st_post_popularity ?>' />
-	<meta class="swiftype" name="published_at" data-type="date" content="<?php echo get_the_modified_date( 'Y-m-d', $post->ID ) ?>" />
+	<!-- Swiftype meta tags -->
+	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo is_front_page( $post->ID ) ? 10 : 1 ?>' />
+	<meta class="swiftype" name="published_at" data-type="date" content="<?php the_modified_date( 'Y-m-d' ) ?>" />
 	<meta class="swiftype" name="site_home_url" data-type="string" content="<?php echo esc_textarea( mayflower_trimmed_url() ) ?>" />
 
-	<?php if ( is_archive( $post->ID  ) ) { ?>
+	<?php if ( is_archive( $post->ID ) ) { ?>
 		<meta name="robots" content="noindex, follow">
 	<?php } ?>
+	<!-- / Swiftype meta tags -->
 
-	<!--[if IE]>
-		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/bellevue.ico" />
-	<![endif]-->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 
 	<?php wp_head(); ?>
@@ -72,7 +55,7 @@
 	### Branded or Lite versions of the header
 	##############################################
 
-	if( $mayflower_brand == 'branded' ) {
+	if ( 'branded' === $mayflower_brand ) :
 		###############################
 		### --- Branded version --- ###
 		###############################
@@ -81,10 +64,10 @@
 
 		//display site title on branded version
 		if ( is_404() ) { ?>
-			<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+			<div id="main-wrap" class="<?php echo esc_attr( $mayflower_brand_css ); ?>">
 				<div id="main" class="container no-padding">
 		<?php } else { ?>
-			<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+			<div id="main-wrap" class="<?php echo esc_attr( $mayflower_brand_css ); ?>">
 				<div id="main" class="container no-padding">
 					<div class="content-padding">
 						<div id="site-header">
@@ -96,13 +79,13 @@
 						</div><!-- container header -->
 					</div><!-- content-padding -->
 		<?php }
-	} else {
+	else :
 		############################
 		### --- Lite version --- ###
 		############################
-		
+
 		bc_tophead(); ?>
-		<div id="main-wrap" class="<?php echo $mayflower_brand_css; ?>">
+		<div id="main-wrap" class="<?php echo esc_attr( $mayflower_brand_css ); ?>">
 			<div id="main" class="container no-padding">
 				<div class="container" id="top">
 					<div id="site-header" class="row">
@@ -112,51 +95,51 @@
 								if ( ! empty( $header_image ) ) : ?>
 									<div class="header-image">
 										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo('description'); ?>" />
+											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo( 'description' ); ?>" />
 										</a>
 									</div><!-- header-image -->
 								<?php else : ?>
 									<p class="site-title">
 										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 									</p>
-									<p class="site-description"><?php bloginfo('description'); ?></p>
+									<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 								<?php endif; ?>
 							</div><!-- .content-padding -->
 						</div><!-- col-md-8 -->
 						<div class="col-md-4">
-							<div class="header-search content-padding
-								<?php if ( get_bloginfo('description') ) {
-									echo 'header-search-w-description ';
-								}
-								if(get_bloginfo('description') <> '') {
-									echo 'header-social-links-no-margin ';
-								} ?>">
+							
+							<div class="header-search content-padding <?php
+							if ( get_bloginfo( 'description' ) ) {
+								echo 'header-search-w-description ';
+							}
+							if ( '' === get_bloginfo( 'description' ) ) {
+								echo 'header-social-links-no-margin ';
+							} ?>">
 								<div class="social-media">
 									<ul>
-										<?php if (!empty($mayflower_options['facebook'])) {
-											$facebook = esc_url($mayflower_options['facebook'] ); ?>
-											<li><a href="<?php echo $mayflower_options['facebook']; ?>" title="facebook"><img src="<?php echo $globals_url; ?>i/facebook.png" alt="facebook" /></a></li>
+										<?php if ( ! empty( $mayflower_options['facebook'] ) ) { ?>
+											<li><a href="<?php echo esc_url( $mayflower_options['facebook'] ); ?>" title="FaceBook"><img src="<?php echo esc_url( $globals_url ); ?>i/facebook.png" alt="facebook" /></a></li>
 										<?php } ?>
 
-										<?php if (!empty($mayflower_options['twitter'])) { ?>
-											<li><a href="<?php echo $mayflower_options['twitter']; ?>" title="twitter"><img src="<?php echo $globals_url; ?>i/twitter.png" alt="twitter" /></a></li>
+										<?php if ( ! empty( $mayflower_options['twitter'] ) ) { ?>
+											<li><a href="<?php echo esc_url( $mayflower_options['twitter'] ); ?>" title="Twitter"><img src="<?php echo esc_url( $globals_url ); ?>i/twitter.png" alt="twitter" /></a></li>
 										<?php } ?>
 
-										<?php if (!empty($mayflower_options['flickr'])) { ?>
-											<li><a href="<?php echo $mayflower_options['flickr']; ?>" title="flickr"><img src="<?php echo $globals_url; ?>i/flickr.png" alt="flickr" /></a></li>
+										<?php if ( ! empty( $mayflower_options['flickr'] ) ) { ?>
+											<li><a href="<?php echo esc_url( $mayflower_options['flickr'] ); ?>" title="Flickr"><img src="<?php echo esc_url( $globals_url ); ?>i/flickr.png" alt="flickr" /></a></li>
 										<?php } ?>
 
-										<?php if (!empty($mayflower_options['youtube'])) { ?>
-											<li><a href="<?php echo $mayflower_options['youtube']; ?>" title="youtube"><img src="<?php echo $globals_url; ?>i/youtube.png" alt="youtube" /></a></li>
+										<?php if ( ! empty( $mayflower_options['youtube'] ) ) { ?>
+											<li><a href="<?php echo esc_url( $mayflower_options['youtube'] ); ?>" title="YouTube"><img src="<?php echo esc_url( $globals_url ); ?>i/youtube.png" alt="youtube" /></a></li>
 										<?php } ?>
 
-										<?php if (!empty($mayflower_options['linkedin'])) { ?>
-											<li><a href="<?php echo $mayflower_options['linkedin']; ?>" title="linkedin"><img src="<?php echo $globals_url; ?>i/linkedin.png" alt="facebook" /></a></li>
+										<?php if ( ! empty( $mayflower_options['linkedin'] ) ) { ?>
+											<li><a href="<?php echo esc_url( $mayflower_options['linkedin'] ); ?>" title="LinkedIn"><img src="<?php echo esc_url( $globals_url ); ?>i/linkedin.png" alt="facebook" /></a></li>
 										<?php } ?>
 									</ul>
 								</div><!-- social-media -->
 
-								<?php if ( !( $mayflower_options['hide_searchform'] ) ) { ?>
+								<?php if ( ! ( $mayflower_options['hide_searchform'] ) ) { ?>
 									<div class="row">
 										<div id="main-nav-link" class="col-xs-4 col-sm-12">
 											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
@@ -180,13 +163,12 @@
 					</div> <!--#site-header .row-->
 				</div><!-- container -->
 
-	<?php } //end lite ?>
+	<?php endif; // End if(). ?>
 
 	<div class="row">
 		<div class="col-md-12">
 
 			<?php //add flexwrap if we are in the lite version
-			global $mayflower_brand;
-			if( $mayflower_brand == 'lite') { ?>
+			if ( 'lite' === $mayflower_brand ) { ?>
 				<div class="flexwrap">
 			<?php }

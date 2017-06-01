@@ -38,6 +38,14 @@ function mayflower_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	/*
+	 * Add Theme support for Title Tags
+	 *
+	 * Automatically add title tags to header
+	 *
+	 */
+	add_theme_support( 'title-tag' );
+
+	/*
 	 * Add Theme support for Post Thumbmails
 	 *
 	 * This feature enables Post Thumbnails support for a Theme.

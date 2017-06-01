@@ -496,21 +496,9 @@ function mayflower_scripts() {
 	wp_enqueue_style( 'globals-print', $globals_url . 'c/p.css', null, $globals_version, 'print' );
 	wp_enqueue_style( 'mayflower', get_stylesheet_uri(), null, $mayflower_style_version );
 
-	// These go first- modernizr and respond.js
-	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead.js', $globals_version, null, false );
-
-	// Wrap script in IE conditional- from http://stackoverflow.com/a/16221114
-	wp_enqueue_script( 'globals-respond', $globals_url . 'j/respond.js', null, $globals_version, false );
-	add_filter( 'script_loader_tag', function( $tag, $handle ) {
-		if ( $handle === 'respond' ) {
-			$tag = "<!--[if lt IE 9]>$tag<![endif]-->";
-		}
-		return $tag;
-	}, 10, 2 );
-
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'bootstrap', $globals_url . 'j/bootstrap.min.js', array('jquery'), $globals_version, true );
-	wp_enqueue_script( 'globals', $globals_url . 'j/g.js', array('jquery', 'bootstrap'), $globals_version, true );
+	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead-full.min.js', array('jquery'), $globals_version, false );
+	wp_enqueue_script( 'globals', $globals_url . 'j/gfoot-full.min.js', array('jquery'), $globals_version, true );
 	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js', array('jquery'), null , true );
 }
 
