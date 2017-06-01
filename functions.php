@@ -968,3 +968,10 @@ add_action( 'update_option_sidebars_widgets', function() {
 		pantheon_wp_clear_edge_keys( array( 'sidebar' ) );
 	}
 });
+
+// Return trimmed URL (for example, www.bellevuecollege.edu/sample ). Used for Swiftype. Based on https://stackoverflow.com/a/4357691
+function mayflower_trimmed_url() {
+	$site_url = get_site_url( null, '', 'https' );
+	$parsed = parse_url( $site_url );
+	return $parsed['host'] . $parsed['path'];
+}
