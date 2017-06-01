@@ -22,7 +22,7 @@ $filter_peram            = 'site[]'; // hardcoded default.
 <form action="<?php echo esc_url( $search_url ); ?>" method="get" class="form-search" id="bc-search">
 	<label class="sr-only" for="<?php echo esc_attr( $search_field_id ); ?>">Search</label>
 	<div class="input-group pull-right" role="search">
-	<input type="text" name="<?php echo esc_attr( $search_field_id ); ?>" class="form-control" id="<?php echo esc_attr( $search_field_id ) ?>"  />
+	<input type="text" name="<?php echo esc_attr( $search_query_peram ); ?>" class="form-control" id="<?php echo esc_attr( $search_field_id ) ?>"  />
 		
 		<?php if ( $limit_searchform_scope ) : ?>
 			<?php if ( '' === $mayflower_options['custom_search_url'] ) :
