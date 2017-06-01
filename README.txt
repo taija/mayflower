@@ -16,6 +16,13 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.15.4 =
+* Bug fix: fix critical unknown syntax issue in header.php introduced by 2.15.3
+* Add missing readme entries
+
+= 2.15.3 =
+* Update swiftype site_home_url meta tag
+
 = 2.15.2 =
 * Bug fix: large/full size images now stay within page when centered
 
@@ -239,6 +246,12 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15.4 =
+Update swiftype indexing tags, and fix critical issue in 2.15.3
+
+= 2.15.3 =
+Do not install this version!
+
 = 2.15.2 =
 Fix issue large centered images
 

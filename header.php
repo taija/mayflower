@@ -51,7 +51,7 @@
 	
 	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo $st_post_popularity ?>' />
 	<meta class="swiftype" name="published_at" data-type="date" content="<?php echo get_the_modified_date( 'Y-m-d', $post->ID ) ?>" />
-    <meta class="swiftype" name="site_home_url" data-type="string" content="<?php echo esc_textarea( mayflower_trimmed_url() ) ?>" />
+	<meta class="swiftype" name="site_home_url" data-type="string" content="<?php echo esc_textarea( mayflower_trimmed_url() ) ?>" />
 
 	<?php if ( is_archive( $post->ID  ) ) { ?>
 		<meta name="robots" content="noindex, follow">
