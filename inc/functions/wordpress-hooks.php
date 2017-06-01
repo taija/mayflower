@@ -214,9 +214,18 @@ add_filter( 'wp_list_categories', 'mayflower_show_current_cat_on_single' );
  *
  */
 function mayflower_document_title_parts( $title_parts ) {
+	global $post;
+
 	if ( is_front_page() ) {
 		$title_parts['tagline'] = '';
 		$title_parts['site']    = __( 'Bellevue College' );
+	}
+	// Output custom title if available
+	$post_meta_data = get_post_custom( $post->ID );
+	if ( isset( $post_meta_data['_seo_custom_page_title'][0] ) ) {
+		$title_parts['title']   = $post_meta_data['_seo_custom_page_title'][0];
+		$title_parts['tagline'] = '';
+		$title_parts['site']    = '';
 	}
 	return $title_parts;
 }
