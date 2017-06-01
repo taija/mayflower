@@ -44,12 +44,6 @@
 
 	<!-- SwiftType meta tags -->
 	<?php
-	
-	// Get Site Slug
-	$site_url = get_site_url( null, '', 'https' );
-	$site_url_trimmed = substr( $site_url, 8 );
-
-
 	$st_post_popularity = 1;
 	if ( is_front_page( $post->ID ) ) {
 		$st_post_popularity = 10;
@@ -57,7 +51,7 @@
 	
 	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo $st_post_popularity ?>' />
 	<meta class="swiftype" name="published_at" data-type="date" content="<?php echo get_the_modified_date( 'Y-m-d', $post->ID ) ?>" />
-	<meta class="swiftype" name="wp_site_url" data-type="string" content="<?php echo $site_url_trimmed ?>" />
+    <meta class="swiftype" name="site_home_url" data-type="string" content="<?php echo esc_textarea( mayflower_trimmed_url() ) ?>" />
 
 	<?php if ( is_archive( $post->ID  ) ) { ?>
 		<meta name="robots" content="noindex, follow">
