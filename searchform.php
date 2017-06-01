@@ -34,7 +34,7 @@ $filter_peram            = 'site[]'; // hardcoded default.
 							"engineKey" : "<?php echo esc_textarea( $search_api_key ); ?>",
 							"filters" : {
 								"page": {
-									"wp_site_slug" : ["<?php echo esc_textarea( $filter_value ); ?>"]
+									"site_home_url" : ["<?php echo esc_textarea( $filter_value ); ?>"]
 								}
 							}
 						});
