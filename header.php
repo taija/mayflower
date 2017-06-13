@@ -46,7 +46,7 @@
 	<?php
 	$st_post_popularity = 1;
 	if ( is_front_page( $post->ID ) ) {
-		$st_post_popularity = 10;
+		$st_post_popularity = 2;
 	} ?>
 	
 	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo $st_post_popularity ?>' />
