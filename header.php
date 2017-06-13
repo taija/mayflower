@@ -34,7 +34,7 @@ $mayflower_theme_version = wp_get_theme(); ?>
 	<link rel="icon" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/img/bellevue.ico" />
 
 	<!-- Swiftype meta tags -->
-	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo is_front_page( $post->ID ) ? 10 : 1 ?>' />
+	<meta class='swiftype' name='popularity' data-type='integer' content='<?php echo is_front_page( $post->ID ) ? 2 : 1 ?>' />
 	<meta class="swiftype" name="published_at" data-type="date" content="<?php the_modified_date( 'Y-m-d' ) ?>" />
 	<meta class="swiftype" name="site_home_url" data-type="string" content="<?php echo esc_textarea( mayflower_trimmed_url() ) ?>" />
 

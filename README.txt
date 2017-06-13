@@ -16,6 +16,9 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.15.5 =
+* Change swiftype popularity from 10 to 2 on homepages
+
 = 2.15.4 =
 * Bug fix: fix critical unknown syntax issue in header.php introduced by 2.15.3
 * Add missing readme entries
@@ -246,6 +249,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15.5 =
+Update swiftype popularity boost for homepages
+
 = 2.15.4 =
 Update swiftype indexing tags, and fix critical issue in 2.15.3
 
