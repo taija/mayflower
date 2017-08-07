@@ -963,3 +963,25 @@ function mayflower_trimmed_url() {
 	$parsed = parse_url( $site_url );
 	return $parsed['host'] . $parsed['path'];
 }
+
+
+// TablePress Changes
+
+// Prevent stylesheet from loading
+add_filter('tablepress_use_default_css', '__return_false');
+
+// Add 'table' class to tablepress tables
+add_filter( 'tablepress_table_css_classes', 'mayflower_tablepress_classes', 10, 2 );
+
+function mayflower_tablepress_classes( $classes, $table_id ) {
+	$classes[] = 'table';
+	return $classes;
+}
+
+// Wrap tablepress tables in a div
+add_filter( 'tablepress_table_output', 'mayflower_tablepress_output', 10, 2 );
+
+function mayflower_tablepress_output( $data ) {
+	$data = '<div class="mayflower-tablepress-wrap">' . $data . '</div>';
+	return $data;
+}
