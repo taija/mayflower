@@ -55,13 +55,14 @@ $current_layout = $mayflower_options['default_layout'];
 					 * Check if using page template
 					 *
 					 * Page templates are over-ridden by using front-page.php
+					 * Continue as normal if using full-width template.
 					*/
-					if ( is_page_template() ) {
+					if ( is_page_template() && ! is_page_template( 'page-full-width.php' ) ) {
 						/*
 						 * Load page template
 						 *
 						 * Look for file matching template name within parts/ directory
-						 */
+						**/
 						$template_name = str_replace( '.php', '', get_page_template_slug() );
 						get_template_part( "parts/$template_name" );
 					} else {

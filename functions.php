@@ -304,6 +304,11 @@ function has_active_sidebar() {
 			$sidebar_is_active = false;
 		}
 	}
+
+	// Disable sidebar if page template is full-width
+	if ( is_page_template( 'page-full-width.php' ) ) {
+		$sidebar_is_active = false;
+	}
 	/**
 	 * Add mayflower_active_sidebar filter
 	 *
@@ -311,7 +316,7 @@ function has_active_sidebar() {
 	 * active sidebar state
 	 */
 	$sidebar_is_active = apply_filters( 'mayflower_active_sidebar', $sidebar_is_active );
-	
+
 	return $sidebar_is_active;
 }
 
