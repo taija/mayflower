@@ -29,14 +29,6 @@ define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/
 $gaCode = "";
 
 
-############################
-// show admin bar only for editors and higher
-############################
-
-if (!current_user_can('edit_pages')) {
-	add_filter('show_admin_bar', '__return_false');
-}
-
 /**
  * Load Mayflower Embedded Plugins
  *
