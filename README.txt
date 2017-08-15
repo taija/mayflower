@@ -17,6 +17,10 @@ Specific configuration and release information is available in [Bellevue College
 
 == Changelog ==
 = 2.15.5 =
+* Change swiftype popularity from 2 to 5 on homepages
+* Remove swiftype tags that limit indexed areas
+
+= 2.15.5 =
 * Change swiftype popularity from 10 to 2 on homepages
 
 = 2.15.4 =
@@ -249,6 +253,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.15.6 =
+Tweaks to Swiftype Indexing tags
+
 = 2.15.5 =
 Update swiftype popularity boost for homepages
 
