@@ -4,7 +4,7 @@ Theme URI: http://www.bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.15.6
+Version: 2.16
 GitHub Theme URI: bellevuecollege/mayflower
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -92,17 +92,46 @@ video {
     }
 }
 
+
 .wp-post-image.alignright,
 .wp-post-image.alignleft,
 .wp-caption.alignright,
 .wp-caption.alignleft,
 .wp-post-image.aligncenter,
-.wp-caption.aligncenter {
+.wp-caption.aligncenter,
+.wp-post-image.alignnone,
+.wp-caption.alignnone {
 	max-width: 100%;
 }
 
 .wp-caption.alignnone {
     margin: 20px 20px 5px 0;
+}
+
+// Image widget
+.wp-widget .wp-caption.alignnone,
+.wp-widget img.image {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	display: block;
+	box-shadow: 0px 2px 2px #dcdbdb;
+
+	img.image {
+		box-shadow: none;
+	}
+
+	.wp-caption-text {
+		padding: .5em;
+		margin-top: 0;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.wp-widget img.image {
+		margin: 0;
+		box-shadow: 0px 2px 2px #dcdbdb;
+	}
 }
 
 .wp-caption .wp-caption-text,
