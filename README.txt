@@ -16,6 +16,11 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.16 =
+* Convert search functionality for use with Swiftype
+* Clean up title tag generation
+* Add support for new widgets in WordPress 4.8
+
 = 2.15.5 =
 * Change swiftype popularity from 2 to 5 on homepages
 * Remove swiftype tags that limit indexed areas
@@ -253,6 +258,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.16 =
+Swiftype support, and WP 4.8 widgets!
+
 = 2.15.6 =
 Tweaks to Swiftype Indexing tags
 
