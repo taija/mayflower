@@ -43,7 +43,7 @@ $mayflower_theme_version = wp_get_theme(); ?>
 	<?php } ?>
 	<!-- / Swiftype meta tags -->
 
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="profile" href="https://gmpg.org/xfn/11" />
 
 	<?php wp_head(); ?>
 </head>

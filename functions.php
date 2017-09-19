@@ -24,8 +24,8 @@ require( get_template_directory() . '/inc/functions/globals.php');
 #####################################################
 // Configuration for classes shortcode
 #####################################################
-define("CLASSESURL","http://www.bellevuecollege.edu/classes/All/");
-define("PREREQUISITEURL","http://www.bellevuecollege.edu/transfer/prerequisites/");
+define("CLASSESURL","//www.bellevuecollege.edu/classes/All/");
+define("PREREQUISITEURL","//www.bellevuecollege.edu/transfer/prerequisites/");
 $gaCode = "";
 
 
