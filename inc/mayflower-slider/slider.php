@@ -331,7 +331,7 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
                 switch($field['type']) {
                     // case items will go here
 					case 'url':
-					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="http://" />
+					    echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="' . esc_url($meta) . '" size="30" class="widefat" placeholder="https://" />
 					        <br /><span class="description">'.$field['desc'].'</span>';
 					break;
 

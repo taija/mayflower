@@ -348,7 +348,7 @@ function mayflower_register_theme_customizer( $wp_customize ) {
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_number_slides]' , array(
 		'type'              => 'option',
 		'default'           => $mayflower_theme_option_defaults['slider_number_slides'],
-		'sanitize_callback' => 'intval',
+		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_setting( 'theme_mayflower_options[slider_title]' , array(
 		'type'              => 'option',

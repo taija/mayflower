@@ -2,7 +2,7 @@
 Contributors: Bellevue College Integration Team
 Tags: blue, white, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, theme-options, accessibility-ready
 Requires at least: 4.4
-Tested up to: 4.7.4
+Tested up to: 4.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,10 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.16.1 =
+* Fix selector for number of visable slider slides
+* Remove hardcoded http link in favor of https
+
 = 2.16 =
 * Convert search functionality for use with Swiftype
 * Clean up title tag generation
@@ -258,6 +262,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.16.1 =
+Prepare for HTTPS only, and fix slider limit selection
+
 = 2.16 =
 Swiftype support, and WP 4.8 widgets!
 
