@@ -16,6 +16,9 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.16.2 =
+* Revert http changes in mayflower-course-description
+
 = 2.16.1 =
 * Fix selector for number of visable slider slides
 * Remove hardcoded http link in favor of https
@@ -262,6 +265,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.16.2 =
+Revert changes that prevented visual editor from loading
+
 = 2.16.1 =
 Prepare for HTTPS only, and fix slider limit selection
 
