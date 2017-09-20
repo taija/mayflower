@@ -7,7 +7,7 @@
 * Aggregate functions and WP actions
 **************************************/
 //API URL
-define("API_MULTICOURSE_URL", "//www.bellevuecollege.edu/apis/classes/v1/courses/multiple"); //multiple course URL
+define("API_MULTICOURSE_URL", "http://www.bellevuecollege.edu/apis/classes/v1/courses/multiple"); //multiple course URL
 
 // Add shortcode media buttons for course-related shortcode creation
 function add_shortcode_buttons() {
@@ -104,7 +104,7 @@ function add_coursedesc_popup() {
                     <select id="add_subject">
                         <option value="">  <?php _e("Select Subject", "mayflower"); ?>  </option>
                             <?php
-                            $json_subjects_url = "//www.bellevuecollege.edu/classes/Api/Subjects?format=json";
+                            $json_subjects_url = "http://www.bellevuecollege.edu/classes/Api/Subjects?format=json";
                             //$json = file_get_contents($json_subjects_url,0,null,null);
                             $json = wp_remote_get($json_subjects_url);
                             if(!empty($json) && !empty($json['body']))
@@ -146,7 +146,7 @@ function add_coursedesc_popup() {
  * */
 function get_course_callback() {
     $subject = $_POST['subject'];
-    $json_subjects_url = "//www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+    $json_subjects_url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
     $json = wp_remote_get($json_subjects_url);
 
     if(!empty($json) && !empty($json['body']))
@@ -169,7 +169,7 @@ function coursedescription_func($atts)
         $course_letter = $course_split[0];
         $course_id = $course_split[1];
         $subject = trim(html_entity_decode  ($subject));
-        $url = "//www.bellevuecollege.edu/classes/All/".$subject."?format=json";
+        $url = "http://www.bellevuecollege.edu/classes/All/".$subject."?format=json";
         $json = wp_remote_get($url);
         if(!empty($json) && !empty($json['body']))
         {
