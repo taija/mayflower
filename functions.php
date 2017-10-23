@@ -1,5 +1,5 @@
 <?php
-$mayflower_style_version = '2.15.2';
+$mayflower_style_version = '2.17';
 /* Load  theme options framework
  *
  * This legacy code is mainly from the Oenology theme.
