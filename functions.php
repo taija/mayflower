@@ -1,5 +1,5 @@
 <?php
-$mayflower_style_version = '2.15.2';
+$mayflower_style_version = '2.17';
 /* Load  theme options framework
  *
  * This legacy code is mainly from the Oenology theme.
@@ -28,14 +28,6 @@ define("CLASSESURL","//www.bellevuecollege.edu/classes/All/");
 define("PREREQUISITEURL","//www.bellevuecollege.edu/transfer/prerequisites/");
 $gaCode = "";
 
-
-############################
-// show admin bar only for editors and higher
-############################
-
-if (!current_user_can('edit_pages')) {
-	add_filter('show_admin_bar', '__return_false');
-}
 
 /**
  * Load Mayflower Embedded Plugins
@@ -304,6 +296,11 @@ function has_active_sidebar() {
 			$sidebar_is_active = false;
 		}
 	}
+
+	// Disable sidebar if page template is full-width
+	if ( is_page_template( 'page-full-width.php' ) ) {
+		$sidebar_is_active = false;
+	}
 	/**
 	 * Add mayflower_active_sidebar filter
 	 *
@@ -311,7 +308,7 @@ function has_active_sidebar() {
 	 * active sidebar state
 	 */
 	$sidebar_is_active = apply_filters( 'mayflower_active_sidebar', $sidebar_is_active );
-	
+
 	return $sidebar_is_active;
 }
 
@@ -962,4 +959,26 @@ function mayflower_trimmed_url() {
 	$site_url = get_site_url( null, '', 'https' );
 	$parsed = parse_url( $site_url );
 	return $parsed['host'] . $parsed['path'];
+}
+
+
+// TablePress Changes
+
+// Prevent stylesheet from loading
+add_filter('tablepress_use_default_css', '__return_false');
+
+// Add 'table' class to tablepress tables
+add_filter( 'tablepress_table_css_classes', 'mayflower_tablepress_classes', 10, 2 );
+
+function mayflower_tablepress_classes( $classes, $table_id ) {
+	$classes[] = 'table';
+	return $classes;
+}
+
+// Wrap tablepress tables in a div
+add_filter( 'tablepress_table_output', 'mayflower_tablepress_output', 10, 2 );
+
+function mayflower_tablepress_output( $data ) {
+	$data = '<div class="mayflower-tablepress-wrap">' . $data . '</div>';
+	return $data;
 }

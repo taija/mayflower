@@ -27,10 +27,7 @@ var sassOptions = {
   outputStyle: 'compressed',
   sourceComments: false,
   includePaths: [
-      config.sassPath,
-      config.npmPath + '/bootstrap-sass/assets/stylesheets',
-      config.npmPath + '/bourbon/app/assets/stylesheets',
-      config.npmPath + '/bootstrap-accessibility-plugin/plugins/css'
+      config.sassPath
   ],
   precision: 10
 }
@@ -40,10 +37,7 @@ var sassDevOptions = {
   outputStyle: 'nested',
   sourceComments: true,
   includePaths: [
-      config.sassPath,
-      config.npmPath + '/bootstrap-sass/assets/stylesheets',
-      config.npmPath + '/bourbon/app/assets/stylesheets',
-      config.npmPath + '/bootstrap-accessibility-plugin/plugins/css'
+      config.sassPath
   ],
   precision: 10
 }
