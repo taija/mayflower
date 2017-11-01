@@ -478,6 +478,33 @@ function mayflower_nav_active_class($classes, $item){
 // Load Scripts and Styles the WordPress way
 #######################################
 
+// Async/Defer load - adapted from https://ikreativ.com/async-with-wordpress-enqueue/
+function mayflower_defer_async_scripts( $url ) {
+	if ( strpos( $url, '#asyncload' ) ) {
+		if ( is_admin() ) {
+			return str_replace( '#asyncload', '', $url );
+		} else {
+			return str_replace( '#asyncload', '', $url )."' async='async";
+		}
+	} else if ( strpos( $url, '#deferload' ) ) {
+		if ( is_admin() ) {
+			return str_replace( '#deferload', '', $url );
+		} else {
+			return str_replace( '#deferload', '', $url )."' defer='defer";
+		}
+	} else if ( strpos( $url, '#asyncdeferload' ) ) {
+		if ( is_admin() ) {
+			return str_replace( '#asyncdeferload', '', $url );
+		} else {
+			return str_replace( '#asyncdeferload', '', $url )."' defer='defer' async='async";
+		}
+	} else {
+		return $url;
+	}
+}
+add_filter( 'clean_url', 'mayflower_defer_async_scripts', 11, 1 );
+
+
 //set CSS type
 $mayflower_brand = mayflower_get_option('mayflower_brand');
 $mayflower_brand_css = "";
@@ -496,7 +523,9 @@ function mayflower_scripts() {
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead-full.min.js', array('jquery'), $globals_version, false );
 	wp_enqueue_script( 'globals', $globals_url . 'j/gfoot-full.min.js', array('jquery'), $globals_version, true );
-	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js', array('jquery'), null , true );
+	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js#deferload', array('jquery'), $mayflower_style_version , true );
+
+	wp_enqueue_script( 'youvisit', 'https://www.youvisit.com/tour/Embed/js2#asyncdeferload', null, null , true );
 }
 
 add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
