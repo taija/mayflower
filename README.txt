@@ -16,6 +16,14 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
+= 2.17 =
+* Add YouVisit display scripts
+
+= 2.17 =
+* Update tablepress table styles to better match Globals/Bootstrap
+* Add full with page template
+* Stop hiding admin bar for subscribers
+
 = 2.16.2 =
 * Revert http changes in mayflower-course-description
 
@@ -265,6 +273,12 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.17.1 =
+Add YouVisit script
+
+= 2.17 =
+Missed this release in the notes!
+
 = 2.16.2 =
 Revert changes that prevented visual editor from loading
 
