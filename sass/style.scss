@@ -172,20 +172,43 @@ video {
 /* ###################################### */
 
 /* Mixins to automate column options */
-@mixin gallery-styles-item( $columns, $gutter: 30px, $padding: .5em, $min-size:0px ) {
-	
-	flex:0 0 auto;
-	width: (100%/$columns);
-	padding: $padding $gutter/2;
-	min-width: $min-size;
+@mixin gallery-item( $columns, $spacing, $min-size: 100px) {
+
+	// Support for browsers without proper CSS Grid support
+	.gallery.gallery-columns-#{$columns} .gallery-item {
+		flex:0 0 auto;
+		width: (100%/$columns);
+		padding: $spacing/2;
+		min-width: $min-size;
+	}
 }
 
 /*Universal Styles for Gallery */
+
 .gallery {
 	//Flexbox
 	display: flex;
 	flex-flow: row wrap;
 }
+
+@include gallery-item( 0, 1em, 200px );
+@include gallery-item( 1, 1em, 200px );
+@include gallery-item( 2, 1em, 200px );
+@include gallery-item( 3, 1em, 200px );
+@include gallery-item( 4, 1em, 150px );
+@include gallery-item( 5, 1em, 100px );
+@include gallery-item( 6, 1em, 100px );
+@include gallery-item( 7, 1em, 80px );
+@include gallery-item( 8, 1em, 75px );
+@include gallery-item( 9, 1em, 50px );
+
+
+// Sidebar Gallery
+.sidebar .gallery .gallery-item {
+	min-width: auto;
+	padding: .125em;
+}
+
 .gallery-caption {
 	text-align: center;
 }
@@ -197,68 +220,6 @@ video {
 	margin-right: auto;
 }
 
-// One Column
-.gallery.gallery-columns-0,
-.gallery.gallery-columns-1 {
-	.gallery-item {
-		@include gallery-styles-item(1, 30px, 2em, 0);
-	}
-}
-// Two Column
-.gallery.gallery-columns-2 {
-	.gallery-item {
-		@include gallery-styles-item(2, 30px, 2em, 200px);
-	}
-}
-
-// Three Column
-.gallery.gallery-columns-3 {
-	.gallery-item {
-		@include gallery-styles-item(3, 30px, 1em, 200px);
-	}
-}
-
-// Four Columns
-.gallery.gallery-columns-4 {
-	.gallery-item {
-		@include gallery-styles-item(4, 30px, 1em, 200px);
-	}
-}
-
-// Five Columns
-.gallery.gallery-columns-5 {
-	.gallery-item {
-		@include gallery-styles-item(5, 30px, .5em, 150px);
-	}
-}
-
-// Six Columns
-.gallery.gallery-columns-6 {
-	.gallery-item {
-		@include gallery-styles-item(6, 30px, .5em, 100px);
-	}
-}
-
-// Seven Columns
-.gallery.gallery-columns-7 {
-	.gallery-item {
-		@include gallery-styles-item(7, 30px, .5em, 80px);
-	}
-}
-
-// Eight Columns
-.gallery.gallery-columns-8 {
-	.gallery-item {
-		@include gallery-styles-item(8, 30px, .5em, 75px);
-	}
-}
-
-// Nine Columns
-.gallery.gallery-columns-9 {
-	.gallery-item {
-		@include gallery-styles-item(9, 30px, .5em, 50px);
-	}
-}
 
 // Add wrap support for old browsers
 .no-flexwrap .gallery-item {

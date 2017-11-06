@@ -22,6 +22,12 @@ body#tinymce.wp-editor {
 div, section, form, span {
 	border: 2px dotted #ffcfcf;
 }
+/* Prevent border around gallery */
+.wpview .gallery,
+.wpview-end {
+	border: none;
+}
+
 .row {
 	border: 1px dashed #dfdfdf;
 }
