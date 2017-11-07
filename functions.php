@@ -17,16 +17,16 @@ $mayflower_style_version = '2.17';
 require( get_template_directory() . '/inc/functions/theme-setup.php' );
 require( get_template_directory() . '/inc/functions/wordpress-hooks.php' );
 require( get_template_directory() . '/inc/functions/options-customizer.php' );
-require( get_template_directory() . '/inc/functions/globals-options.php');
-require( get_template_directory() . '/inc/functions/globals.php');
+require( get_template_directory() . '/inc/functions/globals-options.php' );
+require( get_template_directory() . '/inc/functions/globals.php' );
 
 
 #####################################################
 // Configuration for classes shortcode
 #####################################################
-define("CLASSESURL","//www.bellevuecollege.edu/classes/All/");
-define("PREREQUISITEURL","//www.bellevuecollege.edu/transfer/prerequisites/");
-$gaCode = "";
+define( 'CLASSESURL', '//www.bellevuecollege.edu/classes/All/' );
+define( 'PREREQUISITEURL', '//www.bellevuecollege.edu/transfer/prerequisites/' );
+$gaCode = '';
 
 
 /**
@@ -41,14 +41,14 @@ $gaCode = "";
 $mayflower_options = mayflower_get_options();
 
 // Slider
-if ($mayflower_options['slider_toggle'] == 'true') {
+if ( true == $mayflower_options['slider_toggle'] ) {
 	if ( file_exists( get_template_directory() . '/inc/mayflower-slider/slider.php' ) ) {
 		require( get_template_directory() . '/inc/mayflower-slider/slider.php' );
 	}
 }
 
 // Staff
-if ($mayflower_options['staff_toggle'] == 'true') {
+if ( true == $mayflower_options['staff_toggle'] ) {
 	if ( file_exists( get_template_directory() . '/inc/mayflower-staff/staff.php' ) ) {
 		require( get_template_directory() . '/inc/mayflower-staff/staff.php' );
 	}
@@ -60,7 +60,7 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-seo/mayflower_seo.p
 }
 
 // Course Description Shortcodes
-if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php') ) {
+if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' ) ) {
 	require( get_template_directory() . '/inc/mayflower-course-descriptions/mayflower-course-descriptions.php' );
 }
 
@@ -68,11 +68,12 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 ######################################
 // Customize Excerpt Read More
 ######################################
+add_filter( 'excerpt_more', 'mayflower_read_more_override' );
 
-function new_excerpt_more( $more ) {
-	return ' <a class="read-more" href="'. get_permalink() . '">' . __('...more about ', 'mayflower') . get_the_title() . '</a>';
+function mayflower_read_more_override( $more ) {
+	return ' <a class="read-more" href="' . get_permalink() . '">' . __( '...more about ', 'mayflower' ) . get_the_title() . '</a>';
 }
-add_filter( 'excerpt_more', 'new_excerpt_more' );
+
 
 ######################################
 // Custom Pagination Function
@@ -83,7 +84,7 @@ function mayflower_pagination() {
 	$paginated_links = paginate_links( array(
 		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 		'format' => '?paged=%#%',
-		'current' => max( 1, get_query_var('paged') ),
+		'current' => max( 1, get_query_var( 'paged' ) ),
 		'type' => 'array',
 		'prev_text' => '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Previous',
 		'next_text' => 'Next <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>',
@@ -93,10 +94,10 @@ function mayflower_pagination() {
 	if ( $GLOBALS['wp_query']->max_num_pages > 1 ) { ?>
 		<nav class="text-center content-padding">
 			<ul class="pagination">
-				<?php foreach( $paginated_links as $link ) {
+				<?php foreach ( $paginated_links as $link ) {
 					// Check if 'Current' class appears in string
 					$is_current = strpos( $link, 'current' );
-					if ( $is_current === false ) {
+					if ( false === $is_current ) {
 						echo '<li>';
 						echo $link;
 						echo '</li>';
@@ -116,103 +117,105 @@ function mayflower_pagination() {
 // Remove Comments Feed
 ######################################
 
-remove_action('wp_head', 'feed_links', 2);
-add_action('wp_head', 'my_feed_links');
+remove_action( 'wp_head', 'feed_links', 2 );
+add_action( 'wp_head', 'mayflower_feed_links' );
 
-function my_feed_links() {
-  if ( !current_theme_supports('automatic-feed-links') ) return;
-
-  // post feed
-  ?>
-  <link rel="alternate" type="<?php echo feed_content_type(); ?>"
-        title="<?php printf(__('%1$s %2$s Feed', 'mayflower'), get_bloginfo('name'), ' &raquo; '); ?>"
-        href="<?php echo get_feed_link(); ?> " />
-  <?php
+function mayflower_feed_links() {
+	if ( ! current_theme_supports( 'automatic-feed-links' ) ) {
+		return;
+	}
+	// post feed
+	?>
+	<link rel="alternate" type="<?php echo feed_content_type(); ?>"
+			title="<?php printf( __( '%1$s %2$s Feed', 'mayflower' ), get_bloginfo( 'name' ), ' &raquo; ' ); ?>"
+			href="<?php echo get_feed_link(); ?> " />
+	<?php
 }
 
 
 ######################################
 // Remove WordPress default widgets
 ######################################
+add_action( 'widgets_init', 'mayflower_remove_default_widgets' );
 
 function mayflower_remove_default_widgets() {
 
-	unregister_widget('WP_Widget_Calendar');
-	unregister_widget('WP_Widget_Search');
-	unregister_widget('WP_Widget_Meta');
-	unregister_widget('WP_Widget_Recent_Comments');
-	unregister_widget('WP_Widget_Pages');
+	unregister_widget( 'WP_Widget_Calendar' );
+	unregister_widget( 'WP_Widget_Search' );
+	unregister_widget( 'WP_Widget_Meta' );
+	unregister_widget( 'WP_Widget_Recent_Comments' );
+	unregister_widget( 'WP_Widget_Pages' );
 }
 
-add_action( 'widgets_init', 'mayflower_remove_default_widgets' );
-
-
 ######################################
-// Remvoe Wordpress Version Number
+// Remove Wordpress Version Number
 ######################################
 
-function remove_wp_version() { return ''; }
-add_filter('the_generator', 'remove_wp_version');
-
+add_filter( 'the_generator', 'mayflower_remove_wp_version' );
+function mayflower_remove_wp_version() {
+	return '';
+}
 
 ######################################
 // Add frontend style to wysiwyg editor
 ######################################
+
+add_action( 'init', 'mayflower_add_editor_styles' );
 
 function mayflower_add_editor_styles() {
 	global $globals_url, $globals_version;
 	add_editor_style( array(
 		$globals_url . 'c/g.css?=' . $globals_version,
 		'style.css',
-		'css/custom-editor-style.css'
+		'css/custom-editor-style.css',
 	) );
 }
-add_action( 'init', 'mayflower_add_editor_styles' );
 
 ######################################
 // TinyMCE Customizations
 ######################################
 
 //show/hide kitchen sink 'show' by default
-	function unhide_kitchensink( $args ) {
-		$args['wordpress_adv_hidden'] = false;
-		return $args;
-	}
+add_filter( 'tiny_mce_before_init', 'mayflower_unhide_kitchensink' );
 
-	add_filter( 'tiny_mce_before_init', 'unhide_kitchensink' );
-
+function mayflower_unhide_kitchensink( $args ) {
+	$args['wordpress_adv_hidden'] = false;
+	return $args;
+}
 
 // Remove items from default tinymce editor
+add_filter( 'tiny_mce_before_init', 'mayflower_tinymce_buttons_remove' );
+
 function mayflower_tinymce_buttons_remove( $init ) {
 	//remove address and h1
- $init['block_formats'] = "Paragraph=p; Preformatted=pre; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6";
- return $init;
+	$init['block_formats'] = 'Paragraph=p; Preformatted=pre; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
+	return $init;
 }
-add_filter('tiny_mce_before_init', 'mayflower_tinymce_buttons_remove');
 
-function myplugin_tinymce_buttons($buttons)
-{
-    //Remove the text color selector
-    $remove = array('forecolor');
+add_filter( 'mce_buttons_2','mayflower_tinymce_buttons' );
 
-    return array_diff($buttons,$remove);
+function mayflower_tinymce_buttons( $buttons ) {
+	//Remove the text color selector
+	$remove = array( 'forecolor' );
+
+	return array_diff( $buttons, $remove );
 }
-add_filter('mce_buttons_2','myplugin_tinymce_buttons');
 
 ######################################
 // Add our Styles to wysiwyg editor
 ######################################
 
 // Add the Style Dropdown Menu to the second row of visual editor buttons
+add_filter( 'mce_buttons_2', 'mayflower_mce_buttons_2' );
+
 function mayflower_mce_buttons_2( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
 
-add_filter( 'mce_buttons_2', 'mayflower_mce_buttons_2' );
-
-
 //Add custom styles to tinymce editor
+add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
+
 function mayflower_mce_before_init( $settings ) {
 
 	$style_formats = array(
@@ -254,14 +257,11 @@ function mayflower_mce_before_init( $settings ) {
 		),
 	);
 
-
 	$settings['style_formats'] = json_encode( $style_formats );
 
 	return $settings;
 
 }
-
-add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 
 
 #############################
@@ -269,7 +269,11 @@ add_filter( 'tiny_mce_before_init', 'mayflower_mce_before_init' );
 #############################
 
 function mayflower_is_blog() {
-	if (is_home() || is_archive() || is_singular('post') || is_post_type_archive( 'post' )) return true; else return false;
+	if ( is_home() || is_archive() || is_singular( 'post' ) || is_post_type_archive( 'post' ) ) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 
@@ -280,17 +284,17 @@ function has_active_sidebar() {
 	$sidebar_is_active;
 	//Default functionality
 	if ( mayflower_is_blog() ) {
-		if (    is_active_sidebar( 'top-global-widget-area' ) ||
-				is_active_sidebar( 'blog-widget-area' ) ||
-				is_active_sidebar( 'global-widget-area' ) ) {
+		if ( is_active_sidebar( 'top-global-widget-area' ) ||
+			 is_active_sidebar( 'blog-widget-area' ) ||
+			 is_active_sidebar( 'global-widget-area' ) ) {
 			$sidebar_is_active = true;
 		} else {
 			$sidebar_is_active = false;
 		}
 	} else {
-		if (    is_active_sidebar( 'top-global-widget-area' ) ||
-				is_active_sidebar( 'page-widget-area' ) ||
-				is_active_sidebar( 'global-widget-area' ) ) {
+		if ( is_active_sidebar( 'top-global-widget-area' ) ||
+			 is_active_sidebar( 'page-widget-area' ) ||
+			 is_active_sidebar( 'global-widget-area' ) ) {
 			$sidebar_is_active = true;
 		} else {
 			$sidebar_is_active = false;
@@ -326,14 +330,20 @@ function mayflower_display_sidebar() {
 // Add is_multisite_home
 #############################
 
-function is_multisite_home () {
-	if (is_main_site() && is_front_page()) return true; else return false;
+function is_multisite_home() {
+	if ( is_main_site() && is_front_page() ) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 #############################
 // Assign global_nav_selection to body_class
 #############################
-if ( ! function_exists ( 'mayflower_body_class_ia' ) ) {
+add_filter( 'body_class','mayflower_body_class_ia' );
+
+if ( ! function_exists( 'mayflower_body_class_ia' ) ) {
 	function mayflower_body_class_ia( $classes ) {
 		$mayflower_options = mayflower_get_options();
 
@@ -345,8 +355,6 @@ if ( ! function_exists ( 'mayflower_body_class_ia' ) ) {
 	}
 }
 
-add_filter( 'body_class','mayflower_body_class_ia' );
-
 ######################################
 // Wordpress Widget Area Setup
 ######################################
@@ -357,11 +365,12 @@ add_filter( 'body_class','mayflower_body_class_ia' );
  * Allow plugins and themes to register additional
  * sidebars via the mayflower_register_sidebar hook
  */
+// Register all sidebars
+add_action( 'widgets_init', 'mayflower_register_sidebar' );
+
 function mayflower_register_sidebar() {
 	do_action( 'mayflower_register_sidebar' );
 }
-// Register all sidebars
-add_action( 'widgets_init', 'mayflower_register_sidebar' );
 
 
 /**
@@ -371,6 +380,8 @@ add_action( 'widgets_init', 'mayflower_register_sidebar' );
  */
 
 // Top Global Widget Area - located just below the sidebar nav.
+add_action( 'mayflower_register_sidebar', 'mayflower_register_top_global_sidebar', 2 );
+
 function mayflower_register_top_global_sidebar() {
 	register_sidebar( array(
 		'name' => __( 'Top Global Sidebar Widget Area', 'mayflower' ),
@@ -382,9 +393,10 @@ function mayflower_register_top_global_sidebar() {
 		'after_title' => '</h2>',
 	) );
 }
-add_action( 'mayflower_register_sidebar', 'mayflower_register_top_global_sidebar', 2 );
 
 // Static Page Widget Area - located just below the global nav on static pages.
+add_action( 'mayflower_register_sidebar', 'mayflower_register_static_sidebar', 4 );
+
 function mayflower_register_static_sidebar() {
 	register_sidebar( array(
 		'name' => __( 'Static Page Sidebar Widget Area', 'mayflower' ),
@@ -396,9 +408,10 @@ function mayflower_register_static_sidebar() {
 		'after_title' => '</h2>',
 	) );
 }
-add_action( 'mayflower_register_sidebar', 'mayflower_register_static_sidebar', 4 );
 
 // Blog Widget Area - located just below the global nav on blog pages.
+add_action( 'mayflower_register_sidebar', 'mayflower_register_blog_sidebar', 6 );
+
 function mayflower_register_blog_sidebar() {
 	register_sidebar( array(
 		'name' => __( 'Blog Sidebar Widget Area', 'mayflower' ),
@@ -410,9 +423,10 @@ function mayflower_register_blog_sidebar() {
 		'after_title' => '</h2>',
 	) );
 }
-add_action( 'mayflower_register_sidebar', 'mayflower_register_blog_sidebar', 6 );
 
 // Bottom Global Widget Area - located just below the sidebar nav.
+add_action( 'mayflower_register_sidebar', 'mayflower_register_bottom_global_sidebar', 8 );
+
 function mayflower_register_bottom_global_sidebar() {
 	register_sidebar( array(
 		'name' => __( 'Bottom Global Sidebar Widget Area', 'mayflower' ),
@@ -424,54 +438,54 @@ function mayflower_register_bottom_global_sidebar() {
 		'after_title' => '</h2>',
 	) );
 }
-add_action( 'mayflower_register_sidebar', 'mayflower_register_bottom_global_sidebar', 8 );
 
 
-function widget_empty_title($output='') {
-
-    if ($output == '&nbsp') {
-        return '';
-    }
-    return $output;
+add_filter( 'widget_title', 'mayflower_widget_empty_title' );
+function mayflower_widget_empty_title( $output = '' ) {
+	if ( '&nbsp' == $output ) {
+		return '';
+	}
+	return $output;
 }
-add_filter('widget_title', 'widget_empty_title');
+
 
 ############################
 // Force IE Edge in WP Admin
 ############################
 
 //hook the administrative header output
-add_action('admin_head', 'force_ie_edge_admin');
+add_action( 'admin_head', 'mayflower_force_ie_edge_admin' );
 
-function force_ie_edge_admin() {
-echo '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
+function mayflower_force_ie_edge_admin() {
+	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 }
 
 ########################################
 // Give active menu item 'active' class
 ########################################
 
-add_filter('nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2);
-function mayflower_nav_active_class($classes, $item){
-     if ( in_array('current-menu-item', $classes) || preg_grep( '/^current-.*-ancestor$/i', $classes )){
-             $classes[] = 'active ';
-     }
+add_filter( 'nav_menu_css_class' , 'mayflower_nav_active_class' , 10 , 2 );
+
+function mayflower_nav_active_class( $classes, $item ) {
+	if ( in_array( 'current-menu-item', $classes ) || preg_grep( '/^current-.*-ancestor$/i', $classes ) ) {
+			$classes[] = 'active ';
+	}
 
 	//Apply active class on blog post parent
-	if ( is_singular('post') ) {
-		if( in_array('current_page_parent', $classes)){
-             $classes[] = 'active ';
-     	}
+	if ( is_singular( 'post' ) ) {
+		if ( in_array( 'current_page_parent', $classes ) ) {
+			$classes[] = 'active ';
+		}
 	}
 
 	//Apply 'active' style to any menu item with the added class of 'staff' to highlight staff parent
-	if ( is_singular('staff') ) {
-		if( in_array('staff', $classes)){
-             $classes[] = 'active ';
-     	}
+	if ( is_singular( 'staff' ) ) {
+		if ( in_array( 'staff', $classes ) ) {
+			$classes[] = 'active ';
+		}
 	}
 
-     return $classes;
+	return $classes;
 }
 
 #######################################
@@ -479,39 +493,43 @@ function mayflower_nav_active_class($classes, $item){
 #######################################
 
 // Async/Defer load - adapted from https://ikreativ.com/async-with-wordpress-enqueue/
+add_filter( 'clean_url', 'mayflower_defer_async_scripts', 11, 1 );
+
 function mayflower_defer_async_scripts( $url ) {
 	if ( strpos( $url, '#asyncload' ) ) {
 		if ( is_admin() ) {
 			return str_replace( '#asyncload', '', $url );
 		} else {
-			return str_replace( '#asyncload', '', $url )."' async='async";
+			return str_replace( '#asyncload', '', $url ) . "' async='async";
 		}
-	} else if ( strpos( $url, '#deferload' ) ) {
+	} elseif ( strpos( $url, '#deferload' ) ) {
 		if ( is_admin() ) {
 			return str_replace( '#deferload', '', $url );
 		} else {
-			return str_replace( '#deferload', '', $url )."' defer='defer";
+			return str_replace( '#deferload', '', $url ) . "' defer='defer";
 		}
-	} else if ( strpos( $url, '#asyncdeferload' ) ) {
+	} elseif ( strpos( $url, '#asyncdeferload' ) ) {
 		if ( is_admin() ) {
 			return str_replace( '#asyncdeferload', '', $url );
 		} else {
-			return str_replace( '#asyncdeferload', '', $url )."' defer='defer' async='async";
+			return str_replace( '#asyncdeferload', '', $url ) . "' defer='defer' async='async";
 		}
 	} else {
 		return $url;
 	}
 }
-add_filter( 'clean_url', 'mayflower_defer_async_scripts', 11, 1 );
 
+
+// Enqueue mayflower scripts
+add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
 
 //set CSS type
-$mayflower_brand = mayflower_get_option('mayflower_brand');
-$mayflower_brand_css = "";
-if( $mayflower_brand == 'lite' ) {
-	$mayflower_brand_css = "globals-lite";
- } else {
-	$mayflower_brand_css = "globals-branded";
+$mayflower_brand = mayflower_get_option( 'mayflower_brand' );
+$mayflower_brand_css = '';
+if ( $mayflower_brand == 'lite' ) {
+	$mayflower_brand_css = 'globals-lite';
+} else {
+	$mayflower_brand_css = 'globals-branded';
 }
 
 function mayflower_scripts() {
@@ -521,19 +539,20 @@ function mayflower_scripts() {
 	wp_enqueue_style( 'mayflower', get_stylesheet_uri(), null, $mayflower_style_version );
 
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead-full.min.js', array('jquery'), $globals_version, false );
-	wp_enqueue_script( 'globals', $globals_url . 'j/gfoot-full.min.js', array('jquery'), $globals_version, true );
-	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js#deferload', array('jquery'), $mayflower_style_version , true );
+	wp_enqueue_script( 'globals-head', $globals_url . 'j/ghead-full.min.js', array( 'jquery' ), $globals_version, false );
+	wp_enqueue_script( 'globals', $globals_url . 'j/gfoot-full.min.js', array( 'jquery' ), $globals_version, true );
+	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js#deferload', array( 'jquery' ), $mayflower_style_version , true );
 
 	wp_enqueue_script( 'youvisit', 'https://www.youvisit.com/tour/Embed/js2#asyncdeferload', null, null , true );
 }
-
-add_action( 'wp_enqueue_scripts', 'mayflower_scripts' );
 
 
 /**
  * Enqueue Custom Admin Page Stylesheet
  */
+// Enqueue Admin Stylesheet at admin_print_styles()
+add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_enqueue_admin_style', 11 );
+
 function mayflower_enqueue_admin_style() {
 
 	// define admin stylesheet
@@ -543,21 +562,20 @@ function mayflower_enqueue_admin_style() {
 	wp_enqueue_style( $admin_handle, $admin_stylesheet, '', false );
 }
 
-// Enqueue Admin Stylesheet at admin_print_styles()
-add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_enqueue_admin_style', 11 );
-
 
 ################################################################################
 // - Apply mayflower custom CSS  (currently for staff/slider cpt)
 ################################################################################
+add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
 
-	function mayflower_dashboard_styles($hook) {
-	    $css_path = get_template_directory_uri() . '/css/dashboard.css';
-		if('edit.php?post_type=staff' !=$hook )
-	        wp_register_style( 'mayflower_dashboard', $css_path );
-	        wp_enqueue_style( 'mayflower_dashboard' );
+function mayflower_dashboard_styles( $hook ) {
+	$css_path = get_template_directory_uri() . '/css/dashboard.css';
+	if ( 'edit.php?post_type=staff' != $hook ) {
+		wp_register_style( 'mayflower_dashboard', $css_path );
+		wp_enqueue_style( 'mayflower_dashboard' );
 	}
-	add_action( 'admin_enqueue_scripts', 'mayflower_dashboard_styles' );
+}
+
 
 
 
@@ -565,29 +583,28 @@ add_action( 'admin_print_styles-appearance_page_mayflower-settings', 'mayflower_
 // Custom Widget Styles
 ############################
 
-	plugins_url('mayflower_location/buildings/');
+add_action( 'admin_print_styles-widgets.php', 'mayflower_widgets_style' );
 
-	add_action('admin_print_styles-widgets.php', 'mayflower_widgets_style');
-	function mayflower_widgets_style()
-	{ ?>
+function mayflower_widgets_style() {
+	?>
 	<style type="text/css">
 		div.widget[id*=_mayflower_] .widget-title{
 		color: #2191bf;
-		    background: url(<?php echo get_stylesheet_directory_uri() ?>/img/bc-blue-widget-stripe.png) no-repeat;
-		    }
+			background: url(<?php echo get_stylesheet_directory_uri() ?>/img/bc-blue-widget-stripe.png) no-repeat;
+			}
 		div.widget[id*=_mayflower_] .widget-title h4 {
 			padding-left: 6px;
 			}
 	</style>
 	<?php
-	}
+}
 
 ####################################################
 ## Gravity Forms Filters
 ###################################################
 
 // start tab index at position 9 so we don't conflict with skip to links or wp admin bar
-add_filter("gform_tabindex", create_function("", "return 9;"));
+add_filter( 'gform_tabindex', create_function( '', 'return 9;' ) ); // Do we need this? uses positive tabindex = bad
 
 /**
  * Filter GravityForms buttons
@@ -615,45 +632,50 @@ function mayflower_gf_add_class_to_button( $button, $form, $new_classes ) {
 /**
  * Filter GravityForms submit button to add Bootstrap classes
  */
+add_filter( 'gform_submit_button', 'mayflower_gf_add_class_to_submit_button', 10, 2 );
+
 function mayflower_gf_add_class_to_submit_button( $button, $form ) {
 	$new_classes = 'btn btn-primary pull-right';
 	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
 }
-add_filter( 'gform_submit_button', 'mayflower_gf_add_class_to_submit_button', 10, 2);
 
 /**
  * Filter GravityForms next button to add Bootstrap classes
  */
+add_filter( 'gform_next_button', 'mayflower_gf_add_class_to_next_button', 10, 2 );
+
 function mayflower_gf_add_class_to_next_button( $button, $form ) {
 	$new_classes = 'btn btn-primary pull-right';
 	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
 }
-add_filter( 'gform_next_button', 'mayflower_gf_add_class_to_next_button', 10, 2);
+
 
 /**
  * Filter GravityForms previous button to add Bootstrap classes
  */
+add_filter( 'gform_previous_button', 'mayflower_gf_add_class_to_previous_button', 10, 2 );
+
 function mayflower_gf_add_class_to_previous_button( $button, $form ) {
 	$new_classes = 'btn btn-default pull-left';
 	return mayflower_gf_add_class_to_button( $button, $form, $new_classes );
 }
-add_filter( 'gform_previous_button', 'mayflower_gf_add_class_to_previous_button', 10, 2);
 
 
 ####################################################
 ## Override Dashicons Styles
 ####################################################
 
+add_action( 'admin_head', 'mayflower_override_dashicons' );
 
-add_action('admin_head', 'override_dashicons');
-
-function override_dashicons() { ?>
-<style>
-.dashicons-welcome-learn-more:before {
-	line-height: 26px;
+function mayflower_override_dashicons() {
+	?>
+	<style>
+		.dashicons-welcome-learn-more:before {
+			line-height: 26px;
+		}
+	</style>
+	<?php
 }
-  </style>
-<?php }
 
 ///////////////////////////////////////
 // - CPT Re-ordering
@@ -674,13 +696,14 @@ function mayflower_cpt_update_post_order() {
 	*                menu_order => post-XX
 	*            );
 	*/
-	foreach( $order as $menu_order => $post_id )
-	{
+	foreach ( $order as $menu_order => $post_id ) {
 		$post_id         = intval( str_ireplace( 'post-', '', $post_id ) );
-		$menu_order     = intval($menu_order);
-		wp_update_post( array( 'ID' => $post_id, 'menu_order' => $menu_order ) );
+		$menu_order     = intval( $menu_order );
+		wp_update_post( array(
+			'ID' => $post_id,
+			'menu_order' => $menu_order,
+		) );
 	}
-
 	die( '1' );
 }
 
@@ -691,63 +714,62 @@ function mayflower_cpt_update_post_order() {
 // Field Array
 $prefix = '_gnav_';
 $global_section_meta_fields = array(
-    array(
-        'label'=> 'College navigation menu',
-        'desc'  => 'This page and all it\'s children will have the above college navigation area selected',
-        'id'    => $prefix.'college_nav_menu',
-        'type'  => 'select',
-        'options' => array (
-            'nav-home' => array (
-                'label' => 'Home',
-                'value' => 'nav-home'
-            ),
-            'nav-classes' => array (
-                'label' => 'Classes',
-                'value' => 'nav-classes'
-            ),
-            'nav-programs' => array (
-                'label' => 'Programs of Study',
-                'value' => 'nav-programs'
-            ),
-            'nav-enrollment' => array (
-                'label' => 'Enrollment',
-                'value' => 'nav-enrollment'
-            ),
-            'nav-services' => array (
-                'label' => 'Services',
-                'value' => 'nav-services'
-            ),
-            'nav-campuslife' => array (
-                'label' => 'Campus Life',
-                'value' => 'nav-campuslife'
-            ),
-            'nav-about' => array (
-                'label' => 'About Us',
-                'value' => 'nav-about'
-            )
-        )
-    )
+	array(
+		'label' => 'College navigation menu',
+		'desc'  => 'This page and all it\'s children will have the above college navigation area selected',
+		'id'    => $prefix . 'college_nav_menu',
+		'type'  => 'select',
+		'options' => array(
+			'nav-home' => array(
+				'label' => 'Home',
+				'value' => 'nav-home',
+			),
+			'nav-classes' => array(
+				'label' => 'Classes',
+				'value' => 'nav-classes',
+			),
+			'nav-programs' => array(
+				'label' => 'Programs of Study',
+				'value' => 'nav-programs',
+			),
+			'nav-enrollment' => array(
+				'label' => 'Enrollment',
+				'value' => 'nav-enrollment',
+			),
+			'nav-services' => array(
+				'label' => 'Services',
+				'value' => 'nav-services',
+			),
+			'nav-campuslife' => array(
+				'label' => 'Campus Life',
+				'value' => 'nav-campuslife',
+			),
+			'nav-about' => array(
+				'label' => 'About Us',
+				'value' => 'nav-about',
+			),
+		),
+	),
 );
 
 
 // The Callback
 function global_section_meta_box() {
-global $global_section_meta_fields, $post;
-// Use nonce for verification
-echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_nonce(basename(__FILE__)).'" />';
+	global $global_section_meta_fields, $post;
+	// Use nonce for verification
+	echo '<input type="hidden" name="global_section_meta_box" value="' . wp_create_nonce( basename( __FILE__ ) ) . '" />';
 	// Begin the field table and loop
 	echo '<table class="form-table">';
-	foreach ($global_section_meta_fields as $field) {
+	foreach ( $global_section_meta_fields as $field ) {
 		// get value of this field if it exists for this post
-		$meta = get_post_meta($post->ID, $field['id'], true);
+		$meta = get_post_meta( $post->ID, $field['id'], true );
 		// begin a table row with
 		echo '<tr>
-				<th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
+				<th><label for="' . $field['id'] . '">' . $field['label'] . '</label></th>
 				<td>';
 				switch( $field['type'] ) {
-
 					case 'input':
-						echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
+						echo '<input type="text" name="'.$field['id'].'" id="' . $field['id'] . '" value="' . $meta . '" size="60" />
 							<br /><span class="description">'.$field['desc'].'</span>';
 						break;
 
@@ -757,8 +779,8 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 						break;
 
 					case 'textarea':
-					    echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="58" rows="4">'.$meta.'</textarea>
-					        <br /><span class="description">'.$field['desc'].'</span>';
+						echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="58" rows="4">'.$meta.'</textarea>
+							<br /><span class="description">'.$field['desc'].'</span>';
 						break;
 
 					case 'select':
@@ -777,94 +799,96 @@ echo '<input type="hidden" name="global_section_meta_box" value="'.wp_create_non
 }
 
 // Save the Data
-function save_global_section_meta($post_id) {
-    global $global_section_meta_fields;
+add_action( 'save_post', 'save_global_section_meta' );
+
+function save_global_section_meta( $post_id ) {
+	global $global_section_meta_fields;
 	// verify nonce
 
 	// verify nonce
-	if ( !isset( $_POST['global_section_meta_box'] ) || !wp_verify_nonce( $_POST['global_section_meta_box'], basename( __FILE__ ) ) )
+	if ( ! isset( $_POST['global_section_meta_box'] ) || ! wp_verify_nonce( $_POST['global_section_meta_box'], basename( __FILE__ ) ) ) {
 		return $post_id;
-
+	}
 	// check autosave
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return $post_id;
+	}
 	// check permissions
-	if ('page' == $_POST['post_type']) {
-		if (!current_user_can('edit_page', $post_id))
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
 			return $post_id;
-		} elseif (!current_user_can('edit_post', $post_id)) {
+		} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return $post_id;
+		}
 	}
 	// loop through fields and save the data
-	foreach ($global_section_meta_fields as $field) {
-		$old = get_post_meta($post_id, $field['id'], true);
-		$new = $_POST[$field['id']];
-		if ($new && $new != $old) {
-			update_post_meta($post_id, $field['id'], $new);
-		} elseif ('' == $new && $old) {
-			delete_post_meta($post_id, $field['id'], $old);
+	foreach ( $global_section_meta_fields as $field ) {
+		$old = get_post_meta( $post_id, $field['id'], true );
+		$new = $_POST[ $field['id'] ];
+		if ( $new && $new != $old ) {
+			update_post_meta( $post_id, $field['id'], $new );
+		} elseif ( '' == $new && $old) {
+			delete_post_meta( $post_id, $field['id'], $old );
 		}
-	} // end foreach
+	} // End foreach().
 }
-add_action('save_post', 'save_global_section_meta');
 
 /*
  *  Adding mayflower theme to have google analytics tracking for logged in users.
  */
-function google_analytics_dashboard()
-{
-    if(is_user_logged_in())
-    {
+add_action( 'admin_head', 'mayflower_google_analytics_dashboard' );
+
+function mayflower_google_analytics_dashboard() {
+	if ( is_user_logged_in() ) {
 		$mayflower_globals_settings = get_option( 'globals_network_settings' );
 		if ( is_multisite() ) {
-        	$mayflower_globals_settings = get_site_option( 'globals_network_settings' );
+			$mayflower_globals_settings = get_site_option( 'globals_network_settings' );
 		}
-        $globals_google_analytics_code = $mayflower_globals_settings['globals_google_analytics_code'];
-        global  $gaCode;
-        $gaCode = "'" . $globals_google_analytics_code . "'";
-        ?>
+		$globals_google_analytics_code = $mayflower_globals_settings['globals_google_analytics_code'];
+		global  $gaCode;
+		$gaCode = "'" . $globals_google_analytics_code . "'";
+		?>
 
-        <script type="text/javascript">
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            var ga_code = <?php echo $gaCode ; ?> ;
-            ga('create', ga_code , 'bellevuecollege.edu', {'siteSpeedSampleRate': 100});
-            ga('send', 'pageview');
-        </script>
-    <?php
-    }
+		<script type="text/javascript">
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			var ga_code = <?php echo $gaCode ; ?> ;
+			ga('create', ga_code , 'bellevuecollege.edu', {'siteSpeedSampleRate': 100});
+			ga('send', 'pageview');
+		</script>
+	<?php
+	}
 }
-add_action('admin_head', 'google_analytics_dashboard');
 
 ##############################################################
 // Responsive image class for posts & remove image dimensions
 ##############################################################
 
-function bootstrap_responsive_images( $html ){
-  $classes = 'img-responsive'; // separated by spaces, e.g. 'img image-link'
+function mayflower_bootstrap_responsive_images( $html ){
+	$classes = 'img-responsive'; // separated by spaces, e.g. 'img image-link'
 
-  // check if there are already classes assigned to the anchor
-  if ( preg_match('/<img.*? class="/', $html) ) {
-    $html = preg_replace('/(<img.*? class=".*?)(".*?\/>)/', '$1 ' . $classes . ' $2', $html);
-  } else {
-    $html = preg_replace('/(<img.*?)(\/>)/', '$1 class="' . $classes . '" $2', $html);
-  }
-  // remove dimensions from images,, does not need it!
-  $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-  return $html;
+	// check if there are already classes assigned to the anchor
+	if ( preg_match( '/<img.*? class="/', $html ) ) {
+		$html = preg_replace( '/(<img.*? class=".*?)(".*?\/>)/', '$1 ' . $classes . ' $2', $html );
+	} else {
+		$html = preg_replace( '/(<img.*?)(\/>)/', '$1 class="' . $classes . '" $2', $html );
+	}
+	// remove dimensions from images,, does not need it!
+	$html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+	return $html;
 }
-add_filter( 'the_content','bootstrap_responsive_images',10 );
-add_filter( 'post_thumbnail_html', 'bootstrap_responsive_images', 10 );
+add_filter( 'the_content','mayflower_bootstrap_responsive_images',10 );
+add_filter( 'post_thumbnail_html', 'mayflower_bootstrap_responsive_images', 10 );
 
 ###############################################################
 // Responsive video - add wrapper div with appropriate classes
 ###############################################################
 
-add_filter('embed_oembed_html', 'my_embed_oembed_html', 99, 4);
-function my_embed_oembed_html($html, $url, $attr, $post_id) {
-  return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
+add_filter( 'embed_oembed_html', 'mayflower_embed_oembed_html', 99, 4 );
+function mayflower_embed_oembed_html( $html, $url, $attr, $post_id ) {
+	return '<div class="embed-responsive embed-responsive-16by9">' . $html . '</div>';
 }
 
 /*
@@ -881,11 +905,11 @@ function wpa_insert_alt_verification( $form_fields, $post ) {
 		$no_alt = get_post_meta( $post->ID, '_no_alt', true );
 		$alt = get_post_meta( $post->ID, '_wp_attachment_image_alt', true );
 		$checked = checked( $no_alt, 1, false );
-		$form_fields['no_alt'] = array( 
+		$form_fields['no_alt'] = array(
 			'label' => __( 'Decorative', 'mayflower' ),
 			'input' => 'html',
 			'value' => 1,
-			'html'  => "<input name='attachments[$post->ID][no_alt]' id='attachments-$post->ID-no_alt' value='1' type='checkbox' aria-describedby='wpa_help' $checked /> <em class='help' id='wpa_help'>" . __( '<strong>Image is purely decorative.</strong> This will strip alt text from the image, and should not be used if image contributes to page content.', 'mayflower' ) . "</em>"
+			'html'  => "<input name='attachments[$post->ID][no_alt]' id='attachments-$post->ID-no_alt' value='1' type='checkbox' aria-describedby='wpa_help' $checked /> <em class='help' id='wpa_help'>" . __( '<strong>Image is purely decorative.</strong> This will strip alt text from the image, and should not be used if image contributes to page content.', 'mayflower' ) . '</em>',
 		);
 	}
 	return $form_fields;
