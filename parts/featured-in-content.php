@@ -3,7 +3,7 @@
 	if ( $mayflower_options['slider_toggle'] === true ) : ?>
 
 
-		<div id="carousel-featured-in-content" class="carousel slide content-padding">
+		<div id="carousel-featured-in-content" class="carousel slide">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 			<?php $number = 0;
