@@ -16,12 +16,12 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 		<?php 
 		// Make sure CE Custom Functionality plugin is active
 		if ( class_exists( 'CE_Custom_Functions' ) && class_exists( 'CE_Plugin_Settings' ) ) :
-			
+
 			// Make sure AJAX method exists
 			if ( method_exists( 'CE_Custom_Functions','cecf_ajax_course_info' ) ) :
 				// Set PHP Variables
 				$field_id     = CE_Plugin_Settings::get_ce_field_id( );
-				$category_ID  = get_post_meta ( get_the_ID( ), $field_id , true );
+				$category_ID  = get_post_meta( get_the_ID( ), $field_id , true );
 				$ajax_nonce   = wp_create_nonce( 'campusce-ajax-request' );
 
 				// Make sure Category ID is in correct format (4 numeric chars)
@@ -39,7 +39,7 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 							jQuery( "#response_area" ).hide( );
 
 							// Base URL format for links to CampusCE
-							var campusce_base_url = 'http://www.campusce.net/BC/course/course.aspx?C=';
+							var campusce_base_url = 'https://www.campusce.net/BC/course/course.aspx?C=';
 
 							// Get data from WordPress
 							jQuery.post (
@@ -99,14 +99,14 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 				<?php endif; ?>
 			<?php else : // No AJAX Option
 				// Set variables
-				$campusce_base_url = 'http://www.campusce.net/BC/course/course.aspx?C=';
+				$campusce_base_url = 'https://www.campusce.net/BC/course/course.aspx?C=';
 				$field_id          = CE_Plugin_Settings::get_ce_field_id();
-				$category_ID       = get_post_meta ( get_the_ID( ), $field_id , true );
+				$category_ID       = get_post_meta( get_the_ID( ), $field_id , true );
 				// Check if category_ID is properly defined (four digit number)
 				if ( preg_match( '/^(\d{4})/', $category_ID ) ) :
 					// Only load courses if category_ID is defined
-					$courses   = CE_Custom_Functions::cecf_get_courses_by_category_id ( $category_ID );
-					$category  = CE_Custom_Functions::cecf_get_category_by_id ( $category_ID ); ?>
+					$courses   = CE_Custom_Functions::cecf_get_courses_by_category_id( $category_ID );
+					$category  = CE_Custom_Functions::cecf_get_category_by_id( $category_ID ); ?>
 					<section id="ce-courses" class="content-padding">
 						<?php if ( !empty( $courses ) ) :
 							$parent_ID = $category->ParentID; ?>
@@ -131,7 +131,7 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 							<br>
 							<div class="well well-sm">
 								<p>Courses have begun. Please check back for future offerings.</p>
-								<p>Also, check out our <a href="http://www.campusce.net/BC/category/category.aspx">online catalog</a> for other offerings.</p>
+								<p>Also, check out our <a href="https://www.campusce.net/BC/category/category.aspx">online catalog</a> for other offerings.</p>
 							</div>
 						<?php endif; ?>
 					</section>
