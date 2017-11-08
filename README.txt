@@ -16,7 +16,10 @@ Mayflower has the following dependencies:
 Specific configuration and release information is available in [Bellevue College Docs](https://github.com/BellevueCollege/docs/tree/master/mayflower). 
 
 == Changelog ==
-= 2.17 =
+= 2.17.2 =
+* Update CE Programs CPT to link to HTTPS links
+
+= 2.17.1 =
 * Add YouVisit display scripts
 
 = 2.17 =
@@ -273,6 +276,9 @@ Fix post display on site and post homepages
 
 
 == Upgrade Notice ==
+= 2.17.2 =
+Breakfix for CE programs pages
+
 = 2.17.1 =
 Add YouVisit script
 
