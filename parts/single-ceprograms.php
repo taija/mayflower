@@ -4,7 +4,7 @@
 */
 
 if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
-	<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<main id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="main">
 		<div class="content-padding post-heading">
 			<h1><?php the_title( ) ?></h1>
 		</div>
@@ -145,5 +145,5 @@ if ( have_posts( ) ) : while ( have_posts( ) ) : the_post( ); ?>
 		<?php else : 
 			echo '<p>Error: Custom Functionality Plugin not active</p>';
 		endif; ?>
-	</section>
+	</main>
 <?php endwhile; wp_reset_query( ); endif;

@@ -26,7 +26,7 @@ if (have_posts()) :
 		if (!(in_array('Unchartered', $club_statuses))) {
 			$is_chartered = true;
 		} ?>
-		<div class="content-padding" data-swiftype-name="body" data-swiftype-type="text">
+		<main class="content-padding" data-swiftype-name="body" data-swiftype-type="text" role="main">
 
 			<?php
 			/* Display 'Unchartered' notice if Unchartered is in array.
@@ -80,7 +80,7 @@ if (have_posts()) :
 			<?php endif; ?>
 			<div class="clearfix"></div>
 			<p id="modified-date" class="text-right"><small><?php _e('Last Updated ', 'mayflower'); the_modified_date(); ?></small></p>
-		</div><!--.content-padding-->
+		</main><!--.content-padding-->
 
 	<?php endwhile;
 	wp_reset_query();

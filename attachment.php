@@ -30,7 +30,7 @@ $caption           = $post->post_excerpt;
 		<?php endif; ?>
 
 				<?php if (have_posts()) : while (have_posts()) : the_post(); /* Template format for images */ ?>
-					<div class="content-padding">
+					<main class="content-padding" role="main">
 						<?php
 						/*
 						 * Check if attachment is an image
@@ -69,7 +69,7 @@ $caption           = $post->post_excerpt;
 
 						<?php endif; ?>
 
-					</div><!-- content-padding -->
+					</main><!-- content-padding -->
 
 				<?php endwhile; ?>
 

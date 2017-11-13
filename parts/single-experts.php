@@ -1,5 +1,5 @@
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-	<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<main id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="main">
 		<div class="content-padding post-heading">
 			<h1><?php the_title();?></h1><br />
 		</div>
@@ -31,7 +31,7 @@
 			<?php endif; ?>
 
 		</article><!-- content-padding -->
-	</section>
+	</main>
 
 <?php endwhile; ?>
 <?php wp_reset_query(); endif;

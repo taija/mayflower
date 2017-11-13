@@ -3,7 +3,7 @@
 $mayflower_options = mayflower_get_options();
 
 if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<main id="post-<?php the_ID(); ?>" <?php post_class(); ?>role="main">
 		<div class="content-padding post-heading">
 			<h1><?php the_title();?></h1>
 			<?php // Check if post date or author should be displayed
@@ -48,7 +48,7 @@ if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<div class="clearfix"></div>
 			<p id="modified-date" class="text-right"><small><?php _e('Last Updated ', 'mayflower'); the_modified_date(); ?></small></p>
 		</article><!-- content-padding -->
-	</section>
+	</main>
 	<?php endwhile; ?>
 
 <?php wp_reset_query();

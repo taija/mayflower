@@ -87,81 +87,75 @@ $mayflower_theme_version = wp_get_theme(); ?>
 		bc_tophead(); ?>
 		<div id="main-wrap" class="<?php echo esc_attr( $mayflower_brand_css ); ?>">
 			<div id="main" class="container no-padding">
-				<div class="container" id="top">
-					<div id="site-header" class="row">
-						<div class="col-md-8">
-							<div class="content-padding">
-								<?php $header_image = get_header_image();
-								if ( ! empty( $header_image ) ) : ?>
-									<div class="header-image">
-										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-											<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo( 'description' ); ?>" />
-										</a>
-									</div><!-- header-image -->
-								<?php else : ?>
-									<p class="site-title">
-										<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-									</p>
-									<p class="site-description"><?php bloginfo( 'description' ); ?></p>
-								<?php endif; ?>
-							</div><!-- .content-padding -->
-						</div><!-- col-md-8 -->
-						<div class="col-md-4">
-							
-							<div class="header-search content-padding <?php
-							if ( get_bloginfo( 'description' ) ) {
-								echo 'header-search-w-description ';
-							}
-							if ( '' === get_bloginfo( 'description' ) ) {
-								echo 'header-social-links-no-margin ';
-							} ?>">
-								<div class="social-media">
-									<ul>
-										<?php if ( ! empty( $mayflower_options['facebook'] ) ) { ?>
-											<li><a href="<?php echo esc_url( $mayflower_options['facebook'] ); ?>" title="FaceBook"><img src="<?php echo esc_url( $globals_url ); ?>i/facebook.png" alt="facebook" /></a></li>
-										<?php } ?>
+				<div id="top" class="mobile-s17">
+						<div id="site-branding">
+							<?php $header_image = get_header_image();
+							if ( ! empty( $header_image ) ) : ?>
+								<div class="header-image">
+									<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+										<img src="<?php header_image(); ?>" class="header-image"  alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?> : <?php bloginfo( 'description' ); ?>" />
+									</a>
+								</div><!-- header-image -->
+							<?php else : // no header image ?>
+								<p class="site-title">
+									<a title="Return to Home Page" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+								</p>
+								<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+							<?php endif; // end no header image ?>
+						</div><!-- #site-branding -->
+						<div id="header-actions-container" class="<?php
+						if ( get_bloginfo( 'description' ) ) {
+							echo 'header-search-w-description ';
+						}
+						if ( '' === get_bloginfo( 'description' ) ) {
+							echo 'header-social-links-no-margin ';
+						} ?>">
+							<div class="social-media">
+								<ul>
+									<?php if ( ! empty( $mayflower_options['facebook'] ) ) { ?>
+										<li><a href="<?php echo esc_url( $mayflower_options['facebook'] ); ?>" title="Facebook"><img src="<?php echo esc_url( $globals_url ); ?>i/facebook.png" alt="facebook" /></a></li>
+									<?php } ?>
 
-										<?php if ( ! empty( $mayflower_options['twitter'] ) ) { ?>
-											<li><a href="<?php echo esc_url( $mayflower_options['twitter'] ); ?>" title="Twitter"><img src="<?php echo esc_url( $globals_url ); ?>i/twitter.png" alt="twitter" /></a></li>
-										<?php } ?>
+									<?php if ( ! empty( $mayflower_options['twitter'] ) ) { ?>
+										<li><a href="<?php echo esc_url( $mayflower_options['twitter'] ); ?>" title="Twitter"><img src="<?php echo esc_url( $globals_url ); ?>i/twitter.png" alt="twitter" /></a></li>
+									<?php } ?>
 
-										<?php if ( ! empty( $mayflower_options['flickr'] ) ) { ?>
-											<li><a href="<?php echo esc_url( $mayflower_options['flickr'] ); ?>" title="Flickr"><img src="<?php echo esc_url( $globals_url ); ?>i/flickr.png" alt="flickr" /></a></li>
-										<?php } ?>
+									<?php if ( ! empty( $mayflower_options['flickr'] ) ) { ?>
+										<li><a href="<?php echo esc_url( $mayflower_options['flickr'] ); ?>" title="Flickr"><img src="<?php echo esc_url( $globals_url ); ?>i/flickr.png" alt="flickr" /></a></li>
+									<?php } ?>
 
-										<?php if ( ! empty( $mayflower_options['youtube'] ) ) { ?>
-											<li><a href="<?php echo esc_url( $mayflower_options['youtube'] ); ?>" title="YouTube"><img src="<?php echo esc_url( $globals_url ); ?>i/youtube.png" alt="youtube" /></a></li>
-										<?php } ?>
+									<?php if ( ! empty( $mayflower_options['youtube'] ) ) { ?>
+										<li><a href="<?php echo esc_url( $mayflower_options['youtube'] ); ?>" title="YouTube"><img src="<?php echo esc_url( $globals_url ); ?>i/youtube.png" alt="youtube" /></a></li>
+									<?php } ?>
 
-										<?php if ( ! empty( $mayflower_options['linkedin'] ) ) { ?>
-											<li><a href="<?php echo esc_url( $mayflower_options['linkedin'] ); ?>" title="LinkedIn"><img src="<?php echo esc_url( $globals_url ); ?>i/linkedin.png" alt="facebook" /></a></li>
-										<?php } ?>
-									</ul>
-								</div><!-- social-media -->
+									<?php if ( ! empty( $mayflower_options['linkedin'] ) ) { ?>
+										<li><a href="<?php echo esc_url( $mayflower_options['linkedin'] ); ?>" title="LinkedIn"><img src="<?php echo esc_url( $globals_url ); ?>i/linkedin.png" alt="facebook" /></a></li>
+									<?php } ?>
+								</ul>
+							</div><!-- social-media -->
 
-								<?php if ( ! ( $mayflower_options['hide_searchform'] ) ) { ?>
-									<div class="row">
-										<div id="main-nav-link" class="col-xs-4 col-sm-12">
-											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
-										</div><!-- main-nav-link -->
-										<div class="col-xs-8 col-sm-12">
-											<?php get_search_form(); ?>
-										</div>
-									</div><!-- row -->
+							<?php if ( ! ( $mayflower_options['hide_searchform'] ) ) { ?>
+								<div id="header-actions-bar" class="row searchform-show">
+									<div id="main-nav-link" class="col-xs-4 col-sm-12">
+										<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block" aria-expanded="false" aria-controls="main-nav-wrap"><span class="glyphicon menu-icon" aria-hidden="true"></span> Menu</a>
+									</div><!-- main-nav-link -->
+									<div id="bc-search-container-lite" class="col-xs-8 col-sm-12">
+										<a tabindex="-1" id="nav-close-icon" class="lite"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">Close Search</span></a>
+										<?php get_search_form(); ?>
+									</div>
+								</div><!-- row -->
 
-								<?php } else { ?>
-									<div class="row">
-										<div id="main-nav-link" class="col-xs-12">
-											<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block">Menu</a>
-										</div><!-- main-nav-link -->
-									</div><!-- row -->
+							<?php } else { ?>
+								<div id="header-actions-bar" class="row searchform-hide">
+									<div id="main-nav-link" class="col-xs-12">
+										<a href="#college-navbar" title="Navigation Menu" class="btn btn-default btn-block" aria-expanded="false" aria-controls="main-nav-wrap"> <span class="glyphicon menu-icon" aria-hidden="true"></span> Menu</a>
+									</div><!-- main-nav-link -->
+								</div><!-- row -->
 
-								<?php } ?>
+							<?php } ?>
 
-							</div> <!--content-padding -->
 						</div><!-- col-md-4 -->
-					</div> <!--#site-header .row-->
-				</div><!-- container -->
+					</div> <!--#top-->
 
 	<?php endif; // End if(). ?>
 
