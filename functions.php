@@ -77,40 +77,43 @@ if ( file_exists( get_template_directory() . '/inc/mayflower-course-descriptions
 /**
  * Custom Pagination Function
  *
- * Output pagination using Globals/Mayflower styles
+ * Output pagination using Globals/Mayflower styles.
+ * Function is pluggable and can be over-ridden from child themes.
  *
  */
-function mayflower_pagination() {
-	$big = 999999999; // need an unlikely integer
+if ( ! function_exists( 'mayflower_pagination' ) ) {
+	function mayflower_pagination() {
+		$big = 999999999; // need an unlikely integer
 
-	$paginated_links = paginate_links( array(
-		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-		'format' => '?paged=%#%',
-		'current' => max( 1, get_query_var( 'paged' ) ),
-		'type' => 'array',
-		'prev_text' => '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Previous',
-		'next_text' => 'Next <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>',
-		'before_page_number' => '<span class="sr-only">Page</span>',
-	) );
-	// Output Pagination
-	if ( $GLOBALS['wp_query']->max_num_pages > 1 ) { ?>
-		<nav class="text-center content-padding">
-			<ul class="pagination">
-				<?php foreach ( $paginated_links as $link ) {
-					// Check if 'Current' class appears in string
-					$is_current = strpos( $link, 'current' );
-					if ( false === $is_current ) {
-						echo '<li>';
-						echo $link;
-						echo '</li>';
-					} else {
-						echo '<li class="active">';
-						echo $link;
-						echo '</li>';
-					}
-				} ?>
-			</ul>
-		</nav> <?php
+		$paginated_links = paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var( 'paged' ) ),
+			'type' => 'array',
+			'prev_text' => '<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Previous',
+			'next_text' => 'Next <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>',
+			'before_page_number' => '<span class="sr-only">Page</span>',
+		) );
+		// Output Pagination
+		if ( $GLOBALS['wp_query']->max_num_pages > 1 ) { ?>
+			<nav class="text-center content-padding">
+				<ul class="pagination">
+					<?php foreach ( $paginated_links as $link ) {
+						// Check if 'Current' class appears in string
+						$is_current = strpos( $link, 'current' );
+						if ( false === $is_current ) {
+							echo '<li>';
+							echo $link;
+							echo '</li>';
+						} else {
+							echo '<li class="active">';
+							echo $link;
+							echo '</li>';
+						}
+					} ?>
+				</ul>
+			</nav> <?php
+		}
 	}
 }
 
@@ -119,21 +122,30 @@ function mayflower_pagination() {
  * Mayflower Is Blog function
  *
  * Returns true if the current page is a blog page
+ * Filterable via mayflower_is_blog
  *
  */
 function mayflower_is_blog() {
-	if ( is_home() || is_archive() || is_singular( 'post' ) || is_post_type_archive( 'post' ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
+	$output;
 
+	if ( is_home() || is_archive() || is_singular( 'post' ) || is_post_type_archive( 'post' ) ) {
+		$output = true;
+	} else {
+		$output = false;
+	}
+
+	// Allow filtering via mayflower_is_blog filter
+	$output = apply_filters( 'mayflower_is_blog', $output );
+
+	// Return filtered output
+	return $output;
+}
 
 /**
  * Has Active Sidebar function
  *
- * Check if sidebar widgets are present
+ * Check if sidebar widgets are present.
+ * Filterable via mayflower_active_sidebar
  *
  */
 function has_active_sidebar() {
@@ -186,14 +198,23 @@ function mayflower_display_sidebar() {
  * Is Multisite Home function
  *
  * Return true if on the multisite root homepage
+ * Filterable via mayflower_is_multisite_home
  *
  */
 function is_multisite_home() {
+	$output;
+
 	if ( is_main_site() && is_front_page() ) {
-		return true;
+		$output = true;
 	} else {
-		return false;
+		$output = false;
 	}
+
+	// Allow filtering via mayflower_is_multisite_home filter
+	$output = apply_filters( 'mayflower_is_multisite_home', $output );
+
+	// Return filtered output
+	return $output;
 }
 
 /**
@@ -201,12 +222,21 @@ function is_multisite_home() {
  *
  * Return trimmed URL (for example, www.bellevuecollege.edu/sample ).
  * Used for Swiftype. Based on https://stackoverflow.com/a/4357691
+ * Filterable via mayflower_trimmed_url
  *
  */
 function mayflower_trimmed_url() {
+	$output;
+
 	$site_url = get_site_url( null, '', 'https' );
-	$parsed = parse_url( $site_url );
-	return $parsed['host'] . $parsed['path'];
+	$parsed = wp_parse_url( $site_url );
+	$output = $parsed['host'] . $parsed['path'];
+
+	// Allow filtering via mayflower_trimmed_url filter
+	$output = apply_filters( 'mayflower_trimmed_url', $output );
+
+	// Return filtered output
+	return $output;
 }
 
 
@@ -258,7 +288,7 @@ function mayflower_cpt_update_post_order() {
 /**
  * Custom Meta Boxes
  *
- * Globals nav selection meta boxes. Not sure where this is used. 
+ * Globals nav selection meta boxes. Not sure where this is used.
  *
  */
 
