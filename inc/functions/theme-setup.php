@@ -38,6 +38,11 @@ function mayflower_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	/*
+	 * Remove Comments Feed Link
+	 */
+	add_filter( 'feed_links_show_comments_feed', '__return_false' );
+
+	/*
 	 * Add Theme support for Title Tags
 	 *
 	 * Automatically add title tags to header

@@ -397,3 +397,21 @@ function get_course_html($course, $description = null)
         $html .= "</div>"; //classInfo
         return $html;
 }
+
+####################################################
+## Override Dashicons Styles
+####################################################
+
+add_action( 'admin_head', 'mayflower_override_dashicons' );
+
+function mayflower_override_dashicons() {
+    // Used for Add Course icon. This should move to an admin stylesheet, 
+    // and be much more specific instead of applying to all welcome dashicons
+	?>
+	<style>
+		.dashicons-welcome-learn-more:before {
+			line-height: 26px;
+		}
+	</style>
+	<?php
+}
