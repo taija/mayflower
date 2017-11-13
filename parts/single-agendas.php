@@ -5,7 +5,7 @@
  */
 
 if (have_posts()) : while (have_posts()) : the_post(); ?>
-	<div class="content-padding">
+	<main class="content-padding" role="main">
 
 		<h1><?php the_title();
 
@@ -25,7 +25,7 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 		} else {
 			echo $content;
 		} ?>
-	</div> <!--.content-padding-->
+	</main> <!--.content-padding-->
 
 <?php
 endwhile;

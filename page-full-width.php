@@ -17,9 +17,9 @@ $current_layout = $mayflower_options['default_layout'];
 				<?php
 				// Start the loop.
 				while ( have_posts() ) : the_post(); ?>
-					<section id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?>>
+					<main id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?> role="main">
 						<?php get_template_part( 'parts/page' ); ?>
-					</section>
+					</main>
 				<?php endwhile;
 			// If no content, include the "No posts found" template.
 			else :
