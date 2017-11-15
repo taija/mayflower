@@ -27,3 +27,10 @@ function expandLink( linkText ) {
 function collapseLink( linkText ) {
 	return '<a class="menu-expand-button expanded" href="#" aria-expanded="true"><span class="glyphicon glyphicon glyphicon-minus-sign" aria-hidden="true"></span><span class="sr-only">Collapse ' + linkText + ' Submenu</span></a';
 }
+
+// Handle globals mobile-s17 menu integration
+jQuery(document).ready(function($) {
+	if ($("#top-wrap").hasClass("mobile-s17")) {
+		$('.sidebar').first().clone().appendTo("#main-nav-wrap");
+	}
+});

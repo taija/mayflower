@@ -4,7 +4,7 @@ Theme URI: http://www.bellevuecollege.edu/its/
 Description: The Bellevue College Theme
 Author: Bellevue College Integration
 Author URI: http://www.bellevuecollege.edu
-Version: 2.17.2.5
+Version: 2.17.2.6
 GitHub Theme URI: bellevuecollege/mayflower
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -373,6 +373,43 @@ ul.header-social-links li {
 /* ####################################### */
 /* ----- Navigation/widget areas styles ----- */
 /* ###################################### */
+
+/* Integrate with mobile-s17 globals navigation */
+
+// Hide cloned sidebar content in header
+#top-wrap .sidebar,
+#top .sidebar {
+	display:none;
+}
+// Target Mobile Breakpoints Only
+@media screen and (max-width: $breakpoint-bs-sm - 1) {
+
+	// Hide sidebar in content (Lite)
+	#top-wrap.lite.mobile-s17 + #main-wrap .flexwrap .sidebar {
+		display: none;
+	}
+
+	// Hide sidebar in content (Branded)
+	#top-wrap.branded.mobile-s17 + .flexwrap .sidebar {
+		display: none;
+	}
+
+
+	#top-wrap.branded.mobile-s17,
+	.globals-lite #top.mobile-s17 {
+		& .sidebar {
+			display: block;
+
+			background: #fff;
+			margin: 1em;
+			padding: .25em;
+
+
+		}
+	}
+
+}
+
 
 
 .sidebar {
