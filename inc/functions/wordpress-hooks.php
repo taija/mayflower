@@ -603,6 +603,11 @@ function mayflower_scripts() {
 	wp_enqueue_script( 'menu', get_template_directory_uri() . '/js/menu.js#deferload', array( 'jquery' ), MAYFLOWER_STYLE_VERSION , true );
 
 	wp_enqueue_script( 'youvisit', 'https://www.youvisit.com/tour/Embed/js2#asyncdeferload', null, null , true );
+
+	if ( current_user_can( 'edit_posts' ) ) {
+		wp_enqueue_script( 'a11y-warnings-js', get_template_directory_uri() . '/js/a11y-warnings.js#deferload', array( 'jquery' ), time(), true );
+		wp_enqueue_style( 'a11y-warnings-css', get_template_directory_uri() . '/css/a11y-warnings.css', null, time() );
+	}
 }
 
 
