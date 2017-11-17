@@ -3,7 +3,7 @@
 $mayflower_options = mayflower_get_options();
 
 if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	<main id="post-<?php the_ID(); ?>" <?php post_class(); ?>role="main">
+	<main id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="main">
 		<div class="content-padding post-heading">
 			<h1><?php the_title();?></h1>
 			<?php // Check if post date or author should be displayed
