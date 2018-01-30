@@ -275,6 +275,23 @@ function mayflower_remove_default_widgets() {
 remove_action( 'wp_head', 'wp_generator' );
 
 /**
+ * Gutenberg Time!
+ *
+ * Add hooks for Gutenberg features
+ *
+ * Gutenberg beta plugin v2.0
+ */
+
+function mayflower_gutenberg_blacklist_blocks() {
+	wp_enqueue_script(
+		'mayflower-gutenberg-blacklist-blocks',
+		get_template_directory_uri() . '/js/gutenberg.js',
+		array( 'wp-blocks', 'wp-element' )
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'mayflower_gutenberg_blacklist_blocks' );
+
+/**
  * Customize WordPress Visual Editor
  *
  * Add and change stylesheets and buttons in the
