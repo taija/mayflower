@@ -298,6 +298,26 @@ function mayflower_setup() {
 	 */
 	update_option( 'image_default_align', 'left' );
 
+	/**
+	 * Gutenberg Time!
+	 *
+	 * Add theme support for Gutenberg features
+	 *
+	 * Gutenberg beta plugin v2.0
+	 */
+	add_theme_support( 'gutenberg', array(
+		'colors' => array(
+			'#003D79',
+			'#317131',
+			'#afd7ff',
+			'#F2C01E',
+			'#C4122F',
+			'#162F57',
+			'#000',
+			'#E36F1E',
+			'#FFF',
+		),
+	) );
 }
 
 add_action( 'after_setup_theme', 'mayflower_setup', 10 );
